@@ -15,7 +15,7 @@ This repository contains the dotfiles and setup scripts to configure and manage 
 
 ## Prerequisites
 
-- Git must be installed.
+- Git must be installed. (For cloning the repo)
 - Sudo access is required to install programs.
 
 ---
