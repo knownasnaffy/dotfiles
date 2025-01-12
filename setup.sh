@@ -1,33 +1,24 @@
-# Package(s) to install (modify as needed)
-PROGRAMS=("zsh", "git", "neovim")
-
-# Function to install programs
 install_programs() {
-    for program in "${PROGRAMS[@]}"; do
-        echo "Installing $program..."
-        if ! $INSTALL_CMD "$program" -y; then
-            echo "Failed to install $program. Skipping..."
+    # Check if the system is Ubuntu
+    if [ -f /etc/os-release ]; then
+        . /etc/os-release
+        if [[ "$ID" == "ubuntu" ]]; then
+            echo "System is Ubuntu. Installing programs using apt-get..."
+            # Install required programs
+            sudo apt-get install zsh git neovim
+        else
+            echo "System is not Ubuntu. Skipping some installations."
         fi
-    done
+    else
+        echo "Unable to detect the operating system."
+    fi
+
+    # Oh my zsh
+    git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+
+    # Bun - Javascript runtime and package manager
+    # curl -fsSL https://bun.sh/install | bash
 }
-
-# Check for pacman or apt-get
-if command -v pacman &> /dev/null; then
-    echo "Detected Arch-based system. Using pacman."
-    INSTALL_CMD="sudo pacman -S --needed"
-elif command -v apt-get &> /dev/null; then
-    echo "Detected Ubuntu-based system. Using apt-get."
-    INSTALL_CMD="sudo apt-get install"
-else
-    echo "Error: Neither pacman nor apt-get found. Exiting."
-    exit 1
-fi
-
-# Install programs
-install_programs
-
-# Final message
-echo "Installation complete. Please verify the programs are installed."
 
 # Function to set up Zsh as the default shell
 setup_zsh() {
@@ -39,21 +30,55 @@ setup_zsh() {
     fi
 }
 
-ln -s $PWD/.gitconfig ~/.gitconfig
-ln -s $PWD/.zshrc ~/.zshrc
-ln -s $PWD/gh ~/.config/gh
+install_plugins() {
+    echo "Installing ohmyzsh plugins"
 
-# Oh my zsh
-sh -c "$(curl -fsSL https://install.ohmyz.sh/)"
+    # Zsh plugins - autosuggestions, history substring search, syntax highlinghting.
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-# Zsh plugins - autosuggestions, history substring search, syntax highlinghting.
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    # Spaceship prompt theme
+    git clone https://github.com/spaceship-prompt/spaceship-prompt.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship-prompt --depth=1
+    ln -s ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship-prompt/spaceship.zsh-theme ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship.zsh-theme
+}
 
-# Spaceship prompt theme
-git clone https://github.com/spaceship-prompt/spaceship-prompt.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship-prompt --depth=1
-ln -s ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship-prompt/spaceship.zsh-theme ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship.zsh-theme
+link_dotfiles() {
+    echo "Settings symlinks for dotfiles"
+    rm ~/.zshrc
+    ln -s $PWD/.gitconfig ~/.gitconfig
+    ln -s $PWD/.zshrc ~/.zshrc
+    ln -s $PWD/gh ~/.config/gh
+}
 
-# Bun - Javascript runtime and package manager
-curl -fsSL https://bun.sh/install | bash
+switch_terminal() {
+    # Get the current shell
+    CURRENT_SHELL=$(basename "$SHELL")
+
+    # Check if the current shell is Zsh
+    if [ "$CURRENT_SHELL" != "zsh" ]; then
+        echo "Current shell is $CURRENT_SHELL. Switching to Zsh..."
+
+        # Check if Zsh is installed
+        if command -v zsh &> /dev/null; then
+            # Change the default shell to Zsh
+            chsh -s "$(command -v zsh)"
+            echo "Default shell changed to Zsh. Restart your terminal to apply the changes."
+        else
+            echo "Zsh is not installed. Please install it first and re-run this script."
+            exit 1
+        fi
+    else
+        echo "Current shell is already Zsh."
+    fi
+}
+
+main() {
+    install_programs
+    setup_zsh
+    install_plugins
+    link_dotfiles
+    switch_terminal
+}
+
+main
