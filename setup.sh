@@ -48,7 +48,7 @@ link_dotfiles() {
     rm ~/.zshrc
     ln -s $PWD/.gitconfig ~/.gitconfig
     ln -s $PWD/.zshrc ~/.zshrc
-    ln -s $PWD/gh ~/.config/gh
+    ln -s $PWD/.config/gh ~/.config/gh
 }
 
 switch_terminal() {
