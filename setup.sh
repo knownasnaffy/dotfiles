@@ -29,6 +29,15 @@ create_symlink() {
     log "Symlink created: $dest -> $src"
 }
 
+install_oh_my_zsh() {
+    if [ -d "$ZSH_DIR" ]; then
+        log "Oh My Zsh already installed. Skipping..."
+    else
+        log "Installing Oh My Zsh..."
+        git clone https://github.com/ohmyzsh/ohmyzsh.git "$ZSH_DIR/"
+    fi
+}
+
 install_programs() {
     # Check if the system is Ubuntu
     if [ -f /etc/os-release ]; then
@@ -44,14 +53,8 @@ install_programs() {
         echo "Unable to detect the operating system."
     fi
 
-    install_oh_my_zsh() {
-        if [ -d "$ZSH_DIR" ]; then
-            log "Oh My Zsh already installed. Skipping..."
-        else
-            log "Installing Oh My Zsh..."
-            git clone https://github.com/ohmyzsh/ohmyzsh.git "$ZSH_DIR"
-        fi
-    }
+    # Install Oh My Zsh
+    install_oh_my_zsh
 
     # Bun - Javascript runtime and package manager
     check_command bun || (log 'Installing bun' |
@@ -127,6 +130,10 @@ switch_terminal() {
     else
         log "Current shell is already Zsh."
     fi
+
+    # Refresh from shell config
+    log "Refreshing zsh config"
+    source ~/.zshrc
 }
 
 main() {
