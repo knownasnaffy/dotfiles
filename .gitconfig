@@ -1,0 +1,18 @@
+[user]
+	name = Barinderpreet Singh
+	email = naffydharni006@gmail.com
+[credential "https://github.com"]
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = !/usr/bin/gh auth git-credential
+[credential]
+	helper = /usr/local/bin/git-credential-manager
+	credentialStore = cache
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[commit]
+	gpgsign = false
+[tag]
+	gpgSign = false
+[init]
+	defaultBranch = main
