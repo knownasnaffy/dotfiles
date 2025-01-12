@@ -13,7 +13,7 @@ error() { echo -e "[\033[1;31mERROR\033[0m] $1"; }
 check_command() {
     if ! command -v "$1" &> /dev/null; then
         error "$1 is not installed or not in PATH."
-        exit 1
+        return false
     fi
 }
 
