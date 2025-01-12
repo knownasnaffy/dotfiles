@@ -5,6 +5,7 @@ set -e
 ZSH_DIR="$HOME/.oh-my-zsh"
 ZSH_CUSTOM="$ZSH_DIR/custom"
 DOTFILES_DIR="$PWD"
+NVIM_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
 
 log() { echo -e "[\033[1;32mINFO\033[0m] $1"; }
 error() { echo -e "[\033[1;31mERROR\033[0m] $1"; }
@@ -38,6 +39,19 @@ install_oh_my_zsh() {
     fi
 }
 
+install_neovim_config() {
+    # Check if the directory exists and is not empty
+    if [ -d "$NVIM_CONFIG_DIR" ] && [ "$(ls -A "$NVIM_CONFIG_DIR" 2>/dev/null)" ]; then
+        log "Neovim configuration directory is not empty. Deleting it..."
+        rm -rf "$NVIM_CONFIG_DIR"
+    fi
+
+    # Clone the Neovim configuration
+    log "Cloning Neovim configuration..."
+    git clone https://github.com/knownasnaffy/kickstart.nvim.git "$NVIM_CONFIG_DIR"
+    log "Neovim configuration installed."
+}
+
 install_programs() {
     # Check if the system is Ubuntu
     if [ -f /etc/os-release ]; then
@@ -45,7 +59,7 @@ install_programs() {
         if [[ "$ID" == "ubuntu" ]]; then
             echo "System is Ubuntu. Installing programs using apt-get..."
             # Install required programs
-            sudo apt-get install zsh git neovim
+            sudo apt-get install zsh make gcc ripgrep unzip git xclip neovim
         else
             echo "System is not Ubuntu. Skipping some installations."
         fi
@@ -55,6 +69,9 @@ install_programs() {
 
     # Install Oh My Zsh
     install_oh_my_zsh
+
+    # Configure neovim
+    install_neovim_config
 
     # Bun - Javascript runtime and package manager
     check_command bun || (log 'Installing bun' |
