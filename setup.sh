@@ -59,7 +59,7 @@ install_programs() {
         if [[ "$ID" == "ubuntu" ]]; then
             echo "System is Ubuntu. Installing programs using apt-get..."
             # Install required programs
-            sudo apt-get install -y zsh make gcc ripgrep unzip git xclip neovim
+            sudo apt-get install zsh make gcc ripgrep unzip git xclip neovim
         else
             echo "System is not Ubuntu. Skipping some installations."
         fi
