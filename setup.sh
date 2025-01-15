@@ -125,6 +125,7 @@ link_dotfiles() {
     create_symlink $DOTFILES_DIR/.gitconfig ~/.gitconfig
     create_symlink $DOTFILES_DIR/.zshrc ~/.zshrc
     create_symlink $DOTFILES_DIR/.config/gh ~/.config/gh
+    create_symlink $DOTFILES_DIR/.config/qutebrowser ~/.config/qutebrowser
 }
 
 switch_terminal() {
