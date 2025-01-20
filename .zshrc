@@ -20,6 +20,12 @@ SPACESHIP_RUST_SHOW=false
 SPACESHIP_PACKAGE_SHOW=false
 # Disable Node.js section
 SPACESHIP_NODE_SHOW=false
+# Enable battery status
+SPACESHIP_BATTERY_SHOW="charged"
+SPACESHIP_BATTERY_THRESHOLD=25
+# Enabled timestamps
+SPACESHIP_TIME_SHOW=true
+SPACESHIP_TIME_FORMAT='%D{%d %b}, %T'
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
