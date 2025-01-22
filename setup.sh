@@ -17,6 +17,9 @@ check_command() {
     fi
 }
 
+#  TODO: Instead of just backing it up, create a logic to check if it's a symlink
+#        and is already pointing to the src location and then create a backup if
+#        it's not and if it is, just skip
 create_symlink() {
     local src="$1"
     local dest="$2"
