@@ -146,3 +146,12 @@ _add_space() {
 [ -s "/home/knownasnaffy/.zsh_functions/_gitpod" ] && source "/home/knownasnaffy/.zsh_functions/_gitpod"
 [ -s "/home/knownasnaffy/.zsh_functions/_mods" ] && source "/home/knownasnaffy/.zsh_functions/_mods"
 [ -s "/home/knownasnaffy/.zsh_functions/_alacritty" ] && source "/home/knownasnaffy/.zsh_functions/_alacritty"
+
+function fm() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
