@@ -140,3 +140,9 @@ _add_space() {
 
 # bun completions
 [ -s "/home/knownasnaffy/.bun/_bun" ] && source "/home/knownasnaffy/.bun/_bun"
+
+# completions
+[ -s "/home/knownasnaffy/.zsh_functions/_ghostty" ] && source "/home/knownasnaffy/.zsh_functions/_ghostty"
+[ -s "/home/knownasnaffy/.zsh_functions/_gitpod" ] && source "/home/knownasnaffy/.zsh_functions/_gitpod"
+[ -s "/home/knownasnaffy/.zsh_functions/_mods" ] && source "/home/knownasnaffy/.zsh_functions/_mods"
+[ -s "/home/knownasnaffy/.zsh_functions/_alacritty" ] && source "/home/knownasnaffy/.zsh_functions/_alacritty"

@@ -129,6 +129,7 @@ link_dotfiles() {
     create_symlink $DOTFILES_DIR/.zshrc ~/.zshrc
     create_symlink $DOTFILES_DIR/.config/gh ~/.config/gh
     create_symlink $DOTFILES_DIR/.config/qutebrowser ~/.config/qutebrowser
+    create_symlink $DOTFILES_DIR/.zsh_functions ~/.zsh_functions
 }
 
 switch_terminal() {
