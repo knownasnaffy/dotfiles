@@ -132,6 +132,8 @@ link_dotfiles() {
     create_symlink $DOTFILES_DIR/.zsh_functions ~/.zsh_functions
 }
 
+# Add yazi installation along with it's config files. Make sure to install yazi-git or latest nightly for plugins to work
+
 switch_terminal() {
     # Get the current shell
     CURRENT_SHELL=$(basename "$SHELL")
