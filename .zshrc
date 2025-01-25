@@ -148,8 +148,8 @@ _add_space() {
 [ -s "/home/knownasnaffy/.zsh_functions/_alacritty" ] && source "/home/knownasnaffy/.zsh_functions/_alacritty"
 
 function fm() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
+	local tmp="$(mktemp -t ranger_cd.XXX)" cwd
+	ranger --choosedir="$tmp" -- "${@:-$PWD}"
 	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
 		builtin cd -- "$cwd"
 	fi
