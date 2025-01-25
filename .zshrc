@@ -63,7 +63,7 @@ plugins=(
     gh # Code completion
     sudo
     web-search
-    z
+    zoxide
     zsh-autosuggestions
     zsh-history-substring-search
     zsh-interactive-cd
