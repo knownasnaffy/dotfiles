@@ -1,16 +1,7 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
-# Path to your Oh My Zsh installation.
+# Path to my Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
-# lukerandall
-# ZSH_THEME="random"
+# Prompt theme
 ZSH_THEME="spaceship"
 
 # Spaceship specific config
@@ -27,19 +18,8 @@ SPACESHIP_BATTERY_THRESHOLD=25
 SPACESHIP_TIME_SHOW=true
 SPACESHIP_TIME_FORMAT='%D{%d %b}, %T'
 
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
-
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -49,35 +29,26 @@ SPACESHIP_TIME_FORMAT='%D{%d %b}, %T'
 # Delete a whole word when pressing ctrl+backspace
 bindkey '^H' backward-kill-word
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
+# Oh My Zsh plugins
 plugins=(
     aliases
     bun # Code completion
-    copyfile
-    copypath
+    copyfile # Copy target file content
+    copypath # Copy taeget path
     dirhistory
     gh # Code completion
-    sudo
+    sudo # Double escape to prefix with sudo
     web-search
-    zoxide
-    zsh-autosuggestions
-    zsh-history-substring-search
-    zsh-interactive-cd
-    zsh-syntax-highlighting
+    zoxide # Auto jumps
+    zsh-autosuggestions # Command completion
+    zsh-history-substring-search # Up arrow key for search
+    zsh-interactive-cd # Use fzf for entering directories
+    zsh-syntax-highlighting # Command syntax colors
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -89,25 +60,15 @@ fi
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
 
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+#  TODO: Move custom aliases to $ZSH_CUSTOM
 
-export PNPM_HOME="/home/knownasnaffy/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 
 # Define an array of directories to add to the PATH
 path_directories=(
   "$HOME/.bun/bin" # Bun
   "/root/.local/share/gem/ruby/3.2.0/bin" # Gem modules (system-wide)
-  "/home/knownasnaffy/.local/share/gem/ruby/3.3.0/bin" # Gem modules (user-specific)
+  "$HOME/.local/share/gem/ruby/3.3.0/bin" # Gem modules (user-specific)
   "$HOME/.java/jre1.8.0_431/bin" # Java
   "$HOME/.local/share/webstorm/bin" # Webstorm
   $PNPM_HOME # Pnpm
@@ -137,16 +98,16 @@ _add_space() {
     echo '\n\n\n\n\n\n\n\n'
 }
 
-
 # bun completions
-[ -s "/home/knownasnaffy/.bun/_bun" ] && source "/home/knownasnaffy/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # completions
-[ -s "/home/knownasnaffy/.zsh_functions/_ghostty" ] && source "/home/knownasnaffy/.zsh_functions/_ghostty"
-[ -s "/home/knownasnaffy/.zsh_functions/_gitpod" ] && source "/home/knownasnaffy/.zsh_functions/_gitpod"
-[ -s "/home/knownasnaffy/.zsh_functions/_mods" ] && source "/home/knownasnaffy/.zsh_functions/_mods"
-[ -s "/home/knownasnaffy/.zsh_functions/_alacritty" ] && source "/home/knownasnaffy/.zsh_functions/_alacritty"
+[ -s "$HOME/.zsh_functions/_ghostty" ] && source "$HOME/.zsh_functions/_ghostty"
+[ -s "$HOME/.zsh_functions/_gitpod" ] && source "$HOME/.zsh_functions/_gitpod"
+[ -s "$HOME/.zsh_functions/_mods" ] && source "$HOME/.zsh_functions/_mods"
+[ -s "$HOME/.zsh_functions/_alacritty" ] && source "$HOME/.zsh_functions/_alacritty"
 
+# Custom alias for ranger file manager
 function fm() {
 	local tmp="$(mktemp -t ranger_cd.XXX)" cwd
 	ranger --choosedir="$tmp" -- "${@:-$PWD}"
