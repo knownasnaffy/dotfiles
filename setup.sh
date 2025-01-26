@@ -1,6 +1,13 @@
 #!/bin/bash
 set -e
 
+#  TODO: Add an option to get arguments and if the -p argument is present, only
+#        then will you install the packages that are supposed to be installed
+#        on my private pc
+
+#  TODO: Separate config files and personal data files. Make a separate file
+#        for data files/folders like taskwarrior, jrnl and qutebrowser bookmarks
+
 # Variables
 ZSH_DIR="$HOME/.oh-my-zsh"
 ZSH_CUSTOM="$ZSH_DIR/custom"
