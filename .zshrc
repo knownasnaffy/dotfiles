@@ -116,3 +116,6 @@ function fm() {
 	fi
 	rm -f -- "$tmp"
 }
+
+# Alias zoxide to the default change directory command
+alias cd=z
