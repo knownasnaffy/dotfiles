@@ -16,16 +16,27 @@ settings:
         <Alt+j>: tab-next
         <Alt+k>: tab-prev
         <Alt+p>: insert-text -- {clipboard}
-        td: config-cycle colors.webpage.darkmode.enabled true false
+        td: config-cycle -u *://{url:host}/* colors.webpage.darkmode.enabled ;; reload
   colors.webpage.darkmode.enabled:
+    '*://chat.deepseek.com/*': false
+    '*://localhost/*': false
+    '*://qutebrowser.org/*': true
+    '*://taskwarrior.org/*': true
+    '*://wallpaperaccess.com/*': true
+    '*://web.whatsapp.com/*': false
     global: false
   colors.webpage.preferred_color_scheme:
     global: dark
   content.javascript.clipboard:
     global: access
+  content.register_protocol_handler:
+    https://mail.google.com?extsrc=mailto&url=%25s: false
+    https://outlook.live.com?mailtouri=%25s: false
+  editor.command:
+    global:
+    - gvim
+    - '{file}'
   input.insert_mode.auto_load:
-    global: true
-  scrolling.smooth:
     global: true
   tabs.position:
     global: left
