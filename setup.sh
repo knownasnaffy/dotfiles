@@ -69,6 +69,35 @@ install_neovim_config() {
     log "Neovim configuration installed."
 }
 
+install_gh() {
+    # Ensure wget is installed
+    if ! command -v wget >/dev/null 2>&1; then
+        sudo apt-get update -qq && sudo apt-get install -y wget
+    fi
+
+    # Set variables
+    KEYRING_DIR="/etc/apt/keyrings"
+    KEYRING_PATH="$KEYRING_DIR/githubcli-archive-keyring.gpg"
+    REPO_LIST="/etc/apt/sources.list.d/github-cli.list"
+    GH_REPO="https://cli.github.com/packages"
+    ARCH=$(dpkg --print-architecture)
+
+    # Create keyring directory if not exists
+    sudo mkdir -p -m 755 "$KEYRING_DIR"
+
+    # Download and install GPG key
+    wget -qO- "$GH_REPO/githubcli-archive-keyring.gpg" | sudo tee "$KEYRING_PATH" >/dev/null
+    sudo chmod go+r "$KEYRING_PATH"
+
+    # Add repository if not already added
+    if ! grep -q "^deb .*githubcli" "$REPO_LIST" 2>/dev/null; then
+        echo "deb [arch=$ARCH signed-by=$KEYRING_PATH] $GH_REPO stable main" | sudo tee "$REPO_LIST" >/dev/null
+    fi
+
+    # Install GitHub CLI
+    sudo apt-get update -qq && sudo apt-get install -y gh
+}
+
 install_programs() {
     # Check if the system is Ubuntu
     if [ -f /etc/os-release ]; then
@@ -76,11 +105,12 @@ install_programs() {
         if [[ "$ID" == "ubuntu" ]]; then
             echo "System is Ubuntu. Installing programs using apt-get..."
             # Install required programs
-            sudo apt-get install -y zsh make gcc ripgrep unzip git xclip neovim
+            install_gh
+            sudo apt-get install -y zsh make gcc ripgrep unzip git xclip neovim fzf
         elif [[ "$ID" == "manjaro" ]]; then
             echo "System is Manjaro. Installing programs using pacman..."
             # Install required programs
-            sudo pacman -S --noconfirm zsh make gcc ripgrep unzip git xclip neovim
+            sudo pacman -S --noconfirm zsh make gcc ripgrep unzip git xclip neovim fzf github-cli
         else
             echo "System is not Ubuntu or Manjaro. Skipping some installations."
         fi
