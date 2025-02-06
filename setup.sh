@@ -94,6 +94,10 @@ install_programs() {
     # Configure neovim
     install_neovim_config
 
+    # Zoxide - Autojump
+    check_command z || (log 'Installing zoxide' |
+    curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh)
+
     # Bun - Javascript runtime and package manager
     check_command bun || (log 'Installing bun' |
         curl -fsSL https://bun.sh/install | bash)
