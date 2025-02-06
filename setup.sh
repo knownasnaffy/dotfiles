@@ -30,10 +30,17 @@ check_command() {
 create_symlink() {
     local src="$1"
     local dest="$2"
+    local backup="${dest}.bak"
+    local count=1
 
     if [ -e "$dest" ]; then
-        log "Backing up existing $dest to ${dest}.bak"
-        mv "$dest" "${dest}.bak"
+        while [ -e "$backup" ]; do
+            backup="${dest}.bak${count}"
+            ((count++))
+        done
+
+        log "Backing up existing $dest to $backup"
+        mv "$dest" "$backup"
     fi
 
     ln -s "$src" "$dest"
