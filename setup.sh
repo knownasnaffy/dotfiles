@@ -77,8 +77,12 @@ install_programs() {
             echo "System is Ubuntu. Installing programs using apt-get..."
             # Install required programs
             sudo apt-get install -y zsh make gcc ripgrep unzip git xclip neovim
+        elif [[ "$ID" == "manjaro" ]]; then
+            echo "System is Manjaro. Installing programs using pacman..."
+            # Install required programs
+            sudo pacman -S --noconfirm zsh make gcc ripgrep unzip git xclip neovim
         else
-            echo "System is not Ubuntu. Skipping some installations."
+            echo "System is not Ubuntu or Manjaro. Skipping some installations."
         fi
     else
         echo "Unable to detect the operating system."
