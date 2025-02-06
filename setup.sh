@@ -152,32 +152,6 @@ link_dotfiles() {
 
 # Add yazi installation along with it's config files. Make sure to install yazi-git or latest nightly for plugins to work
 
-switch_terminal() {
-    # Get the current shell
-    CURRENT_SHELL=$(basename "$SHELL")
-
-    # Check if the current shell is Zsh
-    if [ "$CURRENT_SHELL" != "zsh" ]; then
-        log "Current shell is $CURRENT_SHELL. Switching to Zsh..."
-
-        # Check if Zsh is installed
-        if command -v zsh &> /dev/null; then
-            # Change the default shell to Zsh
-            chsh -s "$(command -v zsh)"
-            log "Default shell changed to Zsh. Restart your terminal to apply the changes."
-        else
-            error "Zsh is not installed. Please install it first and re-run this script."
-            exit 1
-        fi
-    else
-        log "Current shell is already Zsh."
-    fi
-
-    # Refresh from shell config
-    log "Refreshing zsh config"
-    source ~/.zshrc
-}
-
 main() {
     install_programs
     echo
@@ -186,8 +160,6 @@ main() {
     install_plugins
     echo
     link_dotfiles
-    echo
-    switch_terminal
 }
 
 main
