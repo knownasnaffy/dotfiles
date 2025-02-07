@@ -48,8 +48,20 @@ install_oh_my_zsh() {
 }
 
 install_neovim_config() {
-    if [ -d "$NVIM_CONFIG_DIR" ] && [ "$(ls -A "$NVIM_CONFIG_DIR" 2>/dev/null)" ]; then
-        log "Neovim configuration exists. Removing it..."
+    if [ -d "$NVIM_CONFIG_DIR" ]; then
+        if [ -d "$NVIM_CONFIG_DIR/.git" ]; then
+            REMOTE_URL=$(git -C "$NVIM_CONFIG_DIR" remote get-url origin 2>/dev/null || echo "")
+
+            if [[ "$REMOTE_URL" == *"knownasnaffy/kickstart.nvim"* ]]; then
+                log "Neovim configuration already exists and is from the correct repository. Skipping..."
+                return
+            fi
+
+            log "Neovim configuration exists but is from a different repository. Removing it..."
+        else
+            log "Neovim configuration exists but is not a Git repository. Removing it..."
+        fi
+
         rm -rf "$NVIM_CONFIG_DIR"
     fi
 
