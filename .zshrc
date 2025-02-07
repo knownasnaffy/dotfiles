@@ -119,3 +119,9 @@ function fm() {
 
 # Alias zoxide to the default change directory command
 alias cd=z
+
+# Taskwarrior related variables
+export TASKRC=~/.config/taskwarrior/taskrc TASKDATA=~/.local/share/taskwarrior
+
+alias tt=taskwarrior-tui
+alias t=task
