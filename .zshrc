@@ -125,3 +125,9 @@ export TASKRC=~/.config/taskwarrior/taskrc TASKDATA=~/.local/share/taskwarrior
 
 alias tt=taskwarrior-tui
 alias t=task
+
+# Don't log commands starting with a space
+setopt HIST_IGNORE_SPACE
+
+# Don't log jrnl commands by prefixing with a space
+alias jrnl=" jrnl"
