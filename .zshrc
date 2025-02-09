@@ -117,9 +117,6 @@ function fm() {
 	rm -f -- "$tmp"
 }
 
-# Alias zoxide to the default change directory command
-alias cd=z
-
 # Taskwarrior related variables
 export TASKRC=~/.config/taskwarrior/taskrc TASKDATA=~/.local/share/taskwarrior
 
