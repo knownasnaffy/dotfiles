@@ -57,6 +57,8 @@ else
   export EDITOR='nvim'
 fi
 
+alias vi=nvim
+
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
 
