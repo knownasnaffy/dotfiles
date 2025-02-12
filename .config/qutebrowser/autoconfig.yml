@@ -34,7 +34,9 @@ settings:
     https://outlook.live.com?mailtouri=%25s: false
   editor.command:
     global:
-    - gvim
+    - ghostty
+    - -e
+    - nvim
     - '{file}'
   input.insert_mode.auto_load:
     global: true
