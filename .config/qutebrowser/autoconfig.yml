@@ -10,16 +10,31 @@ settings:
     global: true
   bindings.commands:
     global:
-      insert:
-        <Alt+p>: insert-text -- {clipboard}
+      caret:
+        ;: move-to-next-char
+        h: null
+        j: move-to-prev-char
+        k: move-to-next-line
+        l: move-to-prev-line
+      insert: {}
       normal:
-        <Alt+j>: tab-next
-        <Alt+k>: tab-prev
-        <Alt+p>: insert-text -- {clipboard}
+        ',': 'cmd-set-text :'
+        ':': forward
+        ;: scroll right
+        H: null
+        J: back
+        K: tab-next
+        L: tab-prev
+        h: null
+        j: scroll left
+        k: scroll down
+        l: scroll up
         td: config-cycle -u *://{url:host}/* colors.webpage.darkmode.enabled ;; reload
   colors.webpage.darkmode.enabled:
     '*://chat.deepseek.com/*': false
+    '*://davatorium.github.io/*': true
     '*://localhost/*': false
+    '*://polybar.readthedocs.io/*': false
     '*://qutebrowser.org/*': true
     '*://taskwarrior.org/*': true
     '*://wallpaperaccess.com/*': true
