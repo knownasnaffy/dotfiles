@@ -103,7 +103,8 @@ install_programs() {
     log "Installing homebrew and other packages"
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-    brew install gitpod-io/tap/gitpod
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    brew install gitpod-io/tap/gitpod pipx
 }
 
 setup_zsh() {
