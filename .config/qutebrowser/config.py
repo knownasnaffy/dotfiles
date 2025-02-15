@@ -12,7 +12,7 @@
 
 # Change the argument to True to still load settings configured via autoconfig.yml
 config.load_autoconfig()
-config.source('./themes/onedark.py')
+config.source('./themes/tokyonight.py')
 
 # Unbind existing movement keys
 config.unbind("h")
