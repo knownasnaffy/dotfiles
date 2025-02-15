@@ -1,5 +1,5 @@
 #compdef gitpod
-compdef _gitpod gp
+compdef _gitpod gitpod
 
 # zsh completion for gitpod                               -*- shell-script -*-
 
