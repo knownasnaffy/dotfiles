@@ -100,8 +100,8 @@ install_programs() {
     check_command zoxide || (log 'Installing zoxide...' && curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh)
     check_command bun || (log 'Installing bun...' && curl -fsSL https://bun.sh/install | bash)
 
-    log "Installing homebrew and other packages"
-    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    check_command brew || (log "Installing homebrew and other packages"
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)")
 
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     brew install gitpod-io/tap/gitpod pipx
