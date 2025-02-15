@@ -44,6 +44,8 @@ settings:
     global: dark
   content.javascript.clipboard:
     global: access
+  content.notifications.enabled:
+    https://www.youtube.com: false
   content.register_protocol_handler:
     https://mail.google.com?extsrc=mailto&url=%25s: false
     https://outlook.live.com?mailtouri=%25s: false
