@@ -90,22 +90,9 @@ install_gh_ubuntu() {
 }
 
 install_programs() {
-    . /etc/os-release
-    case "$ID" in
-        ubuntu)
-            log "Detected Ubuntu. Installing programs..."
-            sudo apt-get update -qq
-            install_gh_ubuntu
-            sudo apt-get install -y zsh make gcc ripgrep unzip git xclip neovim fzf
-            ;;
-        manjaro)
-            log "Detected Manjaro. Installing programs..."
-            sudo pacman -Sy --noconfirm zsh make gcc ripgrep unzip git xclip neovim fzf github-cli
-            ;;
-        *)
-            log "Unsupported OS: $ID. Skipping some installations."
-            ;;
-    esac
+    log "Detected Manjaro. Installing programs..."
+    sudo pamac update --no-confirm
+    sudo pamac install --no-confirm zsh make gcc ripgrep unzip git xclip neovim fzf github-cli nvm fortune-mod base-devel
 
     install_oh_my_zsh
     install_neovim_config
@@ -153,14 +140,7 @@ link_dotfiles() {
 
 install_private_packages() {
     log "Installing private PC packages..."
-    case "$ID" in
-        ubuntu)
-            sudo apt-get install -y jrnl
-            ;;
-        manjaro)
-            sudo pacman -Sy --noconfirm jrnl
-            ;;
-    esac
+    sudo pacman -Sy --noconfirm jrnl
 }
 
 main() {
