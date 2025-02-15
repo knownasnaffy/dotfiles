@@ -1,0 +1,6 @@
+remove Lock = Caps_Lock
+remove Shift = Shift_L
+keysym Caps_Lock = Shift_L
+keysym Shift_L = Caps_Lock
+add Lock = Shift_L
+add Shift = Caps_Lock

@@ -128,3 +128,13 @@ setopt HIST_IGNORE_SPACE
 
 # Don't log jrnl commands by prefixing with a space
 alias jrnl=" jrnl"
+
+# Fun commands
+alias wisdom="fortune | cowsay"
+
+# Print system information
+neofetch
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+alias gp=gitpod

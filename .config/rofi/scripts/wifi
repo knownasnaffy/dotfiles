@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Scan for Wi-Fi networks
+wifi_list=$(nmcli -t -f SSID,SECURITY dev wifi | awk -F: '{print $1 " (" $2 ")"}')
+
+# Show the Wi-Fi list in rofi
+chosen_network=$(echo "$wifi_list" | rofi -dmenu -i -p "Wi-Fi Networks" | awk -F ' (' '{print $1}')
+
+# Exit if no selection
+[ -z "$chosen_network" ] && exit
+
+# Ask for password if network is secured
+if nmcli -t -f SSID,SECURITY dev wifi | grep -q "^$chosen_network:WPA"; then
+    password=$(rofi -dmenu -p "Enter Password" -password)
+    nmcli dev wifi connect "$chosen_network" password "$password"
+else
+    nmcli dev wifi connect "$chosen_network"
+fi

@@ -92,13 +92,18 @@ install_gh_ubuntu() {
 install_programs() {
     log "Detected Manjaro. Installing programs..."
     sudo pamac update --no-confirm
-    sudo pamac install --no-confirm zsh make gcc ripgrep unzip git xclip neovim fzf github-cli nvm fortune-mod base-devel
+    sudo pamac install --no-confirm zsh make gcc ripgrep unzip git xclip neovim fzf github-cli nvm fortune-mod base-devel fortune-mod cowsay neofetch qutebrowser rofi polybar feh picom ttf-hack-nerd ghostty task maim brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber alsa-utils inotify-tools
 
     install_oh_my_zsh
     install_neovim_config
 
     check_command zoxide || (log 'Installing zoxide...' && curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh)
     check_command bun || (log 'Installing bun...' && curl -fsSL https://bun.sh/install | bash)
+
+    log "Installing homebrew and other packages"
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    brew install gitpod-io/tap/gitpod
 }
 
 setup_zsh() {
@@ -135,7 +140,12 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.config/gh" "$HOME/.config/gh"
     create_symlink "$DOTFILES_DIR/.config/ghostty" "$HOME/.config/ghostty"
     create_symlink "$DOTFILES_DIR/.config/qutebrowser" "$HOME/.config/qutebrowser"
+    create_symlink "$DOTFILES_DIR/.config/picom" "$HOME/.config/picom"
+    create_symlink "$DOTFILES_DIR/.config/polybar" "$HOME/.config/polybar"
+    create_symlink "$DOTFILES_DIR/.config/i3" "$HOME/.config/i3"
+    create_symlink "$DOTFILES_DIR/.config/rofi" "$HOME/.config/rofi"
     create_symlink "$DOTFILES_DIR/.zsh_functions" "$HOME/.zsh_functions"
+    create_symlink "$DOTFILES_DIR/Pictures/tokyonight-wallpaper.png" "$HOME/Pictures/tokyonight-wallpaper.png"
 }
 
 install_private_packages() {
