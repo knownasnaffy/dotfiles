@@ -20,8 +20,8 @@ fg_error = "#f7768e"            # red
 bg_hint = "#e0af68"             # yellow
 fg_matched_text = "#9ece6a"     # green
 bg_passthrough_mode = "#7aa2f7" # teal
-bg_insert_mode = "#56b6c2"      # blue
-bg_warning = "#f7768e"          # purple
+bg_insert_mode = "#7aa2f7"      # blue
+bg_warning = "#bb9af7"          # purple
 # "#be5046"                     # dark red
 
 ############
@@ -220,7 +220,7 @@ c.colors.statusbar.caret.selection.fg = bg_default
 c.colors.statusbar.caret.selection.bg = bg_insert_mode
 
 # Background color of the progress bar.
-c.colors.statusbar.progress.bg = bg_insert_mode
+c.colors.statusbar.progress.bg = bg_warning
 
 # Default foreground color of the URL in the statusbar.
 c.colors.statusbar.url.fg = fg_default
