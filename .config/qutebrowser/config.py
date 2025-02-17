@@ -54,11 +54,12 @@ config.bind(";", "move-to-next-char", mode="caret")
 
 
 # Bind Alt+c to copy selected text in normal and caret modes
-config.bind("<Alt-c>", "yank", mode="normal")
-config.bind("<Alt-c>", "yank", mode="caret")
+config.bind("<Alt-c>", "fake-key <Ctrl+c>", mode="normal")
+config.bind("<Alt-c>", "fake-key <Ctrl+c>", mode="caret")
 
-# Bind Alt+v to paste clipboard content in normal, caret, and insert modes
-config.bind("<Alt-v>", "insert-text {clipboard}", mode="insert")
+# Bind Alt+v to paste clipboard content in normal, and insert modes
+config.bind("<Alt-v>", "fake-key <Ctrl+v>", mode="insert")
+config.bind("<Alt-v>", "fake-key <Ctrl+v>", mode="normal")
 
 # Bind Alt+Backspace to delete previous word
 config.bind("<Alt-w>", "fake-key <Ctrl-Backspace>", mode="insert")
