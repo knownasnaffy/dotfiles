@@ -1,2 +1,3 @@
 *.swp
 .bash_history
+./.config/qutebrowser/qsettings/*
