@@ -64,5 +64,10 @@ config.bind("<Alt-v>", "fake-key <Ctrl+v>", mode="normal")
 # Bind Alt+Backspace to delete previous word
 config.bind("<Alt-w>", "fake-key <Ctrl-Backspace>", mode="insert")
 
+# Bind Alt+q to return to normal mode in insert, passthrough and caret mode
+config.bind("<Alt-q>", "mode-enter normal", mode="insert")
+config.bind("<Alt-q>", "mode-enter normal", mode="caret")
+config.bind("<Alt-q>", "mode-enter normal", mode="passthrough")
+
 # Bind Alt+Delete to delete next word
 config.bind("<Alt-d>", "fake-key <Ctrl-Delete>", mode="insert")
