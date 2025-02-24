@@ -8,9 +8,6 @@ ZSH_THEME="spaceship"
 # Enable battery status
 SPACESHIP_BATTERY_SHOW="charged"
 SPACESHIP_BATTERY_THRESHOLD=25
-# Enabled timestamps
-SPACESHIP_TIME_SHOW=true
-SPACESHIP_TIME_FORMAT='%D{%d %b}, %T'
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
