@@ -69,6 +69,8 @@ bindsym $mod+Return exec ghostty
 # kill focused window
 bindsym $mod+q kill
 
+bindsym $mod+b exec qutebrowser
+
 # start dmenu (a program launcher) /home/knownasnaffy/Pictures/tokyonight-wallpaper.png
 bindsym $mod+d exec --no-startup-id ~/.config/rofi/scripts/launcher_t1
 
