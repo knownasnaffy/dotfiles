@@ -20,14 +20,36 @@ SPACESHIP_TIME_FORMAT='%D{%d %b}, %T'
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
+FRONTEND_SEARCH_FALLBACK='duckduckgo'
+
+zstyle ':omz:plugins:alias-finder' autoload yes # disabled by default
+zstyle ':omz:plugins:alias-finder' longer yes # disabled by default
+zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
+zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
+
+zstyle ':omz:plugins:eza' 'dirs-first' yes
+zstyle ':omz:plugins:eza' 'git-status' yes
+zstyle ':omz:plugins:eza' icons yes
+
 # Oh My Zsh plugins
 plugins=(
     aliases
+    alias-finder
+    archlinux
+    brew
     bun # Code completion
     copyfile # Copy target file content
     copypath # Copy taeget path
     dirhistory
+    docker
+    extract
+    eza
+    fzf
     gh # Code completion
+    git
+    gitfast
+    qrcode
+    safe-paste
     sudo # Double escape to prefix with sudo
     web-search
     zoxide # Auto jumps
@@ -38,6 +60,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+
 spaceship remove node rust package hg bun deno ruby elm elixir xcode swift golang perl php haskell scala kotlin java dart julia crystal docker docker_compose aws gcloud azure conda uv dotnet ocaml vlang purescript erlang gleam  hg bun deno ruby elm elixir xcode swift golang perl php haskell scala kotlin java dart julia crystal docker docker_compose aws gcloud azure conda uv dotnet ocaml vlang purescript erlang gleam kubectl ansible terraform pulumi ibmcloud nix_shell gnu_screen
 
 bindkey -e  # Use Emacs keybindings (default)
@@ -146,3 +169,5 @@ neofetch
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 alias gp=gitpod
+
+eval $(thefuck --alias)
