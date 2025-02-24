@@ -5,12 +5,6 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="spaceship"
 
 # Spaceship specific config
-# Disable rust section
-SPACESHIP_RUST_SHOW=false
-# Disable package section for all package managers
-SPACESHIP_PACKAGE_SHOW=false
-# Disable Node.js section
-SPACESHIP_NODE_SHOW=false
 # Enable battery status
 SPACESHIP_BATTERY_SHOW="charged"
 SPACESHIP_BATTERY_THRESHOLD=25
@@ -25,9 +19,6 @@ SPACESHIP_TIME_FORMAT='%D{%d %b}, %T'
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Delete a whole word when pressing ctrl+backspace
-bindkey '^H' backward-kill-word
 
 # Oh My Zsh plugins
 plugins=(
@@ -47,6 +38,23 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+spaceship remove node rust package hg bun deno ruby elm elixir xcode swift golang perl php haskell scala kotlin java dart julia crystal docker docker_compose aws gcloud azure conda uv dotnet ocaml vlang purescript erlang gleam  hg bun deno ruby elm elixir xcode swift golang perl php haskell scala kotlin java dart julia crystal docker docker_compose aws gcloud azure conda uv dotnet ocaml vlang purescript erlang gleam kubectl ansible terraform pulumi ibmcloud nix_shell gnu_screen
+
+bindkey -e  # Use Emacs keybindings (default)
+
+# Delete a whole word when pressing ctrl+backspace
+bindkey '^[w' backward-kill-word    # Alt+w → Delete word backward
+bindkey '^[W' kill-whole-line  # Alt+Shift+W → Delete whole line
+bindkey '^[D' kill-line  # A+S+d → Delete forward whole line
+bindkey '^[;' forward-char          # Alt+; → Right Arrow
+bindkey '^[l' up-line-or-history     # Alt+l → Up Arrow
+bindkey '^[k' down-line-or-history   # Alt+k → Down Arrow
+bindkey '^[j' backward-char          # Alt+j → Left Arrow
+bindkey '^[B' backward-word  # Alt+Shift+B → Move one word left
+bindkey '^[F' forward-word   # Alt+Shift+F → Move one word right
+bindkey '^[o' dirhistory_zle_dirhistory_back          # Previous directory in history (Alt+o)
+bindkey '^[i' dirhistory_zle_dirhistory_future           # Next directory in history (Alt+i)
+bindkey '^[r' history-incremental-search-backward  # Alt+R → Search history
 
 # User configuration
 
