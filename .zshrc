@@ -161,7 +161,7 @@ alias jrnl=" jrnl"
 alias wisdom="fortune | cowsay"
 
 # Print system information
-neofetch
+fastfetch
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
