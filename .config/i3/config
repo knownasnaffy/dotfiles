@@ -9,11 +9,23 @@
 # layout, use the i3-config-wizard
 #
 
+# Define TokyoNight colors
+set $background #1a1b26
+set $secondary #414868
+set $primary #7aa2f7
+
+# Apply to i3 window decorations
+for_window [class=".*"] title_format " "
+client.focused $primary $primary $primary $primary
+client.unfocused $background $background $background
+client.focused_inactive $secondary $secondary $secondary
+client.urgent $background $foreground $background
+
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Hack Nerd 12
+font pango:Hack Nerd 1
 
 # Setup a wallpaper
 exec --no-startup-id feh --bg-scale ~/Pictures/tokyonight-wallpaper.png
