@@ -145,6 +145,7 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.config/polybar" "$HOME/.config/polybar"
     create_symlink "$DOTFILES_DIR/.config/i3" "$HOME/.config/i3"
     create_symlink "$DOTFILES_DIR/.config/rofi" "$HOME/.config/rofi"
+    create_symlink "$DOTFILES_DIR/.config/fastfetch" "$HOME/.config/fastfetch"
     create_symlink "$DOTFILES_DIR/.zsh_functions" "$HOME/.zsh_functions"
     create_symlink "$DOTFILES_DIR/Pictures/tokyonight-wallpaper.png" "$HOME/Pictures/tokyonight-wallpaper.png"
 }
