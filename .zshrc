@@ -168,3 +168,8 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 alias gp=gitpod
 
 eval $(thefuck --alias)
+
+# export BAT_THEME=base16
+export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
+
+alias preview="fzf --preview \"bat --color=always --style=numbers --line-range=:500 {}\""
