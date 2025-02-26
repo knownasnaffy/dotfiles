@@ -1,0 +1,5 @@
+#command
+k forw-line       # Move down one line
+l back-line       # Move up one line
+K forw-scroll     # Move down half a page
+L back-scroll     # Move up half a page
