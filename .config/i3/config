@@ -28,7 +28,7 @@ set $mod Mod4
 font pango:Hack Nerd 1
 
 # Setup a wallpaper
-exec --no-startup-id feh --bg-scale ~/Pictures/tokyonight-wallpaper.png
+exec --no-startup-id feh --bg-scale ~/code/projects/dotfiles/images/tokyonight-wallpaper.png
 
 # Start picom compositor
 exec_always picom --config ~/.config/picom/picom.conf
