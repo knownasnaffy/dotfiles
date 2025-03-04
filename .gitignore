@@ -1,3 +1,4 @@
 *.swp
 .bash_history
-./.config/qutebrowser/qsettings/*
+.config/gh/hosts.yml
+.config/qutebrowser/qsettings/*
