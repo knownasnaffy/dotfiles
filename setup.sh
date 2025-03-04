@@ -92,12 +92,11 @@ install_gh_ubuntu() {
 install_programs() {
     log "Detected Manjaro. Installing programs..."
     sudo pamac update --no-confirm
-    sudo pamac install --no-confirm zsh make gcc ripgrep unzip git xclip neovim fzf github-cli nvm fortune-mod base-devel fortune-mod cowsay fastfetch qutebrowser rofi polybar feh picom ttf-hack-nerd ghostty task maim brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber alsa-utils inotify-tools jq eva thefuck bat
+    sudo pamac install --no-confirm zsh make gcc ripgrep unzip git xclip neovim fzf github-cli nvm fortune-mod base-devel fortune-mod cowsay fastfetch qutebrowser rofi polybar feh picom ttf-hack-nerd ghostty task maim brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber alsa-utils inotify-tools jq eva thefuck bat zoxide
 
     install_oh_my_zsh
     install_neovim_config
 
-    check_command zoxide || (log 'Installing zoxide...' && curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh)
     check_command bun || (log 'Installing bun...' && curl -fsSL https://bun.sh/install | bash)
 
     check_command brew || (log "Installing homebrew"
