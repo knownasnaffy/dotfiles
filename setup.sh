@@ -148,6 +148,7 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.config/bat" "$HOME/.config/bat"
     create_symlink "$DOTFILES_DIR/.config/eza" "$HOME/.config/eza"
     create_symlink "$DOTFILES_DIR/.config/.lesskey" "$HOME/.lesskey"
+    create_symlink "$DOTFILES_DIR/.config/.Xresources" "$HOME/.Xresources"
     create_symlink "$DOTFILES_DIR/.zsh_functions" "$HOME/.zsh_functions"
     create_symlink "$DOTFILES_DIR/.local/share/fonts" "$HOME/.local/share/fonts"
 }
