@@ -199,3 +199,5 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --color=spinner:#ff007c \
   --bind=alt-k:down,alt-l:up,alt-f:page-down,alt-b:page-up,alt-q:abort,alt-w:backward-kill-word,alt-j:backward-char
 "
+
+eval "$(register-python-argcomplete pipx)"

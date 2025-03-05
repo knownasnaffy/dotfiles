@@ -104,6 +104,7 @@ install_programs() {
 
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     brew install gitpod-io/tap/gitpod pipx
+    pipx install argcomplete pynvim
 }
 
 setup_zsh() {
