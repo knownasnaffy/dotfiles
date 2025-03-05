@@ -2,3 +2,4 @@
 .bash_history
 .config/gh/hosts.yml
 .config/qutebrowser/qsettings/*
+*.uuid
