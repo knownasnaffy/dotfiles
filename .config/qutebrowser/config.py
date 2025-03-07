@@ -14,6 +14,9 @@
 config.load_autoconfig()
 config.source('./themes/tokyonight.py')
 
+# Configure tabs
+c.tabs.position = 'top'
+
 # Unbind existing movement keys
 config.unbind("h")
 config.unbind("j")
@@ -32,11 +35,14 @@ config.unbind("L")
 config.unbind("J")
 config.unbind("K")
 
+config.bind("K", "scroll-page 0 0.5")  # Instead of "C-d"
+config.bind("L", "scroll-page 0 -0.5")  # Instead of "C-i"
+
 # Rebind with new layout
-config.bind("J", "back")  # Instead of "H"
-config.bind(":", "forward")  # Instead of "L"
-config.bind("K", "tab-next")  # Instead of "J"
-config.bind("L", "tab-prev")  # Instead of "K"
+config.bind("<Alt-o>", "back")  # Instead of "H"
+config.bind("<Alt-i>", "forward")  # Instead of "L"
+config.bind("<Alt-.>", "tab-next")  # Instead of "J"
+config.bind("<Alt-,>", "tab-prev")  # Instead of "K"
 
 # Remap command input to ','
 config.bind(',', 'cmd-set-text :')
