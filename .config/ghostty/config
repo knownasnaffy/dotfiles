@@ -1,6 +1,7 @@
 gtk-titlebar = false
 theme = tokyonight
 title = Ghostty
+window-decoration = none
 keybind = alt+a=goto_split:previous
 keybind = ctrl+enter=unbind
 keybind = ctrl+,=unbind
