@@ -16,6 +16,21 @@ config.source('./themes/tokyonight.py')
 
 # Configure tabs
 c.tabs.position = 'top'
+c.tabs.title.format = '{audio}{index}: {current_title}'
+
+c.hints.border = '0px'
+c.hints.chars = 'asdfjkl;wevnio'
+c.hints.radius = 0
+c.keyhint.radius = 0
+c.prompt.radius = 0
+
+# Load tabs when focused after session start
+c.session.lazy_restore = True
+
+#
+c.statusbar.widgets = ["keypress", "search_match", "url", "scroll", "progress"]
+
+c.url.auto_search = 'naive'
 
 # Unbind existing movement keys
 config.unbind("h")
