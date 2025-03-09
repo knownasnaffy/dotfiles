@@ -18,7 +18,7 @@ set $primary #7aa2f7
 for_window [class=".*"] title_format " "
 client.focused $primary $primary $primary $primary
 client.unfocused $background $background $background
-client.focused_inactive $secondary $secondary $secondary
+client.focused_inactive $primary $primary $primary
 client.urgent $background $foreground $background
 
 set $mod Mod4
