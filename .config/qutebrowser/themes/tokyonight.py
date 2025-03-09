@@ -17,7 +17,7 @@ fg_default = "#a9b1d6"
 bg_lightest = "#a9b1d6"         # main shade lightest
 fg_error = "#f7768e"            # red
 # "#d19a66"                     # orange
-bg_hint = "#e0af68"             # yellow
+bg_hint = "#bb9af7"             # yellow
 fg_matched_text = "#9ece6a"     # green
 bg_passthrough_mode = "#7aa2f7" # teal
 bg_insert_mode = "#7aa2f7"      # blue
@@ -237,7 +237,7 @@ c.colors.statusbar.url.success.http.fg = bg_passthrough_mode
 
 # Foreground color of the URL in the statusbar on successful load
 # (https).
-c.colors.statusbar.url.success.https.fg = fg_matched_text
+c.colors.statusbar.url.success.https.fg = bg_insert_mode
 
 # Foreground color of the URL in the statusbar when there's a warning.
 c.colors.statusbar.url.warn.fg = bg_warning
