@@ -1,6 +1,8 @@
 [user]
 	name = Barinderpreet Singh
 	email = naffydharni006@gmail.com
+[credential]
+	helper = cache
 [credential "https://github.com"]
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
@@ -14,7 +16,21 @@
 [init]
 	defaultBranch = main
 [pull]
-	rebase = false
+	rebase = true
 [push]
-	autoSetupRemote = true
 	default = current
+	autoSetupRemote = true
+[color]
+	ui = auto
+[rebase]
+	autosquash = true
+[core]
+	editor = nvim
+[fetch]
+	prune = true   # Automatically delete remote-tracking branches that no longer exist
+[merge]
+	ff = only  # Forces fast-forward merges and avoids unnecessary merge commits
+[gc]
+	auto = 256   # Reduce the frequency of automatic garbage collection
+[status]
+	showUntrackedFiles = all
