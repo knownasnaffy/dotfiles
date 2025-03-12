@@ -244,4 +244,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+assign [class="qutebrowser"] $ws2
+
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
