@@ -108,6 +108,10 @@ install_programs() {
     pipx install argcomplete
 }
 
+post_install_scripts() {
+    bat cache --build
+}
+
 setup_zsh() {
     if [ "$(basename "$SHELL")" != "zsh" ]; then
         log "Setting Zsh as the default shell..."
@@ -176,6 +180,7 @@ main() {
     setup_zsh
     install_plugins
     link_dotfiles
+    post_install_scripts
 
     $PRIVATE_MODE && install_private_packages
 }
