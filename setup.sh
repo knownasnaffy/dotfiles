@@ -100,6 +100,7 @@ install_programs() {
     check_command bun || (log 'Installing bun...' && curl -fsSL https://bun.sh/install | bash)
 
     check_command brew || (log "Installing homebrew"
+    #  FIXME: Fix this Script
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)")
 
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
