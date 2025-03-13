@@ -38,6 +38,30 @@ create_symlink() {
     log "Symlink created: $dest -> $src"
 }
 
+create_sudo_symlink() {
+    local src="$1"
+    local dest="$2"
+
+    if [ -L "$dest" ] && [ "$(readlink "$dest")" == "$src" ]; then
+        log "Symlink already exists: $dest -> $src. Skipping..."
+        return
+    fi
+
+    if [ -e "$dest" ]; then
+        local backup="${dest}.bak"
+        local count=1
+        while [ -e "$backup" ]; do
+            backup="${dest}.bak${count}"
+            ((count++))
+        done
+        log "Backing up existing $dest to $backup"
+        sudo mv "$dest" "$backup"
+    fi
+
+    sudo ln -s "$src" "$dest"
+    log "Symlink created: $dest -> $src"
+}
+
 install_oh_my_zsh() {
     if [ ! -d "$ZSH_DIR" ]; then
         log "Installing Oh My Zsh..."
@@ -164,6 +188,8 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.config/.Xresources" "$HOME/.Xresources"
     create_symlink "$DOTFILES_DIR/.zsh_functions" "$HOME/.zsh_functions"
     create_symlink "$DOTFILES_DIR/.local/share/fonts" "$HOME/.local/share/fonts"
+    create_sudo_symlink "$DOTFILES_DIR/etc/X11/xorg.config.d/30-touchpad.conf" "/etc/X11/xorg.conf.d/30-touchpad.conf"
+    create_sudo_symlink "$DOTFILES_DIR/etc/ly/config.ini" "/etc/ly/config.ini"
 }
 
 install_private_packages() {
