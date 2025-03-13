@@ -100,6 +100,7 @@ export PNPM_HOME="$HOME/.local/share/pnpm"
 
 # Define an array of directories to add to the PATH
 path_directories=(
+  "$HOME/.local/bin"
   "$HOME/.bun/bin" # Bun
   "/root/.local/share/gem/ruby/3.2.0/bin" # Gem modules (system-wide)
   "$HOME/.local/share/gem/ruby/3.3.0/bin" # Gem modules (user-specific)
