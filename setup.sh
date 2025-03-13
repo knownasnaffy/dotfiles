@@ -69,42 +69,43 @@ install_neovim_config() {
     git clone https://github.com/knownasnaffy/kickstart.nvim.git "$NVIM_CONFIG_DIR"
 }
 
-install_gh_ubuntu() {
-    local KEYRING_DIR="/etc/apt/keyrings"
-    local KEYRING_PATH="$KEYRING_DIR/githubcli-archive-keyring.gpg"
-    local REPO_LIST="/etc/apt/sources.list.d/github-cli.list"
-    local GH_REPO="https://cli.github.com/packages"
-    local ARCH
+create_directories() {
+    mkdir -p ~/code/projects ~/code/clones
+}
 
-    check_command dpkg && ARCH=$(dpkg --print-architecture) || return
+create_cleanup_script() {
+    #  TODO: Create a temp file in a .cache folder or so and add the `rm` command to delete this directory if it isn't in the ~/code/projects/dotfiles folder
+    log "Cleanup script is pending. Complete it dude!"
+}
 
-    sudo mkdir -p -m 755 "$KEYRING_DIR"
-    wget -qO- "$GH_REPO/githubcli-archive-keyring.gpg" | sudo tee "$KEYRING_PATH" >/dev/null
-    sudo chmod go+r "$KEYRING_PATH"
+install_paru() {
+    log "Install base packages"
+    sudo pacman -Sy --noconfirm zsh make gcc ripgrep unzip git xclip neovim base-devel
 
-    if ! grep -q "^deb .*githubcli" "$REPO_LIST" 2>/dev/null; then
-        echo "deb [arch=$ARCH signed-by=$KEYRING_PATH] $GH_REPO stable main" | sudo tee "$REPO_LIST" >/dev/null
-    fi
-
-    sudo apt-get update -qq && sudo apt-get install -y gh
+    check_command paru || (log "Install paru..." &&
+        git clone https://aur.archlinux.org/paru.git ~/code/clones/paru && cd ~/code/clones/paru && makepkg -si)
 }
 
 install_programs() {
-    log "Detected Manjaro. Installing programs..."
-    sudo paru -Syu --noconfirm
-    paru -Sy --noconfirm zsh make gcc ripgrep unzip git xclip neovim fzf github-cli nvm fortune-mod base-devel fortune-mod cowsay fastfetch qutebrowser rofi polybar feh picom ttf-hack-nerd ghostty task maim brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber alsa-utils inotify-tools jq eva thefuck bat zoxide 7zip yazi zathura i3lock-color noto-fonts-emoji dunst xdotool xdg-user-dirs udisks2 pass xorg-xrandr eza
+    install_paru
+
+    log "Installing other programs..."
+    paru -Syu --noconfirm
+    paru -Sy --noconfirm fzf github-cli nvm fortune-mod cowsay fastfetch qutebrowser rofi polybar feh picom ttf-hack-nerd ghostty task maim brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber alsa-utils inotify-tools jq eva thefuck bat zoxide 7zip yazi zathura i3lock-color noto-fonts-emoji dunst xdotool xdg-user-dirs udisks2 pass xorg-xrandr eza
 
     install_oh_my_zsh
     install_neovim_config
 
     check_command bun || (log 'Installing bun...' && curl -fsSL https://bun.sh/install | bash)
 
-    check_command brew || (log "Installing homebrew"
+    check_command brew || (log "Installing homebrew..."
     #  FIXME: Fix this Script
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)")
 
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     brew install gitpod-io/tap/gitpod pipx
+
+    # For pipx completions
     pipx install argcomplete
 
     source /usr/share/nvm/init-nvm.sh
@@ -179,11 +180,13 @@ main() {
         shift
     done
 
+    create_directories
     install_programs
     setup_zsh
     install_plugins
     link_dotfiles
     post_install_scripts
+    create_cleanup_script
 
     $PRIVATE_MODE && install_private_packages
 }
