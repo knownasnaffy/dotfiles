@@ -91,8 +91,8 @@ install_gh_ubuntu() {
 
 install_programs() {
     log "Detected Manjaro. Installing programs..."
-    sudo pamac update --no-confirm
-    sudo pamac install --no-confirm zsh make gcc ripgrep unzip git xclip neovim fzf github-cli nvm fortune-mod base-devel fortune-mod cowsay fastfetch qutebrowser rofi polybar feh picom ttf-hack-nerd ghostty task maim brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber alsa-utils inotify-tools jq eva thefuck bat zoxide 7zip yazi zathura i3lock-color noto-fonts-emoji dunst xdotool xdg-user-dirs udisks2 pass xorg-xrandr eza
+    sudo paru -Syu --noconfirm
+    paru -Sy --noconfirm zsh make gcc ripgrep unzip git xclip neovim fzf github-cli nvm fortune-mod base-devel fortune-mod cowsay fastfetch qutebrowser rofi polybar feh picom ttf-hack-nerd ghostty task maim brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber alsa-utils inotify-tools jq eva thefuck bat zoxide 7zip yazi zathura i3lock-color noto-fonts-emoji dunst xdotool xdg-user-dirs udisks2 pass xorg-xrandr eza
 
     install_oh_my_zsh
     install_neovim_config
@@ -106,6 +106,9 @@ install_programs() {
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     brew install gitpod-io/tap/gitpod pipx
     pipx install argcomplete
+
+    source /usr/share/nvm/init-nvm.sh
+    nvm install --lts
 }
 
 post_install_scripts() {
