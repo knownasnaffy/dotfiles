@@ -32,10 +32,16 @@ cd dotfiles
 ### 2. Run the Setup Script
 ```bash
 # Execute the setup script
-bash setup.sh
+./setup.sh
 ```
 
----
+### 3. Some manual changes
+Open `/boot/loader/entries/2025-03-13_12-06-41_linux-zen.conf` and update the following line:
+
+```diff
+- options root=PARTUUID=f7372bdd-1ac2-4ba4-8e6d-d5f56b98092c zswap.enabled=0 rw rootfstype=f2fs
++ options root=PARTUUID=f7372bdd-1ac2-4ba4-8e6d-d5f56b98092c zswap.enabled=0 rw rootfstype=f2fs loglevel=3 quiet
+```
 
 ## Setup Details
 
@@ -96,4 +102,3 @@ Contributions are welcome! Feel free to open an issue or submit a pull request t
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
