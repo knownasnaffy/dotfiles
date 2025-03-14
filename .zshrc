@@ -91,6 +91,8 @@ fi
 
 alias vi=nvim
 
+export TERMINAL=ghostty
+
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
 
