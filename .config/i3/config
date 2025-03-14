@@ -175,7 +175,7 @@ workspace_auto_back_and_forth yes
 set $ws1 "Editor"
 set $ws2 "Browser"
 set $ws3 "Sandbox"
-set $ws4 "Processes"
+set $ws4 "Messages"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
@@ -245,5 +245,6 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 assign [class="qutebrowser"] $ws2
+assign [class="Beeper"] $ws4
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
