@@ -87,7 +87,10 @@ bindsym $mod+b exec qutebrowser
 bindsym $mod+d exec --no-startup-id ~/.config/rofi/scripts/launcher_t1
 
 # powermenu
-bindsym $mod+p exec --no-startup-id ~/.config/rofi/scripts/powermenu_t1
+bindsym $mod+o exec --no-startup-id ~/.config/rofi/scripts/powermenu_t1
+
+# clipboard
+bindsym $mod+p exec --no-startup-id ~/.config/rofi/applets/bin/clipboard.sh
 
 # screenshot
 bindsym $mod+Shift+s exec --no-startup-id ~/.config/rofi/applets/bin/screenshot.sh
