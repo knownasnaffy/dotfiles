@@ -138,6 +138,7 @@ install_programs() {
 
 post_install_scripts() {
     bat cache --build
+    check_command xdg-settings && xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
 }
 
 setup_zsh() {
