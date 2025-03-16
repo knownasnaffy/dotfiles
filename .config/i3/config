@@ -251,3 +251,6 @@ assign [class="qutebrowser"] $ws2
 assign [class="Beeper"] $ws4
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+exec ghostty
+exec qutebrowser
