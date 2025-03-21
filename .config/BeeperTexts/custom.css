@@ -29,6 +29,7 @@ To open dev tools, open the command bar and type "open console"
     --color-on-primary: var(--c-black);
     --color-background-app: var(--c-black);
     --color-surface: var(--c-black);
+    --color-on-surface: var(--c-foreground);
     --color-background-scrollbar: var(--c-grey);
     --color-background-scrollbar-hover: var(--c-border);
     * {
@@ -36,6 +37,12 @@ To open dev tools, open the command bar and type "open console"
     }
     .account-switcher {
       background-color: var(--c-black);
+    }
+    bdi.redacted-region {
+      color: var(--c-foreground);
+    }
+    time[class*="_timestamp_"] {
+      color: var(--c-foreground);
     }
     .right-wrapper {
       background-color: var(--c-background);
