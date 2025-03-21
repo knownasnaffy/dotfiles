@@ -26,8 +26,14 @@ To open dev tools, open the command bar and type "open console"
     --c-grey: #414868;
     --c-border: #41486880;
     --color-primary: var(--c-blue);
+    --color-on-primary: var(--c-black);
     --color-background-app: var(--c-black);
     --color-surface: var(--c-black);
+    --color-background-scrollbar: var(--c-grey);
+    --color-background-scrollbar-hover: var(--c-border);
+    * {
+      border-color: var(--c-border) !important;
+    }
     .account-switcher {
       background-color: var(--c-black);
     }
@@ -64,7 +70,7 @@ To open dev tools, open the command bar and type "open console"
     }
     .label-wrapper {
       border-color: var(--c-border);
-      color: var(--c-foreground);
+      /*color: var(--c-foreground);*/
     }
     .switch {
       background-color: var(--c-grey);
@@ -133,6 +139,10 @@ To open dev tools, open the command bar and type "open console"
     }
     .message-contents[class*="_isSender_"] {
       background-color: var(--c-grey);
+      color: #fff;
+    }
+    .message-contents[class*="_isSender_"] .message-readable-metadata {
+      color: var(--c-white);
     }
     .compose-message-container button {
       background-color: var(--c-background);
