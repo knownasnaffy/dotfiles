@@ -30,6 +30,7 @@ To open dev tools, open the command bar and type "open console"
     --color-background-app: var(--c-black);
     --color-surface: var(--c-black);
     --color-on-surface: var(--c-foreground);
+    --color-background-selected: var(--c-grey);
     --color-background-scrollbar: var(--c-grey);
     --color-background-scrollbar-hover: var(--c-border);
     * {
@@ -93,6 +94,9 @@ To open dev tools, open the command bar and type "open console"
       color: var(--c-foreground);
       border: var(--c-grey);
     }
+    button[type="button"] {
+      color: var(--c-foreground);
+    }
     input[type="radio"] {
       appearance: none;
       border: 0;
@@ -153,6 +157,12 @@ To open dev tools, open the command bar and type "open console"
     }
     .compose-message-container button {
       background-color: var(--c-background);
+    }
+    .compose-message-container button svg {
+      color: var(--c-foreground);
+    }
+    .message-input::placeholder {
+      color: var(--c-grey);
     }
     .compose-text {
       background-color: var(--c-background);
