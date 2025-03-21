@@ -1,0 +1,144 @@
+/*
+# Custom Beeper.app style
+This file will be injected as a <style> tag
+After making your changes, type "Reload custom CSS" in the command bar
+To open dev tools, open the command bar and type "open console"
+*/
+
+:root {
+  /*
+  --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-background: #1a1b26;
+    --c-foreground: #c0caf5;
+    --c-black: #15161e;
+    --c-red: #f7768e;
+    --c-green: #9ece6a;
+    --c-yellow: #e0af68;
+    --c-blue: #7aa2f7;
+    --c-purple: #bb9af7;
+    --c-cyan: #7dcfff;
+    --c-white: #a9b1d6;
+    --c-grey: #414868;
+    --c-border: #41486880;
+    --color-primary: var(--c-blue);
+    --color-background-app: var(--c-black);
+    --color-surface: var(--c-black);
+    .account-switcher {
+      background-color: var(--c-black);
+    }
+    .right-wrapper {
+      background-color: var(--c-background);
+    }
+    .right-pane-header {
+      background-color: var(--c-black);
+    }
+    .prefs-left-pane-container {
+      background-color: var(--c-black);
+    }
+    .pref-option.selected {
+      background-color: var(--c-grey) !important;
+      /*color: var(--c-white) !important;*/
+    }
+    .pref-option .pref-icon:not(.brand-combined-icon) {
+      background-color: var(--c-white) !important;
+      color: var(--c-black) !important;
+    }
+    .pref-option.selected .pref-icon:not(.brand-combined-icon) {
+      background-color: var(--c-blue) !important;
+      color: var(--c-black) !important;
+    }
+    /*.pref-option .right-icon {*/
+    /*  color: var(--c-black);*/
+    /*}*/
+    .prefs-right-pane {
+      background-color: var(--c-black);
+    }
+    .prefs-group {
+      background-color: var(--c-background);
+      border-color: var(--c-border);
+    }
+    .label-wrapper {
+      border-color: var(--c-border);
+      color: var(--c-foreground);
+    }
+    .switch {
+      background-color: var(--c-grey);
+    }
+    .switch.on {
+      background-color: var(--c-blue);
+    }
+    .switch .knob {
+      background-color: var(--c-background);
+    }
+    button.btn-solid-secondary {
+      background-color: var(--c-grey);
+      color: var(--c-foreground);
+      border: var(--c-grey);
+    }
+    input[type="radio"] {
+      appearance: none;
+      border: 0;
+      display: grid;
+      place-content: center;
+      position: relative;
+      margin-right: -0.5em;
+    }
+    input[type="radio"]::before {
+      position: absolute;
+      appearance: none;
+      border: 0;
+      content: "";
+      width: 1.2em;
+      height: 1.2em;
+      border-radius: 50%;
+      box-shadow: inset 1em 1em var(--c-grey);
+    }
+    input[type="radio"]::after {
+      position: absolute;
+      appearance: none;
+      border: 0;
+      content: "";
+      width: 0.6em;
+      height: 0.6em;
+      margin: 0.3em;
+      border-radius: 50%;
+      transform: scale(0);
+      transition: 120ms transform ease-in-out;
+      box-shadow: inset 1em 1em var(--c-blue);
+    }
+    input[type="radio"]:checked::after {
+      transform: scale(1);
+    }
+    select {
+      background-color: var(--c-grey);
+      color: var(--c-foreground);
+    }
+    .tag {
+      background-color: var(--c-background);
+      color: var(--c-foreground) !important;
+    }
+    .threads {
+      background-color: var(--c-background);
+    }
+    .conversation {
+      background-color: var(--c-black);
+    }
+    .message-contents {
+      background-color: var(--c-background);
+    }
+    .message-contents[class*="_isSender_"] {
+      background-color: var(--c-grey);
+    }
+    .compose-message-container button {
+      background-color: var(--c-background);
+    }
+    .compose-text {
+      background-color: var(--c-background);
+    }
+  }
+}
