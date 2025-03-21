@@ -31,21 +31,27 @@ settings:
         l: scroll up
         td: config-cycle -u *://{url:host}/* colors.webpage.darkmode.enabled ;; reload
   colors.webpage.darkmode.enabled:
+    '*://addons.thunderbird.net/*': true
     '*://chat.deepseek.com/*': false
     '*://davatorium.github.io/*': true
+    '*://git-scm.com/*': false
     '*://localhost/*': false
     '*://polybar.readthedocs.io/*': false
     '*://qutebrowser.org/*': true
+    '*://stackoverflow.com/*': true
     '*://taskwarrior.org/*': true
     '*://wallpaperaccess.com/*': true
     '*://web.whatsapp.com/*': false
-    '*://www.canva.com/*': true
+    '*://wiki.archlinux.org/*': true
+    '*://www.canva.com/*': false
+    '*://www.lua.org/*': true
     global: false
   colors.webpage.preferred_color_scheme:
     global: dark
   content.javascript.clipboard:
     global: access
   content.notifications.enabled:
+    https://app.clickup.com: true
     https://www.youtube.com: false
   content.register_protocol_handler:
     https://mail.google.com?extsrc=mailto&url=%25s: false
