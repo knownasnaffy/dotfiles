@@ -35,7 +35,9 @@ settings:
     '*://chat.deepseek.com/*': false
     '*://davatorium.github.io/*': true
     '*://git-scm.com/*': false
+    '*://livesoundblog.com/*': true
     '*://localhost/*': false
+    '*://new.drupal.org/*': true
     '*://polybar.readthedocs.io/*': false
     '*://qutebrowser.org/*': true
     '*://stackoverflow.com/*': true
@@ -43,13 +45,22 @@ settings:
     '*://wallpaperaccess.com/*': true
     '*://web.whatsapp.com/*': false
     '*://wiki.archlinux.org/*': true
+    '*://wp-cli.org/*': true
     '*://www.canva.com/*': false
+    '*://www.drush.org/*': true
     '*://www.lua.org/*': true
     global: false
   colors.webpage.preferred_color_scheme:
     global: dark
+  content.desktop_capture:
+    https://meet.google.com: true
   content.javascript.clipboard:
     global: access
+  content.media.audio_capture:
+    https://meet.google.com: true
+  content.media.video_capture:
+    https://meet.google.com: true
+    https://webcamtests.com: true
   content.notifications.enabled:
     https://app.clickup.com: true
     https://www.youtube.com: false
