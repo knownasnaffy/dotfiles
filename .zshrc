@@ -49,6 +49,7 @@ plugins=(
     safe-paste
     sudo # Double escape to prefix with sudo
     web-search
+    wp-cli
     zoxide # Auto jumps
     zsh-autosuggestions # Command completion
     zsh-history-substring-search # Up arrow key for search
