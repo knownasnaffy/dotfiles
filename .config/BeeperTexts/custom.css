@@ -148,11 +148,11 @@ To open dev tools, open the command bar and type "open console"
     .message-contents {
       background-color: var(--c-background);
     }
-    .message-contents[class*="_isSender_"] {
-      background-color: var(--c-grey);
+    .message-contents[class*="_isSender"] {
+      background-color: var(--c-grey) !important;
       color: #fff;
     }
-    .message-contents[class*="_isSender_"] .message-readable-metadata {
+    .message-contents[class*="_isSender"] .message-readable-metadata {
       color: var(--c-white);
     }
     .compose-message-container button {
