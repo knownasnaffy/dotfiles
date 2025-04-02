@@ -105,6 +105,7 @@ export PNPM_HOME="$HOME/.local/share/pnpm"
 path_directories=(
   "$HOME/.local/bin"
   "$HOME/.bun/bin" # Bun
+  "$HOME/.cargo/bin" # Bun
   "/root/.local/share/gem/ruby/3.2.0/bin" # Gem modules (system-wide)
   "$HOME/.local/share/gem/ruby/3.3.0/bin" # Gem modules (user-specific)
   "$HOME/.java/jre1.8.0_431/bin" # Java

@@ -185,6 +185,7 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.config/zathura" "$HOME/.config/zathura"
     create_symlink "$DOTFILES_DIR/.config/yazi" "$HOME/.config/yazi"
     create_symlink "$DOTFILES_DIR/.config/pycodestyle" "$HOME/.config/pycodestyle"
+    create_symlink "$DOTFILES_DIR/.config/battery-notify" "$HOME/.config/battery-notify"
     create_symlink "$DOTFILES_DIR/.config/.lesskey" "$HOME/.lesskey"
     create_symlink "$DOTFILES_DIR/.config/.Xresources" "$HOME/.Xresources"
     create_symlink "$DOTFILES_DIR/.zsh_functions" "$HOME/.zsh_functions"
