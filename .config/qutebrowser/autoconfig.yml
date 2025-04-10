@@ -35,8 +35,10 @@ settings:
     '*://chat.deepseek.com/*': false
     '*://davatorium.github.io/*': true
     '*://git-scm.com/*': false
+    '*://learn.wordpress.org/*': true
     '*://livesoundblog.com/*': true
     '*://localhost/*': false
+    '*://make.wordpress.org/*': true
     '*://new.drupal.org/*': true
     '*://polybar.readthedocs.io/*': false
     '*://qutebrowser.org/*': true
