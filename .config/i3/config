@@ -173,6 +173,9 @@ hide_edge_borders smart
 # came from now, you can just press $mod+2 again to switch back to "1: www".
 workspace_auto_back_and_forth yes
 
+# This option determines in which mode new containers on workspace level will start.
+workspace_layout tabbed
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "Editor"
