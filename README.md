@@ -35,8 +35,10 @@ cd dotfiles
 ./setup.sh
 ```
 
-### 3. Some manual changes
-Open `/boot/loader/entries/2025-03-13_12-06-41_linux-zen.conf` and update the following line:
+## Some manual changes
+
+### 1. Remove bootloader warnings.
+Open `/boot/loader/entries/{date}_linux-{zen|dev}.conf` or similar and update the following line:
 
 ```diff
 - options root=PARTUUID=f7372bdd-1ac2-4ba4-8e6d-d5f56b98092c zswap.enabled=0 rw rootfstype=f2fs
