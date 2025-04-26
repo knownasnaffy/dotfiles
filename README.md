@@ -4,6 +4,9 @@ This repository contains the dotfiles and setup scripts to configure and manage 
 
 ---
 
+> **Note**: This setup is mainly designed for a **bare Arch Linux installation**.
+> While it may work on other Linux distributions, it is optimized and tested for a minimal Arch setup.
+
 ## Features
 
 - **Automated Program Installation**: Installs Zsh, Git, Neovim, and a wide range of essential tools and utilities.
