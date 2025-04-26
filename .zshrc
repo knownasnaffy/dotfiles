@@ -59,7 +59,14 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-spaceship remove node rust package hg bun deno ruby elm elixir xcode swift golang perl php haskell scala kotlin java dart julia crystal docker docker_compose aws gcloud azure conda uv dotnet ocaml vlang purescript erlang gleam  hg bun deno ruby elm elixir xcode swift golang perl php haskell scala kotlin java dart julia crystal docker docker_compose aws gcloud azure conda uv dotnet ocaml vlang purescript erlang gleam kubectl ansible terraform pulumi ibmcloud nix_shell gnu_screen lua
+spaceship_cleanup=(
+  node rust package hg bun deno ruby elm elixir xcode swift golang perl php
+  haskell scala kotlin java dart julia crystal docker docker_compose aws
+  gcloud azure conda uv dotnet ocaml vlang purescript erlang gleam
+  kubectl ansible terraform pulumi ibmcloud nix_shell gnu_screen lua
+)
+
+spaceship remove "${spaceship_cleanup[@]}"
 
 bindkey -e  # Use Emacs keybindings (default)
 
