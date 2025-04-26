@@ -174,7 +174,7 @@ function fm() {
 }
 
 # Taskwarrior related variables
-export TASKRC=~/.config/taskwarrior/taskrc TASKDATA=~/.local/share/taskwarrior
+export TASKRC="$HOME/.config/taskwarrior/taskrc" TASKDATA="$HOME/.local/share/taskwarrior"
 
 alias tt=taskwarrior-tui
 alias t=task
