@@ -57,7 +57,7 @@ plugins=(
     zsh-syntax-highlighting # Command syntax colors
 )
 
-source $ZSH/oh-my-zsh.sh
+source "$ZSH/oh-my-zsh.sh"
 
 spaceship_cleanup=(
   node rust package hg bun deno ruby elm elixir xcode swift golang perl php
