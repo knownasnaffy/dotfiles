@@ -55,6 +55,29 @@ plugins=(
 )
 
 # ─────────────────────────────────────────────────────────────────────────────
+# Source and initialize oh-my-zsh
+# ─────────────────────────────────────────────────────────────────────────────
+
+source "$ZSH/oh-my-zsh.sh"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Spaceship Prompt Configuration
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Enable battery status in the prompt
+SPACESHIP_BATTERY_SHOW="charged"
+SPACESHIP_BATTERY_THRESHOLD=25
+
+# Remove unused sections to keep prompt clean and fast
+spaceship_cleanup=(
+  node rust package hg bun deno ruby elm elixir xcode swift golang perl php
+  haskell scala kotlin java dart julia crystal docker docker_compose aws
+  gcloud azure conda uv dotnet ocaml vlang purescript erlang gleam
+  kubectl ansible terraform pulumi ibmcloud nix_shell gnu_screen lua
+)
+spaceship remove "${spaceship_cleanup[@]}"
+
+# ─────────────────────────────────────────────────────────────────────────────
 # Key Bindings and Input Tweaks
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -83,29 +106,6 @@ bindkey '^[r' history-incremental-search-backward    # Alt+r → search history
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="bg=blue,fg=black,bold"
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND="bg=red,fg=black,bold"
 export HISTORY_SUBSTRING_SEARCH_FUZZY="1"
-
-# ─────────────────────────────────────────────────────────────────────────────
-# Source and initialize oh-my-zsh
-# ─────────────────────────────────────────────────────────────────────────────
-
-source "$ZSH/oh-my-zsh.sh"
-
-# ─────────────────────────────────────────────────────────────────────────────
-# Spaceship Prompt Configuration
-# ─────────────────────────────────────────────────────────────────────────────
-
-# Enable battery status in the prompt
-SPACESHIP_BATTERY_SHOW="charged"
-SPACESHIP_BATTERY_THRESHOLD=25
-
-# Remove unused sections to keep prompt clean and fast
-spaceship_cleanup=(
-  node rust package hg bun deno ruby elm elixir xcode swift golang perl php
-  haskell scala kotlin java dart julia crystal docker docker_compose aws
-  gcloud azure conda uv dotnet ocaml vlang purescript erlang gleam
-  kubectl ansible terraform pulumi ibmcloud nix_shell gnu_screen lua
-)
-spaceship remove "${spaceship_cleanup[@]}"
 
 # ─────────────────────────────────────────────────────────────────────────────
 # User Environment Configuration
