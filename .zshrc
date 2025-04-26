@@ -1,169 +1,200 @@
-# Path to my Oh My Zsh installation.
+# ─────────────────────────────────────────────────────────────────────────────
+# Basic Oh-My-Zsh Setup
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Path to Oh My Zsh installation
 export ZSH="$HOME/.oh-my-zsh"
 
-# Prompt theme
+# Set the prompt theme
 ZSH_THEME="spaceship"
 
-# Spaceship specific config
-# Enable battery status
+# Source Oh My Zsh
+source "$ZSH/oh-my-zsh.sh"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Spaceship Prompt Configuration
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Enable battery status in the prompt
 SPACESHIP_BATTERY_SHOW="charged"
 SPACESHIP_BATTERY_THRESHOLD=25
 
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-FRONTEND_SEARCH_FALLBACK='duckduckgo'
-
-zstyle ':omz:plugins:alias-finder' autoload yes # disabled by default
-zstyle ':omz:plugins:alias-finder' longer yes # disabled by default
-zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
-zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
-
-zstyle ':omz:plugins:eza' 'dirs-first' yes
-zstyle ':omz:plugins:eza' 'git-status' yes
-zstyle ':omz:plugins:eza' icons yes
-
-# Oh My Zsh plugins
-plugins=(
-    aliases
-    alias-finder
-    archlinux
-    brew
-    bun # Code completion
-    copyfile # Copy target file content
-    copypath # Copy target path
-    dirhistory
-    docker
-    extract
-    eza
-    fzf
-    gh # Code completion
-    git
-    gitfast
-    qrcode
-    safe-paste
-    sudo # Double escape to prefix with sudo
-    web-search
-    wp-cli
-    zoxide # Auto jumps
-    zsh-autosuggestions # Command completion
-    zsh-history-substring-search # Up arrow key for search
-    zsh-interactive-cd # Use fzf for entering directories
-    zsh-syntax-highlighting # Command syntax colors
-)
-
-source "$ZSH/oh-my-zsh.sh"
-
+# Remove unused sections to keep prompt clean and fast
 spaceship_cleanup=(
   node rust package hg bun deno ruby elm elixir xcode swift golang perl php
   haskell scala kotlin java dart julia crystal docker docker_compose aws
   gcloud azure conda uv dotnet ocaml vlang purescript erlang gleam
   kubectl ansible terraform pulumi ibmcloud nix_shell gnu_screen lua
 )
-
 spaceship remove "${spaceship_cleanup[@]}"
 
-bindkey -e  # Use Emacs keybindings (default)
+# ─────────────────────────────────────────────────────────────────────────────
+# Zsh Plugins Configuration
+# ─────────────────────────────────────────────────────────────────────────────
 
-# Delete a whole word when pressing ctrl+backspace
-bindkey '^[w' backward-kill-word    # Alt+w → Delete word backward
-bindkey '^[W' kill-whole-line  # Alt+Shift+W → Delete whole line
-bindkey '^[D' kill-line  # A+S+d → Delete forward whole line
-bindkey '^[;' forward-char          # Alt+; → Right Arrow
-bindkey '^[l' history-substring-search-up     # Alt+l → Up Arrow
-bindkey '^[k' history-substring-search-down   # Alt+k → Down Arrow
-bindkey '^[j' backward-char          # Alt+j → Left Arrow
-bindkey '^[B' backward-word  # Alt+Shift+B → Move one word left
-bindkey '^[F' forward-word   # Alt+Shift+F → Move one word right
-bindkey '^[o' dirhistory_zle_dirhistory_back          # Previous directory in history (Alt+o)
-bindkey '^[i' dirhistory_zle_dirhistory_future           # Next directory in history (Alt+i)
-bindkey '^[r' history-incremental-search-backward  # Alt+R → Search history
+# Plugin-specific settings
+
+# Alias Finder Plugin - enable extended search
+zstyle ':omz:plugins:alias-finder' autoload yes
+zstyle ':omz:plugins:alias-finder' longer yes
+zstyle ':omz:plugins:alias-finder' exact yes
+zstyle ':omz:plugins:alias-finder' cheaper yes
+
+# eza Plugin - options for directory listing
+zstyle ':omz:plugins:eza' 'dirs-first' yes
+zstyle ':omz:plugins:eza' 'git-status' yes
+zstyle ':omz:plugins:eza' icons yes
+
+# List of enabled plugins
+plugins=(
+    aliases
+    alias-finder
+    archlinux
+    brew
+    bun
+    copyfile
+    copypath
+    dirhistory
+    docker
+    extract
+    eza
+    fzf
+    gh
+    git
+    gitfast
+    qrcode
+    safe-paste
+    sudo
+    web-search
+    wp-cli
+    zoxide
+    zsh-autosuggestions
+    zsh-history-substring-search
+    zsh-interactive-cd
+    zsh-syntax-highlighting
+)
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Key Bindings and Input Tweaks
+# ─────────────────────────────────────────────────────────────────────────────
+
+bindkey -e  # Use Emacs keybindings
+
+# Custom word and line deletion
+bindkey '^[w' backward-kill-word                     # Alt+w → delete word backward
+bindkey '^[W' kill-whole-line                        # Alt+Shift+w → delete whole line
+bindkey '^[D' kill-line                              # Alt+Shift+d → delete forward whole line
+
+# Navigation and history search
+bindkey '^[;' forward-char                           # Alt+; → move cursor right
+bindkey '^[j' backward-char                          # Alt+j → move cursor left
+bindkey '^[B' backward-word                          # Alt+Shift+b → move word left
+bindkey '^[F' forward-word                           # Alt+Shift+f → move word right
+bindkey '^[l' history-substring-search-up            # Alt+l → previous matching command
+bindkey '^[k' history-substring-search-down          # Alt+k → next matching command
+bindkey '^[o' dirhistory_zle_dirhistory_back         # Alt+o → previous directory
+bindkey '^[i' dirhistory_zle_dirhistory_future       # Alt+i → next directory
+bindkey '^[r' history-incremental-search-backward    # Alt+r → search history
+
+# ─────────────────────────────────────────────────────────────────────────────
+# History Substring Search Appearance
+# ─────────────────────────────────────────────────────────────────────────────
 
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="bg=blue,fg=black,bold"
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND="bg=red,fg=black,bold"
 export HISTORY_SUBSTRING_SEARCH_FUZZY="1"
 
-# User configuration
+# ─────────────────────────────────────────────────────────────────────────────
+# User Environment Configuration
+# ─────────────────────────────────────────────────────────────────────────────
 
-# Preferred editor for local and remote sessions
+# Set default text editor
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
   export EDITOR='nvim'
 fi
-
 alias vi=nvim
 
+# Terminal and tools
 export TERMINAL=ghostty
-
-# Compilation cache
-zstyle ':completion::complete:*' use-cache on
-zstyle ':completion::complete:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/"
-
-#  TODO: Move custom aliases to $ZSH_CUSTOM
-
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export ANDROID_HOME="$HOME/Android/Sdk"
 export JAVA_HOME="/usr/lib/jvm/java-17-openjdk"
 
-# Define an array of directories to add to the PATH
+# Add important paths
 path_directories=(
   "$HOME/.local/bin"
-  "$HOME/.bun/bin" # Bun
-  "$HOME/.cargo/bin" # Cargo modules
-  "$HOME/flutter/bin" # Flutter tools
+  "$HOME/.bun/bin"
+  "$HOME/.cargo/bin"
+  "$HOME/flutter/bin"
   "$ANDROID_HOME/cmdline-tools/latest/bin"
   "$ANDROID_HOME/platform-tools"
   "$JAVA_HOME/bin"
-  "/root/.local/share/gem/ruby/3.2.0/bin" # Gem modules (system-wide)
-  "$HOME/.local/share/gem/ruby/3.3.0/bin" # Gem modules (user-specific)
-  "$HOME/.java/jre1.8.0_431/bin" # Java
-  "$HOME/.local/share/webstorm/bin" # Webstorm
-  $PNPM_HOME # Pnpm
+  "/root/.local/share/gem/ruby/3.2.0/bin"
+  "$HOME/.local/share/gem/ruby/3.3.0/bin"
+  "$HOME/.java/jre1.8.0_431/bin"
+  "$HOME/.local/share/webstorm/bin"
+  $PNPM_HOME
 )
 
-# Iterate over the array and add each directory to PATH
 for dir in "${path_directories[@]}"; do
   [[ -d $dir ]] && [[ ":$PATH:" != *":$dir:"* ]] && export PATH="$dir:$PATH"
 done
 
-# NVM related config
+# Compilation cache for completions
+zstyle ':completion::complete:*' use-cache on
+zstyle ':completion::complete:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Lazy Loading for Tools
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Lazy load NVM
 nvm_lazy_load() {
   unset -f nvm nvm_lazy_load
   source /usr/share/nvm/init-nvm.sh
   nvm "$@"
 }
-
 alias nvm=nvm_lazy_load
 alias node=nvm_lazy_load
 alias npm=nvm_lazy_load
 alias npx=nvm_lazy_load
 
-# Too lazy to remove the '$ ' from the copied online code snippets
-alias '$'='_execute_command'
+# Lazy load 'thefuck' correction tool
+thefuck_lazy_load() {
+  unset -f fuck thefuck_lazy_load
+  eval $(thefuck --alias)
+  fuck "$@"
+}
+alias fuck=thefuck_lazy_load
 
+# Lazy load pipx autocomplete
+_lazy_pipx() {
+  eval "$(register-python-argcomplete pipx)"
+  compdef _pipx pipx
+  zle redisplay
+}
+compdef _lazy_pipx pipx
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Custom Aliases and Functions
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Remove '$ ' from copied command snippets
+alias '$'='_execute_command'
 _execute_command() {
-    local cmd="${*}"  # Capture all arguments
-    eval "$cmd"       # Execute the command
+    local cmd="${*}"
+    eval "$cmd"
 }
 
+# Insert blank space into terminal
 alias 'space'='_add_space'
-
 _add_space() {
     echo '\n\n\n\n\n\n\n\n'
 }
 
-# completions
-[ -s "$HOME/.zsh_functions/_ghostty" ] && source "$HOME/.zsh_functions/_ghostty"
-[ -s "$HOME/.zsh_functions/_gitpod" ] && source "$HOME/.zsh_functions/_gitpod"
-[ -s "$HOME/.zsh_functions/_mods" ] && source "$HOME/.zsh_functions/_mods"
-
-# Custom alias for ranger file manager
+# Launch file manager (yazi) and return to new cwd
 function fm() {
     local tmp="$(mktemp -t yazi-cwd.XXXXXX)" cwd
     yazi "$@" --cwd-file="$tmp"
@@ -173,43 +204,38 @@ function fm() {
     rm -f -- "$tmp"
 }
 
-# Taskwarrior related variables
-export TASKRC="$HOME/.config/taskwarrior/taskrc" TASKDATA="$HOME/.local/share/taskwarrior"
-
+# Taskwarrior TUI aliases
+export TASKRC="$HOME/.config/taskwarrior/taskrc"
+export TASKDATA="$HOME/.local/share/taskwarrior"
 alias tt=taskwarrior-tui
 alias t=task
 
-# Don't log commands starting with a space
-setopt HIST_IGNORE_SPACE
-
-# Don't log jrnl commands by prefixing with a space
-alias jrnl=" jrnl"
-
-# Fun commands
-alias wisdom="fortune | cowsay"
-
-# Print system information
-fastfetch
-
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
+# Gitpod alias
 alias gp=gitpod
 
-# Add thefuck alias
-thefuck_lazy_load() {
-  unset -f fuck thefuck_lazy_load
-  eval $(thefuck --alias)
-  fuck "$@"
-}
-
-alias fuck=thefuck_lazy_load
-
-# export BAT_THEME=base16
-export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
-
+# Preview files easily with bat+fzf
 alias preview="fzf --preview \"bat --color=always --style=numbers --line-range=:500 {}\""
 
-# Fzf config
+# Print a fortune message with cowsay
+alias wisdom="fortune | cowsay"
+
+# JRNL secret logs
+alias jrnl=" jrnl" # Leading space ensures it doesn't enter shell history
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Appearance Enhancements
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Fetch system information on shell startup
+fastfetch
+
+# Load Homebrew if installed
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# Set man pages viewer to use bat
+export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
+
+# Customize FZF interface
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --highlight-line \
   --info=inline-right \
@@ -235,14 +261,19 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --bind=alt-k:down,alt-l:up,alt-f:page-down,alt-b:page-up,alt-q:abort,alt-w:backward-kill-word,alt-j:backward-char
 "
 
-_lazy_pipx() {
-  eval "$(register-python-argcomplete pipx)"
-  compdef _pipx pipx
-  zle redisplay
-}
+# ─────────────────────────────────────────────────────────────────────────────
+# Custom Completion Scripts
+# ─────────────────────────────────────────────────────────────────────────────
 
-compdef _lazy_pipx pipx
+[ -s "$HOME/.zsh_functions/_ghostty" ] && source "$HOME/.zsh_functions/_ghostty"
+[ -s "$HOME/.zsh_functions/_gitpod" ] && source "$HOME/.zsh_functions/_gitpod"
+[ -s "$HOME/.zsh_functions/_mods" ] && source "$HOME/.zsh_functions/_mods"
 
+# ─────────────────────────────────────────────────────────────────────────────
+# Special Key Bindings
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Bind A+A+E (Alt+e) to run AI Chat on current buffer
 _aichat_zsh() {
     if [[ -n "$BUFFER" ]]; then
         local _old=$BUFFER
@@ -252,6 +283,12 @@ _aichat_zsh() {
         zle end-of-line
     fi
 }
-
 zle -N _aichat_zsh
 bindkey '\ee' _aichat_zsh
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Shell Behavior Tweaks
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Don't save commands starting with a space in history
+setopt HIST_IGNORE_SPACE
