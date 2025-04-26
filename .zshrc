@@ -152,12 +152,12 @@ _add_space() {
 
 # Custom alias for ranger file manager
 function fm() {
-	local tmp="$(mktemp -t ranger_cd.XXX)" cwd
-	ranger --choosedir="$tmp" -- "${@:-$PWD}"
-	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
+    local tmp="$(mktemp -t yazi-cwd.XXXXXX)" cwd
+    yazi "$@" --cwd-file="$tmp"
+    if cwd="$(<"$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        cd -- "$cwd"
+    fi
+    rm -f -- "$tmp"
 }
 
 # Taskwarrior related variables
