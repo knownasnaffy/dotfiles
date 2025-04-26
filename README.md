@@ -2,12 +2,8 @@
 
 This repository contains the dotfiles and setup scripts to configure and manage a personalized development environment. The setup automates the installation of essential tools, configuration of Zsh, Neovim, and other utilities, and ensures a consistent workflow by symlinking your custom dotfiles.
 
----
-
 > **Note**: This setup is mainly designed for a **bare Arch Linux installation**.
 > While it may work on other Linux distributions, it is optimized and tested for a minimal Arch setup.
-
----
 
 ## Features
 
@@ -19,8 +15,6 @@ This repository contains the dotfiles and setup scripts to configure and manage 
 - **Backup Mechanism**: Existing files are backed up before replacement, ensuring you don’t lose any data.
 - **Private Package Support**: Supports optional installation of private packages in a separate mode.
 
----
-
 ## Prerequisites
 
 Before running the setup script, ensure the following:
@@ -28,8 +22,6 @@ Before running the setup script, ensure the following:
 - **Git** is installed (for cloning the repository).
 - **Sudo access** is required to install programs and create system-level symlinks.
 - **Zsh** should be installed or the script will install it.
-
----
 
 ## Installation
 
@@ -57,8 +49,6 @@ Optionally, you can use the `-p` or `--private` flag to install private packages
 ./setup.sh --private
 ```
 
----
-
 ## Manual Configuration
 
 ### 1. Remove Bootloader Warnings (for specific systems)
@@ -69,8 +59,6 @@ If you're using a bootloader like `systemd-boot`, you might want to remove warni
 - options root=PARTUUID=f7372bdd-1ac2-4ba4-8e6d-d5f56b98092c zswap.enabled=0 rw rootfstype=f2fs
 + options root=PARTUUID=f7372bdd-1ac2-4ba4-8e6d-d5f56b98092c zswap.enabled=0 rw rootfstype=f2fs loglevel=3 quiet
 ```
-
----
 
 ## Setup Details
 
@@ -113,8 +101,6 @@ The setup script links the following files and directories from the repository t
 - `.config/.Xresources`: X11 resource settings.
 - `.zsh_functions`: Custom Zsh functions.
 
----
-
 ## Full Program List
 Here’s a quick look at the programs installed by the script:
 
@@ -131,8 +117,6 @@ Here’s a quick look at the programs installed by the script:
 - **Cowsay**, **fortune-mod**, **thefuck**, and **bat** for fun and productivity
 - **Pipewire** and **WirePlumber** for audio handling
 - And more utilities like **brightnessctl**, **yazi**, **zathura**, **i3lock-color**, **xdotool**, **dunst**, etc.
-
----
 
 ## Structure
 
@@ -157,8 +141,6 @@ Here’s a quick look at the programs installed by the script:
 └── README.md           # Project documentation
 ```
 
----
-
 ## Troubleshooting
 
 1. **Shell not switching to Zsh**:
@@ -172,13 +154,9 @@ Here’s a quick look at the programs installed by the script:
 3. **Backup Files**:
    - If an existing file is replaced by a symlink, it is renamed with a `.bak` suffix. Check for backups if any issues arise.
 
----
-
 ## Contributing
 
 Contributions are welcome! Feel free to open an issue or submit a pull request to improve the project.
-
----
 
 ## License
 
