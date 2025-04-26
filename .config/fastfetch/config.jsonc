@@ -24,12 +24,12 @@
     "gpu",
     "memory",
     "swap",
-    "disk"
+    "disk",
     //"localip",
-    //"battery",
+    // "battery",
     //"poweradapter",
     //"locale",
-    //"break",
-    //"colors"
+    "break",
+    "colors"
   ]
 }
