@@ -101,8 +101,9 @@ alias vi=nvim
 
 export TERMINAL=ghostty
 
-# Compilation flags
-# export ARCHFLAGS="-arch $(uname -m)"
+# Compilation cache
+zstyle ':completion::complete:*' use-cache on
+zstyle ':completion::complete:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/"
 
 #  TODO: Move custom aliases to $ZSH_CUSTOM
 
