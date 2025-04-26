@@ -235,7 +235,13 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --bind=alt-k:down,alt-l:up,alt-f:page-down,alt-b:page-up,alt-q:abort,alt-w:backward-kill-word,alt-j:backward-char
 "
 
-eval "$(register-python-argcomplete pipx)"
+_lazy_pipx() {
+  eval "$(register-python-argcomplete pipx)"
+  compdef _pipx pipx
+  zle redisplay
+}
+
+compdef _lazy_pipx pipx
 
 _aichat_zsh() {
     if [[ -n "$BUFFER" ]]; then
