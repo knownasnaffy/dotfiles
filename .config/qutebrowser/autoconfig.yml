@@ -12,24 +12,47 @@ settings:
     global:
       caret:
         ;: move-to-next-char
+        <Alt+c>: fake-key <Ctrl+c>
+        <Alt+q>: mode-enter normal
         h: null
         j: move-to-prev-char
         k: move-to-next-line
         l: move-to-prev-line
-      insert: {}
+      insert:
+        <Alt+,>: tab-prev
+        <Alt+.>: tab-next
+        <Alt+;>: fake-key <Right>
+        <Alt+Shift+:>: fake-key <Ctrl+Right>
+        <Alt+Shift+j>: fake-key <Ctrl+Left>
+        <Alt+Shift+k>: fake-key <Ctrl+Down>
+        <Alt+Shift+l>: fake-key <Ctrl+Up>
+        <Alt+d>: fake-key <Ctrl-Delete>
+        <Alt+j>: fake-key <Left>
+        <Alt+k>: fake-key <Down>
+        <Alt+l>: fake-key <Up>
+        <Alt+q>: mode-enter normal
+        <Alt+v>: fake-key <Ctrl+v>
+        <Alt+w>: fake-key <Ctrl-Backspace>
       normal:
         ',': 'cmd-set-text :'
         ':': forward
         ;: scroll right
+        <Alt+,>: tab-prev
+        <Alt+.>: tab-next
+        <Alt+c>: fake-key <Ctrl+c>
+        <Alt+i>: forward
+        <Alt+o>: back
+        <Alt+v>: fake-key <Ctrl+v>
         H: null
-        J: back
-        K: tab-next
-        L: tab-prev
+        K: scroll-page 0 0.5
+        L: scroll-page 0 -0.5
         h: null
         j: scroll left
         k: scroll down
         l: scroll up
         td: config-cycle -u *://{url:host}/* colors.webpage.darkmode.enabled ;; reload
+      passthrough:
+        <Alt+q>: mode-enter normal
   colors.webpage.darkmode.enabled:
     '*://addons.thunderbird.net/*': true
     '*://chat.deepseek.com/*': false
@@ -60,11 +83,18 @@ settings:
     global: access
   content.media.audio_capture:
     https://meet.google.com: true
+    https://teams.live.com: true
+  content.media.audio_video_capture:
+    https://teams.live.com: true
   content.media.video_capture:
     https://meet.google.com: true
+    https://teams.live.com: true
     https://webcamtests.com: true
+  content.mouse_lock:
+    https://www.figma.com: true
   content.notifications.enabled:
     https://app.clickup.com: true
+    https://teams.live.com: true
     https://www.youtube.com: false
   content.register_protocol_handler:
     https://mail.google.com?extsrc=mailto&url=%25s: false
@@ -83,3 +113,5 @@ settings:
     global: '{current_title}'
   tabs.width:
     global: 150
+  zoom.default:
+    global: 125%

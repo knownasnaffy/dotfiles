@@ -12,14 +12,14 @@
 
 # Change the argument to True to still load settings configured via autoconfig.yml
 config.load_autoconfig()
-config.source('./themes/tokyonight.py')
+config.source("./themes/tokyonight.py")
 
 # Configure tabs
-c.tabs.position = 'top'
-c.tabs.title.format = '{audio}{index}: {current_title}'
+c.tabs.position = "top"
+c.tabs.title.format = "{audio}{index}: {current_title}"
 
-c.hints.border = '0px'
-c.hints.chars = 'asdfjkl;wevnio'
+c.hints.border = "0px"
+c.hints.chars = "asdfjkl;wevnio"
 c.hints.radius = 0
 c.keyhint.radius = 0
 c.prompt.radius = 0
@@ -30,7 +30,7 @@ c.session.lazy_restore = True
 #
 c.statusbar.widgets = ["keypress", "search_match", "url", "scroll", "progress"]
 
-c.url.auto_search = 'naive'
+c.url.auto_search = "naive"
 
 # Unbind existing movement keys
 config.unbind("h")
@@ -43,6 +43,19 @@ config.bind("j", "scroll left")
 config.bind("k", "scroll down")
 config.bind("l", "scroll up")
 config.bind(";", "scroll right")
+
+config.bind("<Alt-j>", "fake-key <Left>", mode="insert")
+config.bind("<Alt-k>", "fake-key <Down>", mode="insert")
+config.bind("<Alt-l>", "fake-key <Up>", mode="insert")
+config.bind("<Alt-;>", "fake-key <Right>", mode="insert")
+
+config.bind("<Alt-Shift-J>", "fake-key <Ctrl+Left>", mode="insert")
+config.bind("<Alt-Shift-K>", "fake-key <Ctrl+Down>", mode="insert")
+config.bind("<Alt-Shift-L>", "fake-key <Ctrl+Up>", mode="insert")
+config.bind("<Alt-Shift-:>", "fake-key <Ctrl+Right>", mode="insert")
+# config.bind("<Alt-k>", "fake-key <Down>", mode="insert")
+# config.bind("<Alt-l>", "fake-key <Up>", mode="insert")
+# config.bind("<Alt-;>", "fake-key <Right>", mode="insert")
 
 # Unbind existing keys for navigation
 config.unbind("H")
@@ -58,9 +71,11 @@ config.bind("<Alt-o>", "back")  # Instead of "H"
 config.bind("<Alt-i>", "forward")  # Instead of "L"
 config.bind("<Alt-.>", "tab-next")  # Instead of "J"
 config.bind("<Alt-,>", "tab-prev")  # Instead of "K"
+config.bind("<Alt-.>", "tab-next", mode="insert")  # Instead of "J"
+config.bind("<Alt-,>", "tab-prev", mode="insert")  # Instead of "K"
 
 # Remap command input to ','
-config.bind(',', 'cmd-set-text :')
+config.bind(",", "cmd-set-text :")
 
 # Carot mod keys
 config.unbind("h", mode="caret")
