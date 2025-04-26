@@ -133,7 +133,16 @@ for dir in "${path_directories[@]}"; do
 done
 
 # NVM related config
-source /usr/share/nvm/init-nvm.sh
+nvm_lazy_load() {
+  unset -f nvm nvm_lazy_load
+  source /usr/share/nvm/init-nvm.sh
+  nvm "$@"
+}
+
+alias nvm=nvm_lazy_load
+alias node=nvm_lazy_load
+alias npm=nvm_lazy_load
+alias npx=nvm_lazy_load
 
 # Too lazy to remove the '$ ' from the copied online code snippets
 alias '$'='_execute_command'
