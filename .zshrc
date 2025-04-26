@@ -36,7 +36,7 @@ plugins=(
     brew
     bun # Code completion
     copyfile # Copy target file content
-    copypath # Copy taeget path
+    copypath # Copy target path
     dirhistory
     docker
     extract
