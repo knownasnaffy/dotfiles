@@ -162,7 +162,6 @@ _add_space() {
 [ -s "$HOME/.zsh_functions/_ghostty" ] && source "$HOME/.zsh_functions/_ghostty"
 [ -s "$HOME/.zsh_functions/_gitpod" ] && source "$HOME/.zsh_functions/_gitpod"
 [ -s "$HOME/.zsh_functions/_mods" ] && source "$HOME/.zsh_functions/_mods"
-[ -s "$HOME/.zsh_functions/_alacritty" ] && source "$HOME/.zsh_functions/_alacritty"
 
 # Custom alias for ranger file manager
 function fm() {
