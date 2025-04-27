@@ -115,7 +115,7 @@ install_programs() {
 
     log "Installing other programs..."
     paru -Syu --noconfirm
-    paru -Sy --noconfirm fzf github-cli nvm fortune-mod cowsay fastfetch qutebrowser rofi polybar feh picom ttf-hack-nerd ghostty task maim brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber alsa-utils inotify-tools jq eva thefuck bat zoxide 7zip yazi zathura i3lock-color noto-fonts-emoji dunst xdotool xdg-user-dirs udisks2 pass xorg-xrandr eza rofi-greenclip aichat
+    paru -Sy --noconfirm fzf github-cli fortune-mod cowsay fastfetch qutebrowser rofi polybar feh picom ttf-hack-nerd ghostty task maim brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber alsa-utils inotify-tools jq eva thefuck bat zoxide 7zip yazi zathura i3lock-color noto-fonts-emoji dunst xdotool xdg-user-dirs udisks2 pass xorg-xrandr eza rofi-greenclip aichat
 
     install_oh_my_zsh
     install_neovim_config
@@ -126,14 +126,16 @@ install_programs() {
     #  FIXME: Fix this Script
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)")
 
+    check_command "$HOME/.local/share/fnm/fnm" || (log 'Installing fnm...' && curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell)
+
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     brew install gitpod-io/tap/gitpod pipx
 
     # For pipx completions
     pipx install argcomplete
 
-    source /usr/share/nvm/init-nvm.sh
-    nvm install --lts
+    # Install latest stable nodejs
+    eval "$(/home/knownasnaffy/.local/share/fnm/fnm install --lts)"
 }
 
 post_install_scripts() {

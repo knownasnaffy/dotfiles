@@ -124,6 +124,7 @@ export TERMINAL=ghostty
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export ANDROID_HOME="$HOME/Android/Sdk"
 export JAVA_HOME="/usr/lib/jvm/java-17-openjdk"
+export FNM_PATH="$HOME/.local/share/fnm"
 
 # Add important paths
 path_directories=(
@@ -139,6 +140,7 @@ path_directories=(
   "$HOME/.java/jre1.8.0_431/bin"
   "$HOME/.local/share/webstorm/bin"
   $PNPM_HOME
+  $FNM_PATH
 )
 
 for dir in "${path_directories[@]}"; do
@@ -152,20 +154,6 @@ zstyle ':completion::complete:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh
 # ─────────────────────────────────────────────────────────────────────────────
 # Lazy Loading for Tools
 # ─────────────────────────────────────────────────────────────────────────────
-
-# Lazy load NVM
-nvm_lazy_load() {
-  unalias nvm
-  unalias node
-  unalias npm
-  unalias npx
-  source /usr/share/nvm/init-nvm.sh
-  nvm "$@"
-}
-alias nvm=nvm_lazy_load
-alias node=nvm_lazy_load
-alias npm=nvm_lazy_load
-alias npx=nvm_lazy_load
 
 # Lazy load 'thefuck' correction tool
 thefuck_lazy_load() {
@@ -234,6 +222,9 @@ alias jrnl=" jrnl" # Leading space ensures it doesn't enter shell history
 
 # Fetch system information on shell startup
 fastfetch
+
+# Load fnm
+eval "`fnm env`"
 
 # Load Homebrew if installed
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
