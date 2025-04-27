@@ -155,7 +155,10 @@ zstyle ':completion::complete:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh
 
 # Lazy load NVM
 nvm_lazy_load() {
-  unset -f nvm nvm_lazy_load
+  unalias nvm
+  unalias node
+  unalias npm
+  unalias npx
   source /usr/share/nvm/init-nvm.sh
   nvm "$@"
 }
@@ -166,7 +169,7 @@ alias npx=nvm_lazy_load
 
 # Lazy load 'thefuck' correction tool
 thefuck_lazy_load() {
-  unset -f fuck thefuck_lazy_load
+  unalias fuck
   eval $(thefuck --alias)
   fuck "$@"
 }
