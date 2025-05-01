@@ -107,6 +107,12 @@ settings:
     - '{file}'
   input.insert_mode.auto_load:
     global: true
+  tabs.padding:
+    global:
+      bottom: 2
+      left: 5
+      right: 5
+      top: 2
   tabs.position:
     global: left
   tabs.title.format:
