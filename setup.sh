@@ -115,7 +115,7 @@ install_programs() {
 
     log "Installing other programs..."
     paru -Syu --noconfirm
-    paru -Sy --noconfirm fzf github-cli fortune-mod cowsay fastfetch qutebrowser rofi polybar feh picom ttf-hack-nerd ghostty task maim brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber alsa-utils inotify-tools jq eva thefuck bat zoxide 7zip yazi zathura i3lock-color noto-fonts-emoji dunst xdotool xdg-user-dirs udisks2 pass xorg-xrandr eza rofi-greenclip aichat
+    paru -Sy --noconfirm fzf github-cli fortune-mod cowsay fastfetch qutebrowser rofi polybar feh picom ttf-hack-nerd ghostty task maim brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber alsa-utils inotify-tools jq eva thefuck bat zoxide 7zip yazi zathura i3lock-color noto-fonts-emoji dunst xdotool xdg-user-dirs udisks2 pass xorg-xrandr eza aichat
 
     install_oh_my_zsh
     install_neovim_config
@@ -136,6 +136,9 @@ install_programs() {
 
     # Install latest stable nodejs
     eval "$(/home/knownasnaffy/.local/share/fnm/fnm install --lts)"
+
+    # Install the stable version of greenclip
+    check_command greenclip || curl -LO https://github.com/erebe/greenclip/releases/download/v4.2/greenclip && mv ./greenclip ~/.local/bin/greenclip
 }
 
 post_install_scripts() {
