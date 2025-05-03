@@ -91,8 +91,8 @@ bindkey '^[D' kill-line                              # Alt+Shift+d → delete fo
 # Navigation and history search
 bindkey '^[;' forward-char                           # Alt+; → move cursor right
 bindkey '^[j' backward-char                          # Alt+j → move cursor left
-bindkey '^[B' backward-word                          # Alt+Shift+b → move word left
-bindkey '^[F' forward-word                           # Alt+Shift+f → move word right
+bindkey '^[b' backward-word                          # Alt+Shift+b → move word left
+bindkey '^[f' forward-word                           # Alt+Shift+f → move word right
 bindkey '^[l' history-substring-search-up            # Alt+l → previous matching command
 bindkey '^[k' history-substring-search-down          # Alt+k → next matching command
 bindkey '^[o' dirhistory_zle_dirhistory_back         # Alt+o → previous directory
