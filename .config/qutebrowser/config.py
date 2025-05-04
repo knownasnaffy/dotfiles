@@ -62,6 +62,7 @@ config.unbind("H")
 config.unbind("L")
 config.unbind("J")
 config.unbind("K")
+config.unbind(":")
 
 config.bind("K", "scroll-page 0 0.5")  # Instead of "C-d"
 config.bind("L", "scroll-page 0 -0.5")  # Instead of "C-i"
