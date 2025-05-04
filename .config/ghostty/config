@@ -1,12 +1,12 @@
 gtk-titlebar = false
 theme = tokyonight
 window-decoration = none
-keybind = alt+a=goto_split:previous
+keybind = performable:alt+a=goto_split:previous
 keybind = ctrl+enter=unbind
 keybind = ctrl+,=unbind
 keybind = alt+c=copy_to_clipboard
 keybind = alt+v=paste_from_clipboard
-keybind = ctrl+shift+m=toggle_fullscreen
+keybind = alt+shift+m=toggle_fullscreen
 keybind = alt+one=unbind
 keybind = alt+two=unbind
 keybind = alt+three=unbind
@@ -23,3 +23,9 @@ keybind = ctrl+tab=unbind
 keybind = ctrl+shift+right=unbind
 keybind = ctrl+shift+t=unbind
 keybind = ctrl+shift+tab=unbind
+keybind = shift+page_down=scroll_page_fractional:0.3
+keybind = shift+page_up=scroll_page_fractional:-0.3
+keybind = performable:shift+j=adjust_selection:left
+keybind = performable:shift+k=adjust_selection:down
+keybind = performable:shift+l=adjust_selection:up
+keybind = performable:shift+semicolon=adjust_selection:right
