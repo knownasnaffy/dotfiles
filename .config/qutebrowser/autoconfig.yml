@@ -107,6 +107,8 @@ settings:
     - '{file}'
   input.insert_mode.auto_load:
     global: true
+  scrolling.smooth:
+    global: true
   tabs.padding:
     global:
       bottom: 2
