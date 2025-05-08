@@ -165,14 +165,6 @@ thefuck_lazy_load() {
 }
 alias fuck=thefuck_lazy_load
 
-# Lazy load pipx autocomplete
-_lazy_pipx() {
-  eval "$(register-python-argcomplete pipx)"
-  compdef _pipx pipx
-  zle redisplay
-}
-compdef _lazy_pipx pipx
-
 # ─────────────────────────────────────────────────────────────────────────────
 # Custom Aliases and Functions
 # ─────────────────────────────────────────────────────────────────────────────
@@ -205,6 +197,9 @@ export TASKRC="$HOME/.config/taskwarrior/taskrc"
 export TASKDATA="$HOME/.local/share/taskwarrior"
 alias tt=taskwarrior-tui
 alias t=task
+
+# Hledger config
+export LEDGER_FILE=~/finance/2025.journal
 
 # Gitpod alias
 alias gp=gitpod
@@ -267,6 +262,7 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
 [ -s "$HOME/.zsh_functions/_ghostty" ] && source "$HOME/.zsh_functions/_ghostty"
 [ -s "$HOME/.zsh_functions/_gitpod" ] && source "$HOME/.zsh_functions/_gitpod"
 [ -s "$HOME/.zsh_functions/_mods" ] && source "$HOME/.zsh_functions/_mods"
+[ -s "$HOME/.zsh_functions/_pipx" ] && source "$HOME/.zsh_functions/_pipx"
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Special Key Bindings
