@@ -338,31 +338,23 @@
     per_monitor_dpi = false
 
 
+# TokyoNight colors for dunst
+# For more configuration options see https://github.com/dunst-project/dunst/blob/master/dunstrc
+
 [urgency_low]
-    # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#15161e"
+    background = "#16161e"
     foreground = "#c0caf5"
-    timeout = 10
-    # Icon for notifications with low urgency
-    default_icon = dialog-information
+    frame_color = "#c0caf5"
 
 [urgency_normal]
-    background = "#15161e"
+    background = "#1a1b26"
     foreground = "#c0caf5"
-    timeout = 10
-    override_pause_level = 30
-    # Icon for notifications with normal urgency
-    default_icon = dialog-information
+    frame_color = "#c0caf5"
 
 [urgency_critical]
-    background = "#7aa2f7"
-    foreground = "#15161e"
-    frame_color = "#15161e"
-    timeout = 0
-    override_pause_level = 60
-    # Icon for notifications with critical urgency
-    default_icon = dialog-warning
+    background = "#292e42"
+    foreground = "#db4b4b"
+    frame_color = "#db4b4b"
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
