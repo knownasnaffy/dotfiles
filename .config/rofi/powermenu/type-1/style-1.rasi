@@ -2,7 +2,7 @@
  *
  * Author : Aditya Shakya (adi1090x)
  * Github : @adi1090x
- * 
+ *
  * Rofi Theme File
  * Rofi Version: 1.7.3
  **/
@@ -10,6 +10,9 @@
 /*****----- Configuration -----*****/
 configuration {
     show-icons:                 false;
+    kb-row-down: "Down,Control+n,Alt+k,k";
+    kb-row-up: "Up,Control+p,Alt+l,l";
+    kb-cancel: "Escape,Control+g,Control+bracketleft,Alt+q,q";
 }
 
 /*****----- Global Properties -----*****/
@@ -123,7 +126,7 @@ listview {
     reverse:                     false;
     fixed-height:                true;
     fixed-columns:               true;
-    
+
     spacing:                     5px;
     margin:                      0px;
     padding:                     0px;
