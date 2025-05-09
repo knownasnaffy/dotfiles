@@ -258,6 +258,8 @@ assign [class="firefox"] $ws2
 assign [class="Beeper"] $ws4
 assign [class="eu.betterbird.Betterbird"] $ws4
 
+for_window [class="Pick-colour-picker"] floating enable
+
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 exec ghostty
