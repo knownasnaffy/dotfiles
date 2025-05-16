@@ -149,7 +149,7 @@ post_install_scripts() {
 setup_zsh() {
     if [ "$(basename "$SHELL")" != "zsh" ]; then
         log "Setting Zsh as the default shell..."
-        chsh -s "$(command -v zsh)"
+        sudo chsh "$(id -un)" --shell "$(command -v zsh)"
     else
         log "Zsh is already the default shell."
     fi
