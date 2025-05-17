@@ -1,18 +1,15 @@
 {
   "compilerOptions": {
-    // Environment setup & latest features
-    "lib": ["esnext"],
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleDetection": "force",
-    "jsx": "react-jsx",
-    "allowJs": true,
+    // Runtime environment & latest features
+    "target": "ES2022",
+    "lib": ["es2022"],
+    "module": "esnext",
 
-    // Bundler mode
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "noEmit": true,
+    // Output settings
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
 
     // Best practices
     "strict": true,
@@ -20,9 +17,20 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
 
-    // Some stricter flags (disabled by default)
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
-  }
+    // Emit settings (required for binary build)
+    "declaration": false,
+    "sourceMap": false,
+    "removeComments": true,
+
+    // Binary-specific tuning
+    "noEmitOnError": true,
+    "allowSyntheticDefaultImports": true,
+
+    // Not needed
+    "allowJs": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }

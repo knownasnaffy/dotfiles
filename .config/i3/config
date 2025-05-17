@@ -98,6 +98,9 @@ bindsym $mod+p exec --no-startup-id ~/.config/rofi/applets/bin/clipboard.sh
 # screenshot
 bindsym $mod+Shift+s exec --no-startup-id ~/.config/rofi/applets/bin/screenshot.sh
 
+# color picker
+bindsym $mod+Shift+c exec pick-colour-picker
+
 # wifi manager
 bindsym $mod+y exec --no-startup-id ~/.config/rofi/scripts/wifi
 
@@ -220,7 +223,7 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+# bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)

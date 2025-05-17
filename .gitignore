@@ -3,3 +3,4 @@
 .config/gh/hosts.yml
 .config/qutebrowser/qsettings/*
 *.uuid
+node_modules

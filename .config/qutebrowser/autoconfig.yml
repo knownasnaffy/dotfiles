@@ -74,6 +74,7 @@ settings:
     '*://www.canva.com/*': false
     '*://www.drush.org/*': true
     '*://www.lua.org/*': true
+    '*://www.npmjs.com/*': true
     global: false
   colors.webpage.preferred_color_scheme:
     global: dark
@@ -94,6 +95,7 @@ settings:
     https://www.figma.com: true
   content.notifications.enabled:
     https://app.clickup.com: true
+    https://barinderpreet-singh.monday.com: true
     https://teams.live.com: true
     https://www.youtube.com: false
   content.register_protocol_handler:
