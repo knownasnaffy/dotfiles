@@ -36,3 +36,16 @@ set render-loading-bg "#c0caf5"
 #
 set recolor-lightcolor "#1a1b26"
 set recolor-darkcolor "#c0caf5"
+
+# Custom key bindings
+#
+map j scroll left
+map k scroll down
+map l scroll up
+map ; scroll right
+map K scroll full-down
+map L scroll full-up
+#
+# Remove default keybinds that may provide bad experience on miss-click
+#
+unmap J
