@@ -1,10 +1,10 @@
 import { $ } from "bun";
 import { existsSync } from "fs";
 import { commandExists } from "../utilities";
-import { Signale } from "signale";
+import signale from "signale";
 
 export default async function installParu() {
-  const logger = new Signale({ interactive: true, scope: "Packages" });
+  const logger = signale.scope("Packages");
 
   logger.await("Get sudo access");
   await $`sudo -v`;

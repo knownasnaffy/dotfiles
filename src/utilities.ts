@@ -1,6 +1,6 @@
 import { $ } from "bun";
 
-export async function detectDistro() {
+export async function detectDistro(): Promise<string | undefined> {
   const os = await Bun.file("/etc/os-release").text();
   const info = Object.fromEntries(
     os
