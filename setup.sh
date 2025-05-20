@@ -138,7 +138,7 @@ install_programs() {
     eval "$(/home/knownasnaffy/.local/share/fnm/fnm install --lts)"
 
     # Install the stable version of greenclip
-    check_command greenclip || curl -LO https://github.com/erebe/greenclip/releases/download/v4.2/greenclip && mv ./greenclip ~/.local/bin/greenclip
+    check_command greenclip || (curl -LO https://github.com/erebe/greenclip/releases/download/v4.2/greenclip && mv ./greenclip ~/.local/bin/greenclip)
 }
 
 post_install_scripts() {
