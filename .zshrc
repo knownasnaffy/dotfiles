@@ -121,6 +121,12 @@ else
 fi
 alias vi=nvim
 
+# Alias to run a c++ file
+_make_cpp() {
+  eval "g++ -std=c++20 -Wall -Wextra -O2 ${1}.cpp -o ${1} && ./${1}"
+}
+alias makecpp=_make_cpp
+
 # Terminal and tools
 export TERMINAL=ghostty
 export PNPM_HOME="$HOME/.local/share/pnpm"
