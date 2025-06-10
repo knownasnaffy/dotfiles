@@ -149,8 +149,8 @@ post_install_scripts() {
     if ! systemctl is-enabled ly &>/dev/null; then
         sudo systemctl enable ly
     fi
-    if ! systemctl is-active ly &>/dev/null; then
-        POSTNOTES+="Ly is not running. You can start it with: systemctl start ly\n"
+    if ! systemctl is-active docker &>/dev/null; then
+        POSTNOTES+=$(log "Ly is not running. You can start it with: systemctl start ly\n")
     fi
 }
 
