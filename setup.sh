@@ -6,6 +6,7 @@ ZSH_DIR="$HOME/.oh-my-zsh"
 ZSH_CUSTOM="$ZSH_DIR/custom"
 DOTFILES_DIR="$PWD"
 NVIM_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
+POSTNOTES=""
 
 log() { echo -e "[\033[1;32mINFO\033[0m] $1"; }
 error() { echo -e "[\033[1;31mERROR\033[0m] $1"; }
@@ -231,6 +232,8 @@ main() {
     create_cleanup_script
 
     $PRIVATE_MODE && install_private_packages
+
+    echo $POSTNOTES
 }
 
 main "$@"
