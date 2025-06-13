@@ -159,6 +159,10 @@ done
 zstyle ':completion::complete:*' use-cache on
 zstyle ':completion::complete:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/"
 
+# Set Homebrew auto update to once per week
+# 60 seconds × 60 minutes × 24 hours × 7 days = 604800 seconds
+export HOMEBREW_AUTO_UPDATE_SECS=$((60 * 60 * 24 * 7))
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Lazy Loading for Tools
 # ─────────────────────────────────────────────────────────────────────────────
