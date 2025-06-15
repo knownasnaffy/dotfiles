@@ -217,9 +217,6 @@ alias gp=gitpod
 # Preview files easily with bat+fzf
 alias preview="fzf --preview \"bat --color=always --style=numbers --line-range=:500 {}\""
 
-# Print a fortune message with cowsay
-alias wisdom="fortune | cowsay"
-
 # JRNL secret logs
 alias jrnl=" jrnl" # Leading space ensures it doesn't enter shell history
 
