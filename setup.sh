@@ -133,6 +133,9 @@ install_programs() {
 
     # Install latest stable nodejs
     eval fnm install --lts
+
+    # Install cargo packages
+    cargo install battery-notify
 }
 
 post_install_scripts() {
