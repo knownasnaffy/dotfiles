@@ -132,7 +132,7 @@ export TERMINAL=ghostty
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export ANDROID_HOME="$HOME/Android/Sdk"
 export JAVA_HOME="/usr/lib/jvm/java-17-openjdk"
-export FNM_PATH="$HOME/.local/share/fnm"
+# export FNM_PATH="$HOME/.local/share/fnm"
 
 # Add important paths
 path_directories=(
@@ -273,6 +273,7 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
 [ -s "$HOME/.zsh_functions/_gitpod" ] && source "$HOME/.zsh_functions/_gitpod"
 [ -s "$HOME/.zsh_functions/_mods" ] && source "$HOME/.zsh_functions/_mods"
 [ -s "$HOME/.zsh_functions/_pipx" ] && source "$HOME/.zsh_functions/_pipx"
+[ -s "$HOME/.zsh_functions/_fnm" ] && source "$HOME/.zsh_functions/_fnm"
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Special Key Bindings

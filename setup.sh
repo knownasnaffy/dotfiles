@@ -145,6 +145,7 @@ post_install_scripts() {
     if ! systemctl is-active docker &>/dev/null; then
         POSTNOTES+=$(log "Ly is not running. You can start it with: systemctl start ly\n")
     fi
+    fnm completions --shell zsh > ~/.zsh_functions/_fnm
 }
 
 setup_zsh() {
