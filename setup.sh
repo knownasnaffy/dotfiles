@@ -116,30 +116,23 @@ install_programs() {
 
     log "Installing other programs..."
     paru -Syu --noconfirm
-    paru -Sy --noconfirm fzf github-cli fortune-mod cowsay fastfetch qutebrowser rofi polybar feh picom ttf-hack-nerd ghostty task maim brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber alsa-utils inotify-tools jq eva thefuck bat zoxide 7zip yazi zathura i3lock-color noto-fonts-emoji dunst xdotool xdg-user-dirs udisks2 pass xorg-xrandr eza aichat beeper-v4-bin zathura-pdf-poppler
+    paru -Sy --noconfirm fzf github-cli fortune-mod cowsay fastfetch qutebrowser rofi polybar feh picom ttf-hack-nerd ghostty task maim brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber alsa-utils inotify-tools jq eva thefuck bat zoxide 7zip yazi zathura i3lock-color noto-fonts-emoji dunst xdotool xdg-user-dirs udisks2 pass xorg-xrandr eza aichat beeper-v4-bin zathura-pdf-poppler rofi-greenclip
 
     install_oh_my_zsh
     install_neovim_config
-
-    check_command bun || (log 'Installing bun...' && curl -fsSL https://bun.sh/install | bash)
 
     check_command brew || (log "Installing homebrew..."
     #  FIXME: Fix this Script
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)")
 
-    check_command "$HOME/.local/share/fnm/fnm" || (log 'Installing fnm...' && curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell)
-
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-    brew install gitpod-io/tap/gitpod pipx
+    brew install oven-sh/bun/bun pipx fnm
 
     # For pipx completions
     pipx install argcomplete
 
     # Install latest stable nodejs
-    eval $HOME/.local/share/fnm/fnm install --lts
-
-    # Install the stable version of greenclip
-    check_command greenclip || (curl -LO https://github.com/erebe/greenclip/releases/download/v4.2/greenclip && mv ./greenclip ~/.local/bin/greenclip)
+    eval fnm install --lts
 }
 
 post_install_scripts() {
