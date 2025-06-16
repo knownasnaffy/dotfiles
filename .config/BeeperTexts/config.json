@@ -1,0 +1,95 @@
+{
+  "log_level": "dev",
+  "show_hidden_events": false,
+  "external_platforms": [],
+  "keybindings": {
+    "ARCHIVE_ALL_READ_THREADS": {
+      "keys": ["alt+shift+e"]
+    },
+    "SEND_FILE": {
+      "keys": ["alt+shift+o"]
+    },
+    "CREATE_NEW_CHAT": {
+      "keys": ["alt+shift+n"]
+    },
+    "TOGGLE_THREAD_ARCHIVE": {
+      "keys": ["alt+e"]
+    },
+    "TOGGLE_THREAD_READ": {
+      "keys": ["alt+u"]
+    },
+    "TOGGLE_THREAD_MUTE": {
+      "keys": ["alt+shift+m"]
+    },
+    "HISTORY_NEXT_THREAD": {
+      "keys": ["alt+i"]
+    },
+    "HISTORY_PREV_THREAD": {
+      "keys": ["alt+o"]
+    },
+    "OPEN_PROFILE": {
+      "keys": ["alt+shift+p"]
+    },
+    "SCROLL_TO_END_OF_CHAT": {
+      "keys": ["alt+shift+g"]
+    },
+    "SELECT_NEXT_THREAD": {
+      "keys": ["alt+n"]
+    },
+    "SELECT_PREV_THREAD": {
+      "keys": ["alt+p"]
+    },
+    "SELECT_NEXT_UNREAD_THREAD": {
+      "keys": ["alt+shift+u"]
+    },
+    "SWITCH_FIRST_9_THREADS": {
+      "keys": ["alt"]
+    },
+    "TOGGLE_THREAD_INFO": {
+      "keys": ["alt+shift+i"]
+    },
+    "TOGGLE_COMMAND_BAR": {
+      "keys": ["alt+c"]
+    },
+    "TOGGLE_HOTKEYS_MODAL": {
+      "keys": ["alt+/"]
+    },
+    "QUIT_APP": "disabled",
+    "SEARCH": {
+      "keys": ["alt+s"]
+    },
+    "SEARCH_ROOM": {
+      "keys": ["alt+f"]
+    },
+    "SWITCH_FIRST_9_ACCOUNTS": {
+      "keys": ["alt+shift"]
+    },
+    "TOGGLE_FILTER_BAR": {
+      "keys": ["alt+shift+t"]
+    },
+    "TOGGLE_SIDEBAR": {
+      "keys": ["alt+t"]
+    },
+    "ZOOM_OUT": {
+      "keys": ["alt+-"]
+    },
+    "ZOOM_IN": {
+      "keys": ["alt+="]
+    },
+    "QUOTE_AND_REPLY": {
+      "keys": ["alt+r"]
+    },
+    "SHOW_GIF_PICKER": {
+      "keys": ["alt+g"]
+    },
+    "NEW_LINE": {
+      "keys": ["shift+enter"]
+    },
+    "SEND_MESSAGE_AND_ARCHIVE": {
+      "keys": ["alt+enter"]
+    },
+    "RELOAD_APP": {
+      "keys": ["shift+alt+r"]
+    }
+  }
+}

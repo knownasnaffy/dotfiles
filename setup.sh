@@ -199,6 +199,8 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.config/battery-notify" "$HOME/.config/battery-notify"
     create_symlink "$DOTFILES_DIR/.config/.lesskey" "$HOME/.lesskey"
     create_symlink "$DOTFILES_DIR/.config/.Xresources" "$HOME/.Xresources"
+    create_symlink "$DOTFILES_DIR/.config/BeeperTexts/custom.css" "$HOME/.config/BeeperTexts/custom.css"
+    create_symlink "$DOTFILES_DIR/.config/BeeperTexts/config.json" "$HOME/.config/BeeperTexts/config.json"
     create_symlink "$DOTFILES_DIR/.config/greenclip.toml" "$HOME/.config/greenclip.toml"
     create_symlink "$DOTFILES_DIR/.zsh_functions" "$HOME/.zsh_functions"
     create_symlink "$DOTFILES_DIR/.local/share/fonts" "$HOME/.local/share/fonts"
