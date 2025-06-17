@@ -98,6 +98,9 @@ bindsym $mod+p exec --no-startup-id ~/.config/rofi/applets/bin/clipboard.sh
 # screenshot
 bindsym $mod+Shift+s exec --no-startup-id ~/.config/rofi/applets/bin/screenshot.sh
 
+# spotify player
+bindsym $mod+Shift+p exec --no-startup-id ~/.config/rofi/applets/bin/mpd.sh
+
 # color picker
 bindsym $mod+Shift+c exec pick-colour-picker
 
