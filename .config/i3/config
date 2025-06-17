@@ -101,11 +101,11 @@ bindsym $mod+Shift+s exec --no-startup-id ~/.config/rofi/applets/bin/screenshot.
 # spotify player
 bindsym $mod+Shift+p exec --no-startup-id ~/.config/rofi/applets/bin/mpd.sh
 
+# wifi
+bindsym $mod+i exec --no-startup-id ~/.config/rofi/applets/bin/wifi.sh
+
 # color picker
 bindsym $mod+Shift+c exec pick-colour-picker
-
-# wifi manager
-bindsym $mod+y exec --no-startup-id ~/.config/rofi/scripts/wifi
 
 # A more modern dmenu replacement is rofi:
 # bindsym $mod+d exec "rofi -modi drun,run -show drun"
