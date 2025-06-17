@@ -108,7 +108,7 @@ install_paru() {
     sudo pacman -Sy --noconfirm zsh make gcc ripgrep unzip git xclip neovim base-devel
 
     check_command paru || (log "Install paru..." &&
-        git clone https://aur.archlinux.org/paru.git ~/code/clones/paru && cd ~/code/clones/paru && makepkg -si)
+    git clone https://aur.archlinux.org/paru.git ~/code/clones/paru && cd ~/code/clones/paru && makepkg -si)
 }
 
 install_programs() {
@@ -116,13 +116,13 @@ install_programs() {
 
     log "Installing other programs..."
     paru -Syu --noconfirm
-    paru -Sy --noconfirm fzf github-cli fastfetch qutebrowser rofi polybar feh picom ttf-hack-nerd ghostty task maim brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber alsa-utils inotify-tools jq eva thefuck bat zoxide 7zip yazi zathura i3lock-color noto-fonts-emoji dunst xdotool xdg-user-dirs udisks2 pass eza aichat beeper-v4-bin zathura-pdf-poppler rofi-greenclip ly i3-wm xorg-server xorg-xinit xorg-xrandr
+    paru -Sy --noconfirm fzf github-cli fastfetch qutebrowser rofi polybar feh picom ttf-hack-nerd ghostty task maim brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber alsa-utils inotify-tools jq eva thefuck bat zoxide 7zip yazi zathura i3lock-color noto-fonts-emoji dunst xdotool xdg-user-dirs udisks2 pass eza aichat beeper-v4-bin zathura-pdf-poppler rofi-greenclip ly i3-wm xorg-server xorg-xinit xorg-xrandr spotifyd playerctl
 
     install_oh_my_zsh
     install_neovim_config
 
     check_command brew || (log "Installing homebrew..."
-    #  FIXME: Fix this Script
+        #  FIXME: Fix this Script
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)")
 
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
