@@ -4,7 +4,7 @@ set -e
 # Variables
 ZSH_DIR="$HOME/.oh-my-zsh"
 ZSH_CUSTOM="$ZSH_DIR/custom"
-DOTFILES_DIR="$PWD"
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 NVIM_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
 POSTNOTES=""
 
