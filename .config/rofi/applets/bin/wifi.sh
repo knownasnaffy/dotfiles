@@ -19,7 +19,7 @@ if (( delta >= COOLDOWN )); then
 fi
 
 # Scan and get network SSIDs
-NETWORKS=$(iwctl station "$INTERFACE" get-networks | sed 's/\x1b\[[0-9;]*m//g' | tail -n +5 | head -n -1
+NETWORKS=$(iwctl station "$INTERFACE" get-networks | sed 's/\x1b\[[0-9;]*m//g' | tail -n +5 | head -n -1 | rev | cut -c9- | rev
 )
 
 # Show networks in rofi
