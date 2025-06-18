@@ -90,6 +90,9 @@
     },
     "RELOAD_APP": {
       "keys": ["shift+alt+r"]
+    },
+    "TOGGLE_PREFS_PANE": {
+      "keys": ["alt+,"]
     }
   }
 }
