@@ -198,6 +198,7 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.config/pycodestyle" "$HOME/.config/pycodestyle"
     create_symlink "$DOTFILES_DIR/.config/battery-notify" "$HOME/.config/battery-notify"
     create_symlink "$DOTFILES_DIR/.config/spotifyd" "$HOME/.config/spotifyd"
+    create_symlink "$DOTFILES_DIR/.config/systemd" "$HOME/.config/systemd"
     create_symlink "$DOTFILES_DIR/.config/.lesskey" "$HOME/.lesskey"
     create_symlink "$DOTFILES_DIR/.config/.Xresources" "$HOME/.Xresources"
     create_symlink "$DOTFILES_DIR/.config/BeeperTexts/custom.css" "$HOME/.config/BeeperTexts/custom.css"

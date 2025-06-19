@@ -1,0 +1,9 @@
+[Unit]
+Description=Daily git push for pass
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target
