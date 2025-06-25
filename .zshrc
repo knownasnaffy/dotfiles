@@ -130,7 +130,6 @@ export TERMINAL=ghostty
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export ANDROID_HOME="$HOME/Android/Sdk"
 export JAVA_HOME="/usr/lib/jvm/java-17-openjdk"
-# export FNM_PATH="$HOME/.local/share/fnm"
 
 # Add important paths
 path_directories=(
@@ -146,7 +145,6 @@ path_directories=(
   "$HOME/.java/jre1.8.0_431/bin"
   "$HOME/.local/share/webstorm/bin"
   $PNPM_HOME
-  $FNM_PATH
 )
 
 for dir in "${path_directories[@]}"; do
