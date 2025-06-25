@@ -19,6 +19,11 @@ zstyle ':omz:plugins:eza' 'dirs-first' yes
 zstyle ':omz:plugins:eza' 'git-status' yes
 zstyle ':omz:plugins:eza' icons yes
 
+# zsh-syntax
+typeset -A ZSH_HIGHLIGHT_STYLES
+
+ZSH_HIGHLIGHT_STYLES[comment]='fg=#565f89'
+
 # List of enabled plugins
 plugins=(
     aliases
