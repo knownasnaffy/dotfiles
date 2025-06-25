@@ -14,12 +14,6 @@ ZSH_THEME="spaceship"
 
 # Plugin-specific settings
 
-# Alias Finder Plugin - enable extended search
-zstyle ':omz:plugins:alias-finder' autoload yes
-zstyle ':omz:plugins:alias-finder' longer yes
-zstyle ':omz:plugins:alias-finder' exact yes
-zstyle ':omz:plugins:alias-finder' cheaper yes
-
 # eza Plugin - options for directory listing
 zstyle ':omz:plugins:eza' 'dirs-first' yes
 zstyle ':omz:plugins:eza' 'git-status' yes
@@ -28,7 +22,6 @@ zstyle ':omz:plugins:eza' icons yes
 # List of enabled plugins
 plugins=(
     aliases
-    alias-finder
     archlinux
     brew
     bun
