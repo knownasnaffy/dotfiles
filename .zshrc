@@ -125,6 +125,10 @@ _make_cpp() {
 }
 alias makecpp=_make_cpp
 
+# Paru aliases
+alias prs="paru -S"
+alias prss="paru -Ss"
+
 # Terminal and tools
 export TERMINAL=ghostty
 export PNPM_HOME="$HOME/.local/share/pnpm"
