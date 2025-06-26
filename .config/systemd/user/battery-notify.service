@@ -1,0 +1,9 @@
+[Unit]
+Description=Notify when battery level changes beyond thresholds
+
+[Service]
+Type=simple
+ExecStart=%h/.cargo/bin/battery-notify
+
+[Install]
+WantedBy=default.target
