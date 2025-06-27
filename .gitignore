@@ -4,3 +4,4 @@
 .config/qutebrowser/qsettings/*
 *.uuid
 node_modules
+.config/aerc/accounts.conf
