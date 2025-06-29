@@ -60,6 +60,10 @@ If you're using a bootloader like `systemd-boot`, you might want to remove warni
 + options root=PARTUUID=f7372bdd-1ac2-4ba4-8e6d-d5f56b98092c zswap.enabled=0 rw rootfstype=f2fs loglevel=3 quiet
 ```
 
+### 2. Aerc setup instructions
+
+When you add an email to the aerc, in the outgoing parameter of any of your gmail accounts, use the port 465 instead of 587. This is because the TLS connection refuses to connect for outgoing emails.
+
 ## Setup Details
 
 ### Programs Installed
