@@ -280,7 +280,8 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
 _aichat_zsh() {
     if [[ -n "$BUFFER" ]]; then
         local _old=$BUFFER
-        BUFFER+="⌛"
+        BUFFER+="  "
+        zle end-of-line
         zle -I && zle redisplay
         BUFFER=$(aichat -e "$_old")
         zle end-of-line
