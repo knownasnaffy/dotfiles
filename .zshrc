@@ -134,6 +134,7 @@ export TERMINAL=ghostty
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export ANDROID_HOME="$HOME/Android/Sdk"
 export JAVA_HOME="/usr/lib/jvm/java-17-openjdk"
+export GEM_HOME="$HOME/.local/share/gem/ruby/$(ruby -e 'print RbConfig::CONFIG["ruby_version"]' 2>/dev/null || echo 3.4.0)/bin"
 
 # Add important paths
 path_directories=(
@@ -144,11 +145,10 @@ path_directories=(
   "$ANDROID_HOME/cmdline-tools/latest/bin"
   "$ANDROID_HOME/platform-tools"
   "$JAVA_HOME/bin"
-  "/root/.local/share/gem/ruby/3.2.0/bin"
-  "$HOME/.local/share/gem/ruby/3.3.0/bin"
   "$HOME/.java/jre1.8.0_431/bin"
   "$HOME/.local/share/webstorm/bin"
   $PNPM_HOME
+  $GEM_HOME
 )
 
 for dir in "${path_directories[@]}"; do
