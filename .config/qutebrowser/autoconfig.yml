@@ -60,6 +60,7 @@ settings:
     '*://davatorium.github.io/*': true
     '*://gedakc.users.sourceforge.net/*': true
     '*://git-scm.com/*': false
+    '*://hamberg.no/*': true
     '*://learn.wordpress.org/*': true
     '*://livesoundblog.com/*': true
     '*://localhost/*': false
