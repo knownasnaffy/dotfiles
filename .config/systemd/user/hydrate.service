@@ -1,0 +1,6 @@
+[Unit]
+Description=Remind the user to drink water
+
+[Service]
+Type=oneshot
+ExecStart=/home/barinr/.config/rofi/applets/bin/hydrate.sh

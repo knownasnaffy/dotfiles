@@ -1,0 +1,9 @@
+[Unit]
+Description=Hourly reminder to drink water
+
+[Timer]
+OnCalendar=hourly
+Persistent=true
+
+[Install]
+WantedBy=timers.target
