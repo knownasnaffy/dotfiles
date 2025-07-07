@@ -62,6 +62,7 @@ settings:
     '*://git-scm.com/*': false
     '*://hamberg.no/*': true
     '*://learn.wordpress.org/*': true
+    '*://lifehacker.com/*': true
     '*://livesoundblog.com/*': true
     '*://localhost/*': false
     '*://make.wordpress.org/*': true
@@ -79,6 +80,7 @@ settings:
     '*://www.drush.org/*': true
     '*://www.lua.org/*': true
     '*://www.npmjs.com/*': true
+    '*://www.thregr.org/*': true
     global: false
   colors.webpage.preferred_color_scheme:
     global: dark
@@ -88,6 +90,7 @@ settings:
     global: access
   content.media.audio_capture:
     https://meet.google.com: true
+    https://mictests.com: true
     https://teams.live.com: true
   content.media.audio_video_capture:
     https://teams.live.com: true
