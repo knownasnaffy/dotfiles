@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Exit if DISPLAY is not set
+if [ -z "$DISPLAY" ]; then
+    echo "No DISPLAY found. Exiting."
+    exit 0
+fi
+
 yes=' Done'
 no=' Later'
 
