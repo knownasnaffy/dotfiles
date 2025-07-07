@@ -67,6 +67,7 @@ settings:
     '*://localhost/*': false
     '*://make.wordpress.org/*': true
     '*://new.drupal.org/*': true
+    '*://orgmode.org/*': true
     '*://pandoc.org/*': true
     '*://polybar.readthedocs.io/*': false
     '*://qutebrowser.org/*': true
@@ -78,6 +79,7 @@ settings:
     '*://wp-cli.org/*': true
     '*://www.canva.com/*': false
     '*://www.drush.org/*': true
+    '*://www.linuxjournal.com/*': true
     '*://www.lua.org/*': true
     '*://www.npmjs.com/*': true
     '*://www.thregr.org/*': true
