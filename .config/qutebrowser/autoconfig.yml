@@ -69,6 +69,7 @@ settings:
     '*://new.drupal.org/*': true
     '*://orgmode.org/*': true
     '*://pandoc.org/*': true
+    '*://picom.app/*': true
     '*://polybar.readthedocs.io/*': false
     '*://qutebrowser.org/*': true
     '*://stackoverflow.com/*': true
@@ -105,6 +106,7 @@ settings:
   content.notifications.enabled:
     https://app.clickup.com: true
     https://barinderpreet-singh.monday.com: true
+    https://calendar.google.com: false
     https://teams.live.com: true
     https://www.facebook.com: false
     https://www.netflix.com: false
