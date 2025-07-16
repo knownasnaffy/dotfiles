@@ -202,12 +202,6 @@ function fm() {
     rm -f -- "$tmp"
 }
 
-# Taskwarrior TUI aliases
-export TASKRC="$HOME/.config/taskwarrior/taskrc"
-export TASKDATA="$HOME/.local/share/taskwarrior"
-alias tt=taskwarrior-tui
-alias t=task
-
 # Hledger config
 export LEDGER_FILE=~/finance/2025.journal
 
