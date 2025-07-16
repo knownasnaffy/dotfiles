@@ -116,7 +116,7 @@ install_programs() {
 
     log "Installing other programs..."
     paru -Syu --noconfirm
-    paru -Sy --noconfirm fzf github-cli fastfetch qutebrowser rofi polybar feh picom ttf-hack-nerd ghostty task maim brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber alsa-utils inotify-tools jq eva thefuck bat zoxide 7zip yazi zathura i3lock-color noto-fonts-emoji dunst xdotool xdg-user-dirs udisks2 pass eza aichat beeper-v4-bin zathura-pdf-poppler rofi-greenclip ly i3-wm xorg-server xorg-xinit xorg-xrandr spotifyd playerctl
+    paru -Sy --noconfirm fzf github-cli fastfetch qutebrowser rofi polybar feh picom ttf-hack-nerd ghostty task maim brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber alsa-utils inotify-tools jq eva thefuck bat zoxide 7zip yazi zathura i3lock-color noto-fonts-emoji dunst xdotool xdg-user-dirs udisks2 pass eza aichat beeper-v4-bin zathura-pdf-poppler rofi-greenclip ly i3-wm xorg-server xorg-xinit xorg-xrandr spotifyd playerctl keyd
 
     install_oh_my_zsh
     install_neovim_config
@@ -209,6 +209,7 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.local/share/fonts" "$HOME/.local/share/fonts"
     create_sudo_symlink "$DOTFILES_DIR/etc/X11/xorg.config.d/30-touchpad.conf" "/etc/X11/xorg.conf.d/30-touchpad.conf"
     create_sudo_symlink "$DOTFILES_DIR/etc/ly/config.ini" "/etc/ly/config.ini"
+    create_sudo_symlink "$DOTFILES_DIR/etc/keyd" "/etc/keyd"
 }
 
 install_private_packages() {
