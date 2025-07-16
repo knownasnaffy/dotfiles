@@ -60,6 +60,7 @@ settings:
     '*://davatorium.github.io/*': true
     '*://gedakc.users.sourceforge.net/*': true
     '*://git-scm.com/*': false
+    '*://gitlab.com/*': true
     '*://hamberg.no/*': true
     '*://learn.wordpress.org/*': true
     '*://lifehacker.com/*': true
@@ -74,6 +75,7 @@ settings:
     '*://qutebrowser.org/*': true
     '*://stackoverflow.com/*': true
     '*://taskwarrior.org/*': true
+    '*://w3m.sourceforge.net/*': true
     '*://wallpaperaccess.com/*': true
     '*://web.whatsapp.com/*': false
     '*://wiki.archlinux.org/*': true
