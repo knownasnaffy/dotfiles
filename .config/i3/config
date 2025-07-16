@@ -261,6 +261,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+assign [class="Inner-ink"] $ws1
 assign [class="qutebrowser"] $ws2
 assign [class="firefox"] $ws2
 assign [class="Google-chrome"] $ws2
