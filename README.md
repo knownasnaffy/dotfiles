@@ -64,6 +64,94 @@ If you're using a bootloader like `systemd-boot`, you might want to remove warni
 
 When you add an email to the aerc, in the outgoing parameter of any of your gmail accounts, use the port 465 instead of 587. This is because the TLS connection refuses to connect for outgoing emails.
 
+### 3. ZRAM and Swapfile setup
+
+#### 1. Install zram-generator
+
+```bash
+paru -S zram-generator
+```
+
+> If not using `paru`, use:
+>
+> ```bash
+> sudo pacman -S zram-generator
+> ```
+
+#### 2. Configure zram
+
+Create the config file:
+
+```bash
+sudo nvim /etc/systemd/zram-generator.conf
+```
+
+Paste:
+
+```ini
+[zram0]
+zram-size = ram / 2
+compression-algorithm = zstd
+swap-priority = 100
+```
+
+* `ram / 2`: Sets zram to half your total RAM.
+* `zstd`: Balanced compression (better than `lz4`).
+* `swap-priority = 100`: Ensures zram is used *before* other swap.
+
+#### 3. Apply zram
+
+```bash
+sudo systemctl daemon-reexec
+sudo systemctl restart systemd-zram-setup@zram0
+```
+
+Check it worked:
+
+```bash
+swapon --show
+```
+
+#### 4. Create a 2GB Swapfile (Fallback)
+
+```bash
+sudo fallocate -l 2G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+```
+
+#### 5. Add Swapfile to `/etc/fstab`
+
+```bash
+sudo nvim /etc/fstab
+```
+
+Append:
+
+```
+/swapfile none swap sw,pri=10 0 0
+```
+
+* `pri=10`: Lower than zram, so used **only when needed**
+* `0 0`: No dump, no fsck — standard for swap
+
+
+#### 6. Final Check
+
+```bash
+swapon --show
+free -h
+```
+
+Expected output (example):
+
+```
+NAME       TYPE      SIZE   USED PRIO
+/dev/zram0 partition 4G     0B   100
+/swapfile  file      2G     0B   10
+```
+
 ## Setup Details
 
 ### Programs Installed
