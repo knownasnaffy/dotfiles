@@ -5,3 +5,9 @@
 *.uuid
 node_modules
 .config/aerc/accounts.conf
+
+# Build output
+dist/
+
+# Kiro specs
+.kiro/
