@@ -1,34 +1,30 @@
-import createDirs from "./directories";
-import installPrograms from "./programs";
-import { detectDistro } from "./utilities";
-import determineTemplate from "./determine-template";
-import signale from "signale";
-import chalk from "chalk";
+/**
+ * Dotfiles Manager
+ * A modern, maintainable dotfiles management system
+ */
 
-const hasInteractiveFlag = process.argv.includes("-i");
+// Export all interfaces
+export * from "./config/config-manager.interface.js";
+export * from "./platform/platform-handler.interface.js";
+export * from "./package/package-manager.interface.js";
+export * from "./symlink/symlink-manager.interface.js";
+export * from "./sudo/sudo-manager.interface.js";
+export * from "./logger/logger.interface.js";
+export * from "./orchestrator/orchestrator.interface.js";
 
-const hasUbuntuFlag = process.argv.includes("--ubuntu");
-const hasArchFlag = process.argv.includes("--arch");
+// Export types
+export * from "./types/index.js";
 
-if (hasUbuntuFlag && hasArchFlag) {
-  signale.error(
-    `You can't specify both ${chalk.blue("--arch")} and ${chalk.blue("--ubuntu")} flags at the same time.`,
-  );
-  process.exit(1);
+// Main entry point
+async function main() {
+  // Implementation will be added in future tasks
+  console.log("Dotfiles Manager - Setup in progress");
 }
 
-let distro: string | undefined = hasUbuntuFlag
-  ? "Ubuntu"
-  : hasArchFlag
-    ? "Arch Linux"
-    : await detectDistro();
-
-const template = hasInteractiveFlag ? await determineTemplate() : "headless";
-console.log(template);
-
-//  TODO: Get passwordless access for sudo using something like
-//        `${username} ALL=(ALL) NOPASSWD: /usr/bin/pacman\n`
-//        by appending it to /etc/sudoers.d/temp-pacman-nopasswd
-//
-createDirs().catch(console.error);
-installPrograms(distro).catch(console.error);
+// Run the main function if this is the entry point
+if (import.meta.main) {
+  main().catch((error) => {
+    console.error("Error:", error);
+    process.exit(1);
+  });
+}

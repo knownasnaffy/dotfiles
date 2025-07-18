@@ -16,11 +16,13 @@
     "skipLibCheck": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
+    "forceConsistentCasingInFileNames": true,
+    "exactOptionalPropertyTypes": true,
 
     // Emit settings (required for binary build)
-    "declaration": false,
+    "declaration": true,
     "sourceMap": false,
-    "removeComments": true,
+    "removeComments": false,
 
     // Binary-specific tuning
     "noEmitOnError": true,
