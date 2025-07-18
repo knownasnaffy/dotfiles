@@ -1,3 +1,5 @@
+import { SudoManager } from "../sudo/sudo-manager.interface";
+
 /**
  * Interface for platform-specific package management handlers
  * Provides abstraction for different Linux distributions
@@ -42,4 +44,10 @@ export interface PlatformHandler {
    * Updates the system package database
    */
   updateSystem(): Promise<void>;
+
+  /**
+   * Sets the sudo manager for handling temporary permissions
+   * @param sudoManager The sudo manager instance
+   */
+  setSudoManager(sudoManager: SudoManager): void;
 }

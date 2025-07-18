@@ -44,7 +44,7 @@ export class UbuntuHandler extends BasePlatformHandler {
   async updateSystem(): Promise<void> {
     try {
       console.log("Updating Ubuntu package database...");
-      await this.executeCommand("sudo apt update");
+      await this.executeCommand("apt update", true);
       console.log("Package database updated successfully");
     } catch (error) {
       console.error("Failed to update package database:", error);
@@ -64,7 +64,8 @@ export class UbuntuHandler extends BasePlatformHandler {
 
       // Install common dependencies
       await this.executeCommand(
-        "sudo apt install -y software-properties-common apt-transport-https ca-certificates curl"
+        "apt install -y software-properties-common apt-transport-https ca-certificates curl",
+        true
       );
       console.log("Package manager setup complete");
     } catch (error) {
@@ -95,7 +96,7 @@ export class UbuntuHandler extends BasePlatformHandler {
    * @returns The command to install the packages
    */
   protected getInstallCommand(packages: string[]): string {
-    return `sudo apt install -y ${packages.join(" ")}`;
+    return `apt install -y ${packages.join(" ")}`;
   }
 
   /**
@@ -109,7 +110,7 @@ export class UbuntuHandler extends BasePlatformHandler {
       const snapExists = await this.commandExists("snap");
       if (!snapExists) {
         console.log("Installing snap...");
-        await this.executeCommand("sudo apt install -y snapd");
+        await this.executeCommand("apt install -y snapd", true);
       }
 
       // Check if the snap package is already installed
@@ -121,7 +122,7 @@ export class UbuntuHandler extends BasePlatformHandler {
 
       // Install the snap package
       console.log(`Installing snap package ${packageName}...`);
-      await this.executeCommand(`sudo snap install ${packageName} ${options}`.trim());
+      await this.executeCommand(`snap install ${packageName} ${options}`.trim(), true);
       console.log(`Snap package ${packageName} installed successfully`);
     } catch (error) {
       console.error(`Failed to install snap package ${packageName}:`, error);

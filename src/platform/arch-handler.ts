@@ -41,7 +41,7 @@ export class ArchHandler extends BasePlatformHandler {
   async updateSystem(): Promise<void> {
     try {
       console.log("Updating Arch Linux package database...");
-      await this.executeCommand("sudo pacman -Sy");
+      await this.executeCommand("pacman -Sy", true);
       console.log("Package database updated successfully");
     } catch (error) {
       console.error("Failed to update package database:", error);
@@ -101,7 +101,8 @@ export class ArchHandler extends BasePlatformHandler {
   private async installParu(): Promise<void> {
     // Install base dependencies
     await this.executeCommand(
-      "sudo pacman -Sy --noconfirm zsh make gcc ripgrep unzip git xclip neovim base-devel"
+      "pacman -Sy --noconfirm zsh make gcc ripgrep unzip git xclip neovim base-devel",
+      true
     );
 
     // Clone paru repository

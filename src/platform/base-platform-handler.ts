@@ -1,6 +1,7 @@
 import { exec } from "child_process";
 import { promisify } from "util";
 import { PlatformHandler } from "./platform-handler.interface";
+import { SudoManager } from "../sudo/sudo-manager.interface";
 
 const execAsync = promisify(exec);
 
@@ -21,6 +22,11 @@ export abstract class BasePlatformHandler implements PlatformHandler {
    * Name of the platform/distribution
    */
   abstract name: string;
+
+  /**
+   * SudoManager instance for handling temporary sudo permissions
+   */
+  protected sudoManager?: SudoManager;
 
   /**
    * Detects if the current system matches this platform
@@ -69,14 +75,35 @@ export abstract class BasePlatformHandler implements PlatformHandler {
       return;
     }
 
-    // Install the packages
-    const installCommand = this.getInstallCommand(packagesToInstall);
     try {
-      await this.executeCommand(installCommand);
-      console.log(`Successfully installed packages: ${packagesToInstall.join(", ")}`);
-    } catch (error) {
-      console.error(`Failed to install packages: ${packagesToInstall.join(", ")}`, error);
-      throw error;
+      // Set up temporary sudo permissions if we have a sudo manager
+      if (this.sudoManager) {
+        try {
+          await this.sudoManager.setupTemporaryPermissions();
+        } catch (error) {
+          console.error("Failed to set up temporary sudo permissions:", error);
+          // Continue without temporary permissions, will prompt for password
+        }
+      }
+
+      // Install the packages
+      const installCommand = this.getInstallCommand(packagesToInstall);
+      try {
+        await this.executeCommand(installCommand, true);
+        console.log(`Successfully installed packages: ${packagesToInstall.join(", ")}`);
+      } catch (error) {
+        console.error(`Failed to install packages: ${packagesToInstall.join(", ")}`, error);
+        throw error;
+      }
+    } finally {
+      // Clean up temporary sudo permissions even if installation fails
+      if (this.sudoManager) {
+        try {
+          await this.sudoManager.cleanupPermissions();
+        } catch (error) {
+          console.error("Failed to clean up temporary sudo permissions:", error);
+        }
+      }
     }
   }
 
@@ -97,12 +124,23 @@ export abstract class BasePlatformHandler implements PlatformHandler {
   /**
    * Executes a shell command
    * @param command Command to execute
+   * @param useSudo Whether to use sudo for this command
    * @returns Promise resolving to the command result
    */
-  protected async executeCommand(command: string): Promise<CommandResult> {
+  protected async executeCommand(
+    command: string,
+    useSudo: boolean = false
+  ): Promise<CommandResult> {
     try {
-      const { stdout, stderr } = await execAsync(command);
-      return { stdout, stderr };
+      if (useSudo && this.sudoManager) {
+        // If the command already starts with sudo, remove it to avoid double sudo
+        const commandWithoutSudo = command.replace(/^sudo\s+/, "");
+        await this.sudoManager.executeWithSudo(commandWithoutSudo);
+        return { stdout: "", stderr: "" }; // SudoManager doesn't return output
+      } else {
+        const { stdout, stderr } = await execAsync(command);
+        return { stdout, stderr };
+      }
     } catch (error: any) {
       console.error(`Command execution failed: ${command}`, error);
       throw new Error(`Command execution failed: ${error.message}`);
@@ -121,5 +159,13 @@ export abstract class BasePlatformHandler implements PlatformHandler {
     } catch (error) {
       return false;
     }
+  }
+
+  /**
+   * Sets the sudo manager for handling temporary permissions
+   * @param sudoManager The sudo manager instance
+   */
+  setSudoManager(sudoManager: SudoManager): void {
+    this.sudoManager = sudoManager;
   }
 }
