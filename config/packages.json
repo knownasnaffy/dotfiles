@@ -1,0 +1,53 @@
+{
+  "base-tools": {
+    "arch": ["zsh", "git", "ripgrep", "fzf", "bat", "eza", "fd", "jq", "curl", "wget"],
+    "ubuntu": ["zsh", "git", "ripgrep", "fzf", "bat", "exa", "fd-find", "jq", "curl", "wget"],
+    "description": "Essential command-line tools"
+  },
+  "development": {
+    "arch": ["neovim", "nodejs", "npm", "python", "python-pip", "bun", "rustup", "gcc", "make"],
+    "ubuntu": ["neovim", "nodejs", "npm", "python3", "python3-pip", "build-essential"],
+    "description": "Development tools and languages"
+  },
+  "shell-tools": {
+    "arch": ["starship", "zoxide", "tmux", "htop", "btop", "neofetch", "fastfetch"],
+    "ubuntu": ["starship", "zoxide", "tmux", "htop", "neofetch"],
+    "description": "Shell enhancements and utilities"
+  },
+  "version-control": {
+    "arch": ["git-delta", "lazygit", "gh"],
+    "ubuntu": ["git-delta", "gh"],
+    "description": "Version control tools",
+    "postInstall": ["gh auth setup"]
+  },
+  "desktop-environment": {
+    "arch": [
+      "i3-wm",
+      "polybar",
+      "rofi",
+      "picom",
+      "dunst",
+      "feh",
+      "xorg-xbacklight",
+      "xorg-xinput",
+      "xorg-xrandr"
+    ],
+    "ubuntu": ["i3", "polybar", "rofi", "picom", "dunst", "feh", "x11-xserver-utils"],
+    "description": "i3 desktop environment components"
+  },
+  "media-tools": {
+    "arch": ["mpv", "zathura", "zathura-pdf-mupdf", "ffmpeg", "imagemagick"],
+    "ubuntu": ["mpv", "zathura", "zathura-pdf-poppler", "ffmpeg", "imagemagick"],
+    "description": "Media players and tools"
+  },
+  "productivity": {
+    "arch": ["qutebrowser", "keepassxc", "syncthing", "thunderbird"],
+    "ubuntu": ["qutebrowser", "keepassxc", "syncthing", "thunderbird"],
+    "description": "Productivity applications"
+  },
+  "personal": {
+    "arch": ["signal-desktop", "spotify", "discord"],
+    "ubuntu": ["signal-desktop", "spotify-client", "discord"],
+    "description": "Personal applications"
+  }
+}

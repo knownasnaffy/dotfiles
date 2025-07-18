@@ -1,0 +1,150 @@
+[
+  {
+    "source": ".zshrc",
+    "target": "~/.zshrc",
+    "template": ["headless", "desktop", "personal"]
+  },
+  {
+    "source": ".zsh_functions",
+    "target": "~/.zsh_functions",
+    "template": ["headless", "desktop", "personal"]
+  },
+  {
+    "source": ".config/.Xresources",
+    "target": "~/.Xresources",
+    "template": ["desktop", "personal"]
+  },
+  {
+    "source": ".config/.lesskey",
+    "target": "~/.lesskey",
+    "template": ["headless", "desktop", "personal"]
+  },
+  {
+    "source": ".config/aerc",
+    "target": "~/.config/aerc",
+    "template": ["headless", "desktop", "personal"]
+  },
+  {
+    "source": ".config/bat",
+    "target": "~/.config/bat",
+    "template": ["headless", "desktop", "personal"]
+  },
+  {
+    "source": ".config/battery-notify",
+    "target": "~/.config/battery-notify",
+    "template": ["desktop", "personal"]
+  },
+  {
+    "source": ".config/dunst",
+    "target": "~/.config/dunst",
+    "template": ["desktop", "personal"]
+  },
+  {
+    "source": ".config/eza",
+    "target": "~/.config/eza",
+    "template": ["headless", "desktop", "personal"]
+  },
+  {
+    "source": ".config/fastfetch",
+    "target": "~/.config/fastfetch",
+    "template": ["headless", "desktop", "personal"]
+  },
+  {
+    "source": ".config/gh",
+    "target": "~/.config/gh",
+    "template": ["headless", "desktop", "personal"]
+  },
+  {
+    "source": ".config/ghostty",
+    "target": "~/.config/ghostty",
+    "template": ["desktop", "personal"]
+  },
+  {
+    "source": ".config/greenclip.toml",
+    "target": "~/.config/greenclip.toml",
+    "template": ["desktop", "personal"]
+  },
+  {
+    "source": ".config/i3",
+    "target": "~/.config/i3",
+    "template": ["desktop", "personal"]
+  },
+  {
+    "source": ".config/picom",
+    "target": "~/.config/picom",
+    "template": ["desktop", "personal"]
+  },
+  {
+    "source": ".config/polybar",
+    "target": "~/.config/polybar",
+    "template": ["desktop", "personal"]
+  },
+  {
+    "source": ".config/pycodestyle",
+    "target": "~/.config/pycodestyle",
+    "template": ["headless", "desktop", "personal"]
+  },
+  {
+    "source": ".config/qutebrowser",
+    "target": "~/.config/qutebrowser",
+    "template": ["desktop", "personal"]
+  },
+  {
+    "source": ".config/rofi",
+    "target": "~/.config/rofi",
+    "template": ["desktop", "personal"]
+  },
+  {
+    "source": ".config/spotifyd",
+    "target": "~/.config/spotifyd",
+    "template": ["desktop", "personal"]
+  },
+  {
+    "source": ".config/systemd/user",
+    "target": "~/.config/systemd/user",
+    "template": ["headless", "desktop", "personal"]
+  },
+  {
+    "source": ".config/yazi",
+    "target": "~/.config/yazi",
+    "template": ["headless", "desktop", "personal"]
+  },
+  {
+    "source": ".config/zathura",
+    "target": "~/.config/zathura",
+    "template": ["desktop", "personal"]
+  },
+  {
+    "source": ".gitconfig",
+    "target": "~/.gitconfig",
+    "template": ["headless", "desktop", "personal"]
+  },
+  {
+    "source": ".local/share/fonts",
+    "target": "~/.local/share/fonts",
+    "template": ["desktop", "personal"]
+  },
+  {
+    "source": "etc/X11/xorg.config.d/30-touchpad.conf",
+    "target": "/etc/X11/xorg.conf.d/30-touchpad.conf",
+    "requiresSudo": true,
+    "template": ["desktop", "personal"]
+  },
+  {
+    "source": "etc/keyd/default.conf",
+    "target": "/etc/keyd/default.conf",
+    "requiresSudo": true,
+    "template": ["desktop", "personal"]
+  },
+  {
+    "source": "etc/ly/config.ini",
+    "target": "/etc/ly/config.ini",
+    "requiresSudo": true,
+    "template": ["desktop", "personal"]
+  },
+  {
+    "source": "images/tokyonight-wallpaper.png",
+    "target": "~/Pictures/wallpaper.png",
+    "template": ["desktop", "personal"]
+  }
+]

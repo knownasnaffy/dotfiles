@@ -1,0 +1,32 @@
+[
+  {
+    "name": "setup-shell",
+    "command": "chsh -s $(which zsh)",
+    "description": "Set ZSH as the default shell",
+    "template": ["headless", "desktop", "personal"]
+  },
+  {
+    "name": "build-caches",
+    "command": "bat cache --build",
+    "description": "Build bat syntax highlighting cache",
+    "template": ["headless", "desktop", "personal"]
+  },
+  {
+    "name": "configure-desktop",
+    "command": "xdg-settings set default-web-browser qutebrowser.desktop",
+    "description": "Set qutebrowser as the default browser",
+    "template": ["desktop", "personal"]
+  },
+  {
+    "name": "setup-services",
+    "command": "systemctl --user enable --now battery-notify.service",
+    "description": "Enable battery notification service",
+    "template": ["desktop", "personal"]
+  },
+  {
+    "name": "personal-setup",
+    "command": "systemctl --user enable --now syncthing.service",
+    "description": "Enable syncthing service",
+    "template": ["personal"]
+  }
+]

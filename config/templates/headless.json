@@ -1,0 +1,8 @@
+{
+  "name": "headless",
+  "description": "Minimal setup for servers or headless environments",
+  "packages": ["base-tools", "development", "shell-tools", "version-control"],
+  "symlinks": ["shell-configs", "development-configs", "version-control-configs"],
+  "postInstallTasks": ["setup-shell", "build-caches"],
+  "requiresPrivatePackages": false
+}
