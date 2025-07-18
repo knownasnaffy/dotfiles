@@ -26,6 +26,7 @@
 	autosquash = true
 [core]
 	editor = nvim
+	pager = cat
 [fetch]
 	prune = true   # Automatically delete remote-tracking branches that no longer exist
 [merge]
