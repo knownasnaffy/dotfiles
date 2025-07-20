@@ -62,6 +62,7 @@ settings:
     '*://git-scm.com/*': false
     '*://gitlab.com/*': true
     '*://hamberg.no/*': true
+    '*://hpanel.hostinger.com/*': true
     '*://learn.wordpress.org/*': true
     '*://lifehacker.com/*': true
     '*://livesoundblog.com/*': true
