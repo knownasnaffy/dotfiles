@@ -125,6 +125,10 @@ _make_cpp() {
 }
 alias makecpp=_make_cpp
 
+# Alias for controlling the screen brightness beyond hardware limits using xrandr
+alias brlow="xrandr --output $(xrandr | grep ' connected' | cut -d' ' -f1) --brightness 0.5"
+alias brhigh="xrandr --output $(xrandr | grep ' connected' | cut -d' ' -f1) --brightness 1"
+
 # Paru aliases
 alias prs="paru -S"
 alias prss="paru -Ss"
