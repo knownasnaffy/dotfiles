@@ -72,10 +72,11 @@ settings:
     '*://orgmode.org/*': true
     '*://pandoc.org/*': true
     '*://picom.app/*': true
-    '*://polybar.readthedocs.io/*': false
+    '*://polybar.readthedocs.io/*': true
     '*://qutebrowser.org/*': true
     '*://stackoverflow.com/*': true
     '*://taskwarrior.org/*': true
+    '*://thelinuxcode.com/*': true
     '*://w3m.sourceforge.net/*': true
     '*://wallpaperaccess.com/*': true
     '*://web.whatsapp.com/*': false
