@@ -87,6 +87,7 @@ settings:
     '*://www.linuxjournal.com/*': true
     '*://www.lua.org/*': true
     '*://www.npmjs.com/*': true
+    '*://www.qutebrowser.org/*': true
     '*://www.thregr.org/*': true
     global: false
   colors.webpage.preferred_color_scheme:
