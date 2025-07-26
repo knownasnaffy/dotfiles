@@ -176,8 +176,8 @@ bindsym --release $mod+x exec --no-startup-id import /tmp/latest-screenshot.png
 default_border pixel 2
 hide_edge_borders smart
 
-gaps vertical 30
-gaps horizontal 40
+gaps vertical 34
+gaps horizontal 42
 
 # For instance: Assume you are on workspace "1: www" and switch to "2: IM" using
 # mod+2 because somebody sent you a message. You don’t need to remember where you
