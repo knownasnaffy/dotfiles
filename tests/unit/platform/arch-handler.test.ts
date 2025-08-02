@@ -1,23 +1,27 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { ArchHandler } from "../../../src/platform/arch-handler";
 import { exec } from "child_process";
-import * as fs from "fs";
+import fs from "fs";
 
-// Mock child_process.exec and fs.existsSync
+// Mock child_process.exec
 vi.mock("child_process", () => ({
   exec: vi.fn(),
 }));
 
+// Mock fs
 vi.mock("fs", () => ({
-  existsSync: vi.fn(),
+  default: {
+    existsSync: vi.fn(),
+  },
 }));
+
+import { ArchHandler } from "../../../src/platform/arch-handler";
 
 describe("ArchHandler", () => {
   let handler: ArchHandler;
 
   beforeEach(() => {
     handler = new ArchHandler();
-    vi.resetAllMocks();
+    vi.clearAllMocks();
   });
 
   afterEach(() => {

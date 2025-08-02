@@ -1,12 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import {
-  detectLinuxDistribution,
-  detectPlatform,
-  parsePlatformArgs,
-  LinuxDistribution,
-} from "../../../src/platform/platform-detector";
-import * as fs from "fs";
-import * as fsPromises from "fs/promises";
+import { existsSync } from "fs";
+import { readFile } from "fs/promises";
 
 // Mock fs and fs/promises modules
 vi.mock("fs", async () => {
@@ -25,9 +19,16 @@ vi.mock("fs/promises", async () => {
   };
 });
 
+import {
+  detectLinuxDistribution,
+  detectPlatform,
+  parsePlatformArgs,
+  LinuxDistribution,
+} from "../../../src/platform/platform-detector";
+
 describe("Platform Detection", () => {
   beforeEach(() => {
-    vi.resetAllMocks();
+    vi.clearAllMocks();
   });
 
   afterEach(() => {
@@ -36,17 +37,17 @@ describe("Platform Detection", () => {
 
   describe("detectLinuxDistribution", () => {
     it("should return UNKNOWN if /etc/os-release does not exist", async () => {
-      vi.mocked(fs.existsSync).mockReturnValue(false);
+      vi.mocked(existsSync).mockReturnValue(false);
 
       const result = await detectLinuxDistribution();
 
       expect(result).toBe(LinuxDistribution.UNKNOWN);
-      expect(fs.existsSync).toHaveBeenCalledWith("/etc/os-release");
+      expect(vi.mocked(existsSync)).toHaveBeenCalledWith("/etc/os-release");
     });
 
     it("should detect Arch Linux", async () => {
-      vi.mocked(fs.existsSync).mockReturnValue(true);
-      vi.mocked(fsPromises.readFile).mockResolvedValue(
+      vi.mocked(existsSync).mockReturnValue(true);
+      vi.mocked(readFile).mockResolvedValue(
         `
 NAME="Arch Linux"
 PRETTY_NAME="Arch Linux"
@@ -64,13 +65,13 @@ LOGO=archlinux
       const result = await detectLinuxDistribution();
 
       expect(result).toBe(LinuxDistribution.ARCH);
-      expect(fs.existsSync).toHaveBeenCalledWith("/etc/os-release");
-      expect(fsPromises.readFile).toHaveBeenCalledWith("/etc/os-release", "utf-8");
+      expect(vi.mocked(existsSync)).toHaveBeenCalledWith("/etc/os-release");
+      expect(vi.mocked(readFile)).toHaveBeenCalledWith("/etc/os-release", "utf-8");
     });
 
     it("should detect Manjaro as Arch-based", async () => {
-      vi.mocked(fs.existsSync).mockReturnValue(true);
-      vi.mocked(fsPromises.readFile).mockResolvedValue(
+      mockExistsSync.mockReturnValue(true);
+      mockReadFile.mockResolvedValue(
         `
 NAME="Manjaro Linux"
 ID=manjaro
@@ -89,8 +90,8 @@ BUG_REPORT_URL="https://bugs.manjaro.org/"
     });
 
     it("should detect Ubuntu", async () => {
-      vi.mocked(fs.existsSync).mockReturnValue(true);
-      vi.mocked(fsPromises.readFile).mockResolvedValue(
+      mockExistsSync.mockReturnValue(true);
+      mockReadFile.mockResolvedValue(
         `
 NAME="Ubuntu"
 VERSION="22.04.3 LTS (Jammy Jellyfish)"
@@ -113,8 +114,8 @@ UBUNTU_CODENAME=jammy
     });
 
     it("should detect Debian as Ubuntu-like", async () => {
-      vi.mocked(fs.existsSync).mockReturnValue(true);
-      vi.mocked(fsPromises.readFile).mockResolvedValue(
+      mockExistsSync.mockReturnValue(true);
+      mockReadFile.mockResolvedValue(
         `
 PRETTY_NAME="Debian GNU/Linux 11 (bullseye)"
 NAME="Debian GNU/Linux"
@@ -134,8 +135,8 @@ BUG_REPORT_URL="https://bugs.debian.org/"
     });
 
     it("should return UNKNOWN for unrecognized distributions", async () => {
-      vi.mocked(fs.existsSync).mockReturnValue(true);
-      vi.mocked(fsPromises.readFile).mockResolvedValue(
+      mockExistsSync.mockReturnValue(true);
+      mockReadFile.mockResolvedValue(
         `
 NAME="Fedora Linux"
 VERSION="38 (Workstation Edition)"
@@ -164,8 +165,8 @@ REDHAT_SUPPORT_PRODUCT_VERSION=38
     });
 
     it("should return UNKNOWN if os-release file is invalid", async () => {
-      vi.mocked(fs.existsSync).mockReturnValue(true);
-      vi.mocked(fsPromises.readFile).mockResolvedValue("Invalid content" as any);
+      mockExistsSync.mockReturnValue(true);
+      mockReadFile.mockResolvedValue("Invalid content" as any);
 
       const result = await detectLinuxDistribution();
 
@@ -173,8 +174,8 @@ REDHAT_SUPPORT_PRODUCT_VERSION=38
     });
 
     it("should return UNKNOWN if reading os-release fails", async () => {
-      vi.mocked(fs.existsSync).mockReturnValue(true);
-      vi.mocked(fsPromises.readFile).mockRejectedValue(new Error("Failed to read file"));
+      mockExistsSync.mockReturnValue(true);
+      mockReadFile.mockRejectedValue(new Error("Failed to read file"));
 
       const result = await detectLinuxDistribution();
 
@@ -189,21 +190,21 @@ REDHAT_SUPPORT_PRODUCT_VERSION=38
       const result = await detectPlatform({ forceDistribution: LinuxDistribution.UBUNTU });
 
       expect(result).toBe(LinuxDistribution.UBUNTU);
-      expect(fs.existsSync).not.toHaveBeenCalled();
-      expect(fsPromises.readFile).not.toHaveBeenCalled();
+      expect(mockExistsSync).not.toHaveBeenCalled();
+      expect(mockReadFile).not.toHaveBeenCalled();
 
       spy.mockRestore();
     });
 
     it("should detect distribution if no forced distribution is provided", async () => {
-      vi.mocked(fs.existsSync).mockReturnValue(true);
-      vi.mocked(fsPromises.readFile).mockResolvedValue(`ID=arch` as any);
+      mockExistsSync.mockReturnValue(true);
+      mockReadFile.mockResolvedValue(`ID=arch` as any);
 
       const result = await detectPlatform();
 
       expect(result).toBe(LinuxDistribution.ARCH);
-      expect(fs.existsSync).toHaveBeenCalledWith("/etc/os-release");
-      expect(fsPromises.readFile).toHaveBeenCalledWith("/etc/os-release", "utf-8");
+      expect(mockExistsSync).toHaveBeenCalledWith("/etc/os-release");
+      expect(mockReadFile).toHaveBeenCalledWith("/etc/os-release", "utf-8");
     });
   });
 
