@@ -62,6 +62,100 @@ bun run format
 bun run lint
 ```
 
+## Testing
+
+This project uses [Vitest](https://vitest.dev/) as the standard testing framework. All tests should be written using Vitest.
+
+### Running Tests
+
+```bash
+# Run all tests once
+bun run test
+
+# Run tests in watch mode (re-runs on file changes)
+bun run test:watch
+
+# Run tests with coverage
+bun run test -- --coverage
+```
+
+### Writing Tests
+
+Tests are located in the `tests/` directory and follow the pattern `*.test.ts`. Here's how to write tests with Vitest:
+
+#### Basic Test Structure
+
+```typescript
+import { describe, it, expect, beforeEach, vi } from "vitest";
+import { YourClass } from "../../../src/your-module";
+
+describe("YourClass", () => {
+  let instance: YourClass;
+
+  beforeEach(() => {
+    instance = new YourClass();
+    vi.clearAllMocks();
+  });
+
+  it("should do something", () => {
+    const result = instance.doSomething();
+    expect(result).toBe("expected value");
+  });
+});
+```
+
+#### Mocking with Vitest
+
+```typescript
+// Mock a function
+const mockFn = vi.fn(() => "mocked return value");
+
+// Mock a module
+vi.mock("fs/promises", () => ({
+  readFile: vi.fn(),
+  writeFile: vi.fn(),
+}));
+
+// Mock implementation
+mockFn.mockImplementation(() => "new implementation");
+
+// Assertions
+expect(mockFn).toHaveBeenCalled();
+expect(mockFn).toHaveBeenCalledWith("expected argument");
+expect(mockFn).toHaveBeenCalledTimes(1);
+```
+
+#### Async Testing
+
+```typescript
+it("should handle async operations", async () => {
+  const result = await instance.asyncMethod();
+  expect(result).toBe("expected value");
+});
+
+it("should handle promise rejections", async () => {
+  await expect(instance.failingMethod()).rejects.toThrow("Expected error");
+});
+```
+
+### Test Configuration
+
+The project uses `vitest.config.ts` for test configuration:
+
+- Tests are located in `tests/**/*.test.ts`
+- Node environment is used for testing
+- Coverage reports are generated with v8 provider
+- Global test utilities are available (no need to import `describe`, `it`, `expect`)
+
+### Best Practices
+
+1. **Use descriptive test names**: Test names should clearly describe what is being tested
+2. **Follow AAA pattern**: Arrange, Act, Assert
+3. **Mock external dependencies**: Use `vi.mock()` to isolate units under test
+4. **Clean up after tests**: Use `beforeEach` and `afterEach` to reset state
+5. **Test both success and error cases**: Ensure comprehensive coverage
+6. **Use TypeScript**: All tests should be written in TypeScript with proper typing
+
 ## Project Structure
 
 - `src/` - Source code
