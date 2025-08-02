@@ -1,61 +1,61 @@
-import { describe, test, expect, beforeEach, afterEach, mock } from "bun:test";
+import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { BasePlatformHandler, CommandResult } from "../../../src/platform/base-platform-handler";
 import { SudoManager } from "../../../src/sudo/sudo-manager.interface";
 import { PlatformHandler } from "../../../src/platform/platform-handler.interface";
 
 // Create a mock SudoManager for testing
 class MockSudoManager implements SudoManager {
-  setupTemporaryPermissions = mock(() => Promise.resolve());
-  cleanupPermissions = mock(() => Promise.resolve());
-  executeWithSudo = mock(() => Promise.resolve());
-  hasSudoAccess = mock(() => Promise.resolve(true));
-  getCurrentUser = mock(() => Promise.resolve("testuser"));
+  setupTemporaryPermissions = vi.fn(() => Promise.resolve());
+  cleanupPermissions = vi.fn(() => Promise.resolve());
+  executeWithSudo = vi.fn(() => Promise.resolve());
+  hasSudoAccess = vi.fn(() => Promise.resolve(true));
+  getCurrentUser = vi.fn(() => Promise.resolve("testuser"));
 }
 
 // Create a concrete implementation of BasePlatformHandler for testing
 class TestPlatformHandler extends BasePlatformHandler {
   name = "test-platform";
 
-  // Track calls to executeCommand for testin
-  executeCommandCalls: { command: string, useSudo: boole
+  // Track calls to executeCommand for testing
+  executeCommandCalls: { command: string; useSudo: boolean }[] = [];
 
-  detect = mock(() => Promise.resolve(true));
-  getPackageManagerCommand = mock(() => "test-pkg-mgr");
+  detect = vi.fn(() => Promise.resolve(true));
+  getPackageManagerCommand = vi.fn(() => "test-pkg-mgr");
+  updateSystem = vi.fn(() => Promise.resolve());
+  setupPackageManager = vi.fn(() => Promise.resolve());
+  isPackageInstalled = vi.fn(() => Promise.resolve(false));
 
-  setupPackageManager = mock(() => Promise.resolve());
-  isPackageInstalled = mock(() => Promise.resolve(false)
-
-{
-    return `test-pkg-mgr install ${packa ")}`;
+  protected getInstallCommand(packages: string[]): string {
+    return `test-pkg-mgr install ${packages.join(" ")}`;
   }
 
-  // Expose protected methodsting
-  public async testExecuteCom
+  // Expose protected method for testing
+  public async testExecuteCommand(
     command: string,
-   an = false
-
-    return this.executeCommand(command, 
+    useSudo: boolean = false
+  ): Promise<CommandResult> {
+    return this.executeCommand(command, useSudo);
   }
-  
-  // Override executeCommandtesting
-  protected async executeComm
+
+  // Override executeCommand for testing
+  protected async executeCommand(
     command: string,
     useSudo: boolean = false
   ): Promise<CommandResult> {
     // Track the call
-    this.executeCommandCalls.push({ commdo });
-    
-    if (useSudo && this.sudoManager) {
-      // If the command already starts with sudo, rouble sudo
-     
-   utSudo);
- ;
-se {
-      // Mock the exec behavior for testing
-      return { stdout: 'test output', stder;
-    }
+    this.executeCommandCalls.push({ command, useSudo });
 
-  
+    if (useSudo && this.sudoManager) {
+      // If the command already starts with sudo, remove it to avoid double sudo
+      const commandWithoutSudo = command.replace(/^sudo\s+/, "");
+      await this.sudoManager.executeWithSudo(commandWithoutSudo);
+      return { stdout: "", stderr: "" };
+    } else {
+      // Mock the exec behavior for testing
+      return { stdout: "test output", stderr: "" };
+    }
+  }
+
   // Clear tracking data
   clearExecuteCommandCalls(): void {
     this.executeCommandCalls = [];
@@ -64,93 +64,93 @@ se {
 
 describe("Platform Handler Sudo Integration", () => {
   let platformHandler: TestPlatformHandler;
-  letr;
+  let sudoManager: MockSudoManager;
 
   beforeEach(() => {
-    platformHandler();
-    s
-er);
-    platformHandler.clearExecuteCommalls();
+    platformHandler = new TestPlatformHandler();
+    sudoManager = new MockSudoManager();
+    platformHandler.setSudoManager(sudoManager);
+    platformHandler.clearExecuteCommandCalls();
 
     // Reset mocks
-Clear();
-    sudoManager.cleanupPermissions.mockClear();
-    sudoManager.executeWithSudo.mockClear();
+    vi.resetAllMocks();
   });
 
   afterEach(() => {
-    mock.restore();
-
+    vi.restoreAllMocks();
+  });
 
   describe("executeCommand", () => {
-    tes> {
-;
+    it("should use SudoManager for sudo commands", async () => {
+      await platformHandler.testExecuteCommand("test command", true);
 
       expect(sudoManager.executeWithSudo).toHaveBeenCalledTimes(1);
-      expect(sudoManager.executeWithSudo.mock.calls[0][0]).toBe("");
+      expect(sudoManager.executeWithSudo).toHaveBeenCalledWith("test command");
     });
 
+    it("should remove sudo prefix when using SudoManager", async () => {
+      await platformHandler.testExecuteCommand("sudo test command", true);
 
-      await platformHandler.testExecue);
-
-      expect(sudoManager.executeWithSudo).toHaveBees(1);
-      expect(sudoManager.executeWithSudo.mock.calls[0][0]).toBe("test comman");
+      expect(sudoManager.executeWithSudo).toHaveBeenCalledTimes(1);
+      expect(sudoManager.executeWithSudo).toHaveBeenCalledWith("test command");
     });
 
-> {
+    it("should not use SudoManager when useSudo is false", async () => {
       await platformHandler.testExecuteCommand("test command", false);
-      expect(sudoManager.executeWithSudo).not.toHaveBeenC
+      expect(sudoManager.executeWithSudo).not.toHaveBeenCalled();
     });
   });
 
-
-    test("should set up temporary permissions before installing packages", async() => {
+  describe("installPackages", () => {
+    it("should set up temporary permissions before installing packages", async () => {
       await platformHandler.installPackages(["package1", "package2"]);
 
-      expect(sudoManager.setupTemporaryPermissi);
-      exp1);
-e2");
-      expec
+      expect(sudoManager.setupTemporaryPermissions).toHaveBeenCalledTimes(1);
+      expect(platformHandler.executeCommandCalls.length).toBe(1);
+      expect(platformHandler.executeCommandCalls[0].command).toBe(
+        "test-pkg-mgr install package1 package2"
+      );
+      expect(platformHandler.executeCommandCalls[0].useSudo).toBe(true);
     });
 
-    test("should clean up pe
-      /error
-{
+    it("should clean up permissions even if installation fails", async () => {
+      // Override executeCommand to throw an error
+      platformHandler.testExecuteCommand = async () => {
         throw new Error("Installation failed");
       };
 
-{
+      try {
         await platformHandler.installPackages(["package1"]);
       } catch (error) {
         // Expected to throw
       }
 
-es(1);
-      expect(sudoManager.cleanupPermissions).toHav);
+      expect(sudoManager.setupTemporaryPermissions).toHaveBeenCalledTimes(1);
+      expect(sudoManager.cleanupPermissions).toHaveBeenCalledTimes(1);
     });
 
-    test("should continue if setting up temporary permissi () => {
- error
+    it("should continue if setting up temporary permissions fails", async () => {
+      // Mock setupTemporaryPermissions to throw an error
       sudoManager.setupTemporaryPermissions.mockImplementation(() => {
         throw new Error("Failed to set up permissions");
       });
 
+      await platformHandler.installPackages(["package1"]);
 
-
-      expect(sudoManager.setupTemporaryPermissis(1);
+      expect(sudoManager.setupTemporaryPermissions).toHaveBeenCalledTimes(1);
       expect(platformHandler.executeCommandCalls.length).toBe(1);
-;
+      expect(sudoManager.cleanupPermissions).toHaveBeenCalledTimes(1);
     });
 
-) => {
+    it("should skip already installed packages", async () => {
       // Mock isPackageInstalled to return true
+      platformHandler.isPackageInstalled = vi.fn(() => Promise.resolve(true));
 
+      await platformHandler.installPackages(["package1", "package2"]);
 
-      await platformHandler.installPackages(["package1""]);
-
-      e);
-     
-   
-;
-});})    });
-  
+      expect(sudoManager.setupTemporaryPermissions).not.toHaveBeenCalled();
+      expect(platformHandler.executeCommandCalls.length).toBe(0);
+      expect(sudoManager.cleanupPermissions).not.toHaveBeenCalled();
+    });
+  });
+});
