@@ -35,3 +35,5 @@
 	auto = 256   # Reduce the frequency of automatic garbage collection
 [status]
 	showUntrackedFiles = all
+[alias]
+	commit-date = "!f() { GIT_COMMITTER_DATE=\"$1\" git commit --amend --no-edit --date=\"$1\"; }; f"
