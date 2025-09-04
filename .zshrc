@@ -206,6 +206,9 @@ function fm() {
     rm -f -- "$tmp"
 }
 
+# eza aliases
+alias l='ls -a'
+
 # Hledger config
 export LEDGER_FILE=~/finance/2025.journal
 
