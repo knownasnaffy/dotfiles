@@ -67,6 +67,7 @@ settings:
     '*://lifehacker.com/*': true
     '*://livesoundblog.com/*': true
     '*://localhost/*': false
+    '*://mail.google.com/*': true
     '*://make.wordpress.org/*': true
     '*://new.drupal.org/*': true
     '*://orgmode.org/*': true
@@ -94,14 +95,18 @@ settings:
     global: dark
   content.desktop_capture:
     https://meet.google.com: true
+  content.geolocation:
+    https://github.com: true
   content.javascript.clipboard:
-    global: access
+    global: access-paste
   content.media.audio_capture:
     https://meet.google.com: true
     https://mictests.com: true
     https://teams.live.com: true
+    https://www.snapchat.com: true
   content.media.audio_video_capture:
     https://teams.live.com: true
+    https://www.snapchat.com: true
   content.media.video_capture:
     https://meet.google.com: true
     https://teams.live.com: true
@@ -112,6 +117,8 @@ settings:
     https://app.clickup.com: true
     https://barinderpreet-singh.monday.com: true
     https://calendar.google.com: false
+    https://cursor.com: false
+    https://pomofocus.io: true
     https://teams.live.com: true
     https://www.facebook.com: false
     https://www.netflix.com: false
