@@ -24,8 +24,6 @@ typeset -A ZSH_HIGHLIGHT_STYLES
 
 ZSH_HIGHLIGHT_STYLES[comment]='fg=#565f89'
 
-ZOXIDE_CMD_OVERRIDE='d'
-
 # List of enabled plugins
 plugins=(
     aliases
