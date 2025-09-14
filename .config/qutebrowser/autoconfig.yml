@@ -97,6 +97,7 @@ settings:
     https://meet.google.com: true
   content.geolocation:
     https://github.com: true
+    https://www.brookfieldresidential.com: false
   content.javascript.clipboard:
     global: access-paste
   content.media.audio_capture:
@@ -105,9 +106,11 @@ settings:
     https://teams.live.com: true
     https://www.snapchat.com: true
   content.media.audio_video_capture:
+    aistudio.google.com: true
     https://teams.live.com: true
     https://www.snapchat.com: true
   content.media.video_capture:
+    https://4qhcvyqwh9d0f5zuc4udo3ojarmvv4r1s9rfwfl2nnov1lsa8f-h799512671.scf.usercontent.goog: true
     https://meet.google.com: true
     https://teams.live.com: true
     https://webcamtests.com: true
@@ -136,6 +139,8 @@ settings:
     global: true
   scrolling.smooth:
     global: true
+  statusbar.show:
+    global: always
   tabs.padding:
     global:
       bottom: 2
@@ -144,6 +149,8 @@ settings:
       top: 2
   tabs.position:
     global: left
+  tabs.show:
+    global: always
   tabs.title.format:
     global: '{current_title}'
   tabs.width:

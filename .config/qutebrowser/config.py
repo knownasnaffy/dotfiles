@@ -108,3 +108,6 @@ config.bind("<Alt-q>", "mode-enter normal", mode="passthrough")
 
 # Bind Alt+Delete to delete next word
 config.bind("<Alt-d>", "fake-key <Ctrl-Delete>", mode="insert")
+
+config.bind("st", "set statusbar.show never;; set tabs.show never")
+config.bind("sT", "set statusbar.show always;; set tabs.show always")
