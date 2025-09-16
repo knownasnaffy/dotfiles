@@ -74,24 +74,24 @@ mkdir -p "$dir"  # Ensure directory exists
 
 # Screenshot functions
 shotnow() {
-    flameshot full -p $file -c -d 500
+    flameshot full -p $dir/$file -c -d 500
 
 }
 
 shot5() {
-    flameshot full -p $file -c -d 5000
+    flameshot full -p $dir/$file -c -d 5000
 }
 
 shot10() {
-    flameshot full -p $file -c -d 10000
+    flameshot full -p $dir/$file -c -d 10000
 }
 
 shot_area_edit() {
-    flameshot gui -p $file -c -d 500
+    flameshot gui -p $dir/$file -c -d 500
 }
 
 shotarea() {
-    flameshot gui -p $file -c -d 500 -s
+    flameshot gui -p $dir/$file -c -d 500 -s
 }
 
 # Execute Command
