@@ -128,7 +128,7 @@ install_programs() {
 
     paru -Sy --noconfirm \
         fzf github-cli fastfetch qutebrowser rofi polybar feh picom ttf-hack-nerd \
-        ghostty task maim brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber \
+        ghostty task flameshot brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber \
         alsa-utils inotify-tools jq eva thefuck bat zoxide 7zip yazi zathura i3lock-color \
         noto-fonts-emoji dunst xdotool xdg-user-dirs udisks2 pass eza aichat beeper-v4-bin \
         zathura-pdf-poppler rofi-greenclip ly i3-wm xorg-server xorg-xinit xorg-xrandr \
