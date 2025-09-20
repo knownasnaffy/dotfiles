@@ -264,6 +264,14 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
 "
 
 # ─────────────────────────────────────────────────────────────────────────────
+# Ghostty Shell Integration
+# ─────────────────────────────────────────────────────────────────────────────
+
+if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
+    source "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
+fi
+
+# ─────────────────────────────────────────────────────────────────────────────
 # Custom Completion Scripts
 # ─────────────────────────────────────────────────────────────────────────────
 
