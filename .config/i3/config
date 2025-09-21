@@ -274,4 +274,4 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 exec ghostty
 exec qutebrowser
-exec --no-startup-id sh -c "sleep 2 && beeper"
+# exec --no-startup-id sh -c "sleep 2 && beeper"
