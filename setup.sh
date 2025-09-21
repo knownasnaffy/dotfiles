@@ -132,7 +132,7 @@ install_programs() {
         alsa-utils inotify-tools jq eva thefuck bat zoxide 7zip yazi zathura i3lock-color \
         noto-fonts-emoji dunst xdotool xdg-user-dirs udisks2 pass eza aichat beeper-v4-bin \
         zathura-pdf-poppler rofi-greenclip ly i3-wm xorg-server xorg-xinit xorg-xrandr \
-        spotifyd playerctl keyd
+        spotifyd playerctl keyd btop
 
     install_oh_my_zsh
     install_neovim_config
@@ -207,6 +207,7 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.config/spotifyd" "$HOME/.config/spotifyd"
     create_symlink "$DOTFILES_DIR/.config/systemd" "$HOME/.config/systemd"
     create_symlink "$DOTFILES_DIR/.config/dunst" "$HOME/.config/dunst"
+    create_symlink "$DOTFILES_DIR/.config/btop" "$HOME/.config/btop"
     create_symlink "$DOTFILES_DIR/.config/.lesskey" "$HOME/.lesskey"
     create_symlink "$DOTFILES_DIR/.config/.Xresources" "$HOME/.Xresources"
     create_symlink "$DOTFILES_DIR/.config/BeeperTexts/custom.css" "$HOME/.config/BeeperTexts/custom.css"
