@@ -83,6 +83,7 @@ settings:
     '*://web.whatsapp.com/*': false
     '*://wiki.archlinux.org/*': true
     '*://wp-cli.org/*': true
+    '*://www.barinderpreet.com/*': false
     '*://www.canva.com/*': false
     '*://www.drush.org/*': true
     '*://www.linuxjournal.com/*': true
@@ -114,6 +115,7 @@ settings:
     https://meet.google.com: true
     https://teams.live.com: true
     https://webcamtests.com: true
+    https://www.snapchat.com: true
   content.mouse_lock:
     https://www.figma.com: true
   content.notifications.enabled:
