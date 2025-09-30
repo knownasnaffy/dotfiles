@@ -49,3 +49,5 @@ map L scroll full-up
 # Remove default keybinds that may provide bad experience on miss-click
 #
 unmap J
+
+set selection-clipboard clipboard
