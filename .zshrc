@@ -149,7 +149,6 @@ path_directories=(
   "$ANDROID_HOME/cmdline-tools/latest/bin"
   "$ANDROID_HOME/platform-tools"
   "$JAVA_HOME/bin"
-  "$HOME/.java/jre1.8.0_431/bin"
   "$HOME/.local/share/webstorm/bin"
   $PNPM_HOME
   $GEM_HOME
