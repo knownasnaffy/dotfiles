@@ -65,6 +65,7 @@ settings:
     '*://hpanel.hostinger.com/*': true
     '*://learn.wordpress.org/*': true
     '*://lifehacker.com/*': true
+    '*://litematica.org/*': true
     '*://livesoundblog.com/*': true
     '*://localhost/*': false
     '*://mail.google.com/*': true
