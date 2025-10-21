@@ -158,5 +158,19 @@ settings:
     global: '{current_title}'
   tabs.width:
     global: 150
+  url.default_page:
+    global: https://www.perplexity.ai/
+  url.open_base_url:
+    global: true
+  url.searchengines:
+    global:
+      DEFAULT: https://duckduckgo.com/?q={}
+      p: https://www.perplexity.ai/?q={}
+  url.start_pages:
+    global: https://www.perplexity.ai/
+  window.hide_decoration:
+    global: true
+  window.transparent:
+    global: false
   zoom.default:
     global: 125%
