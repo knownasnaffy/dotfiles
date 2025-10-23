@@ -211,9 +211,6 @@ alias l='ls -a'
 # Hledger config
 export LEDGER_FILE=~/finance/2025.journal
 
-# Gitpod alias
-alias gp=gitpod
-
 # Preview files easily with bat+fzf
 alias preview="fzf --preview \"bat --color=always --style=numbers --line-range=:500 {}\""
 
