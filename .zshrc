@@ -112,11 +112,7 @@ export HISTORY_SUBSTRING_SEARCH_FUZZY="1"
 # ─────────────────────────────────────────────────────────────────────────────
 
 # Set default text editor
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
+export EDITOR='nvim'
 alias vi=nvim
 
 # Alias to run a c++ file
