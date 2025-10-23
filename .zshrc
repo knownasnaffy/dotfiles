@@ -116,10 +116,9 @@ export EDITOR='nvim'
 alias vi=nvim
 
 # Alias to run a c++ file
-_make_cpp() {
+makecpp() {
   eval "g++ -std=c++20 -Wall -Wextra -O2 ${1}.cpp -o ${1} && ./${1}"
 }
-alias makecpp=_make_cpp
 
 # Alias for controlling the screen brightness beyond hardware limits using xrandr
 alias brlow="xrandr --output $(xrandr | grep ' connected' | cut -d' ' -f1) --brightness 0.5"
@@ -186,13 +185,12 @@ _execute_command() {
 }
 
 # Insert blank space into terminal
-alias 'space'='_add_space'
-_add_space() {
+space() {
     echo '\n\n\n\n\n\n\n\n'
 }
 
 # Launch file manager (yazi) and return to new cwd
-function fm() {
+fm() {
     local tmp="$(mktemp -t yazi-cwd.XXXXXX)" cwd
     yazi "$@" --cwd-file="$tmp"
     if cwd="$(<"$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
