@@ -90,6 +90,7 @@ settings:
     '*://www.linuxjournal.com/*': true
     '*://www.lua.org/*': true
     '*://www.npmjs.com/*': true
+    '*://www.perplexity.ai/*': false
     '*://www.qutebrowser.org/*': true
     '*://www.thregr.org/*': true
     global: false
@@ -112,6 +113,7 @@ settings:
     https://teams.live.com: true
     https://www.snapchat.com: true
   content.media.video_capture:
+    http://localhost:5173: true
     https://4qhcvyqwh9d0f5zuc4udo3ojarmvv4r1s9rfwfl2nnov1lsa8f-h799512671.scf.usercontent.goog: true
     https://meet.google.com: true
     https://teams.live.com: true
