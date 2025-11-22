@@ -1,185 +1,131 @@
-# Dotfiles Manager
+# Dotfiles Setup
 
-A modern, maintainable dotfiles management system built with TypeScript and Bun.
+Personal Arch Linux dotfiles + bootstrap script. Automates installing core tooling (shell, editors, CLI utilities, desktop bits), sets sane defaults, and symlinks configs safely (with backups). Includes optional private package mode.
 
-## Features
+> Target: **Minimal Arch install (with AUR)**
+> Script assumes `pacman` + AUR helper (`paru`). Other distros are NOT supported by the current script (README previously overstated this).
 
-- Multi-platform support (Arch Linux, Ubuntu)
-- Template-based installation profiles (headless, desktop, personal)
-- Intelligent symlink management with automatic backups
-- Comprehensive error handling and logging
-- Idempotent operations for safe re-runs
+## Key Features
 
-## Requirements
+- Automated install of base packages, AUR apps, developer tooling, fonts.
+- Safe idempotent symlinking (backs up existing files with numbered .bak suffixes).
+- Opinionated Zsh setup (Oh My Zsh + plugins + Spaceship theme).
+- Neovim bootstrap (kickstart.nvim clone, auto-replaced if different repo).
+- Post-install desktop defaults (qutebrowser, zathura, display/login assets).
+- Optional private mode: `--private` installs extra packages.
 
-- [Bun](https://bun.sh/) runtime
-- Linux environment (Arch or Ubuntu)
+## Prerequisites
 
-## Installation
+- Arch Linux (or derivative with pacman + ability to build AUR packages).
+- sudo access.
+- git, curl (will install if missing in base step).
+
+## Quick Start
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/dotfiles.git
+git clone https://github.com/<your-username>/dotfiles.git
 cd dotfiles
-
-# Install dependencies
-bun install
-
-# Build the project
-bun run build
+./setup.sh            # standard
+./setup.sh --private  # include private extras
 ```
 
-## Usage
+The script will:
+1. Install base compilers & tools (`pacman -Sy zsh make gcc ripgrep unzip git xclip neovim base-devel`).
+2. Install / build `paru` if missing.
+3. Sync + install large program set via `paru` (see list below).
+4. Install Homebrew (if absent) then bun, pipx, fnm, cargo battery-notify.
+5. Setup Oh My Zsh plugins + Spaceship prompt.
+6. Link dotfiles (user + select /etc configs via sudo symlinks).
+7. Run post-install tweaks (bat cache, xdg defaults, enable `ly`).
 
+## Package Highlights
+
+AUR + repo installs include (subset):
+- Shell/tools: zsh, fzf, ripgrep, bat, eza, zoxide, btop, eva, jq, brightnessctl.
+- Terminal/UI: ghostty, rofi (+ greenclip), polybar, picom, dunst, i3-wm, i3lock-color, keyd.
+- Fonts & visuals: ttf-hack-nerd, noto-fonts-emoji, fastfetch, ueberzug.
+- Apps: qutebrowser, zathura (+ poppler), spotifyd, flameshot, pass.
+- Audio: pipewire, wireplumber, pipewire-pulse, pipewire-alsa, alsa-utils.
+- Misc/fun: thefuck, cowsay, fortune-mod.
+- Dev extras: bun, fnm (Node LTS), pipx, cargo battery-notify.
+
+Private mode adds: jrnl (and can be extended).
+
+## Managed Dotfiles / Configs
+
+User-level symlinks:
+- .gitconfig, .zshrc, .zsh_functions
+- ~/.config: gh, ghostty, qutebrowser, picom, polybar, i3, rofi, fastfetch, bat, eza, zathura, yazi, pycodestyle, battery-notify, spotifyd, systemd, dunst, btop, greenclip.toml, BeeperTexts (custom.css, config.json), fonts (under .local/share/fonts)
+- ~/.Xresources, ~/.lesskey
+
+System-level (sudo) symlinks:
+- /etc/X11/xorg.conf.d/30-touchpad.conf
+- /etc/ly/config.ini
+- /etc/keyd
+
+If a target exists it is renamed to `filename.bak` (or numbered `.bakN`).
+
+## Neovim Setup Logic
+If an existing `~/.config/nvim` is a git repo pointing to `knownasnaffy/kickstart.nvim`, it is kept. Any other existing config is removed then the kickstart repo is cloned.
+
+## Boot & Memory Notes
+ZRAM + optional swapfile instructions (for half-RAM zram + 2G fallback file) are documented below.
+
+### ZRAM Quick Reference
 ```bash
-# Run with default settings (headless template)
-bun start
-
-# Run in interactive mode
-bun start -- -i
-
-# Specify a platform
-bun start -- --arch
-bun start -- --ubuntu
-
-# Combine flags
-bun start -- -i --arch
+paru -S zram-generator
+sudo nvim /etc/systemd/zram-generator.conf
+# contents:
+[zram0]
+zram-size = ram / 2
+compression-algorithm = zstd
+swap-priority = 100
+sudo systemctl daemon-reexec
+sudo systemctl restart systemd-zram-setup@zram0
+swapon --show
 ```
-
-## Development
-
+Optional swapfile:
 ```bash
-# Run in development mode with auto-reload
-bun run dev
-
-# Type checking
-bun run check
-
-# Format code
-bun run format
-
-# Lint code
-bun run lint
+sudo fallocate -l 2G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+echo '/swapfile none swap sw,pri=10 0 0' | sudo tee -a /etc/fstab
 ```
 
-## Testing
+## Aerc Tip
+Use port 465 (implicit TLS) for Gmail outgoing instead of 587 if STARTTLS fails.
 
-This project uses [Vitest](https://vitest.dev/) as the standard testing framework. All tests should be written using Vitest.
-
-### Running Tests
-
-```bash
-# Run all tests once
-bun run test
-
-# Run tests in watch mode (re-runs on file changes)
-bun run test:watch
-
-# Run tests with coverage
-bun run test -- --coverage
+## Structure (simplified)
+```
+.
+├── setup.sh
+├── README.md
+├── images/
+│   ├── fastfetch.png
+│   └── tokyonight-wallpaper.png
+├── etc/
+│   ├── X11/...
+│   ├── keyd/...
+│   └── ly/config.ini
+└── .config/...
 ```
 
-### Writing Tests
+Fastfetch example (images/fastfetch.png):
+![Fastfetch](images/fastfetch.png)
 
-Tests are located in the `tests/` directory and follow the pattern `*.test.ts`. Here's how to write tests with Vitest:
+## Troubleshooting
+1. Shell still bash: log out or run `chsh $(id -un) --shell $(command -v zsh)` manually.
+2. Symlink missing: check permissions (sudo for /etc) and ensure parent directories exist.
+3. Neovim config not replaced: remove existing `~/.config/nvim` and rerun.
+4. `ly` not starting: `sudo systemctl enable ly && sudo systemctl start ly`.
 
-#### Basic Test Structure
-
-```typescript
-import { describe, it, expect, beforeEach, vi } from "vitest";
-import { YourClass } from "../../../src/your-module";
-
-describe("YourClass", () => {
-  let instance: YourClass;
-
-  beforeEach(() => {
-    instance = new YourClass();
-    vi.clearAllMocks();
-  });
-
-  it("should do something", () => {
-    const result = instance.doSomething();
-    expect(result).toBe("expected value");
-  });
-});
-```
-
-#### Mocking with Vitest
-
-```typescript
-// Mock a function
-const mockFn = vi.fn(() => "mocked return value");
-
-// Mock a module
-vi.mock("fs/promises", () => ({
-  readFile: vi.fn(),
-  writeFile: vi.fn(),
-}));
-
-// Mock implementation
-mockFn.mockImplementation(() => "new implementation");
-
-// Assertions
-expect(mockFn).toHaveBeenCalled();
-expect(mockFn).toHaveBeenCalledWith("expected argument");
-expect(mockFn).toHaveBeenCalledTimes(1);
-```
-
-#### Async Testing
-
-```typescript
-it("should handle async operations", async () => {
-  const result = await instance.asyncMethod();
-  expect(result).toBe("expected value");
-});
-
-it("should handle promise rejections", async () => {
-  await expect(instance.failingMethod()).rejects.toThrow("Expected error");
-});
-```
-
-### Test Configuration
-
-The project uses `vitest.config.ts` for test configuration:
-
-- Tests are located in `tests/**/*.test.ts`
-- Node environment is used for testing
-- Coverage reports are generated with v8 provider
-- Global test utilities are available (no need to import `describe`, `it`, `expect`)
-
-### Best Practices
-
-1. **Use descriptive test names**: Test names should clearly describe what is being tested
-2. **Follow AAA pattern**: Arrange, Act, Assert
-3. **Mock external dependencies**: Use `vi.mock()` to isolate units under test
-4. **Clean up after tests**: Use `beforeEach` and `afterEach` to reset state
-5. **Test both success and error cases**: Ensure comprehensive coverage
-6. **Use TypeScript**: All tests should be written in TypeScript with proper typing
-
-## Project Structure
-
-- `src/` - Source code
-  - `config/` - Configuration management
-  - `platform/` - Platform-specific handlers
-  - `package/` - Package management
-  - `symlink/` - Symlink management
-  - `sudo/` - Sudo permission management
-  - `logger/` - Logging system
-  - `orchestrator/` - Main orchestration
-  - `types/` - TypeScript type definitions
-
-## Configuration
-
-Configuration files are stored in the `config/` directory:
-
-- `templates/` - Template definitions
-  - `headless.json` - Headless server template
-  - `desktop.json` - Desktop environment template
-  - `personal.json` - Personal configuration template
-- `packages.json` - Package definitions for different platforms
-- `symlinks.json` - Symlink mapping definitions
-- `post-install.json` - Post-installation tasks
+## Extending
+Add new config under repo then append a `create_symlink` (or `create_sudo_symlink`) call in `link_dotfiles()` maintaining grouping. Keep changes minimal & idempotent.
 
 ## License
+No license file currently included. Add one (MIT, etc.) if you intend to share/reuse.
 
-MIT
+---
+Previously claimed cross-distro support was removed to match actual script behavior.
+
