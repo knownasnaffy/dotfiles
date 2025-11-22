@@ -23,7 +23,7 @@ Personal Arch Linux dotfiles + bootstrap script. Automates installing core tooli
 ## Quick Start
 
 ```bash
-git clone https://github.com/<your-username>/dotfiles.git
+git clone https://github.com/knownasnaffy/dotfiles.git
 cd dotfiles
 ./setup.sh            # standard
 ./setup.sh --private  # include private extras
@@ -128,4 +128,3 @@ No license file currently included. Add one (MIT, etc.) if you intend to share/r
 
 ---
 Previously claimed cross-distro support was removed to match actual script behavior.
-
