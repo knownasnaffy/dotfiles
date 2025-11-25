@@ -1,8 +1,8 @@
 [Unit]
-Description=Daily git push for pass
+Description=Hourly git push backup for pass in case of failure in the original post commit method
 
 [Timer]
-OnCalendar=daily
+OnCalendar=hourly
 Persistent=true
 
 [Install]

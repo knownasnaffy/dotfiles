@@ -3,5 +3,4 @@ Description=Push pass git store to remote
 
 [Service]
 Type=oneshot
-WorkingDirectory=%h/.password-store
-ExecStart=/usr/bin/git push
+ExecStart=%h/.local/bin/pass-push
