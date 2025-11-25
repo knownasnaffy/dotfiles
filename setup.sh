@@ -214,6 +214,10 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.config/BeeperTexts/config.json" "$HOME/.config/BeeperTexts/config.json"
     create_symlink "$DOTFILES_DIR/.config/greenclip.toml" "$HOME/.config/greenclip.toml"
     create_symlink "$DOTFILES_DIR/.zsh_functions" "$HOME/.zsh_functions"
+
+    create_symlink "$DOTFILES_DIR/.local/bin/crypt.sh" "$HOME/.local/bin/crypt"
+    create_symlink "$DOTFILES_DIR/.local/bin/git-status.sh" "$HOME/.local/bin/git-status"
+
     create_symlink "$DOTFILES_DIR/.local/share/fonts" "$HOME/.local/share/fonts"
 
     create_sudo_symlink "$DOTFILES_DIR/etc/X11/xorg.config.d/30-touchpad.conf" "/etc/X11/xorg.conf.d/30-touchpad.conf"
