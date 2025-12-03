@@ -268,20 +268,47 @@ create_cleanup_script() {
 
 main() {
     PRIVATE_MODE=false
+    FLAGS=()
 
+    # Parse flags
     while [[ $# -gt 0 ]]; do
         case "$1" in
             -p|--private) PRIVATE_MODE=true ;;
+            -pi) FLAGS+=("post_install_scripts") ;;
+            -ln) FLAGS+=("link_dotfiles") ;;
+            -zsh) FLAGS+=("setup_zsh") ;;
+            -plugins) FLAGS+=("install_plugins") ;;
+            -progs) FLAGS+=("install_programs") ;;
+            -dirs) FLAGS+=("create_directories") ;;
+                # Add more flags and corresponding function names here as needed
         esac
         shift
     done
 
-    create_directories
-    install_programs
-    setup_zsh
-    install_plugins
-    link_dotfiles
-    post_install_scripts
+    # Function runner helper
+    run_function() {
+        local func=$1
+        if [ ${#FLAGS[@]} -eq 0 ]; then
+            # Run all functions in original sequence if no flags
+            $func
+        else
+            # Run only if function is in FLAGS
+            for f in "${FLAGS[@]}"; do
+                if [ "$f" == "$func" ]; then
+                    $func
+                    break
+                fi
+            done
+        fi
+    }
+
+    # Run functions accordingly (only create_cleanup_script always runs)
+    run_function create_directories
+    run_function install_programs
+    run_function setup_zsh
+    run_function install_plugins
+    run_function link_dotfiles
+    run_function post_install_scripts
     create_cleanup_script
     $PRIVATE_MODE && install_private_packages
 
