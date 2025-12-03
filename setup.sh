@@ -247,6 +247,10 @@ post_install_scripts() {
         sudo systemctl enable ly
     fi
 
+    if ! systemctl is-enabled keyd &>/dev/null; then
+        sudo systemctl enable keyd
+    fi
+
     if ! systemctl is-active docker &>/dev/null; then
         POSTNOTES+=$(log "Ly is not running. You can start it with: systemctl start ly\n")
     fi
