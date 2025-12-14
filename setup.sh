@@ -127,12 +127,8 @@ install_programs() {
     paru -Syu --noconfirm
 
     paru -Sy --noconfirm \
-        fzf github-cli fastfetch qutebrowser rofi polybar feh picom ttf-hack-nerd \
-        ghostty task flameshot brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber \
-        alsa-utils inotify-tools jq eva thefuck bat zoxide 7zip yazi zathura i3lock-color \
-        noto-fonts-emoji dunst xdotool xdg-user-dirs udisks2 pass eza aichat beeper-v4-bin \
-        zathura-pdf-poppler rofi-greenclip ly i3-wm xorg-server xorg-xinit xorg-xrandr \
-        spotifyd playerctl keyd btop ueberzug
+        fzf github-cli fastfetch jq eva thefuck bat zoxide 7zip yazi xdotool xdg-user-dirs pass eza aichat xorg-xrandr \
+        btop ueberzug
 
     install_oh_my_zsh
     install_neovim_config
@@ -146,7 +142,6 @@ install_programs() {
     brew install oven-sh/bun/bun pipx fnm
     pipx install argcomplete
     eval fnm install --lts
-    cargo install battery-notify
 }
 
 install_plugins() {
