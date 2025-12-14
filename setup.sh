@@ -219,20 +219,6 @@ setup_zsh() {
 
 post_install_scripts() {
     bat cache --build
-    check_command xdg-settings && xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
-    check_command xdg-settings && xdg-mime default org.pwmt.zathura.desktop application/pdf
-
-    if ! systemctl is-enabled ly &>/dev/null; then
-        sudo systemctl enable ly
-    fi
-
-    if ! systemctl is-enabled keyd &>/dev/null; then
-        sudo systemctl enable keyd
-    fi
-
-    if ! systemctl is-active docker &>/dev/null; then
-        POSTNOTES+=$(log "Ly is not running. You can start it with: systemctl start ly\n")
-    fi
 
     fnm completions --shell zsh > ~/.zsh_functions/_fnm
 }
