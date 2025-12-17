@@ -12,12 +12,24 @@ POSTNOTES=""
 # Logging Helpers
 # ─────────────────────────────────────────────────────────────────────────────
 
+yellow_text() {
+    echo -e "\033[1;33m$1\033[0m"
+}
+
+red_text() {
+    echo -e "\033[1;31m$1\033[0m"
+}
+
+green_text() {
+    echo -e "\033[1;32m$1\033[0m"
+}
+
 log() {
-    echo -e "[\033[1;32mINFO\033[0m] $1"
+    echo -e "[$(green_text INFO)] $1"
 }
 
 error() {
-    echo -e "[\033[1;31mERROR\033[0m] $1"
+    echo -e "[$(red_text ERROR)] $1"
 }
 
 check_command() {
@@ -255,17 +267,11 @@ post_install_scripts() {
     check_command xdg-settings && xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
     check_command xdg-settings && xdg-mime default org.pwmt.zathura.desktop application/pdf
 
-    if ! systemctl is-enabled ly &>/dev/null; then
-        sudo systemctl enable ly
-    fi
-
     if ! systemctl is-enabled keyd &>/dev/null; then
         sudo systemctl enable keyd
     fi
 
-    if ! systemctl is-active docker &>/dev/null; then
-        POSTNOTES+=$(log "Ly is not running. You can start it with: systemctl start ly\n")
-    fi
+    POSTNOTES+=$(log "$(yellow_text "Ly was not started.") You can enable and start it with: systemctl enable --now ly@tty2.service\n")
 
     fnm completions --shell zsh > ~/.zsh_functions/_fnm
 }
