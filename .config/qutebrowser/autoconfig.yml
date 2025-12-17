@@ -175,4 +175,4 @@ settings:
   window.transparent:
     global: false
   zoom.default:
-    global: 125%
+    global: 100%
