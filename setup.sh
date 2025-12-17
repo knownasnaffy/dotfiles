@@ -97,8 +97,8 @@ setup_network() {
 
     sudo mkdir -p "/etc/systemd/network"
 
-    create_sudo_symlink "$DOTFILES_DIR/etc/systemd/network/20-wired.network" "/etc/systemd/network/20-wired.network"
-    create_sudo_symlink "$DOTFILES_DIR/etc/systemd/network/25-wireless.network" "/etc/systemd/network/25-wireless.network"
+    sudo cp "$DOTFILES_DIR/etc/systemd/network/20-wired.network" "/etc/systemd/network/20-wired.network"
+    sudo cp "$DOTFILES_DIR/etc/systemd/network/25-wireless.network" "/etc/systemd/network/25-wireless.network"
 
     sudo systemctl enable --now systemd-resolved systemd-networkd iwd
 
