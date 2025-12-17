@@ -92,6 +92,37 @@ create_sudo_symlink() {
 # Installation Scripts
 # ─────────────────────────────────────────────────────────────────────────────
 
+setup_network() {
+    log "Setting up an internet connection"
+
+    sudo mkdir -p "/etc/systemd/network"
+
+    create_sudo_symlink "$DOTFILES_DIR/etc/systemd/network/20-wired.network" "/etc/systemd/network/20-wired.network"
+    create_sudo_symlink "$DOTFILES_DIR/etc/systemd/network/25-wireless.network" "/etc/systemd/network/25-wireless.network"
+
+    sudo systemctl enable --now systemd-resolved systemd-networkd iwd
+
+    log "Checking network connectivity..."
+
+    # Check wired: any interface with carrier?
+    if ip link show | awk '/state UP/ {print $2}' | grep -qE 'enp|eth|eno'; then
+        log "Wired interface is up (carrier detected)."
+        return 0
+    fi
+
+    # Check iwd: any station connected?
+    if command -v iwctl >/dev/null 2>&1; then
+        if iwctl station list | grep -q "connected"; then
+            log "Wireless network connected via iwd."
+            return 0
+        fi
+    fi
+
+    error "No active network connection detected."
+    log "Please connect to a wired or wireless network (via iwctl) and rerun the script."
+    exit 1
+}
+
 install_oh_my_zsh() {
     if [ ! -d "$ZSH_DIR" ]; then
         log "Installing Oh My Zsh..."
@@ -292,13 +323,13 @@ main() {
     while [[ $# -gt 0 ]]; do
         case "$1" in
             -p|--private) PRIVATE_MODE=true ;;
+            -nw) FLAGS+=("setup_network") ;;
             -pi) FLAGS+=("post_install_scripts") ;;
             -ln) FLAGS+=("link_dotfiles") ;;
             -zsh) FLAGS+=("setup_zsh") ;;
             -plugins) FLAGS+=("install_plugins") ;;
             -progs) FLAGS+=("install_programs") ;;
             -dirs) FLAGS+=("create_directories") ;;
-                # Add more flags and corresponding function names here as needed
         esac
         shift
     done
@@ -321,6 +352,7 @@ main() {
     }
 
     # Run functions accordingly (only create_cleanup_script always runs)
+    run_function setup_network
     run_function create_directories
     run_function install_programs
     run_function setup_zsh
