@@ -216,7 +216,7 @@ alias jrnl=" jrnl" # Leading space ensures it doesn't enter shell history
 # ─────────────────────────────────────────────────────────────────────────────
 
 # Fetch system information on shell startup
-fastfetch --logo "$HOME/code/projects/dotfiles/images/fastfetch.png" --logo-padding-left 4
+fastfetch
 
 # Load fnm
 eval "`fnm env`"
