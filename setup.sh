@@ -129,10 +129,13 @@ install_programs() {
     paru -Sy --noconfirm \
         fzf github-cli fastfetch qutebrowser rofi polybar feh picom ttf-hack-nerd \
         ghostty task flameshot brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber \
-        alsa-utils inotify-tools jq eva thefuck bat zoxide 7zip yazi zathura i3lock-color \
-        noto-fonts-emoji dunst xdotool xdg-user-dirs udisks2 pass eza aichat beeper-v4-bin \
-        zathura-pdf-poppler rofi-greenclip ly i3-wm xorg-server xorg-xinit xorg-xrandr \
-        spotifyd playerctl keyd btop ueberzug
+        alsa-utils inotify-tools jq eva thefuck bat zoxide 7zip yazi zathura \
+        noto-fonts-emoji dunst xdotool xdg-user-dirs udisks2 pass eza aichat \
+        zathura-pdf-poppler ly i3-wm xorg-server xorg-xinit xorg-xrandr \
+        spotifyd playerctl keyd btop ueberzug man-db
+
+    paru -Sy --noconfirm \
+        i3lock-color rofi-greenclip beeper-v4-bin
 
     install_oh_my_zsh
     install_neovim_config
