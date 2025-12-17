@@ -191,6 +191,11 @@ create_directories() {
 link_dotfiles() {
     log "Setting up symlinks for dotfiles..."
 
+    mkdir -p \
+        "$HOME/.config" \
+        "$HOME/.config/BeeperTexts" \
+        "$HOME/.local/bin"
+
     create_symlink "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig"
     create_symlink "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
     create_symlink "$DOTFILES_DIR/.config/gh" "$HOME/.config/gh"
@@ -213,10 +218,11 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.config/btop" "$HOME/.config/btop"
     create_symlink "$DOTFILES_DIR/.config/.lesskey" "$HOME/.lesskey"
     create_symlink "$DOTFILES_DIR/.config/.Xresources" "$HOME/.Xresources"
-    create_symlink "$DOTFILES_DIR/.config/BeeperTexts/custom.css" "$HOME/.config/BeeperTexts/custom.css"
-    create_symlink "$DOTFILES_DIR/.config/BeeperTexts/config.json" "$HOME/.config/BeeperTexts/config.json"
     create_symlink "$DOTFILES_DIR/.config/greenclip.toml" "$HOME/.config/greenclip.toml"
     create_symlink "$DOTFILES_DIR/.zsh_functions" "$HOME/.zsh_functions"
+
+    create_symlink "$DOTFILES_DIR/.config/BeeperTexts/custom.css" "$HOME/.config/BeeperTexts/custom.css"
+    create_symlink "$DOTFILES_DIR/.config/BeeperTexts/config.json" "$HOME/.config/BeeperTexts/config.json"
 
     create_symlink "$DOTFILES_DIR/.local/bin/crypt.sh" "$HOME/.local/bin/crypt"
     create_symlink "$DOTFILES_DIR/.local/bin/git-status.sh" "$HOME/.local/bin/git-status"
@@ -225,6 +231,9 @@ link_dotfiles() {
 
     create_sudo_symlink "$DOTFILES_DIR/etc/X11/xorg.config.d/30-touchpad.conf" "/etc/X11/xorg.conf.d/30-touchpad.conf"
     create_sudo_symlink "$DOTFILES_DIR/etc/ly/config.ini" "/etc/ly/config.ini"
+    # not creating a folder for ly beforehand as it is supposed to hold more than just a
+    # config file, so if the installation fails, there is no point in creating
+    # the config folder as it will interrupt in the installation later
     create_sudo_symlink "$DOTFILES_DIR/etc/keyd" "/etc/keyd"
 }
 
