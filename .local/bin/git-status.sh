@@ -29,6 +29,7 @@ echo "Found ${#git_repos[@]} git repositories"
 echo ""
 
 # Arrays to store repositories with different statuses
+untracked_repos=()
 unstaged_repos=()
 unpushed_repos=()
 staged_repos=()
@@ -43,6 +44,12 @@ check_git_status() {
 
     # Get git status output
     status_output=$(git status 2>/dev/null)
+
+    # Check for untracked changes
+    if echo "$status_output" | grep -q "Untracked files:"; then
+        untracked_repos+=("$repo_name")
+        return
+    fi
 
     # Check for unstaged changes
     if echo "$status_output" | grep -q "Changes not staged for commit:"; then
@@ -81,6 +88,11 @@ if [ ${#unstaged_repos[@]} -gt 0 ]; then
     printf "%-30s %-20s\n" "----------" "------"
 fi
 
+# Show repositories with untracked changes
+for repo in "${untracked_repos[@]}"; do
+    printf "%-30s ${RED}%-20s${NC}\n" "$repo" "Untracked Changes"
+done
+
 # Show repositories with unstaged changes
 for repo in "${unstaged_repos[@]}"; do
     printf "%-30s ${RED}%-20s${NC}\n" "$repo" "Unstaged Changes"
@@ -98,11 +110,12 @@ done
 
 echo ""
 echo "Summary:"
+echo "- Repositories with untracked changes: ${#untracked_repos[@]}"
 echo "- Repositories with unstaged changes: ${#unstaged_repos[@]}"
 echo "- Repositories with staged changes: ${#staged_repos[@]}"
 echo "- Repositories with unpushed commits: ${#unpushed_repos[@]}"
 
-total_issues=$((${#unstaged_repos[@]} + ${#staged_repos[@]} + ${#unpushed_repos[@]}))
+total_issues=$((${#untracked_repos[@]} + ${#unstaged_repos[@]} + ${#staged_repos[@]} + ${#unpushed_repos[@]}))
 total_repos=${#git_repos[@]}
 synced_repos=$((total_repos - total_issues))
 
