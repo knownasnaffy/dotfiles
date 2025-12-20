@@ -75,9 +75,11 @@ echo ""
 echo "=== GIT REPOSITORY STATUS REPORT ==="
 echo ""
 
-# Display results in table format
-printf "%-30s %-20s\n" "Repository" "Status"
-printf "%-30s %-20s\n" "----------" "------"
+# Display results in table format (only if repos exist)
+if [ ${#unstaged_repos[@]} -gt 0 ]; then
+    printf "%-30s %-20s\n" "Repository" "Status"
+    printf "%-30s %-20s\n" "----------" "------"
+fi
 
 # Show repositories with unstaged changes
 for repo in "${unstaged_repos[@]}"; do
