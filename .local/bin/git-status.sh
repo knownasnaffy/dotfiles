@@ -73,10 +73,10 @@ done
 
 echo ""
 echo "=== GIT REPOSITORY STATUS REPORT ==="
-echo ""
 
 # Display results in table format (only if repos exist)
 if [ ${#unstaged_repos[@]} -gt 0 ]; then
+    echo ""
     printf "%-30s %-20s\n" "Repository" "Status"
     printf "%-30s %-20s\n" "----------" "------"
 fi
