@@ -175,7 +175,7 @@ install_programs() {
         alsa-utils inotify-tools jq eva thefuck bat zoxide 7zip yazi zathura \
         noto-fonts-emoji dunst xdotool xdg-user-dirs udisks2 pass eza aichat \
         zathura-pdf-poppler ly i3-wm xorg-server xorg-xinit xorg-xrandr \
-        spotifyd playerctl keyd btop ueberzug man-db
+        spotifyd playerctl keyd btop ueberzug man-db imagemagick
 
     paru -Sy --noconfirm \
         i3lock-color rofi-greenclip beeper-v4-bin
