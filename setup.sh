@@ -239,6 +239,21 @@ create_cleanup_script() {
     log "Cleanup script is pending. Complete it dude!"
 }
 
+cleanup_old_backups() {
+    log "Cleaning up old backup files (older than 30 days)..."
+    find "$HOME" -name "*.bak*" -mtime +30 \
+        -not -path "*/node_modules/*" \
+        -not -path "*/.git/*" \
+        -not -path "*/target/*" \
+        -not -path "*/build/*" \
+        -not -path "*/dist/*" \
+        -not -path "*/.cache/*" \
+        -not -path "*/venv/*" \
+        -not -path "*/__pycache__/*" \
+        -delete 2>/dev/null || true
+    log "Backup cleanup completed"
+}
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Entrypoint
 # ─────────────────────────────────────────────────────────────────────────────
@@ -253,6 +268,7 @@ main() {
     while [[ $# -gt 0 ]]; do
         case "$1" in
             -p|--private) PRIVATE_MODE=true ;;
+            -clean) FLAGS+=("cleanup_old_backups") ;;
             -pi) FLAGS+=("post_install_scripts") ;;
             -ln) FLAGS+=("link_dotfiles") ;;
             -zsh) FLAGS+=("setup_zsh") ;;
@@ -288,6 +304,7 @@ main() {
     run_function install_plugins
     run_function link_dotfiles
     run_function post_install_scripts
+    run_function cleanup_old_backups
     create_cleanup_script
     $PRIVATE_MODE && install_private_packages
 
