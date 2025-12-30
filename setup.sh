@@ -267,9 +267,9 @@ main() {
     fi
     echo $$ > "$LOCK_FILE"
     trap 'rm -f "$LOCK_FILE"' EXIT
-    
+
     check_arch_linux
-    
+
     PRIVATE_MODE=false
     FLAGS=()
 
