@@ -29,6 +29,13 @@ check_command() {
     command -v "$1" &>/dev/null
 }
 
+check_arch_linux() {
+    if ! command -v pacman &>/dev/null; then
+        error "This script requires Arch Linux with pacman"
+        exit 1
+    fi
+}
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Symlink Management
 # ─────────────────────────────────────────────────────────────────────────────
@@ -237,6 +244,8 @@ create_cleanup_script() {
 # ─────────────────────────────────────────────────────────────────────────────
 
 main() {
+    check_arch_linux
+    
     PRIVATE_MODE=false
     FLAGS=()
 
