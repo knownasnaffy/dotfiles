@@ -259,6 +259,15 @@ cleanup_old_backups() {
 # ─────────────────────────────────────────────────────────────────────────────
 
 main() {
+    # Lock file prevention
+    LOCK_FILE="/tmp/dotfiles_setup.lock"
+    if [ -f "$LOCK_FILE" ]; then
+        error "Setup already running (lock file exists)"
+        exit 1
+    fi
+    echo $$ > "$LOCK_FILE"
+    trap 'rm -f "$LOCK_FILE"' EXIT
+    
     check_arch_linux
     
     PRIVATE_MODE=false
