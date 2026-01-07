@@ -269,6 +269,8 @@ link_dotfiles() {
 
     create_symlink "$DOTFILES_DIR/.local/bin/crypt.sh" "$HOME/.local/bin/crypt"
     create_symlink "$DOTFILES_DIR/.local/bin/git-status.sh" "$HOME/.local/bin/git-status"
+    create_symlink "$DOTFILES_DIR/.local/bin/start-hotspot.sh" "$HOME/.local/bin/start-hotspot"
+    create_symlink "$DOTFILES_DIR/.local/bin/stop-hotspot.sh" "$HOME/.local/bin/stop-hotspot"
 
     create_symlink "$DOTFILES_DIR/.local/share/fonts" "$HOME/.local/share/fonts"
 
