@@ -5,6 +5,7 @@
 *.uuid
 node_modules
 .config/aerc/accounts.conf
+.config/qutebrowser/bookmarks
 
 # Build output
 dist/
