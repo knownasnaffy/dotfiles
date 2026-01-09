@@ -243,44 +243,44 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
     create_symlink "$DOTFILES_DIR/.config/aerc" "$HOME/.config/aerc" # personal
     create_symlink "$DOTFILES_DIR/.config/gh" "$HOME/.config/gh"
-    create_symlink "$DOTFILES_DIR/.config/ghostty" "$HOME/.config/ghostty"
-    create_symlink "$DOTFILES_DIR/.config/qutebrowser" "$HOME/.config/qutebrowser"
-    create_symlink "$DOTFILES_DIR/.config/picom" "$HOME/.config/picom"
-    create_symlink "$DOTFILES_DIR/.config/polybar" "$HOME/.config/polybar"
-    create_symlink "$DOTFILES_DIR/.config/i3" "$HOME/.config/i3"
-    create_symlink "$DOTFILES_DIR/.config/rofi" "$HOME/.config/rofi"
+    create_symlink "$DOTFILES_DIR/.config/ghostty" "$HOME/.config/ghostty" # desktop
+    create_symlink "$DOTFILES_DIR/.config/qutebrowser" "$HOME/.config/qutebrowser" # desktop
+    create_symlink "$DOTFILES_DIR/.config/picom" "$HOME/.config/picom" # desktop
+    create_symlink "$DOTFILES_DIR/.config/polybar" "$HOME/.config/polybar" # desktop
+    create_symlink "$DOTFILES_DIR/.config/i3" "$HOME/.config/i3" # desktop
+    create_symlink "$DOTFILES_DIR/.config/rofi" "$HOME/.config/rofi" # desktop
     create_symlink "$DOTFILES_DIR/.config/fastfetch" "$HOME/.config/fastfetch"
     create_symlink "$DOTFILES_DIR/.config/bat" "$HOME/.config/bat"
     create_symlink "$DOTFILES_DIR/.config/eza" "$HOME/.config/eza"
-    create_symlink "$DOTFILES_DIR/.config/zathura" "$HOME/.config/zathura"
+    create_symlink "$DOTFILES_DIR/.config/zathura" "$HOME/.config/zathura" # desktop
     create_symlink "$DOTFILES_DIR/.config/yazi" "$HOME/.config/yazi"
     create_symlink "$DOTFILES_DIR/.config/pycodestyle" "$HOME/.config/pycodestyle"
-    create_symlink "$DOTFILES_DIR/.config/battery-notify" "$HOME/.config/battery-notify"
-    create_symlink "$DOTFILES_DIR/.config/spotifyd" "$HOME/.config/spotifyd"
+    create_symlink "$DOTFILES_DIR/.config/battery-notify" "$HOME/.config/battery-notify" # desktop
+    create_symlink "$DOTFILES_DIR/.config/spotifyd" "$HOME/.config/spotifyd" # personal
     create_symlink "$DOTFILES_DIR/.config/systemd" "$HOME/.config/systemd"
-    create_symlink "$DOTFILES_DIR/.config/dunst" "$HOME/.config/dunst"
+    create_symlink "$DOTFILES_DIR/.config/dunst" "$HOME/.config/dunst" # desktop
     create_symlink "$DOTFILES_DIR/.config/btop" "$HOME/.config/btop"
     create_symlink "$DOTFILES_DIR/.config/.lesskey" "$HOME/.lesskey"
     create_symlink "$DOTFILES_DIR/.config/.Xresources" "$HOME/.Xresources"
-    create_symlink "$DOTFILES_DIR/.config/greenclip.toml" "$HOME/.config/greenclip.toml"
+    create_symlink "$DOTFILES_DIR/.config/greenclip.toml" "$HOME/.config/greenclip.toml" # personal, desktop
     create_symlink "$DOTFILES_DIR/.zsh_functions" "$HOME/.zsh_functions"
 
-    create_symlink "$DOTFILES_DIR/.config/BeeperTexts/custom.css" "$HOME/.config/BeeperTexts/custom.css"
-    create_symlink "$DOTFILES_DIR/.config/BeeperTexts/config.json" "$HOME/.config/BeeperTexts/config.json"
+    create_symlink "$DOTFILES_DIR/.config/BeeperTexts/custom.css" "$HOME/.config/BeeperTexts/custom.css" # personal, desktop
+    create_symlink "$DOTFILES_DIR/.config/BeeperTexts/config.json" "$HOME/.config/BeeperTexts/config.json" # personal, desktop
 
     create_symlink "$DOTFILES_DIR/.local/bin/crypt.sh" "$HOME/.local/bin/crypt"
     create_symlink "$DOTFILES_DIR/.local/bin/git-status.sh" "$HOME/.local/bin/git-status"
-    create_symlink "$DOTFILES_DIR/.local/bin/start-hotspot.sh" "$HOME/.local/bin/start-hotspot"
-    create_symlink "$DOTFILES_DIR/.local/bin/stop-hotspot.sh" "$HOME/.local/bin/stop-hotspot"
+    create_symlink "$DOTFILES_DIR/.local/bin/start-hotspot.sh" "$HOME/.local/bin/start-hotspot" # personal
+    create_symlink "$DOTFILES_DIR/.local/bin/stop-hotspot.sh" "$HOME/.local/bin/stop-hotspot" # personal
 
-    create_symlink "$DOTFILES_DIR/.local/share/fonts" "$HOME/.local/share/fonts"
+    create_symlink "$DOTFILES_DIR/.local/share/fonts" "$HOME/.local/share/fonts" # desktop
 
-    create_sudo_symlink "$DOTFILES_DIR/etc/X11/xorg.config.d/30-touchpad.conf" "/etc/X11/xorg.conf.d/30-touchpad.conf"
-    create_sudo_symlink "$DOTFILES_DIR/etc/ly/config.ini" "/etc/ly/config.ini"
+    create_sudo_symlink "$DOTFILES_DIR/etc/X11/xorg.config.d/30-touchpad.conf" "/etc/X11/xorg.conf.d/30-touchpad.conf" # desktop
+    create_sudo_symlink "$DOTFILES_DIR/etc/ly/config.ini" "/etc/ly/config.ini" # desktop
     # not creating a folder for ly beforehand as it is supposed to hold more than just a
     # config file, so if the installation fails, there is no point in creating
     # the config folder as it will interrupt in the installation later
-    create_sudo_symlink "$DOTFILES_DIR/etc/keyd" "/etc/keyd"
+    create_sudo_symlink "$DOTFILES_DIR/etc/keyd" "/etc/keyd" # desktop
 }
 
 # ─────────────────────────────────────────────────────────────────────────────
