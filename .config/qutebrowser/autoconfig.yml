@@ -147,6 +147,8 @@ settings:
     global: true
   statusbar.show:
     global: always
+  tabs.mode_on_change:
+    global: restore
   tabs.padding:
     global:
       bottom: 2
@@ -155,6 +157,8 @@ settings:
       top: 2
   tabs.position:
     global: left
+  tabs.select_on_remove:
+    global: next
   tabs.show:
     global: always
   tabs.title.format:
@@ -169,6 +173,7 @@ settings:
     global:
       DEFAULT: https://duckduckgo.com/?q={}
       p: https://www.perplexity.ai/?q={}
+      y: https://www.youtube.com/results?search_query={}
   url.start_pages:
     global: https://www.perplexity.ai/
   window.hide_decoration:
