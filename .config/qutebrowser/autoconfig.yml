@@ -110,6 +110,7 @@ settings:
     https://www.snapchat.com: true
   content.media.audio_video_capture:
     aistudio.google.com: true
+    https://meet.google.com: true
     https://teams.live.com: true
     https://www.snapchat.com: true
   content.media.video_capture:
