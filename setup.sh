@@ -241,6 +241,7 @@ link_dotfiles() {
 
     create_symlink "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig"
     create_symlink "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
+    create_symlink "$DOTFILES_DIR/.config/aerc" "$HOME/.config/aerc" # personal
     create_symlink "$DOTFILES_DIR/.config/gh" "$HOME/.config/gh"
     create_symlink "$DOTFILES_DIR/.config/ghostty" "$HOME/.config/ghostty"
     create_symlink "$DOTFILES_DIR/.config/qutebrowser" "$HOME/.config/qutebrowser"
