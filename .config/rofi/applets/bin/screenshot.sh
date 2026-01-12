@@ -74,24 +74,23 @@ mkdir -p "$dir"  # Ensure directory exists
 
 # Screenshot functions
 shotnow() {
-    flameshot full -p $dir/$file -c -d 500
-
+    [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && sleep 0.5 && grim - | tee ~/Pictures/Screenshots/Screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png | wl-copy || flameshot full -p $dir/$file -c -d 500
 }
 
 shot5() {
-    flameshot full -p $dir/$file -c -d 5000
+    [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && sleep 5 && grim - | tee ~/Pictures/Screenshots/Screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png | wl-copy || flameshot full -p $dir/$file -c -d 5000
 }
 
 shot10() {
-    flameshot full -p $dir/$file -c -d 10000
+    [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && sleep 10 && grim - | tee ~/Pictures/Screenshots/Screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png | wl-copy || flameshot full -p $dir/$file -c -d 10000
 }
 
 shot_area_edit() {
-    flameshot gui -p $dir/$file -c -d 500
+    [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && grim -g "$(slurp)" - | swappy -f - -o ~/Pictures/Screenshots/Screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png || flameshot gui -p $dir/$file -c -d 500
 }
 
 shotarea() {
-    flameshot gui -p $dir/$file -c -d 500 -s
+    [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/Screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png | wl-copy || flameshot gui -p $dir/$file -c -d 500 -s
 }
 
 # Execute Command
