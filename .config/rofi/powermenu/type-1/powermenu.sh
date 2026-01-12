@@ -62,9 +62,9 @@ run_cmd() {
     selected="$(confirm_exit)"
     if [[ "$selected" == "$yes" ]]; then
         if [[ $1 == '--shutdown' ]]; then
-            [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && hyprshutdown -t 'Shutting down...' --post-cmd 'systemctl poweroff' || systemctl poweroff
+            [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && hyprshutdown -t 'Shutting down...' -p 'systemctl poweroff' || systemctl poweroff
         elif [[ $1 == '--reboot' ]]; then
-            [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && hyprshutdown -t 'Restarting...' --post-cmd 'systemctl reboot' || systemctl reboot
+            [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && hyprshutdown -t 'Restarting...' -p 'systemctl reboot' || systemctl reboot
         elif [[ $1 == '--suspend' ]]; then
             mpc -q pause
             amixer set Master mute
