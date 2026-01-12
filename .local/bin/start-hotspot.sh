@@ -1,12 +1,12 @@
 #!/bin/bash
 # Disconnect from any WiFi network
-sudo iwctl station wlan0 disconnect 2>/dev/null
+iwctl station wlan0 disconnect
 
 # Stop iwd to prevent conflicts
 sudo systemctl stop iwd
 
 # Disable client mode network config
-sudo mv /etc/systemd/network/25-wireless.network /etc/systemd/network/25-wireless.network.disabled 2>/dev/null
+sudo mv /etc/systemd/network/25-wireless.network /etc/systemd/network/25-wireless.network.disabled
 
 # Bring up wlan0
 sudo ip link set wlan0 up
