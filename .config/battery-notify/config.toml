@@ -24,4 +24,4 @@ warn_on_mons_with_no_ac = 2
 # expose battery information.
 #
 # Set to 0 to disable.
-bluetooth_low_pct = 40
+bluetooth_low_pct = 30
