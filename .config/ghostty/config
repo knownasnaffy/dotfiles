@@ -1,7 +1,6 @@
 gtk-titlebar = false
 theme = TokyoNight
 window-decoration = none
-font-size = 10
 keybind = performable:alt+a=goto_split:previous
 keybind = performable:alt+f=goto_split:next
 keybind = alt+shift+e=new_split:down
