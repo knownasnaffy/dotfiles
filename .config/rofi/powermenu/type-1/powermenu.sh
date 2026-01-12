@@ -62,15 +62,15 @@ run_cmd() {
     selected="$(confirm_exit)"
     if [[ "$selected" == "$yes" ]]; then
         if [[ $1 == '--shutdown' ]]; then
-            systemctl poweroff
+            [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && hyprshutdown -t 'Shutting down...' --post-cmd 'systemctl poweroff' || systemctl poweroff
         elif [[ $1 == '--reboot' ]]; then
-            systemctl reboot
+            [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && hyprshutdown -t 'Restarting...' --post-cmd 'systemctl reboot' || systemctl reboot
         elif [[ $1 == '--suspend' ]]; then
             mpc -q pause
             amixer set Master mute
             systemctl suspend
         elif [[ $1 == '--logout' ]]; then
-            i3-msg exit
+            [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && hyprshutdown || i3-msg exit
             # elif [[ $1 == '--logout' ]]; then
             # 	if [[ "$DESKTOP_SESSION" == 'openbox' ]]; then
             # 		openbox --exit
@@ -97,7 +97,8 @@ case ${chosen} in
         run_cmd --reboot
         ;;
     $lock)
-        sleep 0.5 && $HOME/.config/i3/lock.sh
+        [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && hyprlock || sleep 0.5 && $HOME/.config/i3/lock.sh
+
         # if [[ -x '/usr/bin/betterlockscreen' ]]; then
         # 	betterlockscreen -l
         # elif [[ -x '/usr/bin/i3lock' ]]; then
