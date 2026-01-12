@@ -9,11 +9,7 @@
 
 /*****----- Configuration -----*****/
 configuration {
-	modi:                       "clipboard:greenclip print";
-	run-command:                "{cmd}";
 	show-icons:                 false;
-	drun-display-format:        "{name}";
-	window-format:              "{w} · {c} · {t}";
 }
 
 /*****----- Global Properties -----*****/

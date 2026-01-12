@@ -15,6 +15,4 @@ dir="$HOME/.config/rofi/launchers/type-1"
 theme='clipboard'
 
 ## Run
-rofi \
-    -show clipboard \
-    -theme ${dir}/${theme}.rasi
+cliphist list | rofi -dmenu -theme ${dir}/${theme}.rasi | cliphist decode | wl-copy
