@@ -7,6 +7,7 @@ ZSH_CUSTOM="$ZSH_DIR/custom"
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 NVIM_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
 POSTNOTES=""
+SKIPPED_SYMLINKS=0
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Logging Helpers
@@ -45,7 +46,7 @@ create_symlink() {
     local dest="$2"
 
     if [ -L "$dest" ] && [ "$(readlink "$dest")" == "$src" ]; then
-        log "Symlink already exists: $dest -> $src. Skipping..."
+        ((SKIPPED_SYMLINKS++))
         return
     fi
 
@@ -69,7 +70,7 @@ create_sudo_symlink() {
     local dest="$2"
 
     if [ -L "$dest" ] && [ "$(readlink "$dest")" == "$src" ]; then
-        log "Symlink already exists: $dest -> $src. Skipping..."
+        ((SKIPPED_SYMLINKS++))
         return
     fi
 
@@ -366,6 +367,10 @@ main() {
     run_function post_install_scripts
     create_cleanup_script
     $PRIVATE_MODE && install_private_packages
+
+    if (( SKIPPED_SYMLINKS > 0 )); then
+        POSTNOTES+="$SKIPPED_SYMLINKS symlink(s) were skipped because they already existed"
+    fi
 
     echo $POSTNOTES
 }
