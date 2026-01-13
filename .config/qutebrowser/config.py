@@ -64,19 +64,21 @@ config.unbind("J")
 config.unbind("K")
 config.unbind(":")
 
-config.bind("K", "scroll-page 0 0.5")  # Instead of "C-d"
-config.bind("L", "scroll-page 0 -0.5")  # Instead of "C-i"
+config.bind("K", "scroll-page 0 0.5")
+config.bind("L", "scroll-page 0 -0.5")
 
 # Rebind with new layout
-config.bind("<Alt-o>", "back")  # Instead of "H"
-config.bind("<Alt-i>", "forward")  # Instead of "L"
-config.bind("<Alt-.>", "tab-next")  # Instead of "J"
-config.bind("<Alt-,>", "tab-prev")  # Instead of "K"
-config.bind("<Alt-.>", "tab-next", mode="insert")  # Instead of "J"
-config.bind("<Alt-,>", "tab-prev", mode="insert")  # Instead of "K"
+config.bind("<Alt-o>", "back")
+config.bind("<Alt-i>", "forward")
+config.bind("<Alt-.>", "tab-next")
+config.bind("<Alt-,>", "tab-prev")
+config.bind("<Alt-.>", "tab-next", mode="insert")
+config.bind("<Alt-,>", "tab-prev", mode="insert")
+config.bind("<Alt-.>", "tab-next", mode="passthrough")
+config.bind("<Alt-,>", "tab-prev", mode="passthrough")
 
 # Remap command input to ','
-config.bind(",", "cmd-set-text :")
+# config.bind(",", "cmd-set-text :")
 
 # Carot mod keys
 config.unbind("h", mode="caret")
