@@ -15,7 +15,7 @@
 		// "max-length":
 		// "align":
 		// "justify":
-		"on-click": "kitty -e ~/.config/waybar/scripts/power-menu.sh",
+		"on-click": "~/.config/rofi/scripts/powermenu_t1",
 		// "on-click-middle":
 		// "on-click-right":
 		// "on-update":
