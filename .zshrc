@@ -83,6 +83,9 @@ spaceship remove "${spaceship_cleanup[@]}"
 
 bindkey -e  # Use Emacs keybindings
 
+# Custom sudo keybind
+bindkey '^[s' sudo-command-line                     # Alt+w → delete word backward
+
 # Custom word and line deletion
 bindkey '^[w' backward-kill-word                     # Alt+w → delete word backward
 bindkey '^[W' kill-whole-line                        # Alt+Shift+w → delete whole line
