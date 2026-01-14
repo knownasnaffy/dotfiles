@@ -130,6 +130,7 @@ alias brhigh="xrandr --output $(xrandr | grep ' connected' | cut -d' ' -f1) --br
 # Paru aliases
 alias prs="paru -S"
 alias prss="paru -Ss"
+alias prsi="paru -Si"
 
 # Terminal and tools
 export TERMINAL=ghostty
