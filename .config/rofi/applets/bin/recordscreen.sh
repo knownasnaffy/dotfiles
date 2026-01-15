@@ -76,7 +76,7 @@ mkdir -p "$dir"  # Ensure directory exists
 
 # Screenshot functions
 shotnow() {
-    sleep 0.5 && wf-recorder -f $dir/$file --audio
+    sleep 0.5 && wf-recorder -f "$dir/$file" --audio
 }
 
 # shot5() {
@@ -92,7 +92,7 @@ shotnow() {
 # }
 
 shotarea() {
-    sleep 0.5 && wf-recorder -g "$(slurp)" -f $dir/$file --audio
+    sleep 0.5 && wf-recorder -g "$(slurp)" -f "$dir/$file" --audio
 }
 
 stoprecording() {
