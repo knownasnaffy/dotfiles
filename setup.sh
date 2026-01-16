@@ -263,6 +263,7 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.config/systemd" "$HOME/.config/systemd"
     create_symlink "$DOTFILES_DIR/.config/dunst" "$HOME/.config/dunst" # desktop
     create_symlink "$DOTFILES_DIR/.config/btop" "$HOME/.config/btop"
+    create_symlink "$DOTFILES_DIR/.config/swaync" "$HOME/.config/swaync"
     create_symlink "$DOTFILES_DIR/.config/.lesskey" "$HOME/.lesskey"
     create_symlink "$DOTFILES_DIR/.config/.Xresources" "$HOME/.Xresources"
     create_symlink "$DOTFILES_DIR/.config/greenclip.toml" "$HOME/.config/greenclip.toml" # personal, desktop
