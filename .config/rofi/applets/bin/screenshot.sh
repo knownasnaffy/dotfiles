@@ -66,9 +66,7 @@ run_rofi() {
 
 # Screenshot variables
 time=$(date +%Y-%m-%d-%H-%M-%S)
-geometry=$(xrandr | grep 'current' | awk '{print $8 "x" $10}' | tr -d ',')
 dir="$(xdg-user-dir PICTURES)/Screenshots"
-file="Screenshot_${time}_${geometry}.png"
 
 mkdir -p "$dir"  # Ensure directory exists
 
