@@ -154,7 +154,7 @@ install_neovim_config() {
 
 install_paru() {
     log "Install base packages"
-    sudo pacman -Sy --noconfirm zsh make gcc ripgrep unzip git xclip neovim base-devel
+    sudo pacman -Sy --noconfirm zsh make gcc ripgrep unzip git neovim base-devel
 
     check_command paru || (
         log "Install paru..."
