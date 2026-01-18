@@ -263,6 +263,7 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.config/systemd" "$HOME/.config/systemd"
     create_symlink "$DOTFILES_DIR/.config/btop" "$HOME/.config/btop"
     create_symlink "$DOTFILES_DIR/.config/swaync" "$HOME/.config/swaync"
+    create_symlink "$DOTFILES_DIR/.config/xdg-desktop-portal-termfilechooser" "$HOME/.config/xdg-desktop-portal-termfilechooser"
     create_symlink "$DOTFILES_DIR/.config/.lesskey" "$HOME/.lesskey"
     create_symlink "$DOTFILES_DIR/.zsh_functions" "$HOME/.zsh_functions"
 
