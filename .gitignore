@@ -6,7 +6,6 @@
 node_modules
 .config/aerc/accounts.conf
 .config/qutebrowser/bookmarks
-.config/spotifyd
 
 # Build output
 dist/

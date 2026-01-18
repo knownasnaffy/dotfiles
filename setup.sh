@@ -178,7 +178,7 @@ install_programs() {
         ghostty task brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber \
         alsa-utils inotify-tools jq eva thefuck bat zoxide 7zip yazi zathura \
         noto-fonts-emoji xdg-user-dirs udisks2 pass eza aichat \
-        zathura-pdf-poppler ly spotifyd playerctl keyd btop ueberzug man-db imagemagick
+        zathura-pdf-poppler ly playerctl keyd btop ueberzug man-db imagemagick
 
     # AUR packages
     paru -Sy --noconfirm \
@@ -259,7 +259,6 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.config/yazi" "$HOME/.config/yazi"
     create_symlink "$DOTFILES_DIR/.config/pycodestyle" "$HOME/.config/pycodestyle"
     create_symlink "$DOTFILES_DIR/.config/battery-notify" "$HOME/.config/battery-notify" # desktop
-    create_symlink "$DOTFILES_DIR/.config/spotifyd" "$HOME/.config/spotifyd" # personal
     create_symlink "$DOTFILES_DIR/.config/systemd" "$HOME/.config/systemd"
     create_symlink "$DOTFILES_DIR/.config/btop" "$HOME/.config/btop"
     create_symlink "$DOTFILES_DIR/.config/swaync" "$HOME/.config/swaync"
