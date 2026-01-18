@@ -168,18 +168,22 @@ install_programs() {
     install_paru
 
     log "Installing other programs..."
+
+    # Update existing base system
     paru -Syu --noconfirm
 
+    # Pacman packages
     paru -Sy --noconfirm \
-        fzf github-cli fastfetch qutebrowser rofi polybar feh picom ttf-hack-nerd \
-        ghostty task flameshot brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber \
+        github-cli fastfetch qutebrowser rofi ttf-hack-nerd \
+        ghostty task brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber \
         alsa-utils inotify-tools jq eva thefuck bat zoxide 7zip yazi zathura \
-        noto-fonts-emoji dunst xdotool xdg-user-dirs udisks2 pass eza aichat \
-        zathura-pdf-poppler ly i3-wm xorg-server xorg-xinit xorg-xrandr \
+        noto-fonts-emoji xdg-user-dirs udisks2 pass eza aichat \
+        zathura-pdf-poppler ly xorg-server xorg-xinit xorg-xrandr \
         spotifyd playerctl keyd btop ueberzug man-db imagemagick
 
+    # AUR packages
     paru -Sy --noconfirm \
-        i3lock-color rofi-greenclip beeper-v4-bin
+        beeper-v4-bin
 
     install_oh_my_zsh
     install_neovim_config
@@ -248,9 +252,6 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.config/gh" "$HOME/.config/gh"
     create_symlink "$DOTFILES_DIR/.config/ghostty" "$HOME/.config/ghostty" # desktop
     create_symlink "$DOTFILES_DIR/.config/qutebrowser" "$HOME/.config/qutebrowser" # desktop
-    create_symlink "$DOTFILES_DIR/.config/picom" "$HOME/.config/picom" # desktop
-    create_symlink "$DOTFILES_DIR/.config/polybar" "$HOME/.config/polybar" # desktop
-    create_symlink "$DOTFILES_DIR/.config/i3" "$HOME/.config/i3" # desktop
     create_symlink "$DOTFILES_DIR/.config/rofi" "$HOME/.config/rofi" # desktop
     create_symlink "$DOTFILES_DIR/.config/fastfetch" "$HOME/.config/fastfetch"
     create_symlink "$DOTFILES_DIR/.config/bat" "$HOME/.config/bat"
@@ -261,12 +262,10 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.config/battery-notify" "$HOME/.config/battery-notify" # desktop
     create_symlink "$DOTFILES_DIR/.config/spotifyd" "$HOME/.config/spotifyd" # personal
     create_symlink "$DOTFILES_DIR/.config/systemd" "$HOME/.config/systemd"
-    create_symlink "$DOTFILES_DIR/.config/dunst" "$HOME/.config/dunst" # desktop
     create_symlink "$DOTFILES_DIR/.config/btop" "$HOME/.config/btop"
     create_symlink "$DOTFILES_DIR/.config/swaync" "$HOME/.config/swaync"
     create_symlink "$DOTFILES_DIR/.config/.lesskey" "$HOME/.lesskey"
     create_symlink "$DOTFILES_DIR/.config/.Xresources" "$HOME/.Xresources"
-    create_symlink "$DOTFILES_DIR/.config/greenclip.toml" "$HOME/.config/greenclip.toml" # personal, desktop
     create_symlink "$DOTFILES_DIR/.zsh_functions" "$HOME/.zsh_functions"
 
     create_symlink "$DOTFILES_DIR/.config/BeeperTexts/custom.css" "$HOME/.config/BeeperTexts/custom.css" # personal, desktop
@@ -279,7 +278,6 @@ link_dotfiles() {
 
     create_symlink "$DOTFILES_DIR/.local/share/fonts" "$HOME/.local/share/fonts" # desktop
 
-    create_sudo_symlink "$DOTFILES_DIR/etc/X11/xorg.config.d/30-touchpad.conf" "/etc/X11/xorg.conf.d/30-touchpad.conf" # desktop
     create_sudo_symlink "$DOTFILES_DIR/etc/ly/config.ini" "/etc/ly/config.ini" # desktop
     # not creating a folder for ly beforehand as it is supposed to hold more than just a
     # config file, so if the installation fails, there is no point in creating
