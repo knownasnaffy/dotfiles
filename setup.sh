@@ -180,9 +180,18 @@ install_programs() {
         noto-fonts-emoji xdg-user-dirs udisks2 pass eza aichat \
         zathura-pdf-poppler ly playerctl keyd btop ueberzug man-db imagemagick
 
+    # Hyprland / Wayland stack
+    paru -Sy --noconfirm \
+        hyprland hyprlock hyprpaper hyprpicker hyprpolkitagent \
+        waybar swaync uwsm qt6-wayland \
+        grim slurp swappy wf-recorder wl-clipboard cliphist \
+        wev showmethekey ydotool \
+        xdg-desktop-portal xdg-desktop-portal-hyprland \
+        xdg-desktop-portal-termfilechooser-hunkyburrito-git
+
     # AUR packages
     paru -Sy --noconfirm \
-        beeper-v4-bin
+        beeper-v4-bin hyprshutdown-git
 
     install_oh_my_zsh
     install_neovim_config
