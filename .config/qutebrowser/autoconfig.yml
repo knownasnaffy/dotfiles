@@ -59,6 +59,7 @@ settings:
     '*://chat.deepseek.com/*': false
     '*://davatorium.github.io/*': true
     '*://gedakc.users.sourceforge.net/*': true
+    '*://getcssscan.com/*': false
     '*://git-scm.com/*': false
     '*://gitlab.com/*': true
     '*://hamberg.no/*': true
@@ -174,6 +175,7 @@ settings:
   url.searchengines:
     global:
       DEFAULT: https://duckduckgo.com/?q={}
+      c: https://chatgpt.com/?q={}
       p: https://www.perplexity.ai/?q={}
       y: https://www.youtube.com/results?search_query={}
   url.start_pages:
