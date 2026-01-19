@@ -273,6 +273,7 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.config/swaync" "$HOME/.config/swaync"
     create_symlink "$DOTFILES_DIR/.config/xdg-desktop-portal-termfilechooser" "$HOME/.config/xdg-desktop-portal-termfilechooser"
     create_symlink "$DOTFILES_DIR/.config/bluetuith" "$HOME/.config/bluetuith"
+    create_symlink "$DOTFILES_DIR/.config/mpv" "$HOME/.config/mpv"
     create_symlink "$DOTFILES_DIR/.config/.lesskey" "$HOME/.lesskey"
     create_symlink "$DOTFILES_DIR/.zsh_functions" "$HOME/.zsh_functions"
 
