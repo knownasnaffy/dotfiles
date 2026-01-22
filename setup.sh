@@ -178,7 +178,8 @@ install_programs() {
         ghostty task brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber \
         alsa-utils inotify-tools jq eva thefuck bat zoxide 7zip yazi zathura \
         noto-fonts-emoji xdg-user-dirs udisks2 pass eza aichat \
-        zathura-pdf-poppler ly playerctl keyd btop ueberzug man-db imagemagick
+        zathura-pdf-poppler ly playerctl keyd btop ueberzug man-db imagemagick \
+        pass-otp oath-toolkit
 
     # Hyprland / Wayland stack
     paru -Sy --noconfirm \
