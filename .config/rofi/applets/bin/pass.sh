@@ -18,7 +18,6 @@ password_files=( "${password_files[@]%.gpg}" )
 
 password=$(printf '%s\n' "${password_files[@]}" | rofi \
         -dmenu \
-        -p "Connect to WiFi" \
         -theme ${dir}/${theme}.rasi \
     "$@")
 
