@@ -4,7 +4,6 @@ shopt -s nullglob globstar
 
 # Rofi styles
 dir="$HOME/.config/rofi/launchers/type-1"
-theme='dmenu'
 
 if [[ -z $WAYLAND_DISPLAY && -z $DISPLAY ]]; then
     echo "Error: No Wayland or X11 display detected" >&2
@@ -26,6 +25,21 @@ feedback() {
 
 }
 
+generate_placeholder_string() {
+    echo "entry { placeholder: \"$1\"; }"
+}
+
+generate_placeholder_icon() {
+    echo "textbox-prompt-colon { str: \"$1 \"; }"
+}
+
+# Load emails
+emails=()
+if [[ -f "$HOME/.private_env" ]]; then
+    # shellcheck source=/dev/null
+    source "$HOME/.private_env"
+fi
+
 prefix=${PASSWORD_STORE_DIR-~/.password-store}
 password_files=( "$prefix"/**/*.gpg )
 password_files=( "${password_files[@]#"$prefix"/}" )
@@ -33,7 +47,7 @@ password_files=( "${password_files[@]%.gpg}" )
 
 password=$(printf '%s\n' "${password_files[@]}" | rofi \
         -dmenu \
-        -theme ${dir}/${theme}.rasi \
+        -theme ${dir}/dmenu.rasi \
         -kb-custom-1 'Alt+a' \
         -kb-custom-2 'Alt+o' \
         -kb-custom-3 'Alt+e' \
@@ -51,23 +65,33 @@ case $? in
         fi
         ;;
     10)
-        service=$(rofi -dmenu -theme ${dir}/text-input.rasi -theme-str '
-		entry {
-		    placeholder: "Enter service name...";
-		}
-	')
-        [[ -n $service ]] || exit 0
-        account=$(rofi -dmenu -theme ${dir}/dmenu.rasi)
-        [[ -n $service ]] || exit 0
-        password=$(rofi -dmenu -theme ${dir}/text-input.rasi -theme-str '
-		entry {
-		    placeholder: "Enter the password...";
-		}
-		textbox-prompt-colon {
-		    str: " ";
-		}
-	')
-        [[ -n $password ]] || exit 0
+        fallback_message() {
+            notify-send "No password created"
+        }
+
+        service=$(rofi -dmenu -theme ${dir}/text-input.rasi \
+                -theme-str "`generate_placeholder_string "Enter service name..."`"
+        )
+        [[ -n $service ]] || (fallback_message && exit 0)
+
+        account=$(printf '%s\n' "${emails[@]}" | rofi -dmenu -theme ${dir}/dmenu.rasi -kb-custom-1 "Alt+Return" )
+        rc=$?
+
+        [[ $rc -eq 1 ]] && fallback_message && exit 0
+
+        if [[ $rc -eq 10 ]]; then
+            account=$(rofi -dmenu -p "Custom account" -theme ${dir}/text-input.rasi \
+                    -theme-str "$placeholder_custom_account"
+            )
+            [[ -z "$account" ]] && fallback_message && exit 0
+        fi
+
+
+        password=$(rofi -dmenu -theme ${dir}/text-input.rasi \
+                -theme-str "`generate_placeholder_string "Enter service name..."`" \
+                -theme-str "`generate_placeholder_icon ""`"
+        )
+        [[ -n $password ]] || (fallback_message && exit 0)
 
         (echo "$password" | pass insert -m $service) && (echo "$ok" | feedback "Password successfully added to $label")
         ;;
