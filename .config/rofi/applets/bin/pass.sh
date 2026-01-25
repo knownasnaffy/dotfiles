@@ -2,6 +2,8 @@
 
 shopt -s nullglob globstar
 
+set -o nounset
+
 # Rofi styles
 dir="$HOME/.config/rofi/launchers/type-1"
 
