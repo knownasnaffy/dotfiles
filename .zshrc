@@ -128,6 +128,8 @@ makecpp() {
 alias prs="paru -S"
 alias prss="paru -Ss"
 alias prsi="paru -Si"
+alias prsy="paru -Sy"
+alias prqs="paru -Qs"
 
 # Terminal and tools
 export TERMINAL=ghostty
