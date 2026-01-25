@@ -97,7 +97,7 @@ case $? in
         )
         [[ -n $password ]] || (fallback_message && exit 0)
 
-        (echo "$password" | pass insert -m $service) && (echo "$ok" | feedback "Password successfully added to $label")
+        (echo "$password" | pass insert -m "$service") && (echo "$ok" | feedback "Password successfully added to $service")
         ;;
     11)
         echo -e "$ok" | feedback "Add otp not implemented yet"
