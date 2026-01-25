@@ -116,6 +116,7 @@ export HISTORY_SUBSTRING_SEARCH_FUZZY="1"
 
 # Set default text editor
 export EDITOR='nvim'
+export VISUAL='ghostty -e nvim'
 alias vi=nvim
 
 # Alias to run a c++ file
