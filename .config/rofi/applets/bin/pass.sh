@@ -47,6 +47,7 @@ password_files=( "${password_files[@]%.gpg}" )
 
 password=$(printf '%s\n' "${password_files[@]}" | rofi \
         -dmenu \
+        -no-custom \
         -theme ${dir}/dmenu.rasi \
         -kb-custom-1 'Alt+a' \
         -kb-custom-2 'Alt+o' \
