@@ -15,7 +15,7 @@ mesg="DIR: ~/Pictures/Screenshots"
 
 if [[ "$theme" == *'type-1'* ]]; then
     list_col='1'
-    list_row='5'
+    list_row='6'
     win_width='400px'
 elif [[ "$theme" == *'type-3'* ]]; then
     list_col='1'
@@ -39,6 +39,7 @@ if [[ "$layout" == 'NO' ]]; then
     option_3=" Capture Area and Edit"
     option_4=" Capture in 5s"
     option_5=" Capture in 10s"
+    option_6=" Open Screenshots Folder"
 else
     option_1=""
     option_2=""
@@ -61,7 +62,7 @@ rofi_cmd() {
 
 # Pass variables to rofi dmenu
 run_rofi() {
-    echo -e "$option_1\n$option_2\n$option_3\n$option_4\n$option_5" | rofi_cmd
+    echo -e "$option_1\n$option_2\n$option_3\n$option_4\n$option_5\n$option_6" | rofi_cmd
 }
 
 # Screenshot variables
@@ -110,4 +111,5 @@ case "$chosen" in
     $option_3) run_cmd --opt3 ;;
     $option_4) run_cmd --opt4 ;;
     $option_5) run_cmd --opt5 ;;
+    $option_6) ghostty -e yazi "$dir" ;;
 esac
