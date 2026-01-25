@@ -59,9 +59,10 @@ case $? in
     0)
         [[ -n $password ]] || exit 0
         if pass otp -c "$password" 2>/dev/null; then
-            :
+            notify-send "OTP copied to clipboard"
         else
             pass show -c "$password" 2>/dev/null
+            notify-send "Password copied to clipboard"
         fi
         ;;
     10)
