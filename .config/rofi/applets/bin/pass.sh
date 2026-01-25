@@ -21,7 +21,6 @@ feedback() {
         -theme-str 'element-text {horizontal-align: 0.5;}' \
         -theme-str 'textbox {horizontal-align: 0.5;}' \
         -dmenu \
-        -p 'Confirmation' \
         -mesg "$1" \
         -theme $HOME/.config/rofi/applets/type-1/style-2.rasi
 
@@ -34,6 +33,13 @@ generate_placeholder_string() {
 generate_placeholder_icon() {
     echo "textbox-prompt-colon { str: \"$1 \"; }"
 }
+
+fallback_message=""
+
+fallback() {
+    notify-send "$fallback_message"
+}
+
 
 # Load emails
 emails=()
@@ -61,33 +67,33 @@ password=$(printf '%s\n' "${password_files[@]}" | rofi \
 case $? in
     0)
         [[ -n $password ]] || exit 0
+
+        fallback_message="Password not copied"
+
         if pass otp -c "$password" 2>/dev/null; then
             notify-send "OTP copied to clipboard"
         else
-            pass show -c "$password" 2>/dev/null
-            notify-send "Password copied to clipboard"
+            pass show -c "$password" 2>/dev/null && notify-send "Password copied to clipboard" || fallback
         fi
         ;;
     10)
-        fallback_message() {
-            notify-send "No password created"
-        }
+        fallback_message="No password created"
 
         service=$(rofi -dmenu -theme ${dir}/text-input.rasi \
                 -theme-str "$(generate_placeholder_string "Enter service name...")"
         )
-        [[ -n $service ]] || (fallback_message && exit 0)
+        [[ -n $service ]] || (fallback && exit 0)
 
         account=$(printf '%s\n' "${emails[@]}" | rofi -dmenu -theme ${dir}/dmenu.rasi -kb-custom-1 "Alt+Return" )
         rc=$?
 
-        [[ $rc -eq 1 ]] && fallback_message && exit 0
+        [[ $rc -eq 1 ]] && fallback && exit 0
 
         if [[ $rc -eq 10 ]]; then
-            account=$(rofi -dmenu -p "Custom account" -theme ${dir}/text-input.rasi \
+            account=$(rofi -dmenu -theme ${dir}/text-input.rasi \
                     -theme-str "$placeholder_custom_account"
             )
-            [[ -z "$account" ]] && fallback_message && exit 0
+            [[ -z "$account" ]] && fallback && exit 0
         fi
 
 
@@ -95,7 +101,7 @@ case $? in
                 -theme-str "$(generate_placeholder_string "Enter service name...")" \
                 -theme-str "$(generate_placeholder_icon "")"
         )
-        [[ -n $password ]] || (fallback_message && exit 0)
+        [[ -n $password ]] || (fallback && exit 0)
 
         (echo "$password" | pass insert -m "$service") && (echo "$ok" | feedback "Password successfully added to $service")
         ;;
