@@ -74,7 +74,7 @@ case $? in
         }
 
         service=$(rofi -dmenu -theme ${dir}/text-input.rasi \
-                -theme-str "`generate_placeholder_string "Enter service name..."`"
+                -theme-str "$(generate_placeholder_string "Enter service name...")"
         )
         [[ -n $service ]] || (fallback_message && exit 0)
 
@@ -92,8 +92,8 @@ case $? in
 
 
         password=$(rofi -dmenu -theme ${dir}/text-input.rasi \
-                -theme-str "`generate_placeholder_string "Enter service name..."`" \
-                -theme-str "`generate_placeholder_icon ""`"
+                -theme-str "$(generate_placeholder_string "Enter service name...")" \
+                -theme-str "$(generate_placeholder_icon "")"
         )
         [[ -n $password ]] || (fallback_message && exit 0)
 
