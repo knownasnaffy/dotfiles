@@ -276,6 +276,7 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.config/bluetuith" "$HOME/.config/bluetuith"
     create_symlink "$DOTFILES_DIR/.config/mpv" "$HOME/.config/mpv"
     create_symlink "$DOTFILES_DIR/.config/swayosd" "$HOME/.config/swayosd"
+    create_symlink "$DOTFILES_DIR/.config/swayimg" "$HOME/.config/swayimg"
     create_symlink "$DOTFILES_DIR/.config/.lesskey" "$HOME/.lesskey"
     create_symlink "$DOTFILES_DIR/.zsh_functions" "$HOME/.zsh_functions"
 
