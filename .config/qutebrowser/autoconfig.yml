@@ -151,6 +151,8 @@ settings:
     global: true
   statusbar.show:
     global: always
+  tabs.last_close:
+    global: startpage
   tabs.mode_on_change:
     global: restore
   tabs.padding:
@@ -170,7 +172,7 @@ settings:
   tabs.width:
     global: 150
   url.default_page:
-    global: https://www.perplexity.ai/
+    global: http://start.barinr.xyz
   url.open_base_url:
     global: true
   url.searchengines:
@@ -180,7 +182,7 @@ settings:
       p: https://www.perplexity.ai/?q={}
       y: https://www.youtube.com/results?search_query={}
   url.start_pages:
-    global: https://www.perplexity.ai/
+    global: http://start.barinr.xyz
   window.hide_decoration:
     global: true
   window.transparent:
