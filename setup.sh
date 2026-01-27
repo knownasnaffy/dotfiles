@@ -186,7 +186,7 @@ install_programs() {
         hyprland hyprlock hyprpaper hyprpicker hyprpolkitagent \
         waybar swaync uwsm qt6-wayland \
         grim slurp swappy wf-recorder wl-clipboard cliphist \
-        wev showmethekey ydotool \
+        wev showmethekey ydotool hyprshade \
         xdg-desktop-portal xdg-desktop-portal-hyprland \
         xdg-desktop-portal-termfilechooser-hunkyburrito-git
 
