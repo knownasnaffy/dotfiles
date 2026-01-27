@@ -90,11 +90,11 @@
       "key": "│ ├󰏖",
       "keyColor": "blue"
     },
-    {
-      "type": "wmtheme",
-      "key": "│ ├󰉼",
-      "keyColor": "blue"
-    },
+    // {
+    //   "type": "wmtheme",
+    //   "key": "│ ├󰉼",
+    //   "keyColor": "blue"
+    // },
     {
       "type": "command",
       "key": "└ ├󰸌",
