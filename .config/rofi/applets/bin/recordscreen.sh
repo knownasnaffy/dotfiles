@@ -60,7 +60,7 @@ mkdir -p "$dir"
 chosen="$(run_rofi)"
 case "$chosen" in
     $option_1)
-        notify-send "Screen Recorder" "Recording started (Full Screen)"
+        notify-send "Screen Recorder" "Recording started (Full Screen)" -t 1000
         sleep 0.7
         wf-recorder \
             -f "$dir/$file" \
@@ -75,7 +75,7 @@ case "$chosen" in
 
     $option_2)
         region="$(slurp)" || exit 0
-        notify-send "Screen Recorder" "Recording started (Area)"
+        notify-send "Screen Recorder" "Recording started (Area)" -t 1000
         sleep 0.7
         wf-recorder \
             -g "$region" \
