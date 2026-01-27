@@ -313,7 +313,11 @@ setup_zsh() {
 post_install_scripts() {
     bat cache --build
     check_command xdg-settings && xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
-    check_command xdg-settings && xdg-mime default org.pwmt.zathura.desktop application/pdf
+    check_command xdg-mime && (
+        xdg-mime default org.pwmt.zathura.desktop application/pdf
+
+        xdg-mime default swayimg.desktop image/jpeg image/png image/gif image/bmp image/webp image/svg+xml
+    )
 
     if ! systemctl is-enabled keyd &>/dev/null; then
         sudo systemctl enable keyd
