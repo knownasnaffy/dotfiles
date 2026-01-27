@@ -184,7 +184,7 @@ install_programs() {
     # Hyprland / Wayland stack
     paru -Sy --noconfirm \
         hyprland hyprlock hyprpaper hyprpicker hyprpolkitagent \
-        waybar swaync uwsm qt6-wayland \
+        waybar swaync uwsm qt6-wayland swayosd \
         grim slurp swappy wf-recorder wl-clipboard cliphist \
         wev showmethekey ydotool hyprshade \
         xdg-desktop-portal xdg-desktop-portal-hyprland \
@@ -275,6 +275,7 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.config/xdg-desktop-portal-termfilechooser" "$HOME/.config/xdg-desktop-portal-termfilechooser"
     create_symlink "$DOTFILES_DIR/.config/bluetuith" "$HOME/.config/bluetuith"
     create_symlink "$DOTFILES_DIR/.config/mpv" "$HOME/.config/mpv"
+    create_symlink "$DOTFILES_DIR/.config/swayosd" "$HOME/.config/swayosd"
     create_symlink "$DOTFILES_DIR/.config/.lesskey" "$HOME/.lesskey"
     create_symlink "$DOTFILES_DIR/.zsh_functions" "$HOME/.zsh_functions"
 
