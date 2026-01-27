@@ -1,9 +1,16 @@
+# Remove decorations
 gtk-titlebar = false
-theme = TokyoNight
 window-decoration = none
+
+# Set theme
+theme = TokyoNight
+
+# Shaders
 custom-shader = ./shaders/matrix-hallway.glsl
 custom-shader = ./shaders/cursor-sweep.glsl
 custom-shader = ./shaders/rectangle-cursor-boom.glsl
+
+# Keybinds
 keybind = performable:alt+a=goto_split:previous
 keybind = performable:alt+f=goto_split:next
 keybind = alt+shift+e=new_split:down
