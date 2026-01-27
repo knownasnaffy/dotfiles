@@ -70,7 +70,6 @@ case "$chosen" in
             --audio \
             --audio-bitrate 128k \
             --audio-buffer 8192
-        notify-send "Screen Recorder" "Recording stopped"
         ;;
 
     $option_2)
@@ -86,7 +85,6 @@ case "$chosen" in
             --audio \
             --audio-bitrate 128k \
             --audio-buffer 8192
-        notify-send "Screen Recorder" "Recording stopped"
         ;;
 
     $option_3)
