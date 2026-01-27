@@ -8,12 +8,12 @@
 //
 
 #define SPEED_MULTIPLIER 0.4
-#define GREEN_ALPHA .2
+#define GREEN_ALPHA .1
 
 #define BLACK_BLEND_THRESHOLD .06
 
-#define BG_COLOR   vec3(26.0/255.0, 27.0/255.0, 38.0/255.0)
-#define TEXT_COLOR vec3(122.0/255.0, 162.0/255.0, 247.0/255.0)
+#define BG_COLOR   vec3(95.0/255.0, 96.0/255.0, 54.0/255.0)
+#define TEXT_COLOR vec3(102.0/255.0, 142.0/255.0, 255.0/255.0)
 
 #define R fract(1e2 * sin(p.x * 8. + p.y))
 
@@ -21,7 +21,7 @@ void mainImage(out vec4 fragColor, vec2 fragCoord) {
     vec3 v = vec3(fragCoord, 2) / iResolution - .5;
     // vec3 s = .5 / abs(v);
     // scale?
-    vec3 s = .9 / abs(v);
+    vec3 s = .8 / abs(v);
     s.z = min(s.y, s.x);
     vec3 i = ceil( 8e2 * s.z * ( s.y < s.x ? v.xzz : v.zyz ) ) * .1;
     vec3 j = fract(i);
@@ -32,12 +32,12 @@ void mainImage(out vec4 fragColor, vec2 fragCoord) {
     p *= j;
     col *= (R >.5 && j.x < .6 && j.y < .8) ? GREEN_ALPHA : 0.;
 
-  	// Sample the terminal screen texture including alpha channel
+    // Sample the terminal screen texture including alpha channel
     vec2 uv = fragCoord.xy / iResolution.xy;
-  	vec4 terminalColor = texture(iChannel0, uv);
+    vec4 terminalColor = texture(iChannel0, uv);
 
     float alpha = step(length(terminalColor.rgb), BLACK_BLEND_THRESHOLD);
     vec3 blendedColor = mix(terminalColor.rgb * 1.2, col, alpha);
 
-    fragColor = vec4(blendedColor, terminalColor.a);
+    fragColor = vec4(blendedColor, BG_COLOR);
 }
