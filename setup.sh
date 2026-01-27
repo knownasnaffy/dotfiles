@@ -316,6 +316,8 @@ post_install_scripts() {
     check_command xdg-mime && (
         xdg-mime default org.pwmt.zathura.desktop application/pdf
 
+        xdg-mime default nvim.desktop text/plain inode/text application/x-empty
+
         xdg-mime default swayimg.desktop image/jpeg image/png image/gif image/bmp image/webp image/svg+xml
     )
 
