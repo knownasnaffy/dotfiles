@@ -282,6 +282,7 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.config/BeeperTexts/custom.css" "$HOME/.config/BeeperTexts/custom.css" # personal, desktop
     create_symlink "$DOTFILES_DIR/.config/BeeperTexts/config.json" "$HOME/.config/BeeperTexts/config.json" # personal, desktop
 
+    create_symlink "$DOTFILES_DIR/.local/bin/qutebrowser.sh" "$HOME/.local/bin/qutebrowser"
     create_symlink "$DOTFILES_DIR/.local/bin/crypt.sh" "$HOME/.local/bin/crypt"
     create_symlink "$DOTFILES_DIR/.local/bin/git-status.sh" "$HOME/.local/bin/git-status"
     create_symlink "$DOTFILES_DIR/.local/bin/start-hotspot.sh" "$HOME/.local/bin/start-hotspot" # personal
