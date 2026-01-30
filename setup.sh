@@ -137,7 +137,7 @@ install_neovim_config() {
     if [ -d "$NVIM_CONFIG_DIR" ]; then
         if [ -d "$NVIM_CONFIG_DIR/.git" ]; then
             REMOTE_URL=$(git -C "$NVIM_CONFIG_DIR" remote get-url origin 2>/dev/null || echo "")
-            if [[ "$REMOTE_URL" == *"knownasnaffy/kickstart.nvim"* ]]; then
+            if [[ "$REMOTE_URL" == *"knownasnaffy/nvim"* ]]; then
                 log "Neovim configuration already exists and is from the correct repository. Skipping..."
                 return
             fi
@@ -149,7 +149,7 @@ install_neovim_config() {
     fi
 
     log "Cloning Neovim configuration..."
-    git clone https://github.com/knownasnaffy/kickstart.nvim.git "$NVIM_CONFIG_DIR"
+    git clone https://github.com/knownasnaffy/nvim.git "$NVIM_CONFIG_DIR"
 }
 
 install_paru() {
