@@ -1,0 +1,12 @@
+[Unit]
+Description=DEX autostart
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/dex -a
+RemainAfterExit=true
+
+[Install]
+WantedBy=graphical-session.target
