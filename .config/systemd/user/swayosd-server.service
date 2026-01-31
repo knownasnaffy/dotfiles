@@ -1,0 +1,11 @@
+[Unit]
+Description=Start the swayosd server backend
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/swayosd-server
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
