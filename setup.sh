@@ -206,7 +206,6 @@ install_programs() {
     brew install oven-sh/bun/bun pipx fnm
     pipx install argcomplete
     eval fnm install --lts
-    cargo install battery-notify
 }
 
 install_plugins() {
@@ -268,7 +267,6 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.config/zathura" "$HOME/.config/zathura" # desktop
     create_symlink "$DOTFILES_DIR/.config/yazi" "$HOME/.config/yazi"
     create_symlink "$DOTFILES_DIR/.config/pycodestyle" "$HOME/.config/pycodestyle"
-    create_symlink "$DOTFILES_DIR/.config/battery-notify" "$HOME/.config/battery-notify" # desktop
     create_symlink "$DOTFILES_DIR/.config/systemd" "$HOME/.config/systemd"
     create_symlink "$DOTFILES_DIR/.config/btop" "$HOME/.config/btop"
     create_symlink "$DOTFILES_DIR/.config/swaync" "$HOME/.config/swaync"
