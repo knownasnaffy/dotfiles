@@ -6,6 +6,9 @@ if [ -z "$DISPLAY" ]; then
     exit 0
 fi
 
+# play notification sound
+mpv --no-video --quiet "$HOME/Music/notification-1.mp3" >/dev/null 2>&1 &
+
 yes=' Done'
 no=' Later'
 
@@ -20,6 +23,7 @@ selected=$(
         -mesg 'Time to drink some water' \
         -theme $HOME/.config/rofi/applets/type-1/style-2.rasi
 )
+
 if [[ $selected == $yes ]]; then
     echo "Done"
 else

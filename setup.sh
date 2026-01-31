@@ -291,6 +291,10 @@ link_dotfiles() {
 
     create_symlink "$DOTFILES_DIR/.local/share/fonts" "$HOME/.local/share/fonts" # desktop
 
+    create_symlink "$DOTFILES_DIR/media/pictures/wallpaper.png" "$HOME/Pictures/wallpaper.png" # desktop
+    create_symlink "$DOTFILES_DIR/media/pictures/fastfetch.png" "$HOME/Pictures/fastfetch.png" # desktop
+    create_symlink "$DOTFILES_DIR/media/music/notification-1.mp3" "$HOME/Music/notification-1.mp3" # desktop
+
     create_sudo_symlink "$DOTFILES_DIR/etc/ly/config.ini" "/etc/ly/config.ini" # desktop
     # not creating a folder for ly beforehand as it is supposed to hold more than just a
     # config file, so if the installation fails, there is no point in creating
