@@ -35,7 +35,6 @@ settings:
         <Alt+w>: fake-key <Ctrl-Backspace>
       normal:
         ',': 'cmd-set-text :'
-        ':': forward
         ;: scroll right
         <Alt+,>: tab-prev
         <Alt+.>: tab-next
@@ -44,14 +43,19 @@ settings:
         <Alt+o>: back
         <Alt+v>: fake-key <Ctrl+v>
         H: null
+        J: null
         K: scroll-page 0 0.5
         L: scroll-page 0 -0.5
         h: null
         j: scroll left
         k: scroll down
         l: scroll up
+        sT: set statusbar.show always;; set tabs.show always
+        st: set statusbar.show never;; set tabs.show never
         td: config-cycle -u *://{url:host}/* colors.webpage.darkmode.enabled ;; reload
       passthrough:
+        <Alt+,>: tab-prev
+        <Alt+.>: tab-next
         <Alt+q>: mode-enter normal
   colors.webpage.darkmode.enabled:
     '*://addons.thunderbird.net/*': true
