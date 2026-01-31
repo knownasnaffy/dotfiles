@@ -21,7 +21,7 @@
 		// "justify":
 		"on-click": "ghostty -e impala",
 		// "on-click-middle":
-		"on-click-right": "iwctl station wlan0 disconnect && notify-send 'Wi-Fi Disabled' -i 'network-wireless-off' -h string:x-canonical-private-synchronous:network",
+		"on-click-right": "iwctl station wlan0 disconnect && notify-send -a 'network' 'Wi-Fi Disabled' -i 'network-wireless-off' -h string:x-canonical-private-synchronous:network",
 		// "on-update":
 		// "on-scroll-up":
 		// "on-scroll-down":
