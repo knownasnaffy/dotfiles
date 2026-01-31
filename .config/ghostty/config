@@ -6,7 +6,7 @@ window-decoration = none
 theme = TokyoNight
 
 # Shaders
-custom-shader = ./shaders/matrix-hallway.glsl
+# custom-shader = ./shaders/matrix-hallway.glsl
 custom-shader = ./shaders/cursor-sweep.glsl
 custom-shader = ./shaders/rectangle-cursor-boom.glsl
 
