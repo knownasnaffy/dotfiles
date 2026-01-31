@@ -93,6 +93,10 @@ create_sudo_symlink() {
 # Installation Scripts
 # ─────────────────────────────────────────────────────────────────────────────
 
+#  TODO: Pending setups:
+#        - ydotool
+#        - sddm
+
 setup_network() {
     log "Setting up an internet connection"
 

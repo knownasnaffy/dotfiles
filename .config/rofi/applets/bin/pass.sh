@@ -40,6 +40,22 @@ fallback() {
     notify-send -a "password-manager" "$fallback_message"
 }
 
+type_secret() {
+    local secret="$1"
+
+    sleep 0.4
+
+    # type like a real keyboard
+    ydotool type --delay 10 "$secret"
+}
+
+get_password() {
+    pass show "$1" | head -n1
+}
+
+get_otp() {
+    pass otp "$1" 2>/dev/null
+}
 
 # Load emails
 emails=()
@@ -68,12 +84,17 @@ case $? in
     0)
         [[ -n $password ]] || exit 0
 
-        fallback_message="Password not copied"
+        fallback_message="Password not typed"
 
-        if pass otp -c "$password" 2>/dev/null; then
-            notify-send -a "password-manager" "OTP copied to clipboard"
+        otp=$(get_otp "$password")
+
+        if [[ -n "$otp" ]]; then
+            type_secret "$otp"
+            notify-send -a "password-manager" "OTP typed"
         else
-            pass show -c "$password" 2>/dev/null && notify-send -a "password-manager" "Password copied to clipboard" || fallback
+            pw=$(get_password "$password")
+            type_secret "$pw"
+            notify-send -a "password-manager" "Password typed"
         fi
         ;;
     10)
