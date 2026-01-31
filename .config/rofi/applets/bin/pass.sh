@@ -37,7 +37,7 @@ generate_placeholder_icon() {
 fallback_message=""
 
 fallback() {
-    notify-send "$fallback_message"
+    notify-send -a "password-manager" "$fallback_message"
 }
 
 
@@ -71,9 +71,9 @@ case $? in
         fallback_message="Password not copied"
 
         if pass otp -c "$password" 2>/dev/null; then
-            notify-send "OTP copied to clipboard"
+            notify-send -a "password-manager" "OTP copied to clipboard"
         else
-            pass show -c "$password" 2>/dev/null && notify-send "Password copied to clipboard" || fallback
+            pass show -c "$password" 2>/dev/null && notify-send -a "password-manager" "Password copied to clipboard" || fallback
         fi
         ;;
     10)
