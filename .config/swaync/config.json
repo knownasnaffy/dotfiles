@@ -33,6 +33,10 @@
   "text-empty": "No Notifications",
   "script-fail-notify": true,
   "scripts": {
+    "sound-script": {
+      "exec": "mpv --no-video --quiet ~/Music/notification-2.mp3",
+      "app-name": ".*"
+    },
     "example-script": {
       "exec": "echo 'Do something...'",
       "urgency": "Normal"
