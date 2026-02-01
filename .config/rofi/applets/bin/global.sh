@@ -14,6 +14,7 @@ records=(
     "Toggle Dark Mode:::hyprshade toggle invert"
     "Toggle Reader Mode:::hyprshade toggle blue-light-filter"
     "Toggle Vibrant Mode:::hyprshade toggle vibrance"
+    "Quick Notes:::$scripts_dir/notes.sh"
 )
 
 # ---- Build the menu from labels ----
