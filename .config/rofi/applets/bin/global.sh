@@ -11,9 +11,7 @@ records=(
     "Calculator:::rofi -modi calc -show calc -theme \"$dmenu_theme\""
     "Edit dotfiles:::ghostty -e zsh -c \"cd ~/code/projects/dotfiles && nvim\""
     "Unicode Characters:::$scripts_dir/characters.sh"
-    "Toggle Light Mode:::hyprshade toggle invert"
-    "Toggle Reader Mode:::hyprshade toggle blue-light-filter"
-    "Toggle Vibrant Mode:::hyprshade toggle vibrance"
+    "Toggle Shaders:::$scripts_dir/shader-toggle.sh"
     "Timer:::rofi -show timer -modi timer:$scripts_dir/timer.sh -theme \"$dmenu_theme\""
     "Quick Notes:::$scripts_dir/notes.sh"
 )
