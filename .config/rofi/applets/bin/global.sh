@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 
+scripts_dir="$HOME/.config/rofi/applets/bin"
 themes_dir="$HOME/.config/rofi/launchers/type-1"
 dmenu_theme="$themes_dir/dmenu.rasi"
 text_input_theme="$themes_dir/text-input.rasi"
@@ -9,6 +10,7 @@ text_input_theme="$themes_dir/text-input.rasi"
 records=(
     "Calculator:::rofi -modi calc -show calc -theme \"$dmenu_theme\""
     "Edit dotfiles:::ghostty -e zsh -c \"cd ~/code/projects/dotfiles && nvim\""
+    "Unicode Characters:::$scripts_dir/characters.sh"
 )
 
 # ---- Build the menu from labels ----
