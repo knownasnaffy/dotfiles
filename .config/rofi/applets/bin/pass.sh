@@ -112,14 +112,14 @@ case $? in
 
         if [[ $rc -eq 10 ]]; then
             account=$(rofi -dmenu -theme ${dir}/text-input.rasi \
-                    -theme-str "$placeholder_custom_account"
+                    -theme-str "$(generate_placeholder_string "Enter account name...")"
             )
             [[ -z "$account" ]] && fallback && exit 0
         fi
 
 
         password=$(rofi -dmenu -theme ${dir}/text-input.rasi \
-                -theme-str "$(generate_placeholder_string "Enter service name...")" \
+                -theme-str "$(generate_placeholder_string "Enter password name...")" \
                 -theme-str "$(generate_placeholder_icon "")"
         )
         [[ -n $password ]] || (fallback && exit 0)
