@@ -32,13 +32,37 @@ rofi_confirm() {
         -theme $HOME/.config/rofi/applets/type-1/style-2.rasi
 }
 
-git_commit() {
-    (cd "$ROFI_DATA_DIR" && git add ./quick && git commit -m "$1")
-}
-
 ROFI_DATA_DIR="$HOME/notes"
 NOTES_AUTHOR="Barinderpreet Singh"
 NOTES_EDITOR="ghostty -e nvim"
+
+COUNTER_FILE="$ROFI_DATA_DIR/.unpushed-commits"
+
+# initialize counter on script start
+if [[ ! -f "$COUNTER_FILE" ]]; then
+    echo 0 > "$COUNTER_FILE"
+fi
+
+unpushed_commits=$(cat "$COUNTER_FILE")
+
+git_commit() {
+    (
+        cd "$ROFI_DATA_DIR" || exit 1
+        git add ./quick
+        git commit -m "$1"
+
+        # increment counter
+        count=$(cat "$COUNTER_FILE")
+        count=$((count + 1))
+        echo "$count" > "$COUNTER_FILE"
+
+        # push after 5 commits
+        if [[ "$count" -ge 5 ]]; then
+            git push
+            echo 0 > "$COUNTER_FILE"
+        fi
+    )
+}
 
 notes_folder="$ROFI_DATA_DIR/quick"
 
