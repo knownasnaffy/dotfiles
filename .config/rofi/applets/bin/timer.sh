@@ -14,7 +14,6 @@ TIMER_STOP_SOUND="${TIMER_STOP_SOUND:-$SCRIPT_PATH/sounds/timer_end.wav}"
 TIMER_NOTIFICATION_TIMEOUT=${TIMER_NOTIFICATION_TIMEOUT:-5000}
 
 timer_help="To set a custom timer, type for example: 1h 23m 53s"
-timers="30 seconds\n45 seconds\n1 minute\n2 minutes\n3 minutes\n4 minutes\n5 minutes\n10 minutes\n15 minutes\n20 minutes\n30 minutes\n45 minutes\n1 hour"
 
 declare -A timer_seconds=(
     ["1 hour"]=3600
@@ -82,7 +81,9 @@ then
     fi
 else
     echo -en "\0message\x1f$timer_help\n"
-    echo -e "$timers"
+    for k in "${!timer_seconds[@]}"; do
+        echo "${timer_seconds[$k]}|$k"
+    done | sort -n | cut -d'|' -f2
 fi
 
 exit 1
