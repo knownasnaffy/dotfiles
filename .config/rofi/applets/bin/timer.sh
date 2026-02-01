@@ -6,6 +6,8 @@
 
 SCRIPT_PATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 || exit; pwd -P )"
 
+APP_ID="rofi-timer"
+
 # Sounds effects from soundbible.com
 TIMER_START_SOUND="${TIMER_START_SOUND:-$SCRIPT_PATH/sounds/timer_start.wav}"
 TIMER_STOP_SOUND="${TIMER_STOP_SOUND:-$SCRIPT_PATH/sounds/timer_end.wav}"
@@ -31,37 +33,49 @@ declare -A timer_seconds=(
 )
 
 start_timer() {
-    notify-send -t $TIMER_NOTIFICATION_TIMEOUT "$1 timer started" && coproc ( paplay $TIMER_START_SOUND )
+    local label="$1"
+    local seconds="$2"
+    local unit="rofi-timer-$(date +%s)"
+
+    notify-send -a "$APP_ID" -t "$TIMER_NOTIFICATION_TIMEOUT" "$label timer started"
+    paplay "$TIMER_START_SOUND" >/dev/null 2>&1 &
 
     if command -v systemd-run &> /dev/null; then
-        systemd-run --user --on-active=$2 --timer-property=AccuracySec=1000ms bash -c "coproc ( paplay $TIMER_STOP_SOUND ); notify-send -i 'clock' -u critical 'Time Out!';"
+        systemd-run --user \
+            --unit="$unit" \
+            --on-active="${seconds}s" \
+            --timer-property=AccuracySec=1s \
+        bash -c "
+                paplay '$TIMER_STOP_SOUND' >/dev/null 2>&1 &
+                notify-send -a '$APP_ID' -i clock -u critical 'Time Out!'
+            "
     elif command -v at &> /dev/null; then
-        echo "sleep $2 ; coproc ( paplay $TIMER_STOP_SOUND ); notify-send -i 'clock' -u critical 'Time Out!'" | at now
+        echo "sleep $seconds; paplay '$TIMER_STOP_SOUND' >/dev/null 2>&1; notify-send -a '$APP_ID' -i clock -u critical 'Time Out!'" | at now
     fi
 }
 
 custom_timer() {
-    seconds=$(echo "$@" | grep -o '[^ ]*s[^ ]*')
-    minutes=$(echo "$@" | grep -o '[^ ]*m[^ ]*')
-    hours=$(echo "$@" | grep -o '[^ ]*h[^ ]*')
+    local input="$*"
+    local total_time=0
 
-    seconds=${seconds/s/}
-    minutes=${minutes/m/}
-    hours=${hours/h/}
+    while [[ $input =~ ([0-9]+)([hms]) ]]; do
+        value="${BASH_REMATCH[1]}"
+        unit="${BASH_REMATCH[2]}"
+        case "$unit" in
+            h) total_time=$((total_time + value * 3600)) ;;
+            m) total_time=$((total_time + value * 60)) ;;
+            s) total_time=$((total_time + value)) ;;
+        esac
+        input="${input#*${BASH_REMATCH[0]}}"
+    done
 
-    total_time=0
-
-    [[ ${#seconds} -gt 0 ]] && total_time=$(($total_time + $seconds))
-    [[ ${#minutes} -gt 0 ]] && total_time=$(($total_time + 60*$minutes))
-    [[ ${#hours} -gt 0 ]] && total_time=$(($total_time + 3600*$hours))
-
-    start_timer "$@" $total_time
+    [[ $total_time -gt 0 ]] && start_timer "$*" "$total_time"
 }
 
 if [ "$@" ]
 then
     if [[ -v timer_seconds["$@"] ]]; then
-        start_timer "$@" ${timer_seconds["$@"]}
+        start_timer "$@" "${timer_seconds["$@"]}"
         exit 0
     else
         custom_timer "$@"
