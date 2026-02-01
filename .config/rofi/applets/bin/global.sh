@@ -11,6 +11,9 @@ records=(
     "Calculator:::rofi -modi calc -show calc -theme \"$dmenu_theme\""
     "Edit dotfiles:::ghostty -e zsh -c \"cd ~/code/projects/dotfiles && nvim\""
     "Unicode Characters:::$scripts_dir/characters.sh"
+    "Toggle Dark Mode:::hyprshade toggle invert"
+    "Toggle Reader Mode:::hyprshade toggle blue-light-filter"
+    "Toggle Vibrant Mode:::hyprshade toggle vibrance"
 )
 
 # ---- Build the menu from labels ----
@@ -19,7 +22,7 @@ for r in "${records[@]}"; do
     labels+=( "${r%%:::*}" )
 done
 
-choice=$(printf '%s\n' "${labels[@]}" | rofi -dmenu -p "Run" -theme "$dmenu_theme")
+choice=$(printf '%s\n' "${labels[@]}" | rofi -dmenu -i -p "Run" -theme "$dmenu_theme")
 
 [[ -z "${choice:-}" ]] && exit 0
 
