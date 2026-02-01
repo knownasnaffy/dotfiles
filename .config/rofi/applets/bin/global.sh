@@ -14,6 +14,7 @@ records=(
     "Toggle Shaders:::$scripts_dir/shader-toggle.sh"
     "Timer:::rofi -show timer -modi timer:$scripts_dir/timer.sh -theme \"$dmenu_theme\""
     "Quick Notes:::$scripts_dir/notes.sh"
+    "Todo List:::$scripts_dir/todo.sh"
 )
 
 # ---- Build the menu from labels ----
