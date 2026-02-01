@@ -32,8 +32,8 @@ rofi_confirm() {
         -theme $HOME/.config/rofi/applets/type-1/style-2.rasi
 }
 
-generate_placeholder_string() {
-    echo "entry { placeholder: \"$1\"; }"
+git_commit() {
+    (cd "$ROFI_DATA_DIR" && git add ./quick && git commit -m "$1")
 }
 
 ROFI_DATA_DIR="$HOME/notes"
@@ -47,7 +47,7 @@ if [[ ! -d "${notes_folder}" ]]; then
 fi
 
 get_notes() {
-    ls "${notes_folder}"
+    find "$notes_folder" -maxdepth 1 -type f -printf '%f\n' | sort
 }
 
 edit_note() {
@@ -62,7 +62,7 @@ delete_note() {
     case $action in
         "Yes")
             rm "$notes_folder/$note"
-            cd $ROFI_DATA_DIR && git add ./quick && git commit -m "Delete quick note: $note"
+            git_commit "Delete quick note: $note"
             main
             ;;
         "No")
@@ -77,7 +77,7 @@ note_context() {
     case $action in
         "Edit")
             edit_note "$note_location"
-            cd $ROFI_DATA_DIR && git add ./quick && git commit -m "Edit quick note: $note"
+            git_commit "Edit quick note: $note"
             exit 0 ;;
         "Delete")
             delete_note "$note"
@@ -101,7 +101,7 @@ new_note() {
             exit 0
             ;;
         *)
-            local file=$(echo "$title" | sed 's/ /_/g;s/\(.*\)/\L\1/g')
+            local file=$(echo "$title" | tr '[:upper:]' '[:lower:]' | tr -cs 'a-z0-9' '_')
             local template=$(cat <<- END
 ---
 title: $title
@@ -115,24 +115,20 @@ END
 
             note_location="$notes_folder/$file.md"
             if [ "$title" != "" ]; then
-                echo "$template" > "$note_location" | edit_note "$note_location"
-                cd $ROFI_DATA_DIR && git add ./quick && git commit -m "Add quick note: $file.md"
+                echo "$template" > "$note_location"; edit_note "$note_location"
+                git_commit "Add quick note: $file.md"
                 exit 0
             fi
             ;;
     esac
 }
 
-main()
-{
-    local all_notes="$(get_notes)"
-    local first_menu="New Note"
+main() {
+    mapfile -t notes < <(get_notes)
 
-    if [ "$all_notes" ];then
-        first_menu="New Note\n${all_notes}"
-    fi
+    menu=("New Note" "${notes[@]}")
 
-    local note=$(echo -e "$first_menu"  | rofi_dmenu -i -p "Notes")
+    note=$(printf '%s\n' "${menu[@]}" | rofi_dmenu -i -p "Notes")
 
     case $note in
         "New Note")
