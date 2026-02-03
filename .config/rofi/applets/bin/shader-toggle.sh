@@ -8,6 +8,7 @@ records=(
     "Invert Colors:::hyprshade toggle invert"
     "Blue Light:::hyprshade toggle blue-light-filter"
     "Vibrance:::hyprshade toggle vibrance"
+    "Retro:::hyprshade toggle retro"
 )
 
 while true; do
