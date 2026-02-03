@@ -104,16 +104,19 @@
 
 #network {
   background-color: @tray;
-  padding: 0 6px 0 4px;
+  padding: 0 6px 0 8px;
 }
 #bluetooth {
   background-color: @tray;
-  padding: 0 5px;
+  padding: 0 12px 0 5px;
 }
 #custom-system_update {
   background-color: @tray;
-  padding: 0 8px 0 2px;
+  padding: 0 8px 0 6px;
 }
 #custom-right_div.5 {
   color: @tray;
+}
+#custom-notification span {
+  color: @accent;
 }
