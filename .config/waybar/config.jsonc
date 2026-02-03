@@ -57,12 +57,13 @@
 	"modules-center": [
 		// "hyprland/windowcount",
 		"custom/left_div#2",
-		"temperature",
-		"custom/system_update",
+		// "temperature",
+		// "custom/system_update",
+		"bluetooth",
 		"custom/left_div#3",
 		"memory",
 		"custom/left_div#4",
-		"cpu",
+		"clock#date",
 		"custom/left_inv#1",
 		"custom/left_div#5",
 		"custom/distro",
@@ -71,10 +72,9 @@
 		"idle_inhibitor",
 		"clock#time",
 		"custom/right_div#3",
-		"clock#date",
+		"cpu",
 		"custom/right_div#4",
 		"network",
-		"bluetooth",
 		"custom/right_div#5"
 	],
 	"modules-right": [
