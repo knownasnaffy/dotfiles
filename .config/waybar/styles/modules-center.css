@@ -119,4 +119,5 @@
 }
 #custom-notification span {
   color: @accent;
+  padding: 0 8px 0 0px;
 }
