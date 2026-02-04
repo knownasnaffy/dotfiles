@@ -24,11 +24,11 @@ void main() {
 	dy *= dy;
 
 	tc.x -= 0.5;
-	tc.x *= 1.0 + (dy * 0.05);
+	tc.x *= 1.0 + (dy * 0.00);  // change 0.00 to 0.05 or higher in small amounts to get the rounded effect
 	tc.x += 0.5;
 
 	tc.y -= 0.5;
-	tc.y *= 1.0 + (dx * 0.18);
+	tc.y *= 1.0 + (dx * 0.00);  // change 0.00 to 0.18 or higher in small amounts to get the rounded effect
 	tc.y += 0.5;
 
 	// Get texel, and add in scanline if need be
