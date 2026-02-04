@@ -3,10 +3,92 @@
 scripts_dir="$HOME/.config/rofi/applets/bin"
 themes_dir="$HOME/.config/rofi/launchers/type-1"
 dmenu_theme="$themes_dir/dmenu.rasi"
-text_input_theme="$themes_dir/text-input.rasi"
 
-# ---- Define your records here ----
-# Format: "Label:::command"
+keycode() {
+    case "$1" in
+        CTRL) echo 29 ;;
+        SHIFT) echo 58 ;;
+        ALT) echo 56 ;;
+        SUPER) echo 125 ;;
+
+        J) echo 36 ;;
+        L) echo 38 ;;
+        T) echo 20 ;;
+
+        F13) echo 183 ;;
+        F14) echo 184 ;;
+        F15) echo 185 ;;
+        F16) echo 186 ;;
+        F17) echo 187 ;;
+        F18) echo 188 ;;
+        F19) echo 189 ;;
+        F20) echo 190 ;;
+        F21) echo 191 ;;
+        F22) echo 192 ;;
+        F23) echo 193 ;;
+        F24) echo 194 ;;
+
+        *) echo "Unknown key: $1" >&2; exit 1 ;;
+    esac
+}
+
+press_combo() {
+    IFS='+' read -ra keys <<< "$1"
+    codes=()
+
+    for k in "${keys[@]}"; do
+        codes+=( "$(keycode "$k")" )
+    done
+
+    # press
+    for c in "${codes[@]}"; do
+        ydotool key "$c:1"
+    done
+
+    # release reverse
+    for (( i=${#codes[@]}-1; i>=0; i-- )); do
+        ydotool key "${codes[$i]}:0"
+    done
+}
+
+# -----------------------------
+# Detect focused window (Hyprland)
+# -----------------------------
+focused_class="$(hyprctl activewindow -j | jq -r '.class // empty')"
+
+# -----------------------------
+# Context actions (per app)
+# -----------------------------
+context_records=()
+
+case "$focused_class" in
+    com.mitchellh.ghostty)
+        context_records+=(
+            "Ghostty: Previous Prompt:::press_combo CTRL+SHIFT+L"
+            "Ghostty: Next Prompt:::press_combo CTRL+SHIFT+K"
+            "Ghostty: Screenshot → text file:::press_combo SUPER+CTRL+SHIFT+J"
+            "Ghostty: Select all:::press_combo CTRL+SHIFT+A"
+        )
+        ;;
+
+    qutebrowser)
+        context_records+=(
+            "Qutebrowser: Duplicate Tab:::qutebrowser :tab-clone"
+            "Qutebrowser: Toggle Tabs:::qutebrowser ':config-cycle tabs.show always never'"
+            "Qutebrowser: Toggle Status Bar:::qutebrowser ':config-cycle statusbar.show always never'"
+            "Qutebrowser: Toggle Images:::qutebrowser ':config-cycle content.images true false'"
+        )
+        ;;
+esac
+
+# Add a visual divider if context actions exist
+if [[ ${#context_records[@]} -gt 0 ]]; then
+    context_records+=("──────────:::true")
+fi
+
+# -----------------------------
+# Global records (your originals)
+# -----------------------------
 records=(
     "Calculator:::rofi -modi calc -show calc -theme \"$dmenu_theme\""
     "Edit dotfiles:::ghostty -e zsh -c \"cd ~/code/projects/dotfiles && nvim\""
@@ -18,18 +100,26 @@ records=(
     "Screen Ruler:::notify-send \"Point, Dimensions: \$(~/.local/bin/slurp)\""
 )
 
-# ---- Build the menu from labels ----
+# -----------------------------
+# Merge context + global
+# -----------------------------
+all_records=( "${context_records[@]}" "${records[@]}" )
+
+# -----------------------------
+# Build menu
+# -----------------------------
 labels=()
-for r in "${records[@]}"; do
+for r in "${all_records[@]}"; do
     labels+=( "${r%%:::*}" )
 done
 
 choice=$(printf '%s\n' "${labels[@]}" | rofi -dmenu -i -p "Run" -theme "$dmenu_theme")
-
 [[ -z "${choice:-}" ]] && exit 0
 
-# ---- Find and run the matching command ----
-for r in "${records[@]}"; do
+# -----------------------------
+# Execute selection
+# -----------------------------
+for r in "${all_records[@]}"; do
     label="${r%%:::*}"
     cmd="${r#*:::}"
     if [[ "$label" == "$choice" ]]; then
