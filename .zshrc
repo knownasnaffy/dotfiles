@@ -219,9 +219,6 @@ alias jrnl=" jrnl" # Leading space ensures it doesn't enter shell history
 # Appearance Enhancements
 # ─────────────────────────────────────────────────────────────────────────────
 
-# Fetch system information on shell startup
-fastfetch
-
 # Load fnm
 eval "`fnm env`"
 
