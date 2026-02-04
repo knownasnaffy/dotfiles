@@ -67,6 +67,7 @@ source "$ZSH/oh-my-zsh.sh"
 # Enable battery status in the prompt
 SPACESHIP_BATTERY_SHOW="charged"
 SPACESHIP_BATTERY_THRESHOLD=25
+SPACESHIP_SUDO_SHOW=true
 
 # Remove unused sections to keep prompt clean and fast
 spaceship_cleanup=(
