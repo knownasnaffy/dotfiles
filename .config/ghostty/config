@@ -4,6 +4,7 @@ window-decoration = none
 
 # Set theme
 theme = TokyoNight
+shell-integration-features = no-cursor
 
 # Shaders
 # custom-shader = ./shaders/matrix-hallway.glsl
