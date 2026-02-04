@@ -7,12 +7,14 @@ dmenu_theme="$themes_dir/dmenu.rasi"
 keycode() {
     case "$1" in
         CTRL) echo 29 ;;
-        SHIFT) echo 58 ;;
+        SHIFT) echo 42 ;;
         ALT) echo 56 ;;
         SUPER) echo 125 ;;
 
+        A) echo 30 ;;
         J) echo 36 ;;
         L) echo 38 ;;
+        K) echo 37 ;;
         T) echo 20 ;;
 
         F13) echo 183 ;;
