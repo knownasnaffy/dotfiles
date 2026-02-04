@@ -9,6 +9,10 @@
 source "$HOME/.config/rofi/applets/shared/theme.bash"
 theme="$type/$style"
 
+slurp() {
+    ~/.local/bin/slurp $@
+}
+
 # Theme Elements
 prompt='Screenshot'
 mesg="DIR: ~/Pictures/Screenshots"

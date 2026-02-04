@@ -12,6 +12,10 @@
 source "$HOME/.config/rofi/applets/shared/theme.bash"
 theme="$type/style-4.rasi"
 
+slurp() {
+    ~/.local/bin/slurp $@
+}
+
 # Theme Elements
 prompt='Record Screen'
 mesg="DIR: ~/Videos/Screen Recordings"
