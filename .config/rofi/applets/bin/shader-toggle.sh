@@ -27,7 +27,7 @@ while true; do
         fi
     done
 
-    choice=$(printf '%s\n' "${labels[@]}" | rofi -dmenu -p "Shaders" -theme "$dmenu_theme")
+    choice=$(printf '%s\n' "${labels[@]}" | rofi -dmenu -i -p "Shaders" -theme "$dmenu_theme")
     rc=$?
 
     [[ $rc -eq 1 || -z "${choice:-}" ]] && exit 0
