@@ -81,7 +81,7 @@
   ],
   "modules-right": [
     // "mpris",
-    // "custom/left_div#6",
+    "custom/left_div#6",
     "group/pulseaudio",
     "custom/left_div#7",
     "backlight",

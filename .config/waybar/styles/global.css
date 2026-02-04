@@ -7,12 +7,12 @@
 }
 
 #waybar {
-  background-color: @outline;
+  background-color: @main-bg;
   border-radius: 10px;
 }
 #waybar > box {
   margin: 4px;
-  background-color: @main-bg;
+  /* background-color: @main-bg; */
 }
 
 button {

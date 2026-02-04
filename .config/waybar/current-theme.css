@@ -29,7 +29,7 @@
 
 @define-color base          #1a1b26;
 @define-color mantle        #16161e;
-@define-color crust         #15161e;
+@define-color crust         rgba(21, 22, 30, 0.9);
 
 /*
 	br - border
