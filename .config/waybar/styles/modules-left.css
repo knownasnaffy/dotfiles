@@ -15,7 +15,7 @@
   color: @workspaces;
 }
 #workspaces {
-  padding: 0 1px;
+  padding: 0 8px;
   background-color: @workspaces;
 }
 #workspaces button label {
