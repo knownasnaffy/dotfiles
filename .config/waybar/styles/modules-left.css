@@ -3,7 +3,7 @@
 --------------*/
 
 #custom-user {
-	padding-right: 12px;
+  padding-right: 12px;
 }
 
 /*----------------
@@ -12,15 +12,19 @@
 
 #custom-left_div.1,
 #custom-right_div.1 {
-	color: @workspaces;
+  color: @workspaces;
 }
 #workspaces {
-	padding: 0 1px;
-	background-color: @workspaces;
+  padding: 0 1px;
+  background-color: @workspaces;
+}
+#workspaces button label {
+  font-size: 14px;
 }
 #workspaces button.active label,
 #workspaces button.focused label {
-	color: @accent;
+  color: @accent;
+  font-size: 16px;
 }
 
 /*------------------
@@ -28,5 +32,5 @@
 ------------------*/
 
 #window {
-	margin-left: 12px;
+  margin-left: 12px;
 }
