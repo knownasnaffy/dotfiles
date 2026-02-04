@@ -12,6 +12,7 @@ custom-shader = ./shaders/rectangle-cursor-boom.glsl
 
 # Keybinds
 keybind = performable:alt+a=goto_split:previous
+keybind = alt+shift+p=toggle_command_palette
 keybind = alt+shift+e=new_split:down
 keybind = alt+shift+o=new_split:right
 keybind = alt+shift+w=close_surface
