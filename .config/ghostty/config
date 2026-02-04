@@ -19,10 +19,10 @@ keybind = alt+shift+o=new_split:right
 keybind = alt+shift+w=close_surface
 keybind = alt+shift+enter=toggle_split_zoom
 keybind = alt+shift+r=reload_config
-keybind = shift+f13=jump_to_prompt:-1
-keybind = shift+f14=jump_to_prompt:1
 keybind = ctrl+enter=unbind
 keybind = ctrl+,=unbind
+keybind = performable:ctrl+shift+l=jump_to_prompt:-1
+keybind = performable:ctrl+shift+k=jump_to_prompt:1
 keybind = alt+c=copy_to_clipboard
 keybind = alt+v=paste_from_clipboard
 keybind = alt+shift+m=toggle_fullscreen
