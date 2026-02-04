@@ -1,2 +1,8 @@
+[keys.viewer]
+; = next_file
+j = prev_file
+i = info
+w = exec hyprctl hyprpaper wallpaper 'eDP-1, %, cover'
+
 [info]
 show = no
