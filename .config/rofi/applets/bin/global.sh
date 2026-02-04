@@ -15,6 +15,7 @@ records=(
     "Timer:::rofi -show timer -modi timer:$scripts_dir/timer.sh -theme \"$dmenu_theme\""
     "Quick Notes:::$scripts_dir/notes.sh"
     "Todo List:::$scripts_dir/todo.sh"
+    "Screen Ruler:::notify-send \"Point, Dimensions: \$(~/.local/bin/slurp)\""
 )
 
 # ---- Build the menu from labels ----
