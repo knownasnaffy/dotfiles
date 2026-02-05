@@ -1,0 +1,9 @@
+# Default lockfile merge behavior
+package-lock.json merge=ours
+pnpm-lock.yaml   merge=ours
+bun.lock   merge=ours
+
+# Cross-OS safety
+* text=auto
+*.sh text eol=lf
+*.bat text eol=crlf

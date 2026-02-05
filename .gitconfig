@@ -20,10 +20,12 @@
 [push]
 	default = current
 	autoSetupRemote = true
+	followTags = true
 [color]
 	ui = auto
 [rebase]
 	autosquash = true
+	updateRefs = true
 [core]
 	editor = nvim
 	pager = cat
