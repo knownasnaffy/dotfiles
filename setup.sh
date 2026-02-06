@@ -295,7 +295,7 @@ link_dotfiles() {
 
     create_symlink "$DOTFILES_DIR/.local/share/fonts" "$HOME/.local/share/fonts" # desktop
 
-    create_symlink "$DOTFILES_DIR/media/pictures/wallpaper.png" "$HOME/Pictures/wallpaper.png" # desktop
+    create_symlink "$DOTFILES_DIR/media/pictures/wallpaper.jpg" "$HOME/Pictures/wallpaper.jpg" # desktop
     create_symlink "$DOTFILES_DIR/media/pictures/fastfetch.png" "$HOME/Pictures/fastfetch.png" # desktop
     create_symlink "$DOTFILES_DIR/media/music/notification-1.mp3" "$HOME/Music/notification-1.mp3" # desktop
     create_symlink "$DOTFILES_DIR/media/music/notification-2.mp3" "$HOME/Music/notification-2.mp3" # desktop
