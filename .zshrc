@@ -120,18 +120,6 @@ export EDITOR='nvim'
 export VISUAL='ghostty -e nvim'
 alias vi=nvim
 
-# Alias to run a c++ file
-makecpp() {
-  eval "g++ -std=c++20 -Wall -Wextra -O2 ${1}.cpp -o ${1} && ./${1}"
-}
-
-# Paru aliases
-alias prs="paru -S"
-alias prss="paru -Ss"
-alias prsi="paru -Si"
-alias prsy="paru -Sy"
-alias prqs="paru -Qs"
-
 # Terminal and tools
 export TERMINAL=ghostty
 export PNPM_HOME="$HOME/.local/share/pnpm"
@@ -180,6 +168,21 @@ alias fuck=thefuck_lazy_load
 # ─────────────────────────────────────────────────────────────────────────────
 # Custom Aliases and Functions
 # ─────────────────────────────────────────────────────────────────────────────
+
+# Fastfetch alias
+alias ff=fastfetch
+
+# Alias to run a c++ file
+makecpp() {
+  eval "g++ -std=c++20 -Wall -Wextra -O2 ${1}.cpp -o ${1} && ./${1}"
+}
+
+# Paru aliases
+alias prs="paru -S"
+alias prss="paru -Ss"
+alias prsi="paru -Si"
+alias prsy="paru -Sy"
+alias prqs="paru -Qs"
 
 # Remove '$ ' from copied command snippets
 alias '$'='_execute_command'
