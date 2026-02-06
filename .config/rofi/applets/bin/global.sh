@@ -75,6 +75,7 @@ case "$focused_class" in
 
     qutebrowser)
         context_records+=(
+            "Qutebrowser: Open Downloads:::ghostty -e yazi ~/Downloads"
             "Qutebrowser: Duplicate Tab:::qutebrowser :tab-clone"
             "Qutebrowser: Toggle Tabs:::qutebrowser ':config-cycle tabs.show always never'"
             "Qutebrowser: Toggle Status Bar:::qutebrowser ':config-cycle statusbar.show always never'"
