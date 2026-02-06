@@ -1,0 +1,3 @@
+[submodule ".config/quickshell/HyprQuickFrame"]
+	path = .config/quickshell/HyprQuickFrame
+	url = https://github.com/Ronin-CK/HyprQuickFrame
