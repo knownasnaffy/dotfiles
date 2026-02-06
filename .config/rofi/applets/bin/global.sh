@@ -57,6 +57,7 @@ press_combo() {
 # Detect focused window (Hyprland)
 # -----------------------------
 focused_class="$(hyprctl activewindow -j | jq -r '.class // empty')"
+focussed_addr="$(hyprctl activewindow -j | jq -r '.address')"
 
 # -----------------------------
 # Context actions (per app)
@@ -101,6 +102,7 @@ records=(
     "Quick Notes:::$scripts_dir/notes.sh"
     "Todo List:::$scripts_dir/todo.sh"
     "Screen Ruler:::notify-send \"Point, Dimensions: \$(~/.local/bin/slurp)\""
+    "Pin Window:::~/.config/hypr/scripts/pin-window.sh $focussed_addr"
 )
 
 # -----------------------------
