@@ -81,6 +81,7 @@ settings:
     '*://picom.app/*': true
     '*://polybar.readthedocs.io/*': true
     '*://qutebrowser.org/*': true
+    '*://reuse.software/*': true
     '*://stackoverflow.com/*': true
     '*://taskwarrior.org/*': true
     '*://thelinuxcode.com/*': true
