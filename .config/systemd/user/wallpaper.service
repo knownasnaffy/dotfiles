@@ -1,0 +1,14 @@
+[Unit]
+Description=Wallpaper service via Quickshell
+PartOf=graphical-session.target
+Requires=graphical-session.target
+After=graphical-session.target
+ConditionEnvironment=WAYLAND_DISPLAY
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/quickshell -c Wallpaper
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
