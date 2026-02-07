@@ -6,13 +6,35 @@ Personal Arch Linux dotfiles featuring Hyprland, Tokyo Night theming, and extens
 
 ## Showcase
 
-| Launcher  | Powermenu |
-|-----------|-----------|
-| ![Launcher](media/showcase/launcher.png) | ![Powermenu](media/showcase/powermenu.png) |
+<table>
+  <tr>
+    <th>Launcher</th>
+    <th>Powermenu</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="media/showcase/launcher.png" width="400">
+    </td>
+    <td align="center">
+      <img src="media/showcase/powermenu.png" width="400">
+    </td>
+  </tr>
+</table>
 
-| Neovim      | Qutebrowser |
-|-------------|-------------|
-| ![Neovim](media/showcase/neovim.png) | ![Qutebrowser](media/showcase/qutebrowser.png) |
+<table>
+  <tr>
+    <th>Neovim</th>
+    <th>Qutebrowser</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="media/showcase/neovim.png" width="400">
+    </td>
+    <td align="center">
+      <img src="media/showcase/qutebrowser.png" width="400">
+    </td>
+  </tr>
+</table>
 
 > Additional Rofi menu screenshots (clipboard, notes, todo, timer, etc.) will be added in a sandbox environment due to privacy concerns.
 
