@@ -1,130 +1,257 @@
-# Dotfiles Setup
+# Dotfiles
 
-Personal Arch Linux dotfiles + bootstrap script. Automates installing core tooling (shell, editors, CLI utilities, desktop bits), sets sane defaults, and symlinks configs safely (with backups). Includes optional private package mode.
+Personal Arch Linux dotfiles featuring Hyprland, Tokyo Night theming, and extensive Rofi integration. Automated bootstrap script handles everything from base system setup to desktop environment configuration.
 
-> Target: **Minimal Arch install (with AUR)**
-> Script assumes `pacman` + AUR helper (`paru`). Other distros are NOT supported by the current script (README previously overstated this).
+![Desktop Showcase](media/showcase/wallpaper.png)
 
-## Key Features
+## Showcase
 
-- Automated install of base packages, AUR apps, developer tooling, fonts.
-- Safe idempotent symlinking (backs up existing files with numbered .bak suffixes).
-- Opinionated Zsh setup (Oh My Zsh + plugins + Spaceship theme).
-- Neovim bootstrap (kickstart.nvim clone, auto-replaced if different repo).
-- Post-install desktop defaults (qutebrowser, zathura, display/login assets).
-- Optional private mode: `--private` installs extra packages.
+| Launcher  | Powermenu |
+|-----------|-----------|
+| ![Launcher](media/showcase/launcher.png) | ![Powermenu](media/showcase/powermenu.png) |
 
-## Prerequisites
+| Neovim      | Qutebrowser |
+|-------------|-------------|
+| ![Neovim](media/showcase/neovim.png) | ![Qutebrowser](media/showcase/qutebrowser.png) |
 
-- Arch Linux (or derivative with pacman + ability to build AUR packages).
-- sudo access.
-- git, curl (will install if missing in base step).
+> Additional Rofi menu screenshots (clipboard, notes, todo, timer, etc.) will be added in a sandbox environment due to privacy concerns.
+
+## System Info
+
+**Hardware:**
+- CPU: AMD Ryzen 7 7435HS
+- GPU: NVIDIA GeForce RTX 3050 Mobile
+- RAM: 16GB DDR5
+- Display: 1920x1080 @ 144Hz (scaled 1.2x)
+
+**Software Stack:**
+- OS: Arch Linux
+- Compositor: Hyprland (Wayland)
+- Shell: Zsh + Oh My Zsh
+- Terminal: Ghostty
+- Editor: Neovim ([custom config](https://github.com/knownasnaffy/nvim))
+- Browser: Qutebrowser
+- Bar: Waybar
+- Notifications: SwayNC
+- Launcher/Menus: Rofi
+- Theme: Tokyo Night
+- And many more - check the config files ;)
+
+## Features
+
+- **Automated Setup**: Single script installs packages, configures system, and symlinks dotfiles with backup protection
+- **Hyprland-First**: Wayland-native workflow optimized for laptop usage with NVIDIA support
+- **Extensive Rofi Integration**: 20+ custom menus for everything from screenshots to password management
+- **Vim-Centric Keybindings**: Ergonomic keyboard-first workflow (see [keyd config](etc/keyd/default.conf))
+- **Modular Hyprland Config**: Split configuration files for maintainability
+- **Smart Symlinking**: Idempotent with numbered backups (.bak, .bakN)
+- **Partial Installation**: Granular flags for selective setup steps
 
 ## Quick Start
 
 ```bash
 git clone https://github.com/knownasnaffy/dotfiles.git
 cd dotfiles
-./setup.sh            # standard
-./setup.sh --private  # include private extras
+./setup.sh            # full setup
+./setup.sh --private  # include private packages (jrnl, etc.)
 ```
 
 The script will:
-1. Install base compilers & tools (`pacman -Sy zsh make gcc ripgrep unzip git xclip neovim base-devel`).
-2. Install / build `paru` if missing.
-3. Sync + install large program set via `paru` (see list below).
-4. Install Homebrew (if absent) then bun, pipx, fnm, cargo battery-notify.
-5. Setup Oh My Zsh plugins + Spaceship prompt.
-6. Link dotfiles (user + select /etc configs via sudo symlinks).
-7. Run post-install tweaks (bat cache, xdg defaults, enable `ly`).
+1. Configure network (systemd-networkd + iwd)
+2. Install base tooling (pacman + paru AUR helper)
+3. Install 60+ packages (Hyprland stack, CLI tools, fonts, apps)
+4. Setup Homebrew + bun, fnm, pipx
+5. Configure Oh My Zsh with plugins
+6. Clone Neovim config
+7. Symlink all dotfiles (user + system configs)
+8. Run post-install tasks (bat cache, xdg defaults, enable services)
 
 ## Package Highlights
 
-AUR + repo installs include (subset):
-- Shell/tools: zsh, fzf, ripgrep, bat, eza, zoxide, btop, eva, jq, brightnessctl.
-- Terminal/UI: ghostty, rofi (+ greenclip), polybar, picom, dunst, i3-wm, i3lock-color, keyd.
-- Fonts & visuals: ttf-hack-nerd, noto-fonts-emoji, fastfetch, ueberzug.
-- Apps: qutebrowser, zathura (+ poppler), spotifyd, flameshot, pass.
-- Audio: pipewire, wireplumber, pipewire-pulse, pipewire-alsa, alsa-utils.
-- Misc/fun: thefuck, cowsay, fortune-mod.
-- Dev extras: bun, fnm (Node LTS), pipx, cargo battery-notify.
+**Hyprland Ecosystem:**
+- hyprland, hyprlock, hyprpicker, hyprpolkitagent, hyprshade, hyprshutdown-git, hyprquickframe-git
+- waybar, swaync, swayosd, uwsm
+- grim, slurp, satty, wf-recorder, cliphist
 
-Private mode adds: jrnl (and can be extended).
+**CLI Tools:**
+- Shell: zsh, fzf, ripgrep, bat, eza, zoxide, btop, eva, jq, thefuck
+- File Management: yazi, 7zip, ueberzug
+- Dev: github-cli, aichat, task, pass (+ pass-otp)
+- Media: playerctl, imagemagick
 
-## Managed Dotfiles / Configs
+**Desktop Apps:**
+- Terminal: ghostty
+- Browser: qutebrowser
+- PDF: zathura (+ poppler)
+- Image: swayimg
+- Communication: beeper-v4-bin
 
-User-level symlinks:
-- .gitconfig, .zshrc, .zsh_functions
-- ~/.config: gh, ghostty, qutebrowser, picom, polybar, i3, rofi, fastfetch, bat, eza, zathura, yazi, pycodestyle, battery-notify, spotifyd, systemd, dunst, btop, greenclip.toml, BeeperTexts (custom.css, config.json), fonts (under .local/share/fonts)
-- ~/.Xresources, ~/.lesskey
+**Audio:**
+- pipewire, pipewire-pulse, pipewire-alsa, wireplumber, alsa-utils
 
-System-level (sudo) symlinks:
-- /etc/X11/xorg.conf.d/30-touchpad.conf
-- /etc/ly/config.ini
-- /etc/keyd
+**Fonts:**
+- ttf-hack-nerd, noto-fonts-emoji, inter-font
 
-If a target exists it is renamed to `filename.bak` (or numbered `.bakN`).
+**System:**
+- Display Manager: ly
+- Keyboard Remapping: keyd
+- Portal: xdg-desktop-portal-hyprland, xdg-desktop-portal-termfilechooser
 
-## Neovim Setup Logic
-If an existing `~/.config/nvim` is a git repo pointing to `knownasnaffy/kickstart.nvim`, it is kept. Any other existing config is removed then the kickstart repo is cloned.
+## Rofi Menus
 
-## Boot & Memory Notes
-ZRAM + optional swapfile instructions (for half-RAM zram + 2G fallback file) are documented below.
+**Active Menus:**
+- `launcher` - Application launcher
+- `powermenu` - System power options
+- `screenshot` - Screenshot/recording tools
+- `pass` - Password manager interface
+- `clipboard` - Clipboard history (cliphist)
+- `emojipicker` - Emoji selector
+- `colorpicker` - Color picker utility
+- `characters` - Special characters
+- `bookmarks` - Quick bookmarks
+- `notes` - Note management
+- `snippets` - Text snippets
+- `todo` - Todo list manager
+- `timer` - Countdown timer
+- `hydrate` - Hydration reminder
+- `recordscreen` - Screen recording
+- `shader-toggle` - Hyprshade toggle
+- `global` - Global menu aggregator
 
-### ZRAM Quick Reference
-```bash
-paru -S zram-generator
-sudo nvim /etc/systemd/zram-generator.conf
-# contents:
-[zram0]
-zram-size = ram / 2
-compression-algorithm = zstd
-swap-priority = 100
-sudo systemctl daemon-reexec
-sudo systemctl restart systemd-zram-setup@zram0
-swapon --show
-```
-Optional swapfile:
-```bash
-sudo fallocate -l 2G /swapfile
-sudo chmod 600 /swapfile
-sudo mkswap /swapfile
-sudo swapon /swapfile
-echo '/swapfile none swap sw,pri=10 0 0' | sudo tee -a /etc/fstab
-```
+**Stale (Not in Use):**
+- brightness, volume, wifi, battery, mpd, apps, appasroot, quicklinks
 
-## Aerc Tip
-Use port 465 (implicit TLS) for Gmail outgoing instead of 587 if STARTTLS fails.
+All menus are bound to keybindings in [hypr/land/keybinds.conf](.config/hypr/land/keybinds.conf).
 
-## Structure (simplified)
+## Configuration Structure
+
 ```
 .
-├── setup.sh
-├── README.md
-├── images/
-│   ├── fastfetch.png
-│   └── tokyonight-wallpaper.png
+├── setup.sh                    # Main bootstrap script
+├── docs/
+│   └── assumptions.md          # System assumptions
 ├── etc/
-│   ├── X11/...
-│   ├── keyd/...
-│   └── ly/config.ini
-└── .config/...
+│   ├── keyd/                   # Keyboard remapping
+│   ├── ly/                     # Display manager config
+│   └── systemd/network/        # Network configs
+├── .config/
+│   ├── hypr/                   # Hyprland (modular: land/*.conf)
+│   ├── waybar/                 # Status bar (modular themes)
+│   ├── rofi/                   # Launcher + applets
+│   ├── swaync/                 # Notifications
+│   ├── ghostty/                # Terminal
+│   ├── qutebrowser/            # Browser
+│   ├── neovim/                 # (Cloned separately)
+│   ├── yazi/                   # File manager
+│   ├── btop/                   # System monitor
+│   ├── fastfetch/              # System info
+│   └── [20+ other apps]
+├── .local/
+│   ├── bin/                    # Custom scripts
+│   └── share/fonts/            # Custom fonts
+└── media/
+    ├── pictures/               # Wallpapers
+    ├── music/                  # Notification sounds
+    └── showcase/               # Screenshots
 ```
 
-Fastfetch example (images/fastfetch.png):
-![Fastfetch](images/fastfetch.png)
+## Keybinding Philosophy
+
+Vim-centric, keyboard-first workflow designed to minimize hand movement:
+
+- **Caps Lock → Shift**: More ergonomic modifier
+- **Alt-based combos**: Replaced most Ctrl bindings with Alt/Alt+Shift
+- **Alt+Q → Escape**: Quick escape without reaching
+- **Tab + {jkl;}**: Arrow keys on home row
+- **Hyprland Super key**: Primary window management modifier
+
+Full remapping details in [etc/keyd/default.conf](etc/keyd/default.conf).
+
+## System Assumptions
+
+From [docs/assumptions.md](docs/assumptions.md):
+
+- Wayland-first (X11 via XWayland only)
+- Hyprland as sole compositor
+- Laptop-focused (internal display primary)
+- Single-user system
+- Private PC (no enterprise constraints)
+
+## Selective Installation
+
+Run specific setup steps with flags:
+
+```bash
+./setup.sh -nw        # Network setup only
+./setup.sh -progs     # Install programs only
+./setup.sh -ln        # Link dotfiles only
+./setup.sh -pi        # Post-install scripts only
+./setup.sh -zsh       # Setup Zsh only
+./setup.sh -plugins   # Install Oh My Zsh plugins only
+./setup.sh -dirs      # Create directories only
+```
+
+Combine flags as needed: `./setup.sh -ln -pi`
+
+## Custom Scripts
+
+Located in `.local/bin/`:
+
+- `qutebrowser` - Qutebrowser wrapper with fixes
+- `slurp` - Slurp wrapper for screenshots
+- `crypt` - Encryption utility
+- `git-status` - Enhanced git status
+- `start-hotspot` / `stop-hotspot` - Mobile hotspot management
+- `pass-push` - Password store sync
+
+## Manual Setup Required
+
+The following require manual configuration (documentation pending):
+
+- **ydotool**: Virtual input automation
+- **SDDM**: Alternative display manager (ly is configured)
+- **Private configs**: Email (aerc), journaling (jrnl) - will be moved to separate repo
+
+## Known Limitations
+
+- **X11 apps**: Occasional glitches on Wayland (XWayland limitations). Qutebrowser has workarounds but bugs persist.
+- **NVIDIA quirks**: Requires specific env vars (configured in hyprland.conf)
+- **Personal software**: Currently mixed with system configs; will be separated into dedicated repo for sensitive data (mail, journal, etc.)
+
+## Neovim Setup
+
+If `~/.config/nvim` exists and points to `knownasnaffy/nvim`, it's preserved. Otherwise, the directory is removed and the config is cloned fresh.
+
+Manual setup: `git clone https://github.com/knownasnaffy/nvim.git ~/.config/nvim`
 
 ## Troubleshooting
-1. Shell still bash: log out or run `chsh $(id -un) --shell $(command -v zsh)` manually.
-2. Symlink missing: check permissions (sudo for /etc) and ensure parent directories exist.
-3. Neovim config not replaced: remove existing `~/.config/nvim` and rerun.
-4. `ly` not starting: `sudo systemctl enable ly && sudo systemctl start ly`.
+
+**Zsh not default shell:**
+```bash
+chsh $(id -un) --shell $(command -v zsh)
+# Then log out and back in
+```
+
+**Symlink conflicts:**
+Check permissions. Existing files may sometimes lead to conflict in `/etc` dir.
+
+
+**Hyprland not launching:**
+Last time I encountered this issue, it was because of postgresql, it's service was corrupting systemd. You can try disabling any such unit you enabled recently.
 
 ## Extending
-Add new config under repo then append a `create_symlink` (or `create_sudo_symlink`) call in `link_dotfiles()` maintaining grouping. Keep changes minimal & idempotent.
 
-## License
-No license file currently included. Add one (MIT, etc.) if you intend to share/reuse.
+1. Add new configs to appropriate directory in repo
+2. Add `create_symlink` or `create_sudo_symlink` call in `link_dotfiles()` function
+3. Keep changes idempotent (check before creating)
+4. Group related symlinks together with comments
+
+## Credits
+
+- **Rofi themes**: Customized from various sources
+- **Inspiration**: Countless dotfiles repos in the community
+- Will try to complete this section soon
 
 ---
-Previously claimed cross-distro support was removed to match actual script behavior.
+
+**Note:** This configuration is actively used and evolving. Expect frequent updates as workflows are refined.
