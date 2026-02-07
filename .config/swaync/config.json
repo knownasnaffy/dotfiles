@@ -35,7 +35,7 @@
   "scripts": {
     "sound-script": {
       "exec": "mpv --no-video --quiet ~/Music/notification-2.mp3",
-      "app-name": ".*"
+      "app-name": "^(?!no-sound$).*"
     },
     "example-script": {
       "exec": "echo 'Do something...'",

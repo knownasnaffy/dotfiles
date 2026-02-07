@@ -61,7 +61,7 @@ send() {
         "")
             state="$(get_state)"
             if [ "$state" = "charging" ]; then
-                new_id="$(send "$old_id" -a battery '' -t 1)"
+                new_id="$(send "$old_id" -a no-sound '' -t 1 --transient)"
             else
                 exit 0
             fi
