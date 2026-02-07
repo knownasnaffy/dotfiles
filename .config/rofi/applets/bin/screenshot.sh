@@ -46,10 +46,10 @@ chosen="$(printf "%s\n%s\n%s\n" \
 
 case "$chosen" in
     "$option_1")
-        hyprquickframe
+        sleep 0.2; hyprquickframe
         ;;
     "$option_2")
-        hyprquickframe -e
+        sleep 0.2; hyprquickframe -e
         ;;
     "$option_3")
         ghostty -e yazi "$SCREENSHOT_DIR"
