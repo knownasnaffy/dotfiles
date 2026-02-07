@@ -183,13 +183,13 @@ install_programs() {
         alsa-utils inotify-tools jq eva thefuck bat zoxide 7zip yazi zathura \
         noto-fonts-emoji xdg-user-dirs udisks2 pass eza aichat \
         zathura-pdf-poppler ly playerctl keyd btop ueberzug man-db imagemagick \
-        pass-otp oath-toolkit rofi-calc
+        pass-otp oath-toolkit rofi-calc quickshell
 
     # Hyprland / Wayland stack
     paru -Sy --noconfirm \
         hyprland hyprlock hyprpaper hyprpicker hyprpolkitagent \
         waybar swaync uwsm qt6-wayland swayosd \
-        grim slurp swappy wf-recorder wl-clipboard cliphist \
+        grim slurp satty wf-recorder wl-clipboard cliphist \
         wev showmethekey ydotool hyprshade \
         xdg-desktop-portal xdg-desktop-portal-hyprland \
         xdg-desktop-portal-termfilechooser-hunkyburrito-git
