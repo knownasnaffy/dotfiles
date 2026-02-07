@@ -3,6 +3,7 @@
 j = prev_file
 i = info
 w = exec hyprctl hyprpaper wallpaper 'eDP-1, %, cover'
+e = exec hyprctl dispatch exec "satty -f \"%\" -o \"%\" --copy-command wl-copy"
 
 [info]
 show = no
