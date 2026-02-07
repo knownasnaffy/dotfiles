@@ -23,7 +23,7 @@
 		// "on-click":
 		// "on-click-middle":
 		// "on-click-right":
-		// "on-update":
+		"on-update": "~/.config/waybar/scripts/battery-notify.sh",
 		// "on-scroll-up":
 		// "on-scroll-down":
 		// "smooth-scrolling-threshold":
@@ -37,9 +37,9 @@
 		// "menu-actions":
 		// "expand":
 		"events": {
-			"on-discharging-warning": "notify-send -a battery 'Battery Low (20%)' -u critical -i 'battery-020' -h string:x-canonical-private-synchronous:battery",
-			"on-discharging-critical": "notify-send -a battery 'Battery Critical (10%)' -u critical -i 'battery-010' -h string:x-canonical-private-synchronous:battery",
-			"on-charging-100": "notify-send -a battery 'Battery Full (100%)' -i 'battery-100-charged' -h string:x-canonical-private-synchronous:battery"
+			"on-discharging-warning": "~/.config/waybar/scripts/battery-notify.sh warning",
+			"on-discharging-critical": "~/.config/waybar/scripts/battery-notify.sh critical",
+			"on-charging-100": "~/.config/waybar/scripts/battery-notify.sh full"
 		}
 	}
 }
