@@ -46,10 +46,10 @@ chosen="$(printf "%s\n%s\n%s\n" \
 
 case "$chosen" in
     "$option_1")
-        quickshell -c HyprQuickFrame -n
+        hyprquickframe
         ;;
     "$option_2")
-        HYPRQUICKFRAME_EDITOR=1 quickshell -c HyprQuickFrame -n
+        hyprquickframe -e
         ;;
     "$option_3")
         ghostty -e yazi "$SCREENSHOT_DIR"
