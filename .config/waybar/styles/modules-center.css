@@ -119,4 +119,5 @@
 }
 #custom-notification {
   background-color: @tray;
+  padding: 0 0px 0 8px;
 }
