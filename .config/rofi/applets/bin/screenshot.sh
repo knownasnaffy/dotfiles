@@ -21,7 +21,8 @@ mesg="DIR: ~/Pictures/Screenshots"
 option_1=" Capture Screenshot"
 option_2=" Capture and Edit"
 option_3=" Capture in 5s"
-option_4=" Open Screenshots Folder"
+option_4="󰊄 OCR & Google Lens"
+option_5=" Open Screenshots Folder"
 
 # --------------------------------------------------
 # Rofi
@@ -32,15 +33,16 @@ rofi_cmd() {
         -dmenu \
         -p "$prompt" \
         -mesg "$mesg" \
-        -theme-str "listview {columns: 1; lines: 4;}" \
+        -theme-str "listview {columns: 1; lines: 5;}" \
         -theme "$theme"
 }
 
-chosen="$(printf "%s\n%s\n%s\n%s\n" \
+chosen="$(printf "%s\n%s\n%s\n%s\n%s\n" \
     "$option_1" \
     "$option_2" \
     "$option_3" \
-    "$option_4" | rofi_cmd)"
+    "$option_4" \
+    "$option_5" | rofi_cmd)"
 
 # --------------------------------------------------
 # Actions
@@ -57,6 +59,9 @@ case "$chosen" in
         sleep 5; hyprquickframe
         ;;
     "$option_4")
+        sleep 0.2; quicksnip
+        ;;
+    "$option_5")
         ghostty -e yazi "$SCREENSHOT_DIR"
         ;;
 esac
