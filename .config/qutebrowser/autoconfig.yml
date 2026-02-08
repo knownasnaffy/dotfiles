@@ -83,6 +83,7 @@ settings:
     '*://qutebrowser.org/*': true
     '*://reuse.software/*': true
     '*://stackoverflow.com/*': true
+    '*://survey.stackoverflow.co/*': false
     '*://taskwarrior.org/*': true
     '*://thelinuxcode.com/*': true
     '*://w3m.sourceforge.net/*': true
