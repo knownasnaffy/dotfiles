@@ -103,6 +103,7 @@ records=(
     "Todo List:::$scripts_dir/todo.sh"
     "Screen Ruler:::notify-send \"Point, Dimensions: \$(~/.local/bin/slurp)\""
     "Pin Window:::~/.config/hypr/scripts/pin-window.sh $focussed_addr"
+    "Resize Window:::hyprctl dispatch submap resize"
 )
 
 # -----------------------------

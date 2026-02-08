@@ -16,6 +16,13 @@ slurp() {
     ~/.local/bin/slurp $@
 }
 
+stop_recording() {
+    pkill -INT wf-recorder
+    mpv --no-video --quiet ~/Music/windows-disconnected.mp3
+}
+
+[ "$1" = "stop" ] && stop_recording && exit 0
+
 # Theme Elements
 prompt='Record Screen'
 mesg="DIR: ~/Videos/Screen Recordings"
@@ -64,8 +71,8 @@ mkdir -p "$dir"
 chosen="$(run_rofi)"
 case "$chosen" in
     $option_1)
-        notify-send -a "screen-recorder" "Screen Recorder" "Recording started (Full Screen)" -t 1000
         sleep 0.7
+        mpv --no-video --quiet ~/Music/windows-connected.mp3 &
         wf-recorder \
             -f "$dir/$file" \
             --codec h264_nvenc \
@@ -78,8 +85,8 @@ case "$chosen" in
 
     $option_2)
         region="$(slurp)" || exit 0
-        notify-send -a "screen-recorder" "Screen Recorder" "Recording started (Area)" -t 1000
         sleep 0.7
+        mpv --no-video --quiet ~/Music/windows-connected.mp3 &
         wf-recorder \
             -g "$region" \
             -f "$dir/$file" \
@@ -92,8 +99,7 @@ case "$chosen" in
         ;;
 
     $option_3)
-        pkill -INT wf-recorder
-        notify-send -a "screen-recorder" "Screen Recorder" "Recording stopped"
+        stop_recording
         ;;
 
     $option_4)
