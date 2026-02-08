@@ -36,7 +36,7 @@ rofi_cmd() {
         -theme "$theme"
 }
 
-chosen="$(printf "%s\n%s\n%s\n" \
+chosen="$(printf "%s\n%s\n%s\n%s\n" \
     "$option_1" \
     "$option_2" \
     "$option_3" \
