@@ -38,6 +38,21 @@ Personal Arch Linux dotfiles featuring Hyprland, Tokyo Night theming, and extens
 
 <table>
   <tr>
+    <th>Btop</th>
+    <th>MPV</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="media/showcase/btop.png" width="400">
+    </td>
+    <td align="center">
+      <img src="media/showcase/mpv.png" width="400">
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
     <th>Launcher</th>
     <th>Powermenu</th>
   </tr>
