@@ -66,7 +66,7 @@ Personal Arch Linux dotfiles featuring Hyprland, Tokyo Night theming, and extens
   </tr>
 </table>
 
-> Additional Rofi menu screenshots (clipboard, notes, todo, timer, etc.) will be added in a sandbox environment due to privacy concerns.
+> Not all features can be showcased normally, will try in a sandboxed environment when possible.
 
 ## System Info
 
