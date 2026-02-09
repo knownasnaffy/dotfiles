@@ -97,7 +97,8 @@ main_menu() {
             -theme ${dir}/dmenu.rasi \
             -kb-custom-1 'Alt+a' \
             -kb-custom-2 'Alt+e' \
-        -kb-custom-3 'Alt+x')
+            -kb-custom-3 'Alt+x' \
+        -kb-custom-4 'Alt+c')
 
     case $? in
         0)
@@ -108,6 +109,11 @@ main_menu() {
         10) add_bookmark ;;
         11) edit_bookmark ;;
         12) delete_bookmark ;;
+        13)
+            [[ -z "$choice" ]] && exit 0
+            url=$(get_url_by_title "$choice")
+            wl-copy "$url"
+            ;;
     esac
 }
 

@@ -1,6 +1,6 @@
 # Dotfiles
 
-Personal Arch Linux dotfiles featuring Hyprland, Tokyo Night theming, and extensive Rofi integration. Automated bootstrap script handles everything from base system setup to desktop environment configuration.
+Personal Arch Linux dotfiles featuring Hyprland, Tokyo Night theming, and extensive Rofi integration. Automated bootstrap script handles everything from base system setup to desktop environment configuration. It was intended to be installed on a bare system, but will probably run just fine on top of existing configuration as backups are enabled.
 
 ![Desktop Showcase](media/showcase/wallpaper.png)
 
