@@ -6,7 +6,7 @@
 		// "full-at":
 		// "interval":
 		"states": {
-			"warning": 20,
+			"warning": 30,
 			"critical": 10
 		},
 		"format": "{icon} {capacity}%",

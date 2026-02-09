@@ -29,7 +29,7 @@ rofi_cmd() {
         message="Battery critical! 10%"
     else
         color="#e0af68"
-        message="Battery low! 20%"
+        message="Battery low! 30%"
     fi
     echo -e "$ok" |rofi -theme-str "window {location: center; anchor: center; fullscreen: false; width: 250px; background-color: $color;}" \
         -theme-str 'mainbox {children: [ "message", "listview" ];}' \
