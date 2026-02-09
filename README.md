@@ -92,10 +92,9 @@ Personal Arch Linux dotfiles featuring Hyprland, Tokyo Night theming, and extens
 ## Features
 
 - **Automated Setup**: Single script installs packages, configures system, and symlinks dotfiles with backup protection
-- **Hyprland-First**: Wayland-native workflow optimized for laptop usage with NVIDIA support
-- **Extensive Rofi Integration**: 20+ custom menus for everything from screenshots to password management
-- **Vim-Centric Keybindings**: Ergonomic keyboard-first workflow (see [keyd config](etc/keyd/default.conf))
-- **Modular Hyprland Config**: Split configuration files for maintainability
+- **Hyprland-First**: Wayland-native workflow optimized for laptop usage ~with NVIDIA support~ (Nvidia is a b*ch)
+- **Extensive Rofi Integration**: 20+ custom menus for everything from screenshots to password management (Will be converted to quickshell, I like it's extensibility)
+- **Vim-Centric Keybindings**: Ergonomic keyboard-first workflow - ~hjkl~ jkl; (see [keyd config](etc/keyd/default.conf), [hyprland keybinds](.config/hypr/land/keybinds.conf))
 - **Smart Symlinking**: Idempotent with numbered backups (.bak, .bakN)
 - **Partial Installation**: Granular flags for selective setup steps
 
@@ -105,15 +104,14 @@ Personal Arch Linux dotfiles featuring Hyprland, Tokyo Night theming, and extens
 git clone https://github.com/knownasnaffy/dotfiles.git
 cd dotfiles
 ./setup.sh            # full setup
-./setup.sh --private  # include private packages (jrnl, etc.)
 ```
 
 The script will:
 1. Configure network (systemd-networkd + iwd)
 2. Install base tooling (pacman + paru AUR helper)
 3. Install 60+ packages (Hyprland stack, CLI tools, fonts, apps)
-4. Setup Homebrew + bun, fnm, pipx
-5. Configure Oh My Zsh with plugins
+4. Setup Homebrew, fnm, pipx
+5. Configure *Latest* Oh My Zsh with plugins
 6. Clone Neovim config
 7. Symlink all dotfiles (user + system configs)
 8. Run post-install tasks (bat cache, xdg defaults, enable services)
@@ -121,13 +119,13 @@ The script will:
 ## Package Highlights
 
 **Hyprland Ecosystem:**
-- hyprland, hyprlock, hyprpicker, hyprpolkitagent, hyprshade, hyprshutdown-git, hyprquickframe-git
+- hyprland, hyprlock, hyprpicker, hyprpolkitagent, hyprshade, hyprshutdown-git, hyprquickframe-git, quicksnip-git
 - waybar, swaync, swayosd, uwsm
 - grim, slurp, satty, wf-recorder, cliphist
 
 **CLI Tools:**
-- Shell: zsh, fzf, ripgrep, bat, eza, zoxide, btop, eva, jq, thefuck
-- File Management: yazi, 7zip, ueberzug
+- Shell: zsh, fzf, ripgrep, bat, eza, zoxide, btop, eva, jq
+- File Management: yazi, 7zip
 - Dev: github-cli, aichat, task, pass (+ pass-otp)
 - Media: playerctl, imagemagick
 
@@ -138,16 +136,11 @@ The script will:
 - Image: swayimg
 - Communication: beeper-v4-bin
 
-**Audio:**
-- pipewire, pipewire-pulse, pipewire-alsa, wireplumber, alsa-utils
-
-**Fonts:**
-- ttf-hack-nerd, noto-fonts-emoji, inter-font
+**Audio:** pipewire
 
 **System:**
-- Display Manager: ly
+- Display Manager: ly (currently using sddm, but not yet configured into dotfiles)
 - Keyboard Remapping: keyd
-- Portal: xdg-desktop-portal-hyprland, xdg-desktop-portal-termfilechooser
 
 ## Rofi Menus
 
@@ -170,10 +163,10 @@ The script will:
 - `shader-toggle` - Hyprshade toggle
 - `global` - Global menu aggregator
 
-**Stale (Not in Use):**
+**Stale (Just there for reference):**
 - brightness, volume, wifi, battery, mpd, apps, appasroot, quicklinks
 
-All menus are bound to keybindings in [hypr/land/keybinds.conf](.config/hypr/land/keybinds.conf).
+Almost all menus are bound to keybindings in [hypr/land/keybinds.conf](.config/hypr/land/keybinds.conf).
 
 ## Configuration Structure
 
@@ -267,8 +260,7 @@ The following require manual configuration (documentation pending):
 ## Known Limitations
 
 - **X11 apps**: Occasional glitches on Wayland (XWayland limitations). Qutebrowser has workarounds but bugs persist.
-- **NVIDIA quirks**: Requires specific env vars (configured in hyprland.conf)
-- **Personal software**: Currently mixed with system configs; will be separated into dedicated repo for sensitive data (mail, journal, etc.)
+- **NVIDIA quirks**: Requires specific env vars (configured in hyprland.conf). Resume doesn't work (hibernate & sleep)
 
 ## Neovim Setup
 
@@ -277,12 +269,6 @@ If `~/.config/nvim` exists and points to `knownasnaffy/nvim`, it's preserved. Ot
 Manual setup: `git clone https://github.com/knownasnaffy/nvim.git ~/.config/nvim`
 
 ## Troubleshooting
-
-**Zsh not default shell:**
-```bash
-chsh $(id -un) --shell $(command -v zsh)
-# Then log out and back in
-```
 
 **Symlink conflicts:**
 Check permissions. Existing files may sometimes lead to conflict in `/etc` dir.
@@ -300,9 +286,10 @@ Last time I encountered this issue, it was because of postgresql, it's service w
 
 ## Credits
 
-- **Rofi themes**: Customized from various sources
-- **Inspiration**: Countless dotfiles repos in the community
-- Will try to complete this section soon
+- **Rofi themes**: Customized from various sources including [@adi1090x](https://github.com/adi1090x) and [rofi-desktop](https://github.com/giomatfois62/rofi-desktop)
+- **Inspiration**: Wallpaper depth effect clock - [NibrasShell](https://github.com/AhmedSaadi0/NibrasShell)
+- **Neovim config**: Fork of [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
+- **Theme variables**: [Folke's tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
 
 ---
 
