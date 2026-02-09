@@ -103,7 +103,7 @@ Personal Arch Linux dotfiles featuring Hyprland, Tokyo Night theming, and extens
 ```bash
 git clone https://github.com/knownasnaffy/dotfiles.git
 cd dotfiles
-./setup.sh            # full setup
+./setup.sh
 ```
 
 The script will:
@@ -290,6 +290,7 @@ Last time I encountered this issue, it was because of postgresql, it's service w
 - **Inspiration**: Wallpaper depth effect clock - [NibrasShell](https://github.com/AhmedSaadi0/NibrasShell)
 - **Neovim config**: Fork of [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
 - **Theme variables**: [Folke's tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
+- **Snipping Utilities**: [Ronin-CK](https://github.com/Ronin-CK)
 
 ---
 
