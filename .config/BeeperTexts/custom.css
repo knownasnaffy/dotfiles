@@ -30,6 +30,7 @@ To open dev tools, open the command bar and type "open console"
     --color-text-translucent: var(--color-fg-main);
     --color-on-surface: var(--color-fg-muted);
     --color-background-selected: var(--color-accent-bg);
+    --color-background-scrollbar: var(--color-accent-bg);
 
     --color-background-app: var(--color-bg-dark);
     --color-tertiary-container: var(--color-bg-default);
@@ -71,7 +72,8 @@ To open dev tools, open the command bar and type "open console"
   }
   html.is-not-mac {
     --font-family:
-      "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Color Emoji",
-      "Apple Color Emoji", "Twemoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+      "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      "Noto Color Emoji", "Apple Color Emoji", "Twemoji", "Segoe UI Emoji",
+      "Segoe UI Symbol", sans-serif;
   }
 }
