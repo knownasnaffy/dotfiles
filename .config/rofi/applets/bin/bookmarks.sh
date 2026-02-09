@@ -8,14 +8,7 @@ ok=' OK'
 # TODO: Add a check for bookmark file, use touch if file doesn't exist, mkdir if folder doesn't
 
 feedback() {
-    rofi -theme-str 'window {location: center; anchor: center; fullscreen: false; width: 350px;}' \
-        -theme-str 'mainbox {orientation: vertical; children: [ "message", "listview" ];}' \
-        -theme-str 'listview {columns: 1; lines: 1;}' \
-        -theme-str 'element-text {horizontal-align: 0.5;}' \
-        -theme-str 'textbox {horizontal-align: 0.5;}' \
-        -dmenu \
-        -mesg "$1" \
-        -theme $HOME/.config/rofi/applets/type-1/style-2.rasi
+    notify-send -a Bookmarks "Bookmarks" "$1"
 }
 
 placeholder() {
@@ -58,7 +51,7 @@ add_bookmark() {
          description: $desc
        }]' "$BOOKMARKS" > "$BOOKMARKS.tmp" && mv "$BOOKMARKS.tmp" "$BOOKMARKS"
 
-    echo "$ok" | feedback "Bookmark added"
+    feedback "New bookmark added"
 }
 
 delete_bookmark() {
@@ -68,7 +61,7 @@ delete_bookmark() {
     jq --arg t "$choice" 'del(.[] | select(.title==$t))' \
         "$BOOKMARKS" > "$BOOKMARKS.tmp" && mv "$BOOKMARKS.tmp" "$BOOKMARKS"
 
-    echo "$ok" | feedback "Deleted"
+    feedback "Bookmark deleted"
 }
 
 edit_bookmark() {
@@ -89,7 +82,7 @@ edit_bookmark() {
         (.title=$nt | .description=$nd)' \
         "$BOOKMARKS" > "$BOOKMARKS.tmp" && mv "$BOOKMARKS.tmp" "$BOOKMARKS"
 
-    echo "$ok" | feedback "Metadata refreshed"
+    feedback "Metadata refreshed"
 }
 
 main_menu() {
