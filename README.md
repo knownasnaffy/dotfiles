@@ -13,7 +13,7 @@ Personal Arch Linux dotfiles featuring Hyprland, Tokyo Night theming, and extens
   </tr>
   <tr>
     <td align="center">
-      <img src="media/showcase/neovim.png" width="400">
+      <img src="media/showcase/neovim.gif" width="400">
     </td>
     <td align="center">
       <img src="media/showcase/qutebrowser.png" width="400">
