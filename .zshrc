@@ -154,18 +154,6 @@ zstyle ':completion::complete:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh
 export HOMEBREW_AUTO_UPDATE_SECS=$((60 * 60 * 24 * 7))
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Lazy Loading for Tools
-# ─────────────────────────────────────────────────────────────────────────────
-
-# Lazy load 'thefuck' correction tool
-thefuck_lazy_load() {
-  unalias fuck
-  eval $(thefuck --alias)
-  fuck "$@"
-}
-alias fuck=thefuck_lazy_load
-
-# ─────────────────────────────────────────────────────────────────────────────
 # Custom Aliases and Functions
 # ─────────────────────────────────────────────────────────────────────────────
 
