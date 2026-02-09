@@ -8,21 +8,6 @@ Personal Arch Linux dotfiles featuring Hyprland, Tokyo Night theming, and extens
 
 <table>
   <tr>
-    <th>Launcher</th>
-    <th>Powermenu</th>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="media/showcase/launcher.png" width="400">
-    </td>
-    <td align="center">
-      <img src="media/showcase/powermenu.png" width="400">
-    </td>
-  </tr>
-</table>
-
-<table>
-  <tr>
     <th>Neovim</th>
     <th>Qutebrowser</th>
   </tr>
@@ -32,6 +17,36 @@ Personal Arch Linux dotfiles featuring Hyprland, Tokyo Night theming, and extens
     </td>
     <td align="center">
       <img src="media/showcase/qutebrowser.png" width="400">
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>Beeper</th>
+    <th>Fzf</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="media/showcase/beeper.png" width="400">
+    </td>
+    <td align="center">
+      <img src="media/showcase/fzf.png" width="400">
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>Launcher</th>
+    <th>Powermenu</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="media/showcase/launcher.png" width="400">
+    </td>
+    <td align="center">
+      <img src="media/showcase/powermenu.png" width="400">
     </td>
   </tr>
 </table>
