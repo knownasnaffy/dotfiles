@@ -1,6 +1,9 @@
 [mgr]
 prepend_keymap = [
   { on = [
+    "<A-q>",
+  ], run = 'escape', desc = "Escape visual mode, clear selected, cancel filter/search" },
+  { on = [
     "k",
   ], run = 'arrow +1', desc = "Move a line down" },
   { on = [
@@ -32,6 +35,7 @@ prepend_keymap = [
   ], run = "plugin jump-to-char", desc = "Jump to char" },
   { on = "l", run = "plugin smart-enter", desc = "Enter the child directory, or open the file" },
   { on = "F", run = "plugin smart-filter", desc = "Smart filter" },
+  { on = "!", for = "unix", run = 'shell "$SHELL" --block', desc = "Open $SHELL here" },
 ]
 
 [spot]
