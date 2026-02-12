@@ -74,6 +74,12 @@ case "$focused_class" in
         )
         ;;
 
+    BeeperTexts)
+        context_records+=(
+            "Qutebrowser: Open Attachments Folder:::ghostty -e yazi ~/Downloads/Beeper"
+        )
+        ;;
+
     qutebrowser)
         context_records+=(
             "Qutebrowser: Open Downloads:::ghostty -e yazi ~/Downloads"
