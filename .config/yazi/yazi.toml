@@ -3,6 +3,7 @@ show_hidden = true
 
 [preview]
 wrap = "yes"
+image_delay = 0
 
 [[plugin.prepend_fetchers]]
 id = "git"
