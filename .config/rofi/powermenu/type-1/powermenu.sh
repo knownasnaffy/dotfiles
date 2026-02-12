@@ -4,10 +4,6 @@
 ## Github : @adi1090x
 #
 ## Rofi   : Power Menu
-#
-## Available Styles
-#
-## style-1   style-2   style-3   style-4   style-5
 
 # Current Theme
 dir="$HOME/.config/rofi/powermenu/type-1"
@@ -70,17 +66,7 @@ run_cmd() {
             amixer set Master mute
             systemctl suspend
         elif [[ $1 == '--logout' ]]; then
-            [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && hyprshutdown || i3-msg exit
-            # elif [[ $1 == '--logout' ]]; then
-            # 	if [[ "$DESKTOP_SESSION" == 'openbox' ]]; then
-            # 		openbox --exit
-            # 	elif [[ "$DESKTOP_SESSION" == 'bspwm' ]]; then
-            # 		bspc quit
-            # 	elif [[ "$DESKTOP_SESSION" == 'i3' ]]; then
-            # 		i3-msg exit
-            # 	elif [[ "$DESKTOP_SESSION" == 'plasma' ]]; then
-            # 		qdbus org.kde.ksmserver /KSMServer logout 0 0 0
-            # 	fi
+            [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && hyprshutdown --vt 2 || i3-msg exit
         fi
     else
         exit 0
@@ -98,12 +84,6 @@ case ${chosen} in
         ;;
     $lock)
         [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && hyprlock || sleep 0.5 && $HOME/.config/i3/lock.sh
-
-        # if [[ -x '/usr/bin/betterlockscreen' ]]; then
-        # 	betterlockscreen -l
-        # elif [[ -x '/usr/bin/i3lock' ]]; then
-        # 	i3lock
-        # fi
         ;;
     $suspend)
         run_cmd --suspend
