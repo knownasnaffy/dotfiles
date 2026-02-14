@@ -183,7 +183,7 @@ install_programs() {
         alsa-utils inotify-tools jq eva bat zoxide 7zip yazi zathura \
         noto-fonts-emoji xdg-user-dirs udisks2 pass eza aichat \
         zathura-pdf-poppler ly playerctl keyd btop ueberzug man-db imagemagick \
-        pass-otp oath-toolkit rofi-calc quickshell inter-font
+        pass-otp oath-toolkit rofi-calc quickshell inter-font cava
 
     # Hyprland / Wayland stack
     paru -Sy --noconfirm \
