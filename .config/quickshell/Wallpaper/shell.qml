@@ -1,3 +1,4 @@
+import "./AudioVisualizer" as AV
 import QtQuick
 import QtQuick.Effects
 import Quickshell
@@ -22,7 +23,7 @@ PanelWindow {
     Background {
     }
 
-    AudioVisualizer {
+    AV.AudioVisualizer {
     }
 
 }
