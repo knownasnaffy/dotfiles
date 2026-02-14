@@ -49,6 +49,7 @@ EOF
                 }).filter((p) => {
                     return !isNaN(p);
                 });
+                points = points.concat(points.slice().reverse()).concat(points.slice().reverse());
                 if (points.length < 2)
                     return ;
 
@@ -64,7 +65,7 @@ EOF
                     return v + (points[i] - v) * cava.smoothFactor;
                 });
                 let shadow = cava.data.slice();
-                for (let i = 0; i < Math.min(6, shadow.length); i++) shadow[i] = 0
+                for (let i = 0; i < Math.min(12, shadow.length); i++) shadow[i] = 0
                 cava.shadowData = shadow;
                 cava.updated();
             }

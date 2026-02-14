@@ -18,7 +18,7 @@ Canvas {
         if (isShadow) {
             ctx.globalAlpha = 0.3;
             ctx.save();
-            ctx.translate(-80, -2);
+            ctx.translate(-40, -2);
             ctx.scale(1.02, 1.05);
         } else {
             ctx.globalAlpha = 0.9;
