@@ -6,6 +6,7 @@ import QtQuick.Layouts
 import QtQuick.Shapes
 import Quickshell
 import Quickshell.Hyprland
+import Quickshell.Widgets
 
 PanelWindow {
     id: root
@@ -30,13 +31,31 @@ PanelWindow {
         bottom: true
     }
 
+    ListModel {
+        id: notifModel
+
+        ListElement {
+            title: "Notification Title"
+            body: "Some long form content"
+            icon: ""
+        }
+
+        ListElement {
+            title: "Another one"
+            body: "This is dynamic now"
+            icon: ""
+        }
+
+    }
+
     Region {
         id: myRegion
 
         item: customColumn
     }
 
-    WallpaperImage {}
+    WallpaperImage {
+    }
 
     Item {
         id: mask
@@ -52,11 +71,12 @@ PanelWindow {
             anchors.bottom: parent.bottom
             anchors.right: parent.right
             anchors.rightMargin: 12
-            anchors.bottomMargin: 47 // 47 for normal, 66 for when audio visualizer is in effect
+            anchors.bottomMargin: 66 // 47 for normal, 66 for when audio visualizer is in effect
 
             Shape {
                 property int currentCorner: 3
 
+                opacity: root.animatedWidth > 20 ? 1 : 0
                 preferredRendererType: Shape.CurveRenderer
                 asynchronous: true
                 Layout.preferredWidth: root.cornerWidth
@@ -100,6 +120,7 @@ PanelWindow {
 
                     property int currentCorner: 3
 
+                    opacity: root.animatedWidth > 20 ? 1 : 0
                     preferredRendererType: Shape.CurveRenderer
                     asynchronous: true
                     Layout.preferredWidth: root.cornerWidth
@@ -178,7 +199,7 @@ PanelWindow {
         anchors.bottom: parent.bottom
         anchors.right: parent.right
         anchors.rightMargin: 16
-        anchors.bottomMargin: 49 // 49 for normal, 68 for when audio visualizer is in effect
+        anchors.bottomMargin: 68 // 49 for normal, 68 for when audio visualizer is in effect
 
         RowLayout {
             spacing: 0
@@ -186,10 +207,12 @@ PanelWindow {
 
             Rectangle {
                 id: bg
+
                 property real animatedHeight: 0
 
                 radius: 12
                 color: "#ee1b1e2d"
+                clip: true
                 Layout.preferredWidth: root.animatedWidth
                 Layout.preferredHeight: animatedHeight
                 Component.onCompleted: {
@@ -197,13 +220,13 @@ PanelWindow {
                 }
 
                 MultiEffect {
-        anchors.fill: bg
-        source: bg
-        blurEnabled: true
-        blur: 0.6        // strength (0–1)
-        blurMax: 12      // radius
-        opacity: 0.9
-    }
+                    anchors.fill: bg
+                    source: bg
+                    blurEnabled: true
+                    blur: 0.6 // strength (0–1)
+                    blurMax: 12 // radius
+                    opacity: 0.9
+                }
 
                 Timer {
                     id: fgStartupTimer
@@ -216,20 +239,84 @@ PanelWindow {
                     }
                 }
 
-                ColumnLayout {
+                ListView {
                     id: containerLayout
-                    // layoutDirection: Qt.LeftToRight
-                    spacing: -12
-                    Repeater {
-                        model: 1
 
-                        Rectangle {
-                            color: "#16161e"
-                            radius: 8
-                            Layout.minimumWidth: root.animatedWidth - 24
-                            Layout.margins: 12
-                            height: 100
+                    model: notifModel
+                    interactive: false
+                    clip: true
+                    spacing: 12
+                    // CRITICAL: make ListView size itself like a layout
+                    implicitHeight: contentHeight
+                    implicitWidth: bg.width
+
+                    header: Item { height: 12 }
+                    footer: Item { height: 12 }
+
+                    delegate: Rectangle {
+                        id: currentNotif
+
+                        required property string title
+                        required property string icon
+                        required property string body
+                        property real animatedWidth: root.animatedWidth
+
+                        color: "#16161e"
+                        radius: 8
+                        width: animatedWidth - 24
+                        height: notifRow.implicitHeight
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.margins: 12
+
+                        RowLayout {
+                            id: notifRow
+
+                            spacing: 0
+
+                            Rectangle {
+                                color: "#24283b"
+                                radius: 30
+                                Layout.preferredWidth: 40
+                                Layout.preferredHeight: 40
+                                Layout.margins: 12
+
+                                Text {
+                                    text: currentNotif.icon
+                                    font.pixelSize: 32
+                                    font.family: "JetBrainsMono Nerd Font Mono"
+                                    color: "#a9b1d6"
+                                    anchors.centerIn: parent
+                                }
+
+                            }
+
+                            ColumnLayout {
+                                spacing: 2
+                                Layout.alignment: Qt.AlignVCenter
+                                Layout.topMargin: 12
+                                Layout.bottomMargin: 12
+
+                                Text {
+                                    text: currentNotif.title
+                                    color: "#a9b1d6"
+                                    font.pixelSize: 14
+                                    font.weight: Font.Medium
+                                    font.family: "Inter"
+                                }
+
+                                Text {
+                                    text: currentNotif.body
+                                    color: "#565f89"
+                                    font.pixelSize: 12
+                                    font.weight: Font.Medium
+                                    font.family: "Inter"
+                                    wrapMode: Text.WordWrap
+                                }
+
+                            }
+
                         }
+
                     }
 
                 }
@@ -259,13 +346,14 @@ PanelWindow {
     }
 
     Timer {
+        // Qt.quit();
+
         id: quitTimer
 
         interval: 220
         repeat: false
         running: false
         onTriggered: {
-            // Qt.quit();
         }
     }
 
