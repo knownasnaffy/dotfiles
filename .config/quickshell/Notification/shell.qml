@@ -6,6 +6,7 @@ import QtQuick.Layouts
 import QtQuick.Shapes
 import Quickshell
 import Quickshell.Hyprland
+import Quickshell.Widgets
 
 PanelWindow {
     id: root
@@ -43,7 +44,8 @@ PanelWindow {
         ListElement {
             title: "Another one"
             body: "This is dynamic now"
-            icon: ""
+            icon: ""
+            priority: 'critical'
         }
 
     }
@@ -246,6 +248,7 @@ PanelWindow {
                     interactive: false
                     clip: true
                     spacing: 12
+                    // CRITICAL: make ListView size itself like a layout
                     implicitHeight: contentHeight
                     implicitWidth: bg.width
 
@@ -264,6 +267,7 @@ PanelWindow {
                         required property string icon
                         required property string body
                         required property string btn1
+                        required property string priority
                         property real animatedWidth: root.animatedWidth
 
                         color: "#16161e"
@@ -274,8 +278,9 @@ PanelWindow {
                         anchors.margins: 12
 
                         RowLayout {
+                            // width: parent.width
+
                             id: notifRow
-                            width: parent.width
 
                             spacing: 0
 
@@ -293,7 +298,7 @@ PanelWindow {
                                     text: currentNotif.icon
                                     font.pixelSize: 32
                                     font.family: "JetBrainsMono Nerd Font Mono"
-                                    color: "#a9b1d6"
+                                    color: currentNotif.priority === "critical"?"#f7768e": "#a9b1d6"
                                     anchors.centerIn: parent
                                 }
 
@@ -301,10 +306,9 @@ PanelWindow {
 
                             ColumnLayout {
                                 spacing: 2
-                                Layout.alignment: Qt.Left
+                                Layout.alignment: Qt.AlignLeft
                                 Layout.topMargin: 12
                                 Layout.bottomMargin: 12
-                                Layout.fillWidth: true
 
                                 RowLayout {
                                     Layout.fillWidth: true
@@ -325,20 +329,11 @@ PanelWindow {
 
                                         Text {
                                             text: "now"
-                                            color: "#565f89"
+                                            color: currentNotif.priority === "critical"?"#f7768e":"#565f89"
                                             font.pixelSize: 10
                                             font.weight: Font.Medium
                                             font.family: "Inter"
                                         }
-
-                                        Text {
-                                            text: ""
-                                            color: "#a9b1d6"
-                                            font.pixelSize: 10
-                                            font.weight: Font.Medium
-                                            font.family: "Inter"
-                                        }
-
                                     }
 
                                 }
@@ -410,29 +405,6 @@ PanelWindow {
         onTriggered: {
             root.animatedWidth = 0;
             quitTimer.running = true;
-        }
-    }
-
-    Timer {
-        id: notifBurstTimer
-
-        property int added: 0
-
-        interval: 1000
-        repeat: true
-        running: true
-        onTriggered: {
-            console.log("Adding...");
-            notifModel.append({
-                "title": "Notification " + (added + 1),
-                "body": "This arrived " + (added + 1) + " second(s) later",
-                "icon": ""
-            });
-            added++;
-            if (added === 3) {
-                running = false;
-                added = 0;
-            }
         }
     }
 
