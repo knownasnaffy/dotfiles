@@ -153,6 +153,26 @@ settings:
     - -e
     - nvim
     - '{file}'
+  fileselect.folder.command:
+    global:
+    - ghostty
+    - -e
+    - yazi
+    - --chooser-file={}
+  fileselect.handler:
+    global: external
+  fileselect.multiple_files.command:
+    global:
+    - ghostty
+    - -e
+    - yazi
+    - --chooser-file={}
+  fileselect.single_file.command:
+    global:
+    - ghostty
+    - -e
+    - yazi
+    - --chooser-file={}
   input.insert_mode.auto_load:
     global: true
   scrolling.smooth:
