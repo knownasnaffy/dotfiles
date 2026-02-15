@@ -1,14 +1,19 @@
+import Qt.labs.platform
 import QtQuick
 import Quickshell
 import Quickshell.Hyprland
 import Quickshell.Wayland
 
 Item {
+    id: root
+
+    property string home: StandardPaths.writableLocation(StandardPaths.HomeLocation)
+
     anchors.fill: parent
 
     Image {
         anchors.fill: parent
-        source: "/home/barinr/Downloads/w11.jpg"
+        source: root.home + "/Pictures/wallpaper-background-layer.jpg"
         fillMode: Image.PreserveAspectFit
         z: 0
     }
@@ -37,7 +42,7 @@ Item {
 
     Image {
         anchors.fill: parent
-        source: "/home/barinr/Downloads/w13.png"
+        source: root.home + "/Pictures/wallpaper-mask-layer.png"
         fillMode: Image.PreserveAspectFit
         z: 2
     }
