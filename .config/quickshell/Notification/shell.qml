@@ -139,7 +139,7 @@ PanelWindow {
 
                     topLeftRadius: 12
                     Layout.preferredWidth: root.animatedWidth > 20 ? root.animatedWidth + 12 : 0
-                    Layout.preferredHeight: animatedHeight + 10
+                    Layout.preferredHeight: animatedHeight > 0 ? animatedHeight + 10 : 0
                     Component.onCompleted: {
                         bgStartupTimer.running = true;
                     }
@@ -185,15 +185,25 @@ PanelWindow {
             Layout.alignment: Qt.AlignRight | Qt.AlignBottom
 
             Rectangle {
+                id: bg
                 property real animatedHeight: 0
 
                 radius: 12
-                color: "#ee1a1b26"
+                color: "#ee1b1e2d"
                 Layout.preferredWidth: root.animatedWidth
                 Layout.preferredHeight: animatedHeight
                 Component.onCompleted: {
                     fgStartupTimer.running = true;
                 }
+
+                MultiEffect {
+        anchors.fill: bg
+        source: bg
+        blurEnabled: true
+        blur: 0.6        // strength (0–1)
+        blurMax: 12      // radius
+        opacity: 0.9
+    }
 
                 Timer {
                     id: fgStartupTimer
@@ -211,13 +221,12 @@ PanelWindow {
                     // layoutDirection: Qt.LeftToRight
                     spacing: -12
                     Repeater {
-                        model: 3
+                        model: 1
 
                         Rectangle {
                             color: "#16161e"
                             radius: 8
-                            // Layout.preferredWidth: Layout.fillWidth
-                            Layout.minimumWidth: 356
+                            Layout.minimumWidth: root.animatedWidth - 24
                             Layout.margins: 12
                             height: 100
                         }
@@ -256,7 +265,7 @@ PanelWindow {
         repeat: false
         running: false
         onTriggered: {
-            Qt.quit();
+            // Qt.quit();
         }
     }
 
