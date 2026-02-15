@@ -8,6 +8,21 @@ Personal Arch Linux dotfiles featuring Hyprland, Tokyo Night theming, and extens
 
 <table>
   <tr>
+    <th>Audio Visualizer</th>
+    <th>Notifications (WIP)</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="media/showcase/audio-visualizer.gif" width="400">
+    </td>
+    <td align="center">
+      <img src="media/showcase/notification.gif" width="400">
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
     <th>Neovim</th>
     <th>Qutebrowser</th>
   </tr>
