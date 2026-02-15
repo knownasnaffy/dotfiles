@@ -1,12 +1,11 @@
 pragma ComponentBehavior: Bound
-
 import QtQuick
+import QtQuick.Controls
 import QtQuick.Effects
 import QtQuick.Layouts
 import QtQuick.Shapes
 import Quickshell
 import Quickshell.Hyprland
-import Quickshell.Widgets
 
 PanelWindow {
     id: root
@@ -38,6 +37,7 @@ PanelWindow {
             title: "Notification Title"
             body: "Some long form content"
             icon: ""
+            btn1: "Open in App"
         }
 
         ListElement {
@@ -246,12 +246,16 @@ PanelWindow {
                     interactive: false
                     clip: true
                     spacing: 12
-                    // CRITICAL: make ListView size itself like a layout
                     implicitHeight: contentHeight
                     implicitWidth: bg.width
 
-                    header: Item { height: 12 }
-                    footer: Item { height: 12 }
+                    header: Item {
+                        height: 12
+                    }
+
+                    footer: Item {
+                        height: 12
+                    }
 
                     delegate: Rectangle {
                         id: currentNotif
@@ -259,6 +263,7 @@ PanelWindow {
                         required property string title
                         required property string icon
                         required property string body
+                        required property string btn1
                         property real animatedWidth: root.animatedWidth
 
                         color: "#16161e"
@@ -270,6 +275,7 @@ PanelWindow {
 
                         RowLayout {
                             id: notifRow
+                            width: parent.width
 
                             spacing: 0
 
@@ -279,6 +285,9 @@ PanelWindow {
                                 Layout.preferredWidth: 40
                                 Layout.preferredHeight: 40
                                 Layout.margins: 12
+                                Layout.alignment: Qt.AlignTop
+                                Layout.maximumWidth: 40
+                                Layout.maximumHeight: 40
 
                                 Text {
                                     text: currentNotif.icon
@@ -292,16 +301,46 @@ PanelWindow {
 
                             ColumnLayout {
                                 spacing: 2
-                                Layout.alignment: Qt.AlignVCenter
+                                Layout.alignment: Qt.Left
                                 Layout.topMargin: 12
                                 Layout.bottomMargin: 12
+                                Layout.fillWidth: true
 
-                                Text {
-                                    text: currentNotif.title
-                                    color: "#a9b1d6"
-                                    font.pixelSize: 14
-                                    font.weight: Font.Medium
-                                    font.family: "Inter"
+                                RowLayout {
+                                    Layout.fillWidth: true
+                                    Layout.alignment: Qt.AlignLeft
+
+                                    Text {
+                                        text: currentNotif.title
+                                        color: "#a9b1d6"
+                                        font.pixelSize: 14
+                                        font.weight: Font.Medium
+                                        font.family: "Inter"
+                                        elide: Text.ElideRight
+                                    }
+
+                                    RowLayout {
+                                        spacing: 4
+                                        Layout.alignment: Qt.AlignRight
+
+                                        Text {
+                                            text: "now"
+                                            color: "#565f89"
+                                            font.pixelSize: 10
+                                            font.weight: Font.Medium
+                                            font.family: "Inter"
+                                        }
+
+                                        Text {
+                                            text: ""
+                                            color: "#a9b1d6"
+                                            font.pixelSize: 10
+                                            font.weight: Font.Medium
+                                            font.family: "Inter"
+                                        }
+
+                                    }
+
                                 }
 
                                 Text {
@@ -311,6 +350,35 @@ PanelWindow {
                                     font.weight: Font.Medium
                                     font.family: "Inter"
                                     wrapMode: Text.WordWrap
+                                }
+
+                                RowLayout {
+                                    id: buttonRow
+
+                                    spacing: 8
+                                    visible: currentNotif.btn1 ? true : false
+
+                                    Button {
+                                        rightPadding: 12
+                                        leftPadding: 12
+                                        bottomPadding: 6
+                                        topPadding: 10
+                                        topInset: 4
+
+                                        contentItem: Label {
+                                            text: currentNotif.btn1
+                                            font.pixelSize: 10
+                                            font.family: "Inter"
+                                            color: "#c9d1e0"
+                                        }
+
+                                        background: Rectangle {
+                                            radius: 8
+                                            color: "#24283b"
+                                        }
+
+                                    }
+
                                 }
 
                             }
@@ -342,6 +410,29 @@ PanelWindow {
         onTriggered: {
             root.animatedWidth = 0;
             quitTimer.running = true;
+        }
+    }
+
+    Timer {
+        id: notifBurstTimer
+
+        property int added: 0
+
+        interval: 1000
+        repeat: true
+        running: true
+        onTriggered: {
+            console.log("Adding...");
+            notifModel.append({
+                "title": "Notification " + (added + 1),
+                "body": "This arrived " + (added + 1) + " second(s) later",
+                "icon": ""
+            });
+            added++;
+            if (added === 3) {
+                running = false;
+                added = 0;
+            }
         }
     }
 
