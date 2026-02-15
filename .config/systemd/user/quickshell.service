@@ -7,7 +7,7 @@ ConditionEnvironment=WAYLAND_DISPLAY
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/quickshell -c Wallpaper
+ExecStart=/usr/bin/quickshell
 Restart=on-failure
 
 [Install]

@@ -1,9 +1,10 @@
 import QtQuick
+import "root:/Wallpaper/AudioVisualizer" as AV
 
 Item {
     anchors.fill: parent
 
-    CavaSource {
+    AV.CavaSource {
         id: cava
 
         onUpdated: {
@@ -12,11 +13,11 @@ Item {
         }
     }
 
-    HyprGapController {
+    AV.HyprGapController {
         silent: cava.isSilent
     }
 
-    MountainWave {
+    AV.MountainWave {
         id: left
 
         data: cava.data
