@@ -6,7 +6,7 @@ import QtQuick.Shapes
 import Quickshell
 import Quickshell.Hyprland
 import Quickshell.Services.Pipewire
-import 'root:/Common' as Common
+import qs.Common
 
 PanelWindow {
     id: root
@@ -79,7 +79,7 @@ PanelWindow {
         item: customColumn
     }
 
-    Common.WallpaperImage {
+    WallpaperImage {
     }
 
     Item {

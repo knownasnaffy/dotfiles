@@ -1,8 +1,5 @@
 import Qt.labs.platform
 import QtQuick
-import Quickshell
-import Quickshell.Hyprland
-import Quickshell.Wayland
 
 Item {
     id: root

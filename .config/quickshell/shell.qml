@@ -1,13 +1,13 @@
 import QtQuick
 import Quickshell
+import qs.OSD
+import qs.Wallpaper
 
 ShellRoot {
-    Loader {
-        source: './Wallpaper/shell.qml'
+    Wallpaper {
     }
 
-    Loader {
-        source: './OSD/shell.qml'
+    OSD {
     }
 
 }

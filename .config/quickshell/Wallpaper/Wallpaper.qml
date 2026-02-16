@@ -1,8 +1,5 @@
 import QtQuick
-import QtQuick.Effects
 import Quickshell
-import Quickshell.Hyprland
-import Quickshell.Io
 import Quickshell.Wayland
 import "root:/Wallpaper" as WP
 import "root:/Wallpaper/AudioVisualizer" as AV
