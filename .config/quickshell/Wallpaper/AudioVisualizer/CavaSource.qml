@@ -1,5 +1,4 @@
 import QtQuick
-import Quickshell
 import Quickshell.Io
 
 Item {
@@ -49,7 +48,7 @@ EOF
                 }).filter((p) => {
                     return !isNaN(p);
                 });
-                points = points.concat(points.slice().reverse()).concat(points.slice().reverse());
+                points = points.concat(points.slice().reverse()).concat(points.slice());
                 if (points.length < 2)
                     return ;
 
