@@ -16,6 +16,8 @@ PanelWindow {
     property int cornerWidth: cornerHeight
     property real animatedWidth: 72
 
+    required property real bottomOffset
+
     implicitWidth: 480
     exclusionMode: ExclusionMode.Ignore
     aboveWindows: true
@@ -96,7 +98,7 @@ PanelWindow {
             anchors.bottom: parent.bottom
             anchors.right: parent.right
             anchors.rightMargin: 12
-            anchors.bottomMargin: 65 // 47 for normal, 66 for when audio visualizer is in effect
+            anchors.bottomMargin: root.bottomOffset // 47 for normal, 66 for when audio visualizer is in effect
 
             Shape {
                 property int currentCorner: 3
@@ -211,7 +213,7 @@ PanelWindow {
         anchors.bottom: parent.bottom
         anchors.right: parent.right
         anchors.rightMargin: 16
-        anchors.bottomMargin: 67 // 49 for normal, 68 for when audio visualizer is in effect
+        anchors.bottomMargin: root.bottomOffset + 2 // 49 for normal, 68 for when audio visualizer is in effect
 
         RowLayout {
             spacing: 0
@@ -277,7 +279,7 @@ PanelWindow {
                             }
 
                             Rectangle {
-                                property real animatedHeight: ( contentLayout.height - (contentLayout.spacing * 3) - thumb.implicitHeight - contentLayout.anchors.topMargin - contentLayout.anchors.bottomMargin + 2 ) * (Pipewire.defaultAudioSink?.audio.volume ?? 0)
+                                property real animatedHeight: (( contentLayout.height - (contentLayout.spacing * 3) - thumb.implicitHeight - contentLayout.anchors.topMargin - contentLayout.anchors.bottomMargin + 2 ) * Pipewire.defaultAudioSink?.audio.volume ) ?? 0
                                 Layout.alignment: Qt.AlignHCenter
 
                                 Behavior on animatedHeight {

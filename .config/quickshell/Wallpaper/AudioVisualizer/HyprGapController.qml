@@ -7,6 +7,7 @@ Item {
     property bool silent: true
     property int silentTime: 0
     property int activeTime: 0
+    property bool gapsIncreased: false
 
     Process {
         id: exec
@@ -35,15 +36,17 @@ Item {
             if (silent) {
                 silentTime++;
                 activeTime = 0;
-                if (silentTime === 6)
+                if (silentTime === 6) {
                     run(`hyprctl keyword general:gaps_out "10,16,10,16"`);
-
+                    gapsIncreased = false;
+                }
             } else {
                 activeTime++;
                 silentTime = 0;
-                if (activeTime === 2)
+                if (activeTime === 2) {
                     run(`hyprctl keyword general:gaps_out "10,16,28,16"`);
-
+                    gapsIncreased = true;
+                }
             }
         }
     }

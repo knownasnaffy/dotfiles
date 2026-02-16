@@ -2,6 +2,8 @@ import QtQuick
 import "root:/Wallpaper/AudioVisualizer" as AV
 
 Item {
+    property bool visualizerEnabled: hyprGapController.gapsIncreased
+
     anchors.fill: parent
 
     AV.CavaSource {
@@ -14,6 +16,8 @@ Item {
     }
 
     AV.HyprGapController {
+        id: hyprGapController
+
         silent: cava.isSilent
     }
 

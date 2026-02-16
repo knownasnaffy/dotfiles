@@ -5,6 +5,8 @@ import "root:/Wallpaper" as WP
 import "root:/Wallpaper/AudioVisualizer" as AV
 
 PanelWindow {
+    property bool visualizerEnabled: audioVisualizer.visualizerEnabled
+
     aboveWindows: false
     focusable: true
     exclusionMode: ExclusionMode.Ignore
@@ -22,6 +24,7 @@ PanelWindow {
     }
 
     AV.AudioVisualizer {
+        id: audioVisualizer
     }
 
 }
