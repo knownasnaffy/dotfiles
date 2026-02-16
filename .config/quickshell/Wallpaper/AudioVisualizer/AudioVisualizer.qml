@@ -11,7 +11,6 @@ Item {
 
         onUpdated: {
             left.requestPaint();
-            right.requestPaint();
         }
     }
 
