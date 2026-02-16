@@ -14,7 +14,7 @@ PanelWindow {
     property color mColor: "#505050"
     property int cornerHeight: 16
     property int cornerWidth: cornerHeight
-    property real animatedWidth: 64
+    property real animatedWidth: 72
 
     implicitWidth: 480
     exclusionMode: ExclusionMode.Ignore
@@ -245,7 +245,8 @@ PanelWindow {
 		    radius: 12
 
 		    ColumnLayout {
-			    spacing: 12
+                id: contentLayout
+			    spacing: 8
 					anchors {
 						fill: parent
 						topMargin: 20
@@ -254,35 +255,46 @@ PanelWindow {
 
 
 					Rectangle {
+                        id: sliderParent
 						// Stretches to fill all left-over space
 						Layout.fillHeight: true
 						Layout.alignment: Qt.AlignHCenter
 
-						implicitWidth: 10
+						Layout.preferredWidth: 16
 						radius: 20
 						color: "#565f89"
+                                bottomLeftRadius: 2
+                                bottomRightRadius: 2
 
-						Rectangle {
-							property real animatedHeight: parent.height * (Pipewire.defaultAudioSink?.audio.volume ?? 0)
-							anchors {
-								left: parent.left
-								top: parent.right
-								bottom: parent.bottom
-							}
+                            }
+                            Rectangle {
+                                id: thumb
+                                Layout.preferredHeight: 4
+                                Layout.preferredWidth: 40
+                                color: "#7aa2f7"
+                                radius: 4
+                                Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
+                            }
 
-							Behavior on animatedHeight {
-							    NumberAnimation {
-								duration: 220
-								easing.type: Easing.OutCubic
-							    }
+                            Rectangle {
+                                property real animatedHeight: ( contentLayout.height - (contentLayout.spacing * 3) - thumb.implicitHeight - contentLayout.anchors.topMargin - contentLayout.anchors.bottomMargin + 2 ) * (Pipewire.defaultAudioSink?.audio.volume ?? 0)
+                                Layout.alignment: Qt.AlignHCenter
 
-							}
-							color: "#7aa2f7"
+                                Behavior on animatedHeight {
+                                    NumberAnimation {
+                                    duration: 220
+                                    easing.type: Easing.OutCubic
+                                    }
 
-							width: parent.width
-							implicitHeight: animatedHeight
-							radius: parent.radius
-						}
+                                }
+                                color: "#7aa2f7"
+
+						Layout.preferredWidth: 16
+                                implicitHeight: animatedHeight
+                                radius: sliderParent.radius
+                                topLeftRadius: 2
+                                topRightRadius: 2
+
 					}
 					Text {
 						text: ""
@@ -291,6 +303,7 @@ PanelWindow {
 						color: "#c0caf5"
 
 						Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
+                        Layout.topMargin: 8
 					}
 
 		    }
