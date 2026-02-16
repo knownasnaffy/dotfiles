@@ -23,6 +23,7 @@
 ----------------*/
 
 #custom-left_div.7 {
+  padding: 0 0px 0 10px;
   background-color: @volume;
   color: @backlight;
 }
@@ -35,6 +36,7 @@
 -------------*/
 
 #custom-left_div.8 {
+  padding: 0 0px 0 10px;
   background-color: @backlight;
   color: @battery;
 }

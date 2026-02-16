@@ -37,6 +37,7 @@
 ---------*/
 
 #custom-left_div.4 {
+  padding: 0 0px 0 5px;
   background-color: @memory;
   color: @date;
 }
@@ -52,8 +53,12 @@
     distro icon
 -----------------*/
 
-#custom-left_div.5,
+#custom-left_div.5 {
+  padding: 0 0px 0 10px;
+  color: @accent;
+}
 #custom-right_div.2 {
+  padding: 0 10px 0 0px;
   color: @accent;
 }
 #custom-distro {
