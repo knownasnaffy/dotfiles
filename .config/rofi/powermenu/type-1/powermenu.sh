@@ -17,7 +17,6 @@ host=`hostnamectl hostname`
 shutdown=' Shutdown'
 reboot=' Reboot'
 lock=' Lock'
-suspend=' Suspend'
 logout=' Logout'
 yes=' Yes'
 no=' No'
@@ -50,7 +49,7 @@ confirm_exit() {
 
 # Pass variables to rofi dmenu
 run_rofi() {
-    echo -e "$shutdown\n$reboot\n$logout\n$suspend\n$lock" | rofi_cmd
+    echo -e "$shutdown\n$reboot\n$logout\n$lock" | rofi_cmd
 }
 
 # Execute Command
@@ -58,15 +57,11 @@ run_cmd() {
     selected="$(confirm_exit)"
     if [[ "$selected" == "$yes" ]]; then
         if [[ $1 == '--shutdown' ]]; then
-            [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && sleep 0.5 && hyprshutdown -t 'Shutting down...'  -p 'systemctl poweroff' || systemctl poweroff
+            [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && hyprhalt --post-cmd 'systemctl poweroff' || systemctl poweroff
         elif [[ $1 == '--reboot' ]]; then
-            [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && sleep 0.5 && hyprshutdown -t 'Restarting...' -p 'systemctl reboot' || systemctl reboot
-        elif [[ $1 == '--suspend' ]]; then
-            mpc -q pause
-            amixer set Master mute
-            systemctl suspend
+            [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && hyprhalt --post-cmd 'systemctl reboot' || systemctl reboot
         elif [[ $1 == '--logout' ]]; then
-            [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && hyprshutdown --vt 2 || i3-msg exit
+            [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && hyprhalt --vt 2 || i3-msg exit
         fi
     else
         exit 0
@@ -84,9 +79,6 @@ case ${chosen} in
         ;;
     $lock)
         [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && hyprlock || sleep 0.5 && $HOME/.config/i3/lock.sh
-        ;;
-    $suspend)
-        run_cmd --suspend
         ;;
     $logout)
         run_cmd --logout

@@ -196,7 +196,7 @@ install_programs() {
 
     # AUR packages
     paru -Sy --noconfirm \
-        beeper-v4-bin hyprshutdown-git hyprquickframe-git quicksnip-git
+        beeper-v4-bin hyprhalt hyprquickframe-git quicksnip-git
 
     install_oh_my_zsh
     install_neovim_config
