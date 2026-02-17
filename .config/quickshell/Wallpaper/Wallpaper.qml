@@ -8,7 +8,7 @@ PanelWindow {
     property bool visualizerEnabled: audioVisualizer.visualizerEnabled
 
     aboveWindows: false
-    focusable: true
+    focusable: false
     exclusionMode: ExclusionMode.Ignore
     WlrLayershell.namespace: "Nox:wallpaper"
     WlrLayershell.layer: WlrLayer.Background
