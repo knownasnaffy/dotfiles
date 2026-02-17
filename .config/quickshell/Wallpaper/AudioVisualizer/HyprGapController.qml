@@ -6,7 +6,6 @@ import Quickshell.Io
 Item {
     property bool silent: true
     property int silentTime: 0
-    property int activeTime: 0
     property bool gapsIncreased: false
 
     Process {
@@ -29,24 +28,21 @@ Item {
             exec.running = true;
         }
 
-        interval: 500
+        interval: 1000
         repeat: true
         running: true
         onTriggered: {
             if (silent) {
                 silentTime++;
-                activeTime = 0;
-                if (silentTime === 6) {
+                if (silentTime === 5) {
+                    // after 5 seconds of silence, increase the gaps
                     run(`hyprctl keyword general:gaps_out "10,16,10,16"`);
                     gapsIncreased = false;
                 }
             } else {
-                activeTime++;
                 silentTime = 0;
-                if (activeTime === 2) {
-                    run(`hyprctl keyword general:gaps_out "10,16,28,16"`);
-                    gapsIncreased = true;
-                }
+                run(`hyprctl keyword general:gaps_out "10,16,28,16"`);
+                gapsIncreased = true;
             }
         }
     }
