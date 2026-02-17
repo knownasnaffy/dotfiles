@@ -25,7 +25,8 @@ framerate = 60
 autosens = 1
 
 [input]
-method = pulse
+method = pipewire
+source = spotify
 
 [output]
 method = raw
