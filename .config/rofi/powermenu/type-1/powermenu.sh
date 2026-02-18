@@ -26,6 +26,7 @@ rofi_cmd() {
     rofi -dmenu \
         -p "$host" \
         -mesg "Uptime: $uptime" \
+        -theme-str 'listview {columns: 1; lines: 4;}' \
         -theme ${dir}/${theme}.rasi
 }
 
