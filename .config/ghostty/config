@@ -2,6 +2,10 @@
 gtk-titlebar = false
 window-decoration = none
 
+# Exit behavior
+quit-after-last-window-closed = true
+quit-after-last-window-closed-delay = 5m
+
 # Set theme
 theme = TokyoNight
 shell-integration-features = no-cursor
