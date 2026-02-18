@@ -287,7 +287,7 @@ PanelWindow {
                             }
 
                             Rectangle {
-                                property real animatedHeight: (( contentLayout.height - (contentLayout.spacing * 3) - thumb.implicitHeight - contentLayout.anchors.topMargin - contentLayout.anchors.bottomMargin + 2 ) * (( Pipewire.defaultAudioSink?.audio.volume ?? 0 ) > 1 ? 1 : Pipewire.defaultAudioSink?.audio.volume) ) ?? 0
+                                property real animatedHeight: (( contentLayout.height - (contentLayout.spacing * 3) - thumb.implicitHeight - contentLayout.anchors.topMargin - contentLayout.anchors.bottomMargin + 2 ) * (( Pipewire.defaultAudioSink?.audio.volume ?? 0 ) > 1 ? 1 : (Pipewire.defaultAudioSink?.audio.volume  ?? 0)) )
                                 Layout.alignment: Qt.AlignHCenter
 
                                 Behavior on animatedHeight {
