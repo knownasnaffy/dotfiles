@@ -15,6 +15,7 @@ PanelWindow {
     property int cornerHeight: 16
     property int cornerWidth: cornerHeight
     property real animatedWidth: 72
+    property string shownOSD: ''
 
     required property real bottomOffset
 
@@ -35,9 +36,16 @@ PanelWindow {
 		target: Pipewire.defaultAudioSink?.audio
 
 		function onVolumeChanged() {
+            root.shownOSD = 'volume'
 			root.shouldShowOsd = true;
 			hideTimer.restart();
 		}
+
+        function onMutedChanged() {
+            root.shownOSD = 'volume'
+			root.shouldShowOsd = true;
+			hideTimer.restart();
+        }
 	}
 
 	property bool shouldShowOsd: false
@@ -273,7 +281,7 @@ PanelWindow {
                                 id: thumb
                                 Layout.preferredHeight: 4
                                 Layout.preferredWidth: 40
-                                color: "#7aa2f7"
+                                color: Pipewire.defaultAudioSink?.audio.muted ?"#997aa2f7": "#7aa2f7"
                                 radius: 4
                                 Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
                             }
@@ -289,7 +297,7 @@ PanelWindow {
                                     }
 
                                 }
-                                color: "#7aa2f7"
+                                color: Pipewire.defaultAudioSink?.audio.muted ?"#997aa2f7": "#7aa2f7"
 
 						Layout.preferredWidth: 16
                                 implicitHeight: animatedHeight
@@ -299,7 +307,7 @@ PanelWindow {
 
 					}
 					Text {
-						text: ""
+                        text: Pipewire.defaultAudioSink?.audio.muted ?"": ""
 						font.pixelSize: 16
 						font.family: "JetBrains Mono Nerd Font Propo"
 						color: "#c0caf5"
