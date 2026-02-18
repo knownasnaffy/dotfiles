@@ -57,9 +57,9 @@ run_cmd() {
     selected="$(confirm_exit)"
     if [[ "$selected" == "$yes" ]]; then
         if [[ $1 == '--shutdown' ]]; then
-            [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && hyprhalt --post-cmd 'systemctl poweroff' || systemctl poweroff
+            [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && hyprhalt --text "Shutting Down" --post-cmd 'systemctl poweroff' || systemctl poweroff
         elif [[ $1 == '--reboot' ]]; then
-            [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && hyprhalt --post-cmd 'systemctl reboot' || systemctl reboot
+            [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && hyprhalt --text "Restarting" --post-cmd 'systemctl reboot' || systemctl reboot
         elif [[ $1 == '--logout' ]]; then
             [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && hyprhalt --vt 2 || i3-msg exit
         fi
