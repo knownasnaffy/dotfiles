@@ -105,7 +105,7 @@ ShellRoot {
                     bgColor: "#f7768e"
                     fgColor: "#1b1e2d"
                     onClicked: {
-                        proc.command = ["hyprhalt", "--text", "Shutting down", "--post-cmd", "systemctl poweroff"]
+                        proc.command = ["sh", "-c", "hyprhalt --text 'Shutting down' --post-cmd 'systemctl poweroff'"]
                         proc.running = true
                         root.panelVisible = false
                     }
@@ -117,7 +117,7 @@ ShellRoot {
                     bgColor: "#e0af68"
                     fgColor: "#1b1e2d"
                     onClicked: {
-                        proc.command = ["hyprhalt", "--text", "Restarting", "--post-cmd", "systemctl reboot"]
+                        proc.command = ["sh", "-c", "hyprhalt --text 'Rebooting' --post-cmd 'systemctl reboot'"]
                         proc.running = true
                         root.panelVisible = false
 
