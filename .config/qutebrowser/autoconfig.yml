@@ -112,7 +112,7 @@ settings:
   content.javascript.clipboard:
     global: access-paste
   content.local_content_can_access_remote_urls:
-    global: false
+    global: true
   content.media.audio_capture:
     https://meet.google.com: true
     https://mictests.com: true
