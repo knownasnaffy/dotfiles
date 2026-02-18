@@ -26,7 +26,6 @@ autosens = 1
 
 [input]
 method = pipewire
-source = spotify
 
 [output]
 method = raw
