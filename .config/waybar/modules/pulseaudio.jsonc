@@ -38,12 +38,12 @@
 		// "align":
 		// "justify":
 		// "scroll-step":
-		"on-click": "swayosd-client --output-volume mute-toggle",
+		"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
 		// "on-click-middle":
 		// "on-click-right":
 		// "on-update":
-		"on-scroll-up": "swayosd-client --output-volume raise",
-		"on-scroll-down": "swayosd-client --output-volume lower",
+		"on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+		"on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
 		// "smooth-scrolling-threshold":
 		// "tooltip":
 		"tooltip-format": "<b>Output Device</b>: {desc}"
@@ -75,12 +75,12 @@
 		// "align":
 		// "justify":
 		// "scroll-step":
-		"on-click": "swayosd-client --input-volume mute-toggle",
+		"on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
 		// "on-click-middle":
 		// "on-click-right":
 		// "on-update":
-		"on-scroll-up": "swayosd-client --input-volume raise",
-		"on-scroll-down": "swayosd-client --input-volume lower",
+		"on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SOURCE@ 5%+",
+		"on-scroll-down": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SOURCE@ 5%-",
 		// "smooth-scrolling-threshold":
 		// "tooltip":
 		"tooltip-format": "<b>Input Device</b>: {desc}"
