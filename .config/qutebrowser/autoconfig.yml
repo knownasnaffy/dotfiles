@@ -101,6 +101,7 @@ settings:
     '*://www.perplexity.ai/*': false
     '*://www.qutebrowser.org/*': true
     '*://www.thregr.org/*': true
+    '*://www.ticktockquotes.com/*': false
     global: false
   colors.webpage.preferred_color_scheme:
     global: dark
