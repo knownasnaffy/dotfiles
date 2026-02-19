@@ -11,6 +11,9 @@ ShellRoot {
         id: wallpaper
     }
 
+    WallpaperChanger {
+    }
+
     OSD {
         bottomOffset: wallpaper.visualizerEnabled ? 66 : 47
     }
