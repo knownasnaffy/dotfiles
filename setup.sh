@@ -46,6 +46,12 @@ create_symlink() {
     local src="$1"
     local dest="$2"
 
+    if [ ! -e "$src" ]; then
+        error "Source $src does not exist. Skipping symlink creation for $dest."
+        ((SKIPPED_SYMLINKS++))
+        return
+    fi
+
     if [ -L "$dest" ] && [ "$(readlink "$dest")" == "$src" ]; then
         ((SKIPPED_SYMLINKS++))
         return
