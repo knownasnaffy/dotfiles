@@ -1,8 +1,8 @@
 import QtQuick
 import Quickshell
 import Quickshell.Wayland
-import "root:/Wallpaper" as WP
-import "root:/Wallpaper/AudioVisualizer" as AV
+import qs.Wallpaper
+import qs.Wallpaper.AudioVisualizer
 
 PanelWindow {
     property bool visualizerEnabled: audioVisualizer.visualizerEnabled
@@ -20,10 +20,10 @@ PanelWindow {
         right: true
     }
 
-    WP.Background {
+    Background {
     }
 
-    AV.AudioVisualizer {
+    AudioVisualizer {
         id: audioVisualizer
     }
 
