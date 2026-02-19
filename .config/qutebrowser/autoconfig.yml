@@ -58,6 +58,7 @@ settings:
         <Alt+.>: tab-next
         <Alt+q>: mode-enter normal
   colors.webpage.darkmode.enabled:
+    '*://0.0.0.0/*': false
     '*://addons.thunderbird.net/*': true
     '*://bbs.archlinux.org/*': true
     '*://chat.deepseek.com/*': false
