@@ -1,4 +1,5 @@
 import Qt.labs.platform
+import QtMultimedia
 import QtQuick
 
 Item {
@@ -8,33 +9,20 @@ Item {
 
     anchors.fill: parent
 
-    Image {
-        anchors.fill: parent
-        source: root.home + "/Downloads/upfjz60cgijg1.png"
-        fillMode: Image.PreserveAspectFit
-        z: 0
+    MediaPlayer {
+        id: player
+
+        source: "file:///home/barinr/Downloads/mwqn8ouvieob1.gif"
+        loops: MediaPlayer.Infinite
+        autoPlay: true
+        videoOutput: videoOutput
     }
 
-    Text {
-        id: clock
+    VideoOutput {
+        id: videoOutput
 
-        z: 1
-        text: Qt.formatTime(new Date(), "HH:mm")
-        color: "#322c29"
-        font.family: "Inter"
-        font.pixelSize: 32
-        font.weight: Font.ExtraBold
-        // POSITION (percent-based)
-        x: 450
-        y: 480
-
-        Timer {
-            interval: 1000
-            running: true
-            repeat: true
-            onTriggered: clock.text = Qt.formatTime(new Date(), "HH:mm")
-        }
-
+        anchors.fill: parent
+        fillMode: VideoOutput.PreserveAspectFit
     }
 
 }
