@@ -110,6 +110,9 @@ records=(
     "Screen Ruler:::notify-send \"Point, Dimensions: \$(~/.local/bin/slurp)\""
     "Pin Window:::~/.config/hypr/scripts/pin-window.sh $focussed_addr"
     "Resize Window:::hyprctl dispatch submap resize"
+    "Wallpaper: Next:::qs ipc call wallpaper next"
+    "Wallpaper: Previous:::qs ipc call wallpaper previous"
+    "Wallpaper: Random:::qs ipc call wallpaper random"
 )
 
 # -----------------------------
