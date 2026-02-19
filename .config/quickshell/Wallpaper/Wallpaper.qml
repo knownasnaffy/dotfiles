@@ -20,7 +20,9 @@ PanelWindow {
         right: true
     }
 
-    Background {
+    Loader {
+        anchors.fill: parent
+        source: "Backgrounds/" + WallpaperConfig.activeWallpaper + ".qml"
     }
 
     AudioVisualizer {
