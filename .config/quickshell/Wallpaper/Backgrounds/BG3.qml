@@ -5,14 +5,14 @@ import QtQuick
 Item {
     id: root
 
-    property string home: StandardPaths.writableLocation(StandardPaths.HomeLocation)
+    property string wallpapersPath: StandardPaths.writableLocation(StandardPaths.HomeLocation) + '/Pictures/Wallpapers'
 
     anchors.fill: parent
 
     MediaPlayer {
         id: player
 
-        source: root.home + "/Pictures/bg3.gif"
+        source: root.wallpapersPath + "/bg03.gif"
         loops: MediaPlayer.Infinite
         autoPlay: true
         videoOutput: videoOutput

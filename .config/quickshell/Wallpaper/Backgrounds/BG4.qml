@@ -4,13 +4,13 @@ import QtQuick
 Item {
     id: root
 
-    property string home: StandardPaths.writableLocation(StandardPaths.HomeLocation)
+    property string wallpapersPath: StandardPaths.writableLocation(StandardPaths.HomeLocation) + '/Pictures/Wallpapers'
 
     anchors.fill: parent
 
     Image {
         anchors.fill: parent
-        source: root.home + "/Pictures/bg4.jpg"
+        source: root.wallpapersPath + "/bg04.jpg"
         fillMode: Image.PreserveAspectFit
         z: 0
     }

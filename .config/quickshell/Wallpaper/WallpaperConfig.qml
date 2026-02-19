@@ -1,22 +1,19 @@
 import Qt.labs.platform
 import QtQuick
+import Quickshell
+import Quickshell.Io
 pragma Singleton
 
-QtObject {
+Singleton {
+    id: root
+
     property string configPath: StandardPaths.writableLocation(StandardPaths.AppDataLocation) + "/wallpaper-config.json"
+    property var wallpapers: ["BG1", "BG2", "BG3", "BG4", "BG5", "BG6", "BG7", "BG8", "BG9", "BG10", "BG11"]
     property string activeWallpaper: "BG2"
-    property var wallpapers: ["BG1", "BG2", "BG3", "BG4"]
 
     function loadConfig() {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "file://" + configPath);
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                var config = JSON.parse(xhr.responseText);
-                activeWallpaper = config.activeWallpaper;
-            }
-        };
-        xhr.send();
+        var jsonData = JSON.parse(jsonFile.text());
+        activeWallpaper = jsonData.activeWallpaper;
     }
 
     function setWallpaper(id) {
@@ -24,9 +21,7 @@ QtObject {
         var config = JSON.stringify({
             "activeWallpaper": id
         }, null, 2);
-        var xhr = new XMLHttpRequest();
-        xhr.open("PUT", "file://" + configPath);
-        xhr.send(config);
+        jsonFile.setText(config);
     }
 
     function next() {
@@ -45,4 +40,12 @@ QtObject {
     }
 
     Component.onCompleted: loadConfig()
+
+    FileView {
+        id: jsonFile
+
+        path: Qt.resolvedUrl(Quickshell.env("XDG_DATA_HOME") + '/wallpaper-config.json')
+        blockLoading: true
+    }
+
 }

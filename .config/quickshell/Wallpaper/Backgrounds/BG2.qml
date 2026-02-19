@@ -4,13 +4,13 @@ import QtQuick
 Item {
     id: root
 
-    property string home: StandardPaths.writableLocation(StandardPaths.HomeLocation)
+    property string wallpapersPath: StandardPaths.writableLocation(StandardPaths.HomeLocation) + '/Pictures/Wallpapers'
 
     anchors.fill: parent
 
     Image {
         anchors.fill: parent
-        source: root.home + "/Pictures/wallpaper-background-layer.jpg"
+        source: root.wallpapersPath + "/bg02.jpeg"
         fillMode: Image.PreserveAspectFit
         z: 0
     }
@@ -20,13 +20,13 @@ Item {
 
         z: 1
         text: Qt.formatTime(new Date(), "HH:mm")
-        color: "#f2f2f2"
+        color: "#322c29"
         font.family: "Inter"
-        font.pixelSize: parent.height * 0.36
-        font.weight: Font.Bold
+        font.pixelSize: 32
+        font.weight: Font.ExtraBold
         // POSITION (percent-based)
-        x: parent.width * 0.38 - width / 2
-        y: parent.height * 0.14
+        x: 450
+        y: 480
 
         Timer {
             interval: 1000
@@ -35,13 +35,6 @@ Item {
             onTriggered: clock.text = Qt.formatTime(new Date(), "HH:mm")
         }
 
-    }
-
-    Image {
-        anchors.fill: parent
-        source: root.home + "/Pictures/wallpaper-mask-layer.png"
-        fillMode: Image.PreserveAspectFit
-        z: 2
     }
 
 }

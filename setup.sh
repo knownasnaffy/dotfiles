@@ -6,6 +6,7 @@ ZSH_DIR="$HOME/.oh-my-zsh"
 ZSH_CUSTOM="$ZSH_DIR/custom"
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 NVIM_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
+WALLPAPER_DIR="$DOTFILES_DIR/media/dot-wallpapers"
 POSTNOTES=""
 SKIPPED_SYMLINKS=0
 
@@ -244,6 +245,38 @@ install_private_packages() {
 # Config & Symlinking Section
 # ─────────────────────────────────────────────────────────────────────────────
 
+clone_wallpapers() {
+    if [ -d "$WALLPAPER_DIR" ]; then
+        if [ -d "$WALLPAPER_DIR/.git" ]; then
+            REMOTE_URL=$(git -C "$WALLPAPER_DIR" remote get-url origin 2>/dev/null || echo "")
+            if [[ "$REMOTE_URL" == *"knownasnaffy/dot-wallpapers"* ]]; then
+                log "Wallpaper dots already exist and are from the correct repository. Skipping..."
+                return
+            fi
+            log "Wallpaper dots exist but are from a different repository. Removing it..."
+        else
+            log "Wallpaper dots exist but are not a Git repository. Removing it..."
+        fi
+        rm -rf "$WALLPAPER_DIR"
+    fi
+
+    log "Cloning wallpapers..."
+    git clone https://github.com/knownasnaffy/dot-wallpapers.git "$WALLPAPER_DIR"
+}
+
+link_wallpapers() {
+    clone_wallpapers
+    HOME_WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
+    mkdir -p "$HOME_WALLPAPER_DIR"
+
+    for file in "$WALLPAPER_DIR"/*; do
+        if [ -f "$file" ]; then
+            local filename=$(basename "$file")
+            create_symlink "$file" "$HOME_WALLPAPER_DIR/$filename"
+        fi
+    done
+}
+
 create_directories() {
     mkdir -p ~/code/projects ~/code/clones
 }
@@ -297,11 +330,7 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.local/share/fonts" "$HOME/.local/share/fonts" # desktop
 
     create_symlink "$DOTFILES_DIR/media/pictures/fastfetch.png" "$HOME/Pictures/fastfetch.png" # desktop
-    create_symlink "$DOTFILES_DIR/media/pictures/wallpaper-mask-layer.png" "$HOME/Pictures/wallpaper-mask-layer.png" # desktop
-    create_symlink "$DOTFILES_DIR/media/pictures/wallpaper-background-layer.jpg" "$HOME/Pictures/wallpaper-background-layer.jpg" # desktop
-    create_symlink "$DOTFILES_DIR/media/pictures/bg1.jpeg" "$HOME/Pictures/bg1.jpeg" # desktop
-    create_symlink "$DOTFILES_DIR/media/pictures/bg3.gif" "$HOME/Pictures/bg3.gif" # desktop
-    create_symlink "$DOTFILES_DIR/media/pictures/bg4.jpg" "$HOME/Pictures/bg4.jpg" # desktop
+    link_wallpapers # desktop
 
     create_symlink "$DOTFILES_DIR/media/music/notification-1.mp3" "$HOME/Music/notification-1.mp3" # desktop
     create_symlink "$DOTFILES_DIR/media/music/notification-2.mp3" "$HOME/Music/notification-2.mp3" # desktop
