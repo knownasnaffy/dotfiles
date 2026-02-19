@@ -45,26 +45,39 @@ PanelWindow {
         Loader {
             id: loader1
             anchors.fill: parent
+            opacity: 1
             Behavior on opacity { NumberAnimation { duration: 300; easing.type: Easing.InOutQuad } }
         }
 
         Loader {
             id: loader2
             anchors.fill: parent
+            opacity: 0
             Behavior on opacity { NumberAnimation { duration: 300; easing.type: Easing.InOutQuad } }
         }
 
         property bool useLoader1: true
         property string currentWallpaper: WallpaperConfig.activeWallpaper
 
+        Timer {
+            id: fadeTimer
+            interval: 50
+            property var targetLoader
+            onTriggered: targetLoader.opacity = 1
+        }
+
         onCurrentWallpaperChanged: {
             if (useLoader1) {
+                loader2.opacity = 0;
                 loader2.source = "Backgrounds/" + currentWallpaper + ".qml";
-                loader2.opacity = 1;
+                fadeTimer.targetLoader = loader2;
+                fadeTimer.start();
                 loader1.opacity = 0;
             } else {
+                loader1.opacity = 0;
                 loader1.source = "Backgrounds/" + currentWallpaper + ".qml";
-                loader1.opacity = 1;
+                fadeTimer.targetLoader = loader1;
+                fadeTimer.start();
                 loader2.opacity = 0;
             }
             useLoader1 = !useLoader1;
