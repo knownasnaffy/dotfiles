@@ -3,8 +3,9 @@ import QtQuick
 pragma Singleton
 
 QtObject {
-    property string configPath: StandardPaths.writableLocation(StandardPaths.HomeLocation) + "/.config/quickshell/wallpaper-config.json"
+    property string configPath: StandardPaths.writableLocation(StandardPaths.AppDataLocation) + "/wallpaper-config.json"
     property string activeWallpaper: "BG2"
+    property var wallpapers: ["BG1", "BG2"]
 
     function loadConfig() {
         var xhr = new XMLHttpRequest();
@@ -26,6 +27,21 @@ QtObject {
         var xhr = new XMLHttpRequest();
         xhr.open("PUT", "file://" + configPath);
         xhr.send(config);
+    }
+
+    function next() {
+        var idx = wallpapers.indexOf(activeWallpaper);
+        setWallpaper(wallpapers[(idx + 1) % wallpapers.length]);
+    }
+
+    function previous() {
+        var idx = wallpapers.indexOf(activeWallpaper);
+        setWallpaper(wallpapers[(idx - 1 + wallpapers.length) % wallpapers.length]);
+    }
+
+    function random() {
+        var idx = Math.floor(Math.random() * wallpapers.length);
+        setWallpaper(wallpapers[idx]);
     }
 
     Component.onCompleted: loadConfig()
