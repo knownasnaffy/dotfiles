@@ -1,11 +1,12 @@
 import QtQuick
-import Quickshell
-import Quickshell.Hyprland
 import Quickshell.Io
 
 Item {
+    id: root
+
     property bool silent: true
     property int silentTime: 0
+    property int activeTime: 0
     property bool gapsIncreased: false
 
     Process {
@@ -32,17 +33,22 @@ Item {
         repeat: true
         running: true
         onTriggered: {
-            if (silent) {
-                silentTime++;
-                if (silentTime === 5) {
-                    // after 5 seconds of silence, increase the gaps
+            if (root.silent) {
+                root.silentTime++;
+                root.activeTime = 0;
+                if (root.silentTime === 5) {
+                    // after 5 seconds of silence, decrease the gaps
                     run(`hyprctl keyword general:gaps_out "10,16,10,16"`);
-                    gapsIncreased = false;
+                    root.gapsIncreased = false;
                 }
             } else {
-                silentTime = 0;
-                run(`hyprctl keyword general:gaps_out "10,16,28,16"`);
-                gapsIncreased = true;
+                root.silentTime = 0;
+                root.activeTime++;
+                if (root.activeTime === 5) {
+                    // after 2 seconds of music, increase the gaps
+                    run(`hyprctl keyword general:gaps_out "10,16,28,16"`);
+                    root.gapsIncreased = true;
+                }
             }
         }
     }

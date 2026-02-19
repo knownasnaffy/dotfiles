@@ -1,12 +1,12 @@
 import QtQuick
-import "root:/Wallpaper/AudioVisualizer" as AV
+import qs.Wallpaper.AudioVisualizer
 
 Item {
     property bool visualizerEnabled: hyprGapController.gapsIncreased
 
     anchors.fill: parent
 
-    AV.CavaSource {
+    CavaSource {
         id: cava
 
         onUpdated: {
@@ -14,13 +14,13 @@ Item {
         }
     }
 
-    AV.HyprGapController {
+    HyprGapController {
         id: hyprGapController
 
         silent: cava.isSilent
     }
 
-    AV.MountainWave {
+    MountainWave {
         id: left
 
         data: cava.data
@@ -28,7 +28,7 @@ Item {
         anchors.fill: parent
         anchors.rightMargin: 40
         anchors.leftMargin: 40
-        anchors.topMargin: parent.height - 64
+        anchors.topMargin: parent.height - (hyprGapController.gapsIncreased ? 64 : 44)
         anchors.bottomMargin: 38
     }
 
