@@ -5,7 +5,7 @@ pragma Singleton
 QtObject {
     property string configPath: StandardPaths.writableLocation(StandardPaths.AppDataLocation) + "/wallpaper-config.json"
     property string activeWallpaper: "BG2"
-    property var wallpapers: ["BG1", "BG2"]
+    property var wallpapers: ["BG1", "BG2", "BG3"]
 
     function loadConfig() {
         var xhr = new XMLHttpRequest();
