@@ -12,7 +12,7 @@ Item {
     MediaPlayer {
         id: player
 
-        source: "file:///home/barinr/Downloads/mwqn8ouvieob1.gif"
+        source: root.home + "/Pictures/bg3.gif"
         loops: MediaPlayer.Infinite
         autoPlay: true
         videoOutput: videoOutput

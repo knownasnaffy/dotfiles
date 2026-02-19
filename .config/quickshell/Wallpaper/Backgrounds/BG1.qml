@@ -10,7 +10,7 @@ Item {
 
     Image {
         anchors.fill: parent
-        source: root.home + "/Downloads/k7qnjlj35akg1.jpeg"
+        source: root.home + "/Pictures/bg1.jpeg"
         fillMode: Image.PreserveAspectFit
         z: 0
     }

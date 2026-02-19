@@ -299,6 +299,10 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/media/pictures/fastfetch.png" "$HOME/Pictures/fastfetch.png" # desktop
     create_symlink "$DOTFILES_DIR/media/pictures/wallpaper-mask-layer.png" "$HOME/Pictures/wallpaper-mask-layer.png" # desktop
     create_symlink "$DOTFILES_DIR/media/pictures/wallpaper-background-layer.jpg" "$HOME/Pictures/wallpaper-background-layer.jpg" # desktop
+    create_symlink "$DOTFILES_DIR/media/pictures/bg1.jpeg" "$HOME/Pictures/bg1.jpeg" # desktop
+    create_symlink "$DOTFILES_DIR/media/pictures/bg3.gif" "$HOME/Pictures/bg3.gif" # desktop
+    create_symlink "$DOTFILES_DIR/media/pictures/bg4.jpg" "$HOME/Pictures/bg4.jpg" # desktop
+
     create_symlink "$DOTFILES_DIR/media/music/notification-1.mp3" "$HOME/Music/notification-1.mp3" # desktop
     create_symlink "$DOTFILES_DIR/media/music/notification-2.mp3" "$HOME/Music/notification-2.mp3" # desktop
     create_symlink "$DOTFILES_DIR/media/music/windows-connected.mp3" "$HOME/Music/windows-connected.mp3" # desktop
