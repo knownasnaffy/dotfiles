@@ -13,9 +13,7 @@ ShellRoot {
         target: "wallpaper-changer"
 
         function toggle(): void {
-            // console.log("Toggle called, current state:", panelVisible);
             root.panelVisible = !root.panelVisible;
-            // console.log("New state:", panelVisible);
         }
     }
 
@@ -53,12 +51,13 @@ ShellRoot {
             focus: true
 
 
+            // Wallpaper row
             RowLayout {
                 anchors.centerIn: parent
                 spacing: 20
 
                 Rectangle {
-                    width: 200
+                    width: 300
                     height: width * 9 / 16
                     color: "#c0caf5"
                     radius: 8
@@ -66,7 +65,30 @@ ShellRoot {
 
                     MouseArea {
                         anchors.fill: parent
-                        onClicked: WallpaperConfig.random()
+                    }
+                }
+
+                Rectangle {
+                    width: 350
+                    height: width * 9 / 16
+                    color: "#c0caf5"
+                    radius: 8
+                    Layout.alignment: Qt.AlignVCenter
+
+                    MouseArea {
+                        anchors.fill: parent
+                    }
+                }
+
+                Rectangle {
+                    width: 300
+                    height: width * 9 / 16
+                    color: "#c0caf5"
+                    radius: 8
+                    Layout.alignment: Qt.AlignVCenter
+
+                    MouseArea {
+                        anchors.fill: parent
                     }
                 }
             }
@@ -74,10 +96,11 @@ ShellRoot {
             Rectangle {
                 width: 40
                 height: 40
-                color: "#c0caf5"
-                radius: 8
+                color: "#565f89"
+                radius: 16
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.left
+                anchors.leftMargin: 16
 
                 MouseArea {
                     anchors.fill: parent
@@ -87,10 +110,11 @@ ShellRoot {
             Rectangle {
                 width: 40
                 height: 40
-                color: "#c0caf5"
-                radius: 8
+                color: "#565f89"
+                radius: 16
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.right: parent.right
+                anchors.rightMargin: 16
 
                 MouseArea {
                     anchors.fill: parent
