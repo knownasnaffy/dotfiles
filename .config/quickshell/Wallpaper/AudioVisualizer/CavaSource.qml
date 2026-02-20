@@ -48,7 +48,7 @@ EOF
                 }).filter((p) => {
                     return !isNaN(p);
                 });
-                points = points.concat(points.slice().reverse()).concat(points.slice());
+                points = points.concat(points.slice().reverse());
                 if (points.length < 2)
                     return ;
 
