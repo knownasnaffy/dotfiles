@@ -1,0 +1,59 @@
+{
+  "wallpapers": [
+    {
+      "id": "BG1",
+      "type": "dynamic",
+      "path": "Backgrounds/BG1.qml"
+    },
+    {
+      "id": "BG2",
+      "type": "dynamic",
+      "path": "Backgrounds/BG2.qml"
+    },
+    {
+      "id": "BG3",
+      "type": "video",
+      "path": "~/Pictures/Wallpapers/bg03.gif"
+    },
+    {
+      "id": "BG4",
+      "type": "image",
+      "path": "~/Pictures/Wallpapers/bg04.jpg"
+    },
+    {
+      "id": "BG5",
+      "type": "image",
+      "path": "~/Pictures/Wallpapers/bg05.png"
+    },
+    {
+      "id": "BG6",
+      "type": "image",
+      "path": "~/Pictures/Wallpapers/bg06.jpg"
+    },
+    {
+      "id": "BG7",
+      "type": "image",
+      "path": "~/Pictures/Wallpapers/bg07.jpg"
+    },
+    {
+      "id": "BG8",
+      "type": "image",
+      "path": "~/Pictures/Wallpapers/bg08.jpeg"
+    },
+    {
+      "id": "BG9",
+      "type": "image",
+      "path": "~/Pictures/Wallpapers/bg09.jpg"
+    },
+    {
+      "id": "BG10",
+      "type": "image",
+      "path": "~/Pictures/Wallpapers/bg10.jpg"
+    },
+    {
+      "id": "BG11",
+      "type": "image",
+      "path": "~/Pictures/Wallpapers/bg11.jpg"
+    }
+  ]
+}
