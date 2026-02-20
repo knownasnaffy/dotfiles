@@ -3,12 +3,14 @@
     {
       "id": "bg1",
       "type": "dynamic",
-      "path": "Backgrounds/BG1.qml"
+      "path": "Backgrounds/BG1.qml",
+      "preview": "~/Pictures/Wallpapers/bg01-layer1.jpg"
     },
     {
       "id": "bg2",
       "type": "dynamic",
-      "path": "Backgrounds/BG2.qml"
+      "path": "Backgrounds/BG2.qml",
+      "preview": "~/Pictures/Wallpapers/bg02.jpeg"
     },
     {
       "id": "bg3",
