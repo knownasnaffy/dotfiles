@@ -2,13 +2,20 @@ import Qt.labs.platform
 import QtQuick
 import Quickshell
 import Quickshell.Io
+import qs.Common
 pragma Singleton
 
 Singleton {
     id: root
 
     property string configPath: StandardPaths.writableLocation(StandardPaths.AppDataLocation) + "/wallpaper-config.json"
-    property var wallpapers: ["BG1", "BG2", "BG3", "BG4", "BG5", "BG6", "BG7", "BG8", "BG9", "BG10", "BG11"]
+    property var wallpapers: {
+        var ids = [];
+        for (var i = 0; i < Config.wallpapers.length; i++) {
+            ids.push(Config.wallpapers[i].id);
+        }
+        return ids;
+    }
     property string activeWallpaper: "BG2"
 
     function loadConfig() {
