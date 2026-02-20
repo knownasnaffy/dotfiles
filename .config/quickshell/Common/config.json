@@ -1,57 +1,57 @@
 {
   "wallpapers": [
     {
-      "id": "BG1",
+      "id": "bg1",
       "type": "dynamic",
       "path": "Backgrounds/BG1.qml"
     },
     {
-      "id": "BG2",
+      "id": "bg2",
       "type": "dynamic",
       "path": "Backgrounds/BG2.qml"
     },
     {
-      "id": "BG3",
+      "id": "bg3",
       "type": "video",
       "path": "~/Pictures/Wallpapers/bg03.gif"
     },
     {
-      "id": "BG4",
+      "id": "bg4",
       "type": "image",
       "path": "~/Pictures/Wallpapers/bg04.jpg"
     },
     {
-      "id": "BG5",
+      "id": "bg5",
       "type": "image",
       "path": "~/Pictures/Wallpapers/bg05.png"
     },
     {
-      "id": "BG6",
+      "id": "bg6",
       "type": "image",
       "path": "~/Pictures/Wallpapers/bg06.jpg"
     },
     {
-      "id": "BG7",
+      "id": "bg7",
       "type": "image",
       "path": "~/Pictures/Wallpapers/bg07.png"
     },
     {
-      "id": "BG8",
+      "id": "bg8",
       "type": "image",
       "path": "~/Pictures/Wallpapers/bg08.jpeg"
     },
     {
-      "id": "BG9",
+      "id": "bg9",
       "type": "image",
       "path": "~/Pictures/Wallpapers/bg09.png"
     },
     {
-      "id": "BG10",
+      "id": "bg10",
       "type": "image",
       "path": "~/Pictures/Wallpapers/bg10.png"
     },
     {
-      "id": "BG11",
+      "id": "bg11",
       "type": "image",
       "path": "~/Pictures/Wallpapers/bg11.png"
     }

@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
+import Quickshell.Wayland
 import qs.Wallpaper
 
 ShellRoot {
@@ -24,11 +25,33 @@ ShellRoot {
         implicitHeight: 300
         color: "transparent"
         focusable: true
+        WlrLayershell.namespace: "powermenu"
 
         Rectangle {
             anchors.fill: parent
-            color: "#1b1e2d"
+            color: "#aa1b1e2d"
             radius: 12
+
+            Keys.onPressed: (event) => {
+                if (event.key === Qt.Key_Escape || event.key === Qt.Key_Q) {
+                    root.panelVisible = false
+                }
+
+                if (event.key === Qt.Key_J) {
+                    WallpaperConfig.previous()
+                }
+
+                if (event.key === Qt.Key_Semicolon) {
+                    WallpaperConfig.next()
+                }
+
+                if (event.key === Qt.Key_R) {
+                    WallpaperConfig.random()
+                }
+            }
+
+            focus: true
+
 
             RowLayout {
                 anchors.centerIn: parent

@@ -1,4 +1,5 @@
 import QtQuick
+import Quickshell
 import Quickshell.Io
 pragma Singleton
 
@@ -23,7 +24,9 @@ Singleton {
 
     FileView {
         id: configFile
+
         path: Qt.resolvedUrl("config.json")
         blockLoading: true
     }
+
 }
