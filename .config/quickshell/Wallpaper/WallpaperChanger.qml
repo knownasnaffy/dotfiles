@@ -11,50 +11,66 @@ ShellRoot {
     id: root
     property bool panelVisible: false
     property var visibleWallpapers: []
-    property string pendingWallpaper: ""
+    property int centerIndex: 0
 
     function updateVisibleWallpapers() {
         var all = Config.wallpapers;
-        var idx = -1;
-        for (var i = 0; i < all.length; i++) {
-            if (all[i].id === WallpaperConfig.activeWallpaper) {
-                idx = i;
-                break;
-            }
-        }
-
         var visible = [];
         for (var j = -4; j <= 4; j++) {
-            var pos = (idx + j + all.length) % all.length;
+            var pos = (root.centerIndex + j + all.length) % all.length;
             visible.push(all[pos]);
         }
-        visibleWallpapers = visible;
+        root.visibleWallpapers = visible;
     }
 
-    function navigateTo(wallpaperId) {
-        pendingWallpaper = wallpaperId;
-        updateVisibleWallpapers();
+    function scrollNext() {
+        root.centerIndex = (root.centerIndex + 1) % Config.wallpapers.length;
+        root.updateVisibleWallpapers();
         switchTimer.restart();
+    }
+
+    function scrollPrevious() {
+        root.centerIndex = (root.centerIndex - 1 + Config.wallpapers.length) % Config.wallpapers.length;
+        root.updateVisibleWallpapers();
+        switchTimer.restart();
+    }
+
+    function applyCenterWallpaper() {
+        WallpaperConfig.setWallpaper(Config.wallpapers[root.centerIndex].id);
     }
 
     Timer {
         id: switchTimer
         interval: 500
         onTriggered: {
-            if (pendingWallpaper !== "") {
-                WallpaperConfig.setWallpaper(pendingWallpaper);
-            }
+            root.applyCenterWallpaper();
         }
     }
 
     Connections {
         target: WallpaperConfig
         function onActiveWallpaperChanged() {
-            updateVisibleWallpapers();
+            var all = Config.wallpapers;
+            for (var i = 0; i < all.length; i++) {
+                if (all[i].id === WallpaperConfig.activeWallpaper) {
+                    root.centerIndex = i;
+                    break;
+                }
+            }
+            root.updateVisibleWallpapers();
         }
     }
 
-    Component.onCompleted: updateVisibleWallpapers()
+    Component.onCompleted: {
+        var all = Config.wallpapers;
+        for (var i = 0; i < all.length; i++) {
+            if (all[i].id === WallpaperConfig.activeWallpaper) {
+                root.centerIndex = i;
+                break;
+            }
+        }
+        root.updateVisibleWallpapers();
+    }
 
     IpcHandler {
         target: "wallpaper-changer"
@@ -83,27 +99,11 @@ ShellRoot {
                 }
 
                 if (event.key === Qt.Key_J) {
-                    var idx = -1;
-                    for (var i = 0; i < Config.wallpapers.length; i++) {
-                        if (Config.wallpapers[i].id === WallpaperConfig.activeWallpaper) {
-                            idx = i;
-                            break;
-                        }
-                    }
-                    var prevIdx = (idx - 1 + Config.wallpapers.length) % Config.wallpapers.length;
-                    navigateTo(Config.wallpapers[prevIdx].id);
+                    root.scrollPrevious();
                 }
 
                 if (event.key === Qt.Key_Semicolon) {
-                    var idx = -1;
-                    for (var i = 0; i < Config.wallpapers.length; i++) {
-                        if (Config.wallpapers[i].id === WallpaperConfig.activeWallpaper) {
-                            idx = i;
-                            break;
-                        }
-                    }
-                    var nextIdx = (idx + 1) % Config.wallpapers.length;
-                    navigateTo(Config.wallpapers[nextIdx].id);
+                    root.scrollNext();
                 }
 
                 if (event.key === Qt.Key_R) {
@@ -153,7 +153,7 @@ ShellRoot {
             Rectangle {
                 width: 40
                 height: 40
-                color: "#565f89"
+                color: "#aa1b1e2d"
                 radius: 16
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.left
@@ -161,23 +161,13 @@ ShellRoot {
 
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: {
-                        var idx = -1;
-                        for (var i = 0; i < Config.wallpapers.length; i++) {
-                            if (Config.wallpapers[i].id === WallpaperConfig.activeWallpaper) {
-                                idx = i;
-                                break;
-                            }
-                        }
-                        var prevIdx = (idx - 1 + Config.wallpapers.length) % Config.wallpapers.length;
-                        navigateTo(Config.wallpapers[prevIdx].id);
-                    }
+                    onClicked: root.scrollPrevious()
                 }
             }
             Rectangle {
                 width: 40
                 height: 40
-                color: "#565f89"
+                color: "#aa1b1e2d"
                 radius: 16
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.right: parent.right
@@ -185,17 +175,7 @@ ShellRoot {
 
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: {
-                        var idx = -1;
-                        for (var i = 0; i < Config.wallpapers.length; i++) {
-                            if (Config.wallpapers[i].id === WallpaperConfig.activeWallpaper) {
-                                idx = i;
-                                break;
-                            }
-                        }
-                        var nextIdx = (idx + 1) % Config.wallpapers.length;
-                        navigateTo(Config.wallpapers[nextIdx].id);
-                    }
+                    onClicked: root.scrollNext()
                 }
             }
         }
