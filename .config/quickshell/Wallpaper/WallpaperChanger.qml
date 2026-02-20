@@ -12,28 +12,36 @@ import qs.Wallpaper
 ShellRoot {
     id: root
     property bool panelVisible: false
-    property var visibleWallpapers: []
     property int centerIndex: 0
+
+    ListModel {
+        id: wallpaperModel
+    }
 
     function updateVisibleWallpapers() {
         var all = Config.wallpapers;
-        var visible = [];
+        wallpaperModel.clear();
         for (var j = -4; j <= 4; j++) {
             var pos = (root.centerIndex + j + all.length) % all.length;
-            visible.push(all[pos]);
+            wallpaperModel.append(all[pos]);
         }
-        root.visibleWallpapers = visible;
     }
 
     function scrollNext() {
-        root.centerIndex = (root.centerIndex + 1) % Config.wallpapers.length;
-        root.updateVisibleWallpapers();
+        var all = Config.wallpapers;
+        root.centerIndex = (root.centerIndex + 1) % all.length;
+        var newIdx = (root.centerIndex + 4) % all.length;
+        wallpaperModel.remove(0);
+        wallpaperModel.append(all[newIdx]);
         switchTimer.restart();
     }
 
     function scrollPrevious() {
-        root.centerIndex = (root.centerIndex - 1 + Config.wallpapers.length) % Config.wallpapers.length;
-        root.updateVisibleWallpapers();
+        var all = Config.wallpapers;
+        root.centerIndex = (root.centerIndex - 1 + all.length) % all.length;
+        var newIdx = (root.centerIndex - 4 + all.length) % all.length;
+        wallpaperModel.remove(8);
+        wallpaperModel.insert(0, all[newIdx]);
         switchTimer.restart();
     }
 
@@ -119,13 +127,30 @@ ShellRoot {
                 anchors.centerIn: parent
                 spacing: 20
 
-                Repeater {
-                    model: root.visibleWallpapers
+                ListView {
+                    orientation: ListView.Horizontal
+                    model: wallpaperModel
+                    spacing: 20
+                    interactive: false
+                    cacheBuffer: 1000
+                    Layout.preferredWidth: 350 + 300 * 2 + 20 * 2
+                    Layout.preferredHeight: 350 * 9 / 16
 
-                    Item {
+                    add: Transition {
+                        NumberAnimation { properties: "x"; duration: 200; easing.type: Easing.OutCubic }
+                    }
+
+                    remove: Transition {
+                        NumberAnimation { properties: "x"; duration: 200; easing.type: Easing.OutCubic }
+                    }
+
+                    displaced: Transition {
+                        NumberAnimation { properties: "x"; duration: 200; easing.type: Easing.OutCubic }
+                    }
+
+                    delegate: Item {
                         width: index === 4 ? 350 : 300
                         height: width * 9 / 16
-                        Layout.alignment: Qt.AlignVCenter
                         layer.enabled: true
 
                         Item {
@@ -144,19 +169,19 @@ ShellRoot {
                         Loader {
                             anchors.fill: parent
                             sourceComponent: {
-                                if (modelData.type === "image") return imageComp;
-                                if (modelData.type === "video") return videoComp;
-                                if (modelData.type === "dynamic") return previewComp;
+                                if (model.type === "image") return imageComp;
+                                if (model.type === "video") return videoComp;
+                                if (model.type === "dynamic") return previewComp;
                                 return null;
                             }
-                            property var wallpaperData: modelData
+                            property var wallpaperData: model
                         }
 
                         MouseArea {
                             anchors.fill: parent
                             onClicked: {
                                 switchTimer.stop();
-                                WallpaperConfig.setWallpaper(modelData.id);
+                                WallpaperConfig.setWallpaper(model.id);
                             }
                         }
 
