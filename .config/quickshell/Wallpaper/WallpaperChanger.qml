@@ -33,6 +33,7 @@ ShellRoot {
         var newIdx = (root.centerIndex + 4) % all.length;
         wallpaperModel.remove(0);
         wallpaperModel.append(all[newIdx]);
+        wallpaperListView.positionViewAtIndex(4, ListView.Center);
         switchTimer.restart();
     }
 
@@ -42,6 +43,7 @@ ShellRoot {
         var newIdx = (root.centerIndex - 4 + all.length) % all.length;
         wallpaperModel.remove(8);
         wallpaperModel.insert(0, all[newIdx]);
+        wallpaperListView.positionViewAtIndex(4, ListView.Center);
         switchTimer.restart();
     }
 
@@ -68,6 +70,7 @@ ShellRoot {
                 }
             }
             root.updateVisibleWallpapers();
+            wallpaperListView.positionViewAtIndex(4, ListView.Center);
         }
     }
 
@@ -128,6 +131,7 @@ ShellRoot {
                 spacing: 20
 
                 ListView {
+                    id: wallpaperListView
                     orientation: ListView.Horizontal
                     model: wallpaperModel
                     spacing: 20
@@ -135,17 +139,16 @@ ShellRoot {
                     cacheBuffer: 1000
                     Layout.preferredWidth: 350 + 300 * 2 + 20 * 2
                     Layout.preferredHeight: 350 * 9 / 16
+                    Layout.alignment: Qt.AlignVCenter
+
+                    Component.onCompleted: positionViewAtIndex(4, ListView.Center)
 
                     add: Transition {
-                        NumberAnimation { properties: "x"; duration: 200; easing.type: Easing.OutCubic }
-                    }
-
-                    remove: Transition {
-                        NumberAnimation { properties: "x"; duration: 200; easing.type: Easing.OutCubic }
+                        NumberAnimation { properties: "x"; duration: 150; easing.type: Easing.OutCubic }
                     }
 
                     displaced: Transition {
-                        NumberAnimation { properties: "x"; duration: 200; easing.type: Easing.OutCubic }
+                        NumberAnimation { properties: "x"; duration: 150; easing.type: Easing.OutCubic }
                     }
 
                     delegate: Item {
