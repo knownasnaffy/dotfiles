@@ -153,46 +153,52 @@ ShellRoot {
 
                     delegate: Item {
                         width: index === 4 ? 350 : 300
-                        height: width * 9 / 16
-                        layer.enabled: true
-
+                        height: 350 * 9 / 16
+                        
                         Item {
-                            id: maskItem
-                            anchors.fill: parent
-                            visible: false
+                            width: index === 4 ? 350 : 300
+                            height: width * 9 / 16
+                            anchors.verticalCenter: parent.verticalCenter
                             layer.enabled: true
 
-                            Rectangle {
+                            Item {
+                                id: maskItem
                                 anchors.fill: parent
-                                radius: 8
-                                color: "white"
-                            }
-                        }
+                                visible: false
+                                layer.enabled: true
 
-                        Loader {
-                            anchors.fill: parent
-                            sourceComponent: {
-                                if (model.type === "image") return imageComp;
-                                if (model.type === "video") return videoComp;
-                                if (model.type === "dynamic") return previewComp;
-                                return null;
+                                Rectangle {
+                                    anchors.fill: parent
+                                    radius: 8
+                                    color: "white"
+                                }
                             }
-                            property var wallpaperData: model
-                        }
 
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: {
-                                switchTimer.stop();
-                                WallpaperConfig.setWallpaper(model.id);
+                            Loader {
+                                anchors.fill: parent
+                                sourceComponent: {
+                                    if (model.type === "image") return imageComp;
+                                    if (model.type === "video") return videoComp;
+                                    if (model.type === "dynamic") return previewComp;
+                                    return null;
+                                }
+                                property var wallpaperData: model
                             }
-                        }
 
-                        layer.effect: MultiEffect {
-                            maskEnabled: true
-                            maskSource: maskItem
-                            maskSpreadAtMin: 1
-                            maskThresholdMin: 0.5
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: {
+                                    switchTimer.stop();
+                                    WallpaperConfig.setWallpaper(model.id);
+                                }
+                            }
+
+                            layer.effect: MultiEffect {
+                                maskEnabled: true
+                                maskSource: maskItem
+                                maskSpreadAtMin: 1
+                                maskThresholdMin: 0.5
+                            }
                         }
                     }
                 }
