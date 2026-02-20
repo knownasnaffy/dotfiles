@@ -1,6 +1,7 @@
 import Qt.labs.platform
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Effects
 import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
@@ -120,14 +121,24 @@ ShellRoot {
                 Repeater {
                     model: root.visibleWallpapers
 
-                    Rectangle {
+                    Item {
                         width: index === 4 ? 350 : 300
                         height: width * 9 / 16
-                        color: "#1b1e2d"
-                        radius: 8
-                        clip: true
-                        layer.enabled: true
                         Layout.alignment: Qt.AlignVCenter
+                        layer.enabled: true
+
+                        Item {
+                            id: maskItem
+                            anchors.fill: parent
+                            visible: false
+                            layer.enabled: true
+
+                            Rectangle {
+                                anchors.fill: parent
+                                radius: 8
+                                color: "white"
+                            }
+                        }
 
                         Loader {
                             anchors.fill: parent
@@ -146,6 +157,13 @@ ShellRoot {
                                 switchTimer.stop();
                                 WallpaperConfig.setWallpaper(modelData.id);
                             }
+                        }
+
+                        layer.effect: MultiEffect {
+                            maskEnabled: true
+                            maskSource: maskItem
+                            maskSpreadAtMin: 1
+                            maskThresholdMin: 0.5
                         }
                     }
                 }
@@ -184,43 +202,58 @@ ShellRoot {
 
     Component {
         id: imageComp
-        Image {
-            source: {
-                var path = wallpaperData.path;
-                if (path.startsWith("~/")) {
-                    return StandardPaths.writableLocation(StandardPaths.HomeLocation) + path.substring(1);
+        Item {
+            anchors.fill: parent
+            clip: true
+            Image {
+                anchors.fill: parent
+                source: {
+                    var path = wallpaperData.path;
+                    if (path.startsWith("~/")) {
+                        return StandardPaths.writableLocation(StandardPaths.HomeLocation) + path.substring(1);
+                    }
+                    return path;
                 }
-                return path;
+                fillMode: Image.PreserveAspectCrop
             }
-            fillMode: Image.PreserveAspectCrop
         }
     }
 
     Component {
         id: videoComp
-        Image {
-            source: {
-                var path = wallpaperData.path;
-                if (path.startsWith("~/")) {
-                    return StandardPaths.writableLocation(StandardPaths.HomeLocation) + path.substring(1);
+        Item {
+            anchors.fill: parent
+            clip: true
+            Image {
+                anchors.fill: parent
+                source: {
+                    var path = wallpaperData.path;
+                    if (path.startsWith("~/")) {
+                        return StandardPaths.writableLocation(StandardPaths.HomeLocation) + path.substring(1);
+                    }
+                    return path;
                 }
-                return path;
+                fillMode: Image.PreserveAspectCrop
             }
-            fillMode: Image.PreserveAspectCrop
         }
     }
 
     Component {
         id: previewComp
-        Image {
-            source: {
-                var path = wallpaperData.preview;
-                if (path.startsWith("~/")) {
-                    return StandardPaths.writableLocation(StandardPaths.HomeLocation) + path.substring(1);
+        Item {
+            anchors.fill: parent
+            clip: true
+            Image {
+                anchors.fill: parent
+                source: {
+                    var path = wallpaperData.preview;
+                    if (path.startsWith("~/")) {
+                        return StandardPaths.writableLocation(StandardPaths.HomeLocation) + path.substring(1);
+                    }
+                    return path;
                 }
-                return path;
+                fillMode: Image.PreserveAspectCrop
             }
-            fillMode: Image.PreserveAspectCrop
         }
     }
 }
