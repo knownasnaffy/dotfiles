@@ -39,7 +39,7 @@ Item {
 
     Image {
         anchors.fill: parent
-        source: root.wallpapersPath + "/bg01-layer3.jpg"
+        source: root.wallpapersPath + "/bg01-layer3.png"
         fillMode: Image.PreserveAspectFit
         z: 2
     }
