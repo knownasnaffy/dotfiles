@@ -4,6 +4,7 @@ import Quickshell.Wayland
 import Quickshell.Io
 import qs.Wallpaper
 import qs.Wallpaper.AudioVisualizer
+import qs.Common
 
 PanelWindow {
     property bool visualizerEnabled: audioVisualizer.visualizerEnabled
@@ -59,6 +60,19 @@ PanelWindow {
         property bool useLoader1: true
         property string currentWallpaper: WallpaperConfig.activeWallpaper
 
+        function loadWallpaper(loader, wallpaperId) {
+            var wallpaper = Config.getWallpaperById(wallpaperId);
+            if (!wallpaper) return;
+
+            if (wallpaper.type === "image") {
+                loader.setSource("Backgrounds/ImageWallpaper.qml", { "imagePath": wallpaper.path });
+            } else if (wallpaper.type === "video") {
+                loader.setSource("Backgrounds/VideoWallpaper.qml", { "videoPath": wallpaper.path });
+            } else if (wallpaper.type === "dynamic") {
+                loader.source = wallpaper.path;
+            }
+        }
+
         Timer {
             id: fadeTimer
             interval: 50
@@ -69,13 +83,13 @@ PanelWindow {
         onCurrentWallpaperChanged: {
             if (useLoader1) {
                 loader2.opacity = 0;
-                loader2.source = "Backgrounds/" + currentWallpaper + ".qml";
+                loadWallpaper(loader2, currentWallpaper);
                 fadeTimer.targetLoader = loader2;
                 fadeTimer.start();
                 loader1.opacity = 0;
             } else {
                 loader1.opacity = 0;
-                loader1.source = "Backgrounds/" + currentWallpaper + ".qml";
+                loadWallpaper(loader1, currentWallpaper);
                 fadeTimer.targetLoader = loader1;
                 fadeTimer.start();
                 loader2.opacity = 0;
@@ -84,7 +98,7 @@ PanelWindow {
         }
 
         Component.onCompleted: {
-            loader1.source = "Backgrounds/" + currentWallpaper + ".qml";
+            loadWallpaper(loader1, currentWallpaper);
             loader1.opacity = 1;
             loader2.opacity = 0;
         }
