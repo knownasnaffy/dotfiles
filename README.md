@@ -76,7 +76,7 @@ Personal Arch Linux dotfiles featuring Hyprland, Tokyo Night theming, and extens
       <img src="media/showcase/launcher.png" width="400">
     </td>
     <td align="center">
-      <img src="media/showcase/powermenu.png" width="400">
+      <img src="https://github.com/user-attachments/assets/e30746f0-63a4-4194-8eb0-331af16d6902" width="400">
     </td>
   </tr>
 </table>
