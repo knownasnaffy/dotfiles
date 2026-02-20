@@ -150,7 +150,6 @@ ShellRoot {
                             width: delegateRoot.isCurrent ? 350 : 300
                             height: width * 9 / 16
                             anchors.centerIn: parent
-                            layer.enabled: true
 
                             Behavior on width {
                                 NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
@@ -158,6 +157,14 @@ ShellRoot {
 
                             Behavior on height {
                                 NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                            }
+
+                            layer.enabled: true
+                            layer.effect: MultiEffect {
+                                maskEnabled: true
+                                maskSource: maskItem
+                                maskSpreadAtMin: 1
+                                maskThresholdMin: 0.5
                             }
 
                             Item {
@@ -175,6 +182,7 @@ ShellRoot {
 
                             Loader {
                                 anchors.fill: parent
+                                asynchronous: true
                                 sourceComponent: {
                                     if (model.type === "image") return imageComp;
                                     if (model.type === "video") return videoComp;
@@ -190,13 +198,6 @@ ShellRoot {
                                     switchTimer.stop();
                                     WallpaperConfig.setWallpaper(model.id);
                                 }
-                            }
-
-                            layer.effect: MultiEffect {
-                                maskEnabled: true
-                                maskSource: maskItem
-                                maskSpreadAtMin: 1
-                                maskThresholdMin: 0.5
                             }
                         }
                     }
