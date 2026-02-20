@@ -21,34 +21,24 @@ ShellRoot {
     function updateVisibleWallpapers() {
         var all = Config.wallpapers;
         wallpaperModel.clear();
-        for (var j = -4; j <= 4; j++) {
-            var pos = (root.centerIndex + j + all.length) % all.length;
-            wallpaperModel.append(all[pos]);
+        for (var i = 0; i < all.length; i++) {
+            wallpaperModel.append(all[i]);
         }
     }
 
     function scrollNext() {
-        var all = Config.wallpapers;
-        root.centerIndex = (root.centerIndex + 1) % all.length;
-        var newIdx = (root.centerIndex + 4) % all.length;
-        wallpaperModel.remove(0);
-        wallpaperModel.append(all[newIdx]);
-        wallpaperListView.positionViewAtIndex(4, ListView.Center);
+        wallpaperPathView.incrementCurrentIndex();
         switchTimer.restart();
     }
 
     function scrollPrevious() {
-        var all = Config.wallpapers;
-        root.centerIndex = (root.centerIndex - 1 + all.length) % all.length;
-        var newIdx = (root.centerIndex - 4 + all.length) % all.length;
-        wallpaperModel.remove(8);
-        wallpaperModel.insert(0, all[newIdx]);
-        wallpaperListView.positionViewAtIndex(4, ListView.Center);
+        wallpaperPathView.decrementCurrentIndex();
         switchTimer.restart();
     }
 
     function applyCenterWallpaper() {
-        WallpaperConfig.setWallpaper(Config.wallpapers[root.centerIndex].id);
+        var idx = wallpaperPathView.currentIndex;
+        WallpaperConfig.setWallpaper(Config.wallpapers[idx].id);
     }
 
     Timer {
@@ -65,24 +55,22 @@ ShellRoot {
             var all = Config.wallpapers;
             for (var i = 0; i < all.length; i++) {
                 if (all[i].id === WallpaperConfig.activeWallpaper) {
-                    root.centerIndex = i;
+                    wallpaperPathView.currentIndex = i;
                     break;
                 }
             }
-            root.updateVisibleWallpapers();
-            wallpaperListView.positionViewAtIndex(4, ListView.Center);
         }
     }
 
     Component.onCompleted: {
+        root.updateVisibleWallpapers();
         var all = Config.wallpapers;
         for (var i = 0; i < all.length; i++) {
             if (all[i].id === WallpaperConfig.activeWallpaper) {
-                root.centerIndex = i;
+                wallpaperPathView.currentIndex = i;
                 break;
             }
         }
-        root.updateVisibleWallpapers();
     }
 
     IpcHandler {
@@ -128,38 +116,49 @@ ShellRoot {
 
             RowLayout {
                 anchors.centerIn: parent
-                spacing: 20
+                spacing: 0
 
-                ListView {
-                    id: wallpaperListView
-                    orientation: ListView.Horizontal
+                PathView {
+                    id: wallpaperPathView
                     model: wallpaperModel
-                    spacing: 20
                     interactive: false
-                    cacheBuffer: 1000
-                    Layout.preferredWidth: 350 + 300 * 2 + 20 * 2
+                    pathItemCount: 9
+                    preferredHighlightBegin: 0.5
+                    preferredHighlightEnd: 0.5
+                    offset: 0
+                    Layout.preferredWidth: 600
                     Layout.preferredHeight: 350 * 9 / 16
                     Layout.alignment: Qt.AlignVCenter
 
-                    Component.onCompleted: positionViewAtIndex(4, ListView.Center)
-
-                    add: Transition {
-                        NumberAnimation { properties: "x"; duration: 150; easing.type: Easing.OutCubic }
-                    }
-
-                    displaced: Transition {
-                        NumberAnimation { properties: "x"; duration: 150; easing.type: Easing.OutCubic }
+                    path: Path {
+                        startX: -1200
+                        startY: wallpaperPathView.height / 2
+                        PathLine {
+                            x: 1800
+                            y: wallpaperPathView.height / 2
+                        }
                     }
 
                     delegate: Item {
-                        width: index === 4 ? 350 : 300
+                        id: delegateRoot
+                        property bool isCurrent: PathView.isCurrentItem
+                        width: isCurrent ? 350 : 300
                         height: 350 * 9 / 16
-                        
+                        z: isCurrent ? 1 : 0
+
                         Item {
-                            width: index === 4 ? 350 : 300
+                            width: delegateRoot.isCurrent ? 350 : 300
                             height: width * 9 / 16
-                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.centerIn: parent
                             layer.enabled: true
+
+                            Behavior on width {
+                                NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                            }
+
+                            Behavior on height {
+                                NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                            }
 
                             Item {
                                 id: maskItem
@@ -259,7 +258,7 @@ ShellRoot {
         Item {
             anchors.fill: parent
             clip: true
-            
+
             MediaPlayer {
                 id: player
                 source: {
@@ -273,7 +272,7 @@ ShellRoot {
                 autoPlay: true
                 videoOutput: videoOutput
             }
-            
+
             VideoOutput {
                 id: videoOutput
                 anchors.fill: parent
