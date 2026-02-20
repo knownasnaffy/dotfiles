@@ -1,4 +1,5 @@
 import Qt.labs.platform
+import QtMultimedia
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Effects
@@ -224,8 +225,9 @@ ShellRoot {
         Item {
             anchors.fill: parent
             clip: true
-            Image {
-                anchors.fill: parent
+            
+            MediaPlayer {
+                id: player
                 source: {
                     var path = wallpaperData.path;
                     if (path.startsWith("~/")) {
@@ -233,7 +235,15 @@ ShellRoot {
                     }
                     return path;
                 }
-                fillMode: Image.PreserveAspectCrop
+                loops: MediaPlayer.Infinite
+                autoPlay: true
+                videoOutput: videoOutput
+            }
+            
+            VideoOutput {
+                id: videoOutput
+                anchors.fill: parent
+                fillMode: VideoOutput.PreserveAspectCrop
             }
         }
     }
