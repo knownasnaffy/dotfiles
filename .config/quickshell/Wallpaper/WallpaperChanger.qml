@@ -213,6 +213,14 @@ ShellRoot {
                 anchors.left: parent.left
                 anchors.leftMargin: 16
 
+                Text {
+                    anchors.centerIn: parent
+                    text: ""
+                    font.family: "JetBrains Mono Nerd Font Propo"
+                    font.pixelSize: 20
+                    color: "#c0caf5"
+                }
+
                 MouseArea {
                     anchors.fill: parent
                     onClicked: root.scrollPrevious()
@@ -226,6 +234,14 @@ ShellRoot {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.right: parent.right
                 anchors.rightMargin: 16
+
+                Text {
+                    anchors.centerIn: parent
+                    text: ""
+                    font.family: "JetBrains Mono Nerd Font Propo"
+                    font.pixelSize: 20
+                    color: "#c0caf5"
+                }
 
                 MouseArea {
                     anchors.fill: parent
