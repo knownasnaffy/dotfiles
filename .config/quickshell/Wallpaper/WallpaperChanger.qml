@@ -126,6 +126,7 @@ ShellRoot {
                         color: "#1b1e2d"
                         radius: 8
                         clip: true
+                        layer.enabled: true
                         Layout.alignment: Qt.AlignVCenter
 
                         Loader {
