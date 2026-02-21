@@ -113,6 +113,7 @@ records=(
     "Wallpaper: Next:::qs ipc call wallpaper next"
     "Wallpaper: Previous:::qs ipc call wallpaper previous"
     "Wallpaper: Random:::qs ipc call wallpaper random"
+    "Open Mail:::ghostty --title=Himalaya -e nvim -c \":Himalaya\""
 )
 
 # -----------------------------
