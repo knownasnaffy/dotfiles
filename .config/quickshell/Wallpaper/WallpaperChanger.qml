@@ -156,6 +156,13 @@ ShellRoot {
                         delegate: Item {
                             id: delegateRoot
                             property bool isCurrent: PathView.isCurrentItem
+                            property int distanceFromCurrent: {
+                                var current = PathView.view.currentIndex;
+                                var myIndex = index;
+                                var total = PathView.view.count;
+                                var dist = Math.abs(current - myIndex);
+                                return Math.min(dist, total - dist);
+                            }
                             width: isCurrent ? 350 : 300
                             height: 350 * 9 / 16
                             z: isCurrent ? 1 : 0
@@ -197,6 +204,11 @@ ShellRoot {
                                 Loader {
                                     anchors.fill: parent
                                     asynchronous: true
+                                    active: {
+                                        if (model.type === "video") return delegateRoot.distanceFromCurrent <= 2;
+                                        if (model.type === "image" || model.type === "dynamic") return delegateRoot.distanceFromCurrent <= 4;
+                                        return false;
+                                    }
                                     sourceComponent: {
                                         if (model.type === "image") return imageComp;
                                         if (model.type === "video") return videoComp;
@@ -204,6 +216,7 @@ ShellRoot {
                                         return null;
                                     }
                                     property var wallpaperData: model
+                                    property int distanceFromCurrent: delegateRoot.distanceFromCurrent
                                 }
 
                                 MouseArea {
@@ -291,6 +304,7 @@ ShellRoot {
         Item {
             anchors.fill: parent
             clip: true
+            property bool shouldPlay: distanceFromCurrent <= 1
 
             MediaPlayer {
                 id: player
@@ -302,7 +316,7 @@ ShellRoot {
                     return path;
                 }
                 loops: MediaPlayer.Infinite
-                autoPlay: true
+                autoPlay: shouldPlay
                 videoOutput: videoOutput
             }
 
@@ -310,6 +324,11 @@ ShellRoot {
                 id: videoOutput
                 anchors.fill: parent
                 fillMode: VideoOutput.PreserveAspectCrop
+            }
+
+            onShouldPlayChanged: {
+                if (shouldPlay) player.play();
+                else player.pause();
             }
         }
     }
