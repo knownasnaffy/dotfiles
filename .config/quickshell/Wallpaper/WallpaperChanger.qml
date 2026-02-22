@@ -73,13 +73,7 @@ ShellRoot {
     Connections {
         target: panelLoader
         function onLoaded() {
-            var all = Config.wallpapers;
-            for (var i = 0; i < all.length; i++) {
-                if (all[i].id === WallpaperConfig.activeWallpaper) {
-                    panelLoader.item.wallpaperPathView.currentIndex = i;
-                    break;
-                }
-            }
+            // Index is set by PathView.onCompleted now
         }
     }
 
@@ -140,9 +134,22 @@ ShellRoot {
                         preferredHighlightBegin: 0.5
                         preferredHighlightEnd: 0.5
                         offset: 0
+                        highlightRangeMode: PathView.StrictlyEnforceRange
+                        highlightMoveDuration: 0
                         Layout.preferredWidth: 600
                         Layout.preferredHeight: 350 * 9 / 16
                         Layout.alignment: Qt.AlignVCenter
+
+                        Component.onCompleted: {
+                            var all = Config.wallpapers;
+                            for (var i = 0; i < all.length; i++) {
+                                if (all[i].id === WallpaperConfig.activeWallpaper) {
+                                    currentIndex = i;
+                                    break;
+                                }
+                            }
+                            highlightMoveDuration = 200;
+                        }
 
                         path: Path {
                             startX: -1200
