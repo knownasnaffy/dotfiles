@@ -6,7 +6,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set the prompt theme
-ZSH_THEME="spaceship"
+ZSH_THEME=""
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Zsh Plugins Configuration
@@ -53,7 +53,7 @@ plugins=(
 )
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Source and initialize oh-my-zsh
+# Source and Initialize Oh-My-Zsh
 # ─────────────────────────────────────────────────────────────────────────────
 
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
@@ -61,22 +61,27 @@ fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 source "$ZSH/oh-my-zsh.sh"
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Spaceship Prompt Configuration
+# Custom Prompt Theme
 # ─────────────────────────────────────────────────────────────────────────────
 
-# Enable battery status in the prompt
-SPACESHIP_BATTERY_SHOW="charged"
-SPACESHIP_BATTERY_THRESHOLD=25
-SPACESHIP_SUDO_SHOW=true
+PROMPT=$'\n%{$fg_bold[cyan]%}$( \
+  local branch=$(git_prompt_info); \
+  [[ -n $branch ]] && echo "%c %F{white}on %F{magenta}$branch %F{red}$(git_prompt_status)%f" || echo "%~" \
+)\n%(?.%F{green}➜%f.%F{red}➜%f) %{$reset_color%}'
 
-# Remove unused sections to keep prompt clean and fast
-spaceship_cleanup=(
-  node rust package hg bun deno ruby elm elixir xcode swift golang perl php
-  haskell scala kotlin java dart julia crystal docker docker_compose aws
-  gcloud azure conda uv dotnet ocaml vlang purescript erlang gleam
-  kubectl ansible terraform pulumi ibmcloud nix_shell gnu_screen lua
-)
-spaceship remove "${spaceship_cleanup[@]}"
+ZSH_THEME_GIT_PROMPT_PREFIX=""
+ZSH_THEME_GIT_PROMPT_SUFFIX=""
+ZSH_THEME_GIT_PROMPT_DIRTY=""
+ZSH_THEME_GIT_PROMPT_CLEAN=""
+
+RPROMPT=''
+
+ZSH_THEME_GIT_PROMPT_ADDED=" "
+ZSH_THEME_GIT_PROMPT_MODIFIED=" "
+ZSH_THEME_GIT_PROMPT_DELETED=" "
+ZSH_THEME_GIT_PROMPT_RENAMED=" "
+ZSH_THEME_GIT_PROMPT_UNMERGED=" "
+ZSH_THEME_GIT_PROMPT_UNTRACKED=""
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Key Bindings and Input Tweaks

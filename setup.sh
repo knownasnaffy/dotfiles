@@ -234,12 +234,6 @@ install_plugins() {
         [ -d "$plugin_path" ] && log "Plugin '$plugin' already installed. Skipping..." \
             || git clone "${plugins[$plugin]}" "$plugin_path"
     done
-
-    local spaceship_path="$ZSH_CUSTOM/themes/spaceship-prompt"
-
-    [ -d "$spaceship_path" ] && log "Spaceship prompt already installed. Skipping..." \
-        || git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$spaceship_path" --depth=1 \
-        && create_symlink "$spaceship_path/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 }
 
 install_private_packages() {
