@@ -211,6 +211,46 @@
       "id": "bg42",
       "type": "image",
       "path": "~/Pictures/Wallpapers/bg42.jpg"
+    },
+    {
+      "id": "bg43",
+      "type": "image",
+      "path": "~/Pictures/Wallpapers/bg43.png"
+    },
+    {
+      "id": "bg44",
+      "type": "image",
+      "path": "~/Pictures/Wallpapers/bg44.png"
+    },
+    {
+      "id": "bg45",
+      "type": "image",
+      "path": "~/Pictures/Wallpapers/bg45.jpg"
+    },
+    {
+      "id": "bg46",
+      "type": "image",
+      "path": "~/Pictures/Wallpapers/bg46.jpg"
+    },
+    {
+      "id": "bg47",
+      "type": "image",
+      "path": "~/Pictures/Wallpapers/bg47.jpg"
+    },
+    {
+      "id": "bg48",
+      "type": "image",
+      "path": "~/Pictures/Wallpapers/bg48.jpg"
+    },
+    {
+      "id": "bg49",
+      "type": "image",
+      "path": "~/Pictures/Wallpapers/bg49.jpg"
+    },
+    {
+      "id": "bg50",
+      "type": "image",
+      "path": "~/Pictures/Wallpapers/bg50.jpg"
     }
   ]
 }
