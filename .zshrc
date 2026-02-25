@@ -39,8 +39,6 @@ plugins=(
     history-substring-search
     safe-paste
     sudo
-    # web-search
-    # wp-cli
     zoxide
     zsh-autosuggestions
     zsh-interactive-cd
