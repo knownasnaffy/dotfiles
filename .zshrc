@@ -272,12 +272,23 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
 "
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Ghostty Shell Integration
+# Shell Integration
 # ─────────────────────────────────────────────────────────────────────────────
 
 if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
     source "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
 fi
+
+function precmd {
+    if ! builtin zle; then
+        print -n "\e]133;D\e\\"
+    fi
+    print -Pn "\e]133;A\e\\"
+}
+
+function preexec {
+    print -n "\e]133;C\e\\"
+}
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Custom Completion Scripts
