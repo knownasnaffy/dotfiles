@@ -3,7 +3,7 @@
 term_title="TabTerm$$"
 
 # Step 1: ensure current node is a tab group
-hyprctl dispatch hy3:makegroup tab
+hyprctl dispatch hy3:makegroup opposite
 
 # Step 2: spawn terminal
 uwsm app -- ghostty --title="$term_title" &
