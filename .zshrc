@@ -36,13 +36,13 @@ plugins=(
     fzf
     git
     gitfast
+    history-substring-search
     safe-paste
     sudo
     # web-search
     # wp-cli
     zoxide
     zsh-autosuggestions
-    zsh-history-substring-search
     zsh-interactive-cd
     zsh-syntax-highlighting
 )
