@@ -153,6 +153,40 @@ zstyle ':completion::complete:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh
 # 60 seconds × 60 minutes × 24 hours × 7 days = 604800 seconds
 export HOMEBREW_AUTO_UPDATE_SECS=$((60 * 60 * 24 * 7))
 
+# Lazy load fnm
+fnm() {
+  unset -f fnm node npx npm corepack
+  eval "$(command fnm env)"
+  fnm "$@"
+}
+
+node() {
+  unset -f fnm node npx npm corepack
+  eval "$(command fnm env)"
+  node "$@"
+}
+
+npm() {
+  unset -f fnm node npx npm corepack
+  eval "$(command fnm env)"
+  npm "$@"
+}
+
+npx() {
+  unset -f fnm node npx npm corepack
+  eval "$(command fnm env)"
+  npx "$@"
+}
+
+corepack() {
+  unset -f fnm node npx npm corepack
+  eval "$(command fnm env)"
+  corepack "$@"
+}
+
+# Load Homebrew if installed
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Custom Aliases and Functions
 # ─────────────────────────────────────────────────────────────────────────────
@@ -209,12 +243,6 @@ alias jrnl=" jrnl" # Leading space ensures it doesn't enter shell history
 # ─────────────────────────────────────────────────────────────────────────────
 # Appearance Enhancements
 # ─────────────────────────────────────────────────────────────────────────────
-
-# Load fnm
-eval "`fnm env`"
-
-# Load Homebrew if installed
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Set man pages viewer to use bat
 export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
