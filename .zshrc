@@ -24,27 +24,22 @@ typeset -A ZSH_HIGHLIGHT_STYLES
 
 ZSH_HIGHLIGHT_STYLES[comment]='fg=#565f89'
 
-# List of enabled plugins
+# List of enabled plugins ~30ms
 plugins=(
     aliases
     archlinux
     brew
-    bun
-    copyfile
     copypath
     dirhistory
-    docker
     extract
     eza
     fzf
-    gh
     git
     gitfast
-    qrcode
     safe-paste
     sudo
-    web-search
-    wp-cli
+    # web-search
+    # wp-cli
     zoxide
     zsh-autosuggestions
     zsh-history-substring-search
@@ -58,7 +53,7 @@ plugins=(
 
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
-source "$ZSH/oh-my-zsh.sh"
+source "$ZSH/oh-my-zsh.sh" # ~70ms
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Custom Prompt Theme
@@ -189,7 +184,7 @@ corepack() {
   corepack "$@"
 }
 
-# Load Homebrew if installed
+# Load Homebrew if installed ~10ms
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # ─────────────────────────────────────────────────────────────────────────────
