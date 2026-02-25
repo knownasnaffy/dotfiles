@@ -130,7 +130,7 @@ export TERMINAL=ghostty
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export ANDROID_HOME="/opt/android-sdk"
 export JAVA_HOME="/usr/lib/jvm/java-17-openjdk"
-export GEM_HOME="$HOME/.local/share/gem/ruby/$(ruby -e 'print RbConfig::CONFIG["ruby_version"]' 2>/dev/null || echo 3.4.0)/bin"
+export GEM_HOME="$HOME/.local/share/gem/ruby/3.4.0/bin"
 
 # Add important paths
 path_directories=(
