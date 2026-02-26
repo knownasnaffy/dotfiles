@@ -23,4 +23,4 @@ selected=$(rofi -dmenu -i -p "Characters" -theme "$dmenu_theme" < "$characters_f
 char=$(awk '{print $1}' <<< "$selected")
 
 sleep 0.35
-printf '%s' "$char" | wtype -
+printf '%s' "$char" | wl-copy
