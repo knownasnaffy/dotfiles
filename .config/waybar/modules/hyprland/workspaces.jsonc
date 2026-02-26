@@ -10,14 +10,15 @@
       "3": "󰻞",
       "4": "󰂖",
       "5": "",
+      "magic": "󱡄",
       "default": "󰐱"
     },
     "persistent-workspaces": {
       "*": 4
     },
     // "persistent-only":
-    // "show-special":
-    // "special-visible-only":
+    "show-special": true,
+    "special-visible-only": true,
     // "sort-by":
     // "window-rewrite":
     // "window-rewrite-default":
@@ -33,7 +34,7 @@
       // "on-click-window":
     },
     // "move-to-monitor":
-    // "ignore-workspaces":
+    "ignore-workspaces": ["11"],
     "on-scroll-up": "hyprctl dispatch workspace +1",
     "on-scroll-down": "hyprctl dispatch workspace -1",
     // "expand":

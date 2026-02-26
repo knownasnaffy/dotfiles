@@ -7,9 +7,17 @@ addr=$(hyprctl clients -j | jq -r --arg t "$title" '.[] | select(.title==$t) | .
 
 if [ -z "$addr" ]; then
     # Not running → start it (your rule will send it to special:magic)
-    uwsm app -- ghostty --title=$title &
-    exit 0
+    hyprctl dispatch exec "uwsm app -- ghostty --title=$title"
 fi
 
 # Running → just toggle the special workspace
-hyprctl dispatch togglespecialworkspace magic
+
+toggle=0
+hyprctl keyword animation "workspacesOut, 1, 3.34, easeOutBack, slide top"
+hyprctl keyword animation "workspacesIn,  1, 2.51, easeOutBack, slide bottom"
+if [[ $(hyprctl activeworkspace -j | jq '.id') -eq 11 ]]; then toggle=1; fi
+hyprctl dispatch workspace 11
+[[ "$toggle" -eq 1 ]] || hyprctl dispatch togglespecialworkspace magic
+echo $toggle
+hyprctl keyword animation "workspacesOut, 1, 3.34, easeOutBack, slide"
+hyprctl keyword animation "workspacesIn,  1, 2.51, easeOutBack, slide"
