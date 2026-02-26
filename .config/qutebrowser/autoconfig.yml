@@ -180,7 +180,7 @@ settings:
   scrolling.smooth:
     global: true
   statusbar.show:
-    global: never
+    global: always
   tabs.last_close:
     global: startpage
   tabs.mode_on_change:
