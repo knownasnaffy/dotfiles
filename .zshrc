@@ -27,14 +27,11 @@ ZSH_HIGHLIGHT_STYLES[comment]='fg=#565f89'
 # List of enabled plugins ~30ms
 plugins=(
     aliases
-    archlinux
-    brew
     copypath
     dirhistory
     extract
     eza
     fzf
-    git
     gitfast
     history-substring-search
     safe-paste
@@ -202,7 +199,10 @@ alias prs="paru -S"
 alias prss="paru -Ss"
 alias prsi="paru -Si"
 alias prsy="paru -Sy"
+alias prsyu="paru -Syu"
 alias prqs="paru -Qs"
+alias prqi="paru -Qi"
+alias prrns="paru -Rns"
 
 # Remove '$ ' from copied command snippets
 alias '$'='_execute_command'
@@ -237,6 +237,24 @@ alias preview="fzf --preview \"bat --color=always --style=numbers --line-range=:
 
 # JRNL secret logs
 alias jrnl=" jrnl" # Leading space ensures it doesn't enter shell history
+
+# Git-related
+function grename() {
+  if [[ -z "$1" || -z "$2" ]]; then
+    echo "Usage: $0 old_branch new_branch"
+    return 1
+  fi
+
+  # Rename branch locally
+  git branch -m "$1" "$2"
+  # Rename branch in origin remote
+  if git push origin :"$1"; then
+    git push --set-upstream origin "$2"
+  fi
+}
+
+alias gcm='git commit --message'
+alias gcam='git commit --all --message'
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Appearance Enhancements
