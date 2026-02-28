@@ -327,6 +327,7 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.local/bin/start-hotspot.sh" "$HOME/.local/bin/start-hotspot" # personal
     create_symlink "$DOTFILES_DIR/.local/bin/stop-hotspot.sh" "$HOME/.local/bin/stop-hotspot" # personal
     create_symlink "$DOTFILES_DIR/.local/bin/slurp.sh" "$HOME/.local/bin/slurp"
+    create_symlink "$DOTFILES_DIR/.local/bin/git-clone.sh" "$HOME/.local/bin/gcl"
 
     create_symlink "$DOTFILES_DIR/.local/share/fonts" "$HOME/.local/share/fonts" # desktop
 
