@@ -22,7 +22,7 @@ while true; do
         label="${r%%:::*}"
         shader_name=$(echo "$r" | awk -F'toggle ' '{print $2}')
 
-        if [[ "$shader_name" == "$current_shader" ]]; then
+        if [[ -n "$shader_name" && "$shader_name" == "$current_shader" ]]; then
             labels+=( "󰄬 $label" )
         else
             labels+=( "  $label" )
