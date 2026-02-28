@@ -9,6 +9,8 @@ records=(
     "Blue Light:::hyprshade toggle blue-light-filter"
     "Vibrance:::hyprshade toggle vibrance"
     "Retro:::hyprshade toggle retro"
+    "Disable Shader Cycle:::systemctl --user stop hyprshade.timer"
+    "Restart Shader Cycle:::systemctl --user restart hyprshade.timer"
 )
 
 while true; do
