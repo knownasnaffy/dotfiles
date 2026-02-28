@@ -46,7 +46,7 @@ type_secret() {
     sleep 0.4
 
     # type like a real keyboard
-    ydotool type "$secret"
+    ydotool type -f - <<< "$secret"
 }
 
 get_password() {
