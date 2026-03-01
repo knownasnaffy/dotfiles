@@ -190,9 +190,8 @@ Other useful menu utilities are located in `.config/rofi/applets/bin/`
 
 The following require manual configuration (documentation pending):
 
-- **ydotool**: Virtual input automation
-- **SDDM**: Alternative display manager (ly is configured)
-- **Private configs**: Email (aerc), journaling (jrnl) - will be moved to separate repo
+- **ydotool**: Some input groups and other configurations
+- **SDDM**: Theme and stuff not yet added to dotfiles (ly is configured if you want)
 
 ## Known Limitations
 
@@ -212,6 +211,10 @@ Manual setup: `git clone https://github.com/knownasnaffy/nvim.git ~/.config/nvim
 - **Neovim config**: Fork of [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
 - **Theme variables**: [Folke's tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
 - **Snipping Utilities**: [Ronin-CK](https://github.com/Ronin-CK)
+
+## License
+
+As the nature of dotfiles, I'm not sure adding a license of my own would be a suitable thing to do. Ping me about it if someone has any suggestions for this.
 
 ---
 
