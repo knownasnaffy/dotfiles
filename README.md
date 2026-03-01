@@ -157,86 +157,6 @@ The script will:
 - Display Manager: ly (currently using sddm, but not yet configured into dotfiles)
 - Keyboard Remapping: keyd
 
-## Rofi Menus
-
-**Active Menus:**
-- `launcher` - Application launcher
-- `powermenu` - System power options
-- `screenshot` - Screenshot/recording tools
-- `pass` - Password manager interface
-- `clipboard` - Clipboard history (cliphist)
-- `emojipicker` - Emoji selector
-- `colorpicker` - Color picker utility
-- `characters` - Special characters
-- `bookmarks` - Quick bookmarks
-- `notes` - Note management
-- `snippets` - Text snippets
-- `todo` - Todo list manager
-- `timer` - Countdown timer
-- `hydrate` - Hydration reminder
-- `recordscreen` - Screen recording
-- `shader-toggle` - Hyprshade toggle
-- `global` - Global menu aggregator
-
-**Stale (Just there for reference):**
-- brightness, volume, wifi, battery, mpd, apps, appasroot, quicklinks
-
-Almost all menus are bound to keybindings in [hypr/land/keybinds.conf](.config/hypr/land/keybinds.conf).
-
-## Configuration Structure
-
-```
-.
-├── setup.sh                    # Main bootstrap script
-├── docs/
-│   └── assumptions.md          # System assumptions
-├── etc/
-│   ├── keyd/                   # Keyboard remapping
-│   ├── ly/                     # Display manager config
-│   └── systemd/network/        # Network configs
-├── .config/
-│   ├── hypr/                   # Hyprland (modular: land/*.conf)
-│   ├── waybar/                 # Status bar (modular themes)
-│   ├── rofi/                   # Launcher + applets
-│   ├── swaync/                 # Notifications
-│   ├── ghostty/                # Terminal
-│   ├── qutebrowser/            # Browser
-│   ├── neovim/                 # (Cloned separately)
-│   ├── yazi/                   # File manager
-│   ├── btop/                   # System monitor
-│   ├── fastfetch/              # System info
-│   └── [20+ other apps]
-├── .local/
-│   ├── bin/                    # Custom scripts
-│   └── share/fonts/            # Custom fonts
-└── media/
-    ├── pictures/               # Wallpapers
-    ├── music/                  # Notification sounds
-    └── showcase/               # Screenshots
-```
-
-## Keybinding Philosophy
-
-Vim-centric, keyboard-first workflow designed to minimize hand movement:
-
-- **Caps Lock → Shift**: More ergonomic modifier
-- **Alt-based combos**: Replaced most Ctrl bindings with Alt/Alt+Shift
-- **Alt+Q → Escape**: Quick escape without reaching
-- **Tab + {jkl;}**: Arrow keys on home row
-- **Hyprland Super key**: Primary window management modifier
-
-Full remapping details in [etc/keyd/default.conf](etc/keyd/default.conf).
-
-## System Assumptions
-
-From [docs/assumptions.md](docs/assumptions.md):
-
-- Wayland-first (X11 via XWayland only)
-- Hyprland as sole compositor
-- Laptop-focused (internal display primary)
-- Single-user system
-- Private PC (no enterprise constraints)
-
 ## Selective Installation
 
 Run specific setup steps with flags:
@@ -253,7 +173,7 @@ Run specific setup steps with flags:
 
 Combine flags as needed: `./setup.sh -ln -pi`
 
-## Custom Scripts
+## Custom Scripts (quite helpful)
 
 Located in `.local/bin/`:
 
@@ -263,6 +183,8 @@ Located in `.local/bin/`:
 - `git-status` - Enhanced git status
 - `start-hotspot` / `stop-hotspot` - Mobile hotspot management
 - `pass-push` - Password store sync
+
+Other useful menu utilities are located in `.config/rofi/applets/bin/`
 
 ## Manual Setup Required
 
@@ -282,22 +204,6 @@ The following require manual configuration (documentation pending):
 If `~/.config/nvim` exists and points to `knownasnaffy/nvim`, it's preserved. Otherwise, the directory is removed and the config is cloned fresh.
 
 Manual setup: `git clone https://github.com/knownasnaffy/nvim.git ~/.config/nvim`
-
-## Troubleshooting
-
-**Symlink conflicts:**
-Check permissions. Existing files may sometimes lead to conflict in `/etc` dir.
-
-
-**Hyprland not launching:**
-Last time I encountered this issue, it was because of postgresql, it's service was corrupting systemd. You can try disabling any such unit you enabled recently.
-
-## Extending
-
-1. Add new configs to appropriate directory in repo
-2. Add `create_symlink` or `create_sudo_symlink` call in `link_dotfiles()` function
-3. Keep changes idempotent (check before creating)
-4. Group related symlinks together with comments
 
 ## Credits
 
