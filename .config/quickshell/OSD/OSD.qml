@@ -309,7 +309,7 @@ PanelWindow {
 					Text {
                         text: Pipewire.defaultAudioSink?.audio.muted ?"": ""
 						font.pixelSize: 16
-						font.family: "JetBrains Mono Nerd Font Propo"
+						font.family: "JetBrains Mono Nerd Font"
 						color: "#c0caf5"
 
 						Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom

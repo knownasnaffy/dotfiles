@@ -6,7 +6,7 @@ term_title="TabTerm$$"
 hyprctl dispatch hy3:makegroup opposite
 
 # Step 2: spawn terminal
-uwsm app -- ghostty --title="$term_title" &
+uwsm app -- $TERMINAL --title="$term_title" &
 
 # Step 3: wait for it to map, then move into the group
 for i in {1..20}; do

@@ -62,6 +62,6 @@ case "$chosen" in
         sleep 0.2; quicksnip
         ;;
     "$option_5")
-        ghostty -e yazi "$SCREENSHOT_DIR"
+        $TERMINAL -e yazi "$SCREENSHOT_DIR"
         ;;
 esac

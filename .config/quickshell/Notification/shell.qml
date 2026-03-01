@@ -297,7 +297,7 @@ PanelWindow {
                                 Text {
                                     text: currentNotif.icon
                                     font.pixelSize: 32
-                                    font.family: "JetBrainsMono Nerd Font Mono"
+                                    font.family: "JetBrainsMono Nerd Font"
                                     color: currentNotif.priority === "critical"?"#f7768e": "#a9b1d6"
                                     anchors.centerIn: parent
                                 }

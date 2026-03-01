@@ -4,7 +4,7 @@
 		"rewrite": {
 			"": "Desktop",
 			"vi": "Editor",
-			"ghostty": "Terminal",
+			"foot": "Terminal",
 			"zsh": "Terminal",
 			"~": "Terminal"
 		},

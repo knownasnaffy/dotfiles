@@ -103,6 +103,6 @@ case "$chosen" in
         ;;
 
     $option_4)
-        ghostty -e yazi "$dir"
+        $TERMINAL -e yazi "$dir"
         ;;
 esac

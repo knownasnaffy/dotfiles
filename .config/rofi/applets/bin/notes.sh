@@ -75,7 +75,7 @@ get_notes() {
 
 edit_note() {
     note_location=$1
-    hyprctl dispatch exec "[float; size 800 600; center on;] ghostty -e nvim +\"set textwidth=80\" \"$note_location\""
+    hyprctl dispatch exec "[float; size 800 600; center on;] $TERMINAL -e nvim +\"set textwidth=80\" \"$note_location\""
 }
 
 delete_note() {

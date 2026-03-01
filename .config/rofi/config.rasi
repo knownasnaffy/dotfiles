@@ -82,7 +82,7 @@ configuration {
 	display-filebrowser: "Files";
 
 	/*---------- Misc setting ----------*/
-	terminal: "ghostty";
+	terminal: "footclient";
 	font: "Mono 12";
 	sort: false;
 	threads: 0;

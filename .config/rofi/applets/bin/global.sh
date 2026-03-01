@@ -16,6 +16,7 @@ keycode() {
         L) echo 38 ;;
         K) echo 37 ;;
         T) echo 20 ;;
+        N) echo 49 ;;
 
         F13) echo 183 ;;
         F14) echo 184 ;;
@@ -65,24 +66,21 @@ focussed_addr="$(hyprctl activewindow -j | jq -r '.address')"
 context_records=()
 
 case "$focused_class" in
-    com.mitchellh.ghostty)
+    footclient)
         context_records+=(
-            "Ghostty: Previous Prompt:::press_combo CTRL+SHIFT+L"
-            "Ghostty: Next Prompt:::press_combo CTRL+SHIFT+K"
-            "Ghostty: Screenshot → text file:::press_combo SUPER+CTRL+SHIFT+J"
-            "Ghostty: Select all:::press_combo CTRL+SHIFT+A"
+            "Foot: New window:::press_combo CTRL+SHIFT+N"
         )
         ;;
 
     BeeperTexts)
         context_records+=(
-            "Qutebrowser: Open Attachments Folder:::ghostty -e yazi ~/Downloads/Beeper"
+            "Qutebrowser: Open Attachments Folder:::$TERMINAL -e yazi ~/Downloads/Beeper"
         )
         ;;
 
     qutebrowser)
         context_records+=(
-            "Qutebrowser: Open Downloads:::ghostty -e yazi ~/Downloads"
+            "Qutebrowser: Open Downloads:::$TERMINAL -e yazi ~/Downloads"
             "Qutebrowser: Duplicate Tab:::qutebrowser :tab-clone"
             "Qutebrowser: Toggle Tabs:::qutebrowser ':config-cycle tabs.show always never'"
             "Qutebrowser: Toggle Status Bar:::qutebrowser ':config-cycle statusbar.show always never'"
@@ -101,7 +99,7 @@ fi
 # -----------------------------
 records=(
     "Calculator:::rofi -modi calc -show calc -theme \"$dmenu_theme\""
-    "Edit dotfiles:::ghostty -e zsh -c \"cd ~/code/projects/dotfiles && nvim\""
+    "Edit dotfiles:::$TERMINAL -e zsh -c \"cd ~/code/projects/dotfiles && nvim\""
     "Unicode Characters:::$scripts_dir/characters.sh"
     "Toggle Shaders:::$scripts_dir/shader-toggle.sh"
     "Timer:::rofi -show timer -modi timer:$scripts_dir/timer.sh -theme \"$dmenu_theme\""
@@ -113,7 +111,7 @@ records=(
     "Wallpaper: Next:::qs ipc call wallpaper next"
     "Wallpaper: Previous:::qs ipc call wallpaper previous"
     "Wallpaper: Random:::qs ipc call wallpaper random"
-    "Open Mail:::ghostty --title=Himalaya -e nvim -c \":Himalaya\""
+    "Open Mail:::$TERMINAL --title=Himalaya -e nvim -c \":Himalaya\""
 )
 
 # -----------------------------

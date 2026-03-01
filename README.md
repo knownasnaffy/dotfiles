@@ -91,19 +91,6 @@ Personal Arch Linux dotfiles featuring Hyprland, Tokyo Night theming, and extens
 - RAM: 16GB DDR5
 - Display: 1920x1080 @ 144Hz (scaled 1.2x)
 
-**Software Stack:**
-- OS: Arch Linux
-- Compositor: Hyprland (Wayland)
-- Shell: Zsh + Oh My Zsh
-- Terminal: Ghostty
-- Editor: Neovim ([custom config](https://github.com/knownasnaffy/nvim))
-- Browser: Qutebrowser
-- Bar: Waybar
-- Notifications: SwayNC
-- Launcher/Menus: Rofi
-- Theme: Tokyo Night
-- And many more - check the config files ;)
-
 ## Features
 
 - **Automated Setup**: Single script installs packages, configures system, and symlinks dotfiles with backup protection
@@ -139,13 +126,14 @@ The script will:
 - grim, slurp, satty, wf-recorder, cliphist
 
 **CLI Tools:**
-- Shell: zsh, fzf, ripgrep, bat, eza, zoxide, btop, eva, jq
+- Shell: zsh, omz, fzf, ripgrep, bat, eza, zoxide, btop, eva, jq
 - File Management: yazi, 7zip
 - Dev: github-cli, aichat, task, pass (+ pass-otp)
 - Media: playerctl, imagemagick
 
 **Desktop Apps:**
-- Terminal: ghostty
+- Terminal: Foot
+- Editor: Neovim ([custom config](https://github.com/knownasnaffy/nvim))
 - Browser: qutebrowser
 - PDF: zathura (+ poppler)
 - Image: swayimg
@@ -154,8 +142,16 @@ The script will:
 **Audio:** pipewire
 
 **System:**
+- OS: Arch Linux
 - Display Manager: ly (currently using sddm, but not yet configured into dotfiles)
 - Keyboard Remapping: keyd
+
+**Others**
+- Bar: Waybar
+- Notifications: SwayNC
+- Launcher/Menus: Rofi
+- Theme: Tokyo Night
+- And many more - check the config files ;)
 
 ## Selective Installation
 
@@ -195,14 +191,11 @@ The following require manual configuration (documentation pending):
 
 ## Known Limitations
 
-- **X11 apps**: Occasional glitches on Wayland (XWayland limitations). Qutebrowser has workarounds but bugs persist.
 - **NVIDIA quirks**: Requires specific env vars (configured in hyprland.conf). Resume doesn't work (hibernate & sleep)
 
 ## Neovim Setup
 
-If `~/.config/nvim` exists and points to `knownasnaffy/nvim`, it's preserved. Otherwise, the directory is removed and the config is cloned fresh.
-
-Manual setup: `git clone https://github.com/knownasnaffy/nvim.git ~/.config/nvim`
+If `~/.config/nvim` exists and points to `knownasnaffy/nvim`, it's preserved. Otherwise, the directory is removed and the config is cloned fresh. (NOT BACKING UP OLD CONF)
 
 ## Credits
 

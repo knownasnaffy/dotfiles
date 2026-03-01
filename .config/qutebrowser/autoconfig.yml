@@ -151,13 +151,13 @@ settings:
     https://outlook.live.com?mailtouri=%25s: false
   editor.command:
     global:
-    - ghostty
+    - footclient
     - -e
     - nvim
     - '{file}'
   fileselect.folder.command:
     global:
-    - ghostty
+    - footclient
     - -e
     - yazi
     - --chooser-file={}
@@ -165,13 +165,13 @@ settings:
     global: external
   fileselect.multiple_files.command:
     global:
-    - ghostty
+    - footclient
     - -e
     - yazi
     - --chooser-file={}
   fileselect.single_file.command:
     global:
-    - ghostty
+    - footclient
     - -e
     - yazi
     - --chooser-file={}

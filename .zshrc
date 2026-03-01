@@ -112,11 +112,10 @@ export HISTORY_SUBSTRING_SEARCH_FUZZY="1"
 
 # Set default text editor
 export EDITOR='nvim'
-export VISUAL='ghostty -e nvim'
+export VISUAL="$TERMINAL -e nvim"
 alias vi=nvim
 
 # Terminal and tools
-export TERMINAL=ghostty
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export ANDROID_HOME="/opt/android-sdk"
 export JAVA_HOME="/usr/lib/jvm/java-17-openjdk"
@@ -293,10 +292,6 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
 # Shell Integration
 # ─────────────────────────────────────────────────────────────────────────────
 
-if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
-    source "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
-fi
-
 function precmd {
     if ! builtin zle; then
         print -n "\e]133;D\e\\"
@@ -312,9 +307,6 @@ function preexec {
 # Custom Completion Scripts
 # ─────────────────────────────────────────────────────────────────────────────
 
-[ -s "$HOME/.zsh_functions/_ghostty" ] && source "$HOME/.zsh_functions/_ghostty"
-[ -s "$HOME/.zsh_functions/_gitpod" ] && source "$HOME/.zsh_functions/_gitpod"
-[ -s "$HOME/.zsh_functions/_mods" ] && source "$HOME/.zsh_functions/_mods"
 [ -s "$HOME/.zsh_functions/_pipx" ] && source "$HOME/.zsh_functions/_pipx"
 [ -s "$HOME/.zsh_functions/_fnm" ] && source "$HOME/.zsh_functions/_fnm"
 

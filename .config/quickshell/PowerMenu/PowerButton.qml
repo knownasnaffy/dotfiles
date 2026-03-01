@@ -76,7 +76,7 @@ Button {
             anchors.verticalCenterOffset: root.helpTextOpacity * -8
             text: root.iconString
             font.pixelSize: root.prefferedIconSize
-            font.family: "JetBrainsMono Nerd Font Mono"
+            font.family: "JetBrainsMono Nerd Font"
             color: root.fgColor
         }
 
@@ -86,7 +86,7 @@ Button {
             anchors.bottomMargin: 12
             text: root.helpString
             font.pixelSize: root.prefferedIconSize - 32
-            font.family: "JetBrainsMono Nerd Font Mono"
+            font.family: "JetBrainsMono Nerd Font"
             color: root.fgColor
             opacity: root.helpTextOpacity
             scale: root.helpTextOpacity

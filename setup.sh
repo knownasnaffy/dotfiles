@@ -186,7 +186,7 @@ install_programs() {
     # Pacman packages
     paru -Sy --noconfirm \
         github-cli fastfetch qutebrowser rofi ttf-hack-nerd \
-        ghostty task brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber \
+        task brightnessctl pipewire pipewire-pulse pipewire-alsa wireplumber \
         alsa-utils inotify-tools jq eva bat zoxide 7zip yazi zathura \
         noto-fonts-emoji xdg-user-dirs udisks2 pass eza aichat \
         zathura-pdf-poppler ly playerctl keyd btop ueberzug man-db imagemagick \
@@ -295,7 +295,6 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/.config/hypr" "$HOME/.config/hypr" # personal
     create_symlink "$DOTFILES_DIR/.config/waybar" "$HOME/.config/waybar" # personal
     create_symlink "$DOTFILES_DIR/.config/gh" "$HOME/.config/gh"
-    create_symlink "$DOTFILES_DIR/.config/ghostty" "$HOME/.config/ghostty" # desktop
     create_symlink "$DOTFILES_DIR/.config/qutebrowser" "$HOME/.config/qutebrowser" # desktop
     create_symlink "$DOTFILES_DIR/.config/rofi" "$HOME/.config/rofi" # desktop
     create_symlink "$DOTFILES_DIR/.config/fastfetch" "$HOME/.config/fastfetch"

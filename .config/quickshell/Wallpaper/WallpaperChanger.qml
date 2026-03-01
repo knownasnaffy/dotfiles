@@ -250,7 +250,7 @@ ShellRoot {
                     Text {
                         anchors.centerIn: parent
                         text: ""
-                        font.family: "JetBrains Mono Nerd Font Propo"
+                        font.family: "JetBrains Mono Nerd Font"
                         font.pixelSize: 20
                         color: "#c0caf5"
                     }
@@ -272,7 +272,7 @@ ShellRoot {
                     Text {
                         anchors.centerIn: parent
                         text: ""
-                        font.family: "JetBrains Mono Nerd Font Propo"
+                        font.family: "JetBrains Mono Nerd Font"
                         font.pixelSize: 20
                         color: "#c0caf5"
                     }
