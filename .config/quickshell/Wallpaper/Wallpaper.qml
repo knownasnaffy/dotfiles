@@ -3,7 +3,7 @@ import Quickshell
 import Quickshell.Wayland
 import Quickshell.Io
 import qs.Wallpaper
-import qs.Wallpaper.AudioVisualizer
+// import qs.Wallpaper.AudioVisualizer
 import qs.Common
 
 PanelWindow {
@@ -104,8 +104,8 @@ PanelWindow {
         }
     }
 
-    AudioVisualizer {
-        id: audioVisualizer
-    }
+    // AudioVisualizer {
+    //     id: audioVisualizer
+    // }
 
 }
