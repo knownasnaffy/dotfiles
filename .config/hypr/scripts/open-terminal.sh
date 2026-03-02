@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
 focused_class="$(hyprctl activewindow -j | jq -r '.class // empty')"
+focused_addr="$(hyprctl activewindow -j | jq -r '.address')"
 
 if [[ "$focused_class" == "footclient" ]]; then
-    sleep 0.3 && ydotool key 29:1 42:1 49:1 49:0 42:0 29:0
+    hyprctl dispatch sendshortcut "CTRL SHIFT, N, address:$focused_addr"
     exit 0
 fi
 
