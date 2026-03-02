@@ -37,12 +37,22 @@ rofi_cmd() {
         -theme "$theme"
 }
 
-chosen="$(printf "%s\n%s\n%s\n%s\n%s\n" \
-    "$option_1" \
-    "$option_2" \
-    "$option_3" \
-    "$option_4" \
-    "$option_5" | rofi_cmd)"
+case "$1" in
+    ss)
+        chosen="$option_1"
+        ;;
+    ocr)
+        chosen="$option_4"
+        ;;
+    *)
+        chosen="$(printf "%s\n%s\n%s\n%s\n%s\n" \
+            "$option_1" \
+            "$option_2" \
+            "$option_3" \
+            "$option_4" \
+            "$option_5" | rofi_cmd)"
+        ;;
+esac
 
 # --------------------------------------------------
 # Actions
