@@ -20,7 +20,7 @@ ColumnLayout {
             font.family: "JetBrainsMono Nerd Font"
             font.pixelSize: 18
             text: "󰣇"
-            color: "#c0caf5"
+            color: "#7aa2f7"
         }
 
     }
@@ -60,7 +60,7 @@ ColumnLayout {
                 font.family: "JetBrainsMono Nerd Font"
                 font.pixelSize: 12
                 text: Qt.formatTime(new Date(), "mm")
-                color: "#c0caf5"
+                color: "#7aa2f7"
             }
 
             transform: Translate {
@@ -106,7 +106,7 @@ ColumnLayout {
                 font.family: "JetBrainsMono Nerd Font"
                 font.pixelSize: 12
                 text: Qt.formatDate(new Date(), "dd")
-                color: "#c0caf5"
+                color: "#7aa2f7"
             }
 
             transform: Translate {
