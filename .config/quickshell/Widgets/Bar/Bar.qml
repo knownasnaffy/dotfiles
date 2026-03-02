@@ -44,12 +44,25 @@ ShellRoot {
                 ColumnLayout {
                     Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
                     Layout.preferredWidth: parent.width
-                    spacing: 4
+                    spacing: 10
 
                     DateTime {
                     }
 
                     WorkspaceIndicator {
+                    }
+
+                }
+
+                ColumnLayout {
+                    Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
+                    Layout.preferredWidth: parent.width
+                    spacing: 10
+
+                    VolumeIndicator {
+                    }
+
+                    BatteryIndicator {
                     }
 
                 }

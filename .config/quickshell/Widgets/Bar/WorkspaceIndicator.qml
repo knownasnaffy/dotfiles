@@ -4,8 +4,7 @@ import QtQuick.Layouts
 Rectangle {
     Layout.preferredWidth: parent.width
     Layout.preferredHeight: workspaces.height
-    Layout.topMargin: 8
-    radius: 12
+    radius: 16
     color: "#773b4261"
 
     ColumnLayout {
