@@ -1,31 +1,30 @@
 import QtQuick
 import QtQuick.Layouts
 
-ColumnLayout {
-    Layout.alignment: Qt.AlignHCenter
+Rectangle {
+    Layout.alignment: Qt.AlignBottom
     Layout.preferredWidth: parent.width
+    Layout.preferredHeight: container.height
+    topRightRadius: 16
+    topLeftRadius: 16
+    bottomLeftRadius: 4
+    bottomRightRadius: 4
+    color: "#773b4261"
 
-    Rectangle {
-        Layout.alignment: Qt.AlignBottom
-        Layout.preferredWidth: parent.width
-        Layout.preferredHeight: 48
-        topRightRadius: 16
-        topLeftRadius: 16
-        bottomLeftRadius: 4
-        bottomRightRadius: 4
-        color: "#773b4261"
+    ColumnLayout {
+        id: container
+
+        anchors.horizontalCenter: parent.horizontalCenter
+        spacing: 10
 
         Text {
+            Layout.alignment: Qt.AlignHCenter
+            Layout.topMargin: 10
+            Layout.bottomMargin: -2
             font.family: "JetBrainsMono Nerd Font"
-            font.pixelSize: 16
-            text: ""
+            font.pixelSize: 18
+            text: "󰂯"
             color: "#c0caf5"
-
-            anchors {
-                bottom: parent.bottom
-                horizontalCenter: parent.horizontalCenter
-                bottomMargin: 2
-            }
 
             transform: Translate {
                 x: 1
@@ -33,54 +32,25 @@ ColumnLayout {
 
         }
 
-        Rectangle {
-            anchors.bottom: parent.bottom
-            width: parent.width
-            height: 28
-            bottomLeftRadius: parent.bottomLeftRadius
-            bottomRightRadius: parent.bottomLeftRadius
-            color: "#bb9af7"
-            clip: true
+        Text {
+            Layout.alignment: Qt.AlignHCenter
+            font.family: "JetBrainsMono Nerd Font"
+            font.pixelSize: 12
+            text: ""
+            color: "#c0caf5"
 
-            Text {
-                font.family: "JetBrainsMono Nerd Font"
-                font.pixelSize: 16
-                text: ""
-                color: "#1a1b26"
-
-                anchors {
-                    bottom: parent.bottom
-                    horizontalCenter: parent.horizontalCenter
-                    bottomMargin: 2
-                }
-
+            transform: Translate {
+                x: 1
             }
 
         }
 
-    }
-
-    Rectangle {
-        Layout.alignment: Qt.AlignBottom
-        Layout.preferredWidth: parent.width
-        Layout.preferredHeight: 48
-        topLeftRadius: 4
-        topRightRadius: 4
-        bottomLeftRadius: 16
-        bottomRightRadius: 16
-        color: "#773b4261"
-
         Text {
+            Layout.alignment: Qt.AlignHCenter
             font.family: "JetBrainsMono Nerd Font"
             font.pixelSize: 14
-            text: ""
+            text: "󰃠"
             color: "#c0caf5"
-
-            anchors {
-                top: parent.top
-                topMargin: 4
-                horizontalCenter: parent.horizontalCenter
-            }
 
             transform: Translate {
                 x: 1
@@ -88,31 +58,24 @@ ColumnLayout {
 
         }
 
-        Rectangle {
-            anchors.top: parent.top
-            width: parent.width
-            height: 28
-            topRightRadius: parent.topRightRadius
-            topLeftRadius: parent.topLeftRadius
+        Text {
+            Layout.alignment: Qt.AlignHCenter
+            font.family: "JetBrainsMono Nerd Font"
+            font.pixelSize: 14
+            text: ""
+            color: "#c0caf5"
+        }
+
+        Text {
+            Layout.alignment: Qt.AlignHCenter
+            Layout.bottomMargin: 10
+            font.family: "JetBrainsMono Nerd Font"
+            font.pixelSize: 13
+            text: ""
             color: "#7aa2f7"
-            clip: true
 
-            Text {
-                font.family: "JetBrainsMono Nerd Font"
-                font.pixelSize: 14
-                text: ""
-                color: "#1a1b26"
-
-                anchors {
-                    top: parent.top
-                    topMargin: 4
-                    horizontalCenter: parent.horizontalCenter
-                }
-
-                transform: Translate {
-                    x: 1
-                }
-
+            transform: Translate {
+                x: 0.5
             }
 
         }

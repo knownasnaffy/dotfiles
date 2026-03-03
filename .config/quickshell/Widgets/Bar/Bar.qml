@@ -60,10 +60,15 @@ ShellRoot {
                     Layout.preferredWidth: parent.width
                     spacing: 10
 
-                    // VolumeIndicator {
-                    // }
+                    ColumnLayout {
+                        Layout.alignment: Qt.AlignHCenter
+                        Layout.preferredWidth: parent.width
 
-                    BatteryIndicator {
+                        VolumeIndicator {
+                        }
+
+                        BatteryIndicator {
+                        }
                     }
 
                 }

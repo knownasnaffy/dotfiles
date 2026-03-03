@@ -42,7 +42,7 @@ Rectangle {
                     font.family: "JetBrainsMono Nerd Font"
                     font.pixelSize: 10
                     text: ""
-                    color: "#881a1b26"
+                    color: "#551a1b26"
                 }
 
                 Text {
@@ -50,7 +50,7 @@ Rectangle {
                     font.family: "JetBrainsMono Nerd Font"
                     font.pixelSize: 10
                     text: ""
-                    color: "#881a1b26"
+                    color: "#551a1b26"
                 }
 
                 Text {
@@ -67,7 +67,7 @@ Rectangle {
                     font.family: "JetBrainsMono Nerd Font"
                     font.pixelSize: 10
                     text: ""
-                    color: "#881a1b26"
+                    color: "#551a1b26"
                 }
 
                 transform: Translate {

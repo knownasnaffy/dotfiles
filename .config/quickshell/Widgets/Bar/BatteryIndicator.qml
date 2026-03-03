@@ -9,18 +9,21 @@ ClippingRectangle {
     Layout.alignment: Qt.AlignBottom
     Layout.preferredWidth: parent.width
     Layout.preferredHeight: 48
-    radius: 16
+    topLeftRadius: 4
+    topRightRadius: 4
+    bottomLeftRadius: 16
+    bottomRightRadius: 16
     color: "#773b4261"
 
     Text {
         font.family: "JetBrainsMono Nerd Font"
-        font.pixelSize: 16
+        font.pixelSize: 14
         text: ""
         color: "#c0caf5"
 
         anchors {
             bottom: parent.bottom
-            bottomMargin: 2
+            bottomMargin: 4
             horizontalCenter: parent.horizontalCenter
         }
 
@@ -58,13 +61,13 @@ ClippingRectangle {
 
             Text {
                 font.family: "JetBrainsMono Nerd Font"
-                font.pixelSize: 16
+                font.pixelSize: 14
                 text: ""
                 color: "#1a1b26"
 
                 anchors {
                     bottom: parent.bottom
-                    bottomMargin: 2
+                    bottomMargin: 4
                     horizontalCenter: parent.horizontalCenter
                 }
 
