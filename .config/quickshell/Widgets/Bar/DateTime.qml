@@ -1,9 +1,16 @@
 import QtQuick
 import QtQuick.Layouts
+import Quickshell
 
 ColumnLayout {
     Layout.alignment: Qt.AlignHCenter
     Layout.preferredWidth: parent.width
+
+    SystemClock {
+        id: clock
+
+        precision: SystemClock.Minutes
+    }
 
     // Arch logo
     Rectangle {
@@ -48,7 +55,7 @@ ColumnLayout {
                 Layout.topMargin: 6
                 font.family: "JetBrainsMono Nerd Font"
                 font.pixelSize: 12
-                text: Qt.formatTime(new Date(), "HH")
+                text: Qt.formatTime(clock.date, "HH")
                 color: "#c0caf5"
             }
 
@@ -59,7 +66,7 @@ ColumnLayout {
                 Layout.bottomMargin: 6
                 font.family: "JetBrainsMono Nerd Font"
                 font.pixelSize: 12
-                text: Qt.formatTime(new Date(), "mm")
+                text: Qt.formatTime(clock.date, "mm")
                 color: "#7aa2f7"
             }
 
@@ -94,7 +101,7 @@ ColumnLayout {
                 Layout.alignment: Qt.AlignHCenter
                 font.family: "JetBrainsMono Nerd Font"
                 font.pixelSize: 12
-                text: Qt.formatDate(new Date(), "dddd").toString().toUpperCase().slice(0, 2)
+                text: Qt.formatDate(clock.date, "dddd").toString().toUpperCase().slice(0, 2)
                 color: "#c0caf5"
             }
 
@@ -105,7 +112,7 @@ ColumnLayout {
                 Layout.alignment: Qt.AlignHCenter
                 font.family: "JetBrainsMono Nerd Font"
                 font.pixelSize: 12
-                text: Qt.formatDate(new Date(), "dd")
+                text: Qt.formatDate(clock.date, "dd")
                 color: "#7aa2f7"
             }
 
@@ -115,18 +122,6 @@ ColumnLayout {
 
         }
 
-    }
-
-    Timer {
-        interval: 1000
-        running: true
-        repeat: true
-        onTriggered: {
-            hourStr.text = Qt.formatTime(new Date(), "HH");
-            minStr.text = Qt.formatTime(new Date(), "mm");
-            dayStr.text = Qt.formatDate(new Date(), "dddd").toString().toUpperCase().slice(0, 2);
-            dateStr.text = Qt.formatDate(new Date(), "dd");
-        }
     }
 
 }
