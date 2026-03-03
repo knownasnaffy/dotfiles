@@ -7,7 +7,7 @@ import qs.Wallpaper
 import qs.Common
 
 PanelWindow {
-    property bool visualizerEnabled: audioVisualizer.visualizerEnabled
+    property bool visualizerEnabled: false
 
     aboveWindows: false
     focusable: false
