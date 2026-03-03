@@ -61,6 +61,7 @@ settings:
     '*://0.0.0.0/*': false
     '*://addons.thunderbird.net/*': true
     '*://bbs.archlinux.org/*': true
+    '*://bgenc.net/*': true
     '*://chat.deepseek.com/*': false
     '*://davatorium.github.io/*': true
     '*://gedakc.users.sourceforge.net/*': true
