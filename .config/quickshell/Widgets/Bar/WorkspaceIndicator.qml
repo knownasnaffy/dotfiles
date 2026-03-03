@@ -6,6 +6,7 @@ Rectangle {
     Layout.preferredHeight: workspaces.height
     radius: 16
     color: "#773b4261"
+    property list<bool> workspaceOccupied: []
 
     ColumnLayout {
         id: workspaces

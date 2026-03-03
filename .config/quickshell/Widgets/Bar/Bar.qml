@@ -1,14 +1,14 @@
+pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
-import qs.Widgets.Bar
 
 ShellRoot {
     PanelWindow {
         id: panel
 
-        implicitWidth: 48
+        implicitWidth: 64
         color: "transparent"
         WlrLayershell.namespace: "Nox:bar"
 
@@ -30,6 +30,7 @@ ShellRoot {
                 leftMargin: 0
                 topMargin: 16
                 bottomMargin: 16
+                rightMargin: 16
             }
 
             ColumnLayout {
@@ -59,8 +60,8 @@ ShellRoot {
                     Layout.preferredWidth: parent.width
                     spacing: 10
 
-                    VolumeIndicator {
-                    }
+                    // VolumeIndicator {
+                    // }
 
                     BatteryIndicator {
                     }

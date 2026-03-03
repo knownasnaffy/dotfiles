@@ -1,7 +1,11 @@
 import QtQuick
 import QtQuick.Layouts
+import Quickshell.Services.UPower
+import Quickshell.Widgets
 
 Rectangle {
+    id: root
+
     Layout.alignment: Qt.AlignBottom
     Layout.preferredWidth: parent.width
     Layout.preferredHeight: 48
@@ -16,6 +20,7 @@ Rectangle {
 
         anchors {
             bottom: parent.bottom
+            bottomMargin: 2
             horizontalCenter: parent.horizontalCenter
         }
 
@@ -25,28 +30,54 @@ Rectangle {
 
     }
 
-    Rectangle {
+    ClippingWrapperRectangle {
         anchors.bottom: parent.bottom
-        width: parent.width
-        height: 14
-        bottomRightRadius: parent.radius
-        bottomLeftRadius: parent.radius
-        color: "#9ece6a"
-        clip: true
+        radius: parent.radius
+        implicitHeight: parent.height
+        color: 'transparent'
 
-        Text {
-            font.family: "JetBrainsMono Nerd Font"
-            font.pixelSize: 16
-            text: ""
-            color: "#1a1b26"
+        ColumnLayout {
+            implicitWidth: root.width
 
-            anchors {
-                bottom: parent.bottom
-                horizontalCenter: parent.horizontalCenter
-            }
+            Rectangle {
+                Layout.alignment: Qt.AlignBottom
+                Layout.preferredWidth: root.width
+                Layout.preferredHeight: root.height * UPower.displayDevice.percentage
+                color: {
+                    if (UPower.displayDevice.state.toString() == UPowerDeviceState.Charging)
+                        return "#9ece6a";
 
-            transform: Translate {
-                x: 1
+                    if (UPower.displayDevice.state.toString() == UPowerDeviceState.FullyCharged)
+                        return "#bb9af7";
+
+                    if (UPower.displayDevice.percentage < 0.2)
+                        return "#db4b4b";
+
+                    if (UPower.displayDevice.percentage < 0.4)
+                        return "#e0af68";
+
+                    return "#7aa2f7";
+                }
+                clip: true
+
+                Text {
+                    font.family: "JetBrainsMono Nerd Font"
+                    font.pixelSize: 16
+                    text: ""
+                    color: "#1a1b26"
+
+                    anchors {
+                        bottom: parent.bottom
+                        bottomMargin: 2
+                        horizontalCenter: parent.horizontalCenter
+                    }
+
+                    transform: Translate {
+                        x: 1
+                    }
+
+                }
+
             }
 
         }
