@@ -18,14 +18,14 @@ Rectangle {
         width: parent.width
 
         Repeater {
-            model: Hyprland.workspaces.values.length
+            model: Hyprland.workspaces.values.filter(workspace => workspace.id > 0).length
 
 
             Rectangle {
                 id: workspaceRect
 
                 required property int index
-                property list<HyprlandWorkspace> workspaces: Hyprland.workspaces.values
+                property list<HyprlandWorkspace> workspaces: Hyprland.workspaces.values.filter(workspace => workspace.id > 0)
                 property HyprlandWorkspace workspace: workspaces[index]
 
                 Layout.alignment: Qt.AlignHCenter
