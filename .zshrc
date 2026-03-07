@@ -190,7 +190,7 @@ alias ff=fastfetch
 
 # Alias to run a c++ file
 makecpp() {
-  eval "g++ -std=c++20 -Wall -Wextra -O2 ${1}.cpp -o ${1} && ./${1}"
+  g++ -std=c++20 -Wall -Wextra -O2 "$1.cpp" -o "$1" && "./$1"
 }
 
 # Paru aliases
