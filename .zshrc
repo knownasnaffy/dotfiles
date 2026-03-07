@@ -97,6 +97,10 @@ bindkey '^[k' history-substring-search-down          # Alt+k → next matching c
 bindkey '^[o' dirhistory_zle_dirhistory_back         # Alt+o → previous directory
 bindkey '^[i' dirhistory_zle_dirhistory_future       # Alt+i → next directory
 bindkey '^[r' history-incremental-search-backward    # Alt+r → search history
+bindkey '^[a' beginning-of-line                      # Alt+a
+bindkey '^[g' end-of-line                            # Alt+g
+bindkey '^[ ' forward-word                           # Alt+Space → Accept one word from autosuggestion
+bindkey '^[x' clear-screen                           # Alt+x → Clear screen without removing buffer
 
 # ─────────────────────────────────────────────────────────────────────────────
 # History Substring Search Appearance
@@ -338,6 +342,11 @@ _aichat_zsh() {
 }
 zle -N _aichat_zsh
 bindkey '\ee' _aichat_zsh
+
+# Copy buffer to clipboard
+copy-buffer() { echo -n $BUFFER | wl-copy }
+zle -N copy-buffer
+bindkey '^[y' copy-buffer                            # Alt+y
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Shell Behavior Tweaks
