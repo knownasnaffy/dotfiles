@@ -135,8 +135,26 @@ path_directories=(
   $GEM_HOME
 )
 
+# Load the fast built-in stat module for permission checks
+zmodload -F zsh/stat b:zstat
+
 for dir in "${path_directories[@]}"; do
-  [[ -d $dir ]] && [[ ":$PATH:" != *":$dir:"* ]] && export PATH="$dir:$PATH"
+  # If it's in HOME and doesn't exist, create it safely to prevent hijacking
+  if [[ "$dir" == "$HOME"* ]] && [[ ! -d $dir ]]; then
+    mkdir -p "$dir"
+    chmod 755 "$dir"
+  fi
+
+  if [[ -d $dir ]]; then
+    # Use zstat to check if the directory is world-writable (octal 0002)
+    local -A s
+    zstat -H s "$dir"
+    if [[ $(( s[mode] & 0002 )) -ne 0 ]]; then
+      continue # Skip world-writable directories for security
+    fi
+
+    [[ ":$PATH:" != *":$dir:"* ]] && export PATH="$dir:$PATH"
+  fi
 done
 
 # Compilation cache for completions
