@@ -203,13 +203,6 @@ alias prqs="paru -Qs"
 alias prqi="paru -Qi"
 alias prrns="paru -Rns"
 
-# Remove '$ ' from copied command snippets
-alias '$'='_execute_command'
-_execute_command() {
-    local cmd="${*}"
-    eval "$cmd"
-}
-
 # Insert blank space into terminal
 space() {
     echo '\n\n\n\n\n\n\n\n'
