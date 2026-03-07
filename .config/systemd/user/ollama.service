@@ -1,0 +1,11 @@
+[Unit]
+Description=Ollama LLM Server
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/ollama serve
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
