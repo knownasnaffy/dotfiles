@@ -9,13 +9,22 @@ NVIM_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
 WALLPAPER_DIR="$DOTFILES_DIR/media/dot-wallpapers"
 POSTNOTES=""
 SKIPPED_SYMLINKS=0
+FAILED_SYMLINKS=0
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Logging Helpers
 # ─────────────────────────────────────────────────────────────────────────────
 
+yellow_bg_text() {
+    echo -e "\033[1;43m\033[30m$1\033[0m"
+}
+
 yellow_text() {
     echo -e "\033[1;33m$1\033[0m"
+}
+
+red_bg_text() {
+    echo -e "\033[1;41m\033[30m$1\033[0m"
 }
 
 red_text() {
@@ -26,12 +35,20 @@ green_text() {
     echo -e "\033[1;32m$1\033[0m"
 }
 
+green_bg_text() {
+    echo -e "\033[1;42m\033[30m$1\033[0m"
+}
+
 log() {
-    echo -e "[$(green_text INFO)] $1"
+    echo -e "$(green_bg_text " INFO ") $1"
+}
+
+warn() {
+    echo -e "$(yellow_bg_text " WARN ") $1"
 }
 
 error() {
-    echo -e "[$(red_text ERROR)] $1"
+    echo -e "$(red_bg_text " ERROR ") $1"
 }
 
 check_command() {
@@ -47,8 +64,8 @@ create_symlink() {
     local dest="$2"
 
     if [ ! -e "$src" ]; then
-        error "Source $src does not exist. Skipping symlink creation for $dest."
-        ((SKIPPED_SYMLINKS++))
+        error "Source $(yellow_text "$src") does not exist. Skipping symlink creation for $dest."
+        ((FAILED_SYMLINKS++))
         return
     fi
 
@@ -375,13 +392,13 @@ post_install_scripts() {
         sudo systemctl enable keyd
     fi
 
-    POSTNOTES+=$(log "$(yellow_text "Ly was not started.") You can enable and start it with: systemctl enable --now ly@tty2.service\n")
+    POSTNOTES+=$(log "$(green_text "Ly was not started.") You can enable and start it with: systemctl enable --now ly@tty2.service\n")
 
     fnm completions --shell zsh > ~/.zsh_functions/_fnm
 }
 
 create_cleanup_script() {
-    log "Cleanup script is pending. Complete it dude!"
+    warn "Cleanup script is pending. Complete it dude!"
 }
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -436,7 +453,10 @@ main() {
     $PRIVATE_MODE && install_private_packages
 
     if (( SKIPPED_SYMLINKS > 0 )); then
-        POSTNOTES+="$SKIPPED_SYMLINKS symlink(s) were skipped because they already existed"
+        POSTNOTES+="$(green_text "$SKIPPED_SYMLINKS") symlink(s) were skipped because they already existed"
+    fi
+    if (( FAILED_SYMLINKS > 0 )); then
+        POSTNOTES+="$(red_text "$FAILED_SYMLINKS") symlink(s) failed"
     fi
 
     echo $POSTNOTES
