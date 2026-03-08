@@ -23,8 +23,8 @@ Rectangle {
             Layout.bottomMargin: -2
             font.family: "JetBrainsMono Nerd Font"
             font.pixelSize: 18
-            text: "󰂯"
-            color: "#c0caf5"
+            text: "󰂲"
+            color: "#565f89"
 
             transform: Translate {
                 x: 1
@@ -37,7 +37,7 @@ Rectangle {
             font.family: "JetBrainsMono Nerd Font"
             font.pixelSize: 12
             text: ""
-            color: "#c0caf5"
+            color: "#7aa2f7"
 
             transform: Translate {
                 x: 1
@@ -50,7 +50,7 @@ Rectangle {
             font.family: "JetBrainsMono Nerd Font"
             font.pixelSize: 14
             text: "󰃠"
-            color: "#c0caf5"
+            color: "#e0af68"
 
             transform: Translate {
                 x: 1
@@ -62,8 +62,8 @@ Rectangle {
             Layout.alignment: Qt.AlignHCenter
             font.family: "JetBrainsMono Nerd Font"
             font.pixelSize: 14
-            text: ""
-            color: "#c0caf5"
+            text: ""
+            color: "#565f89"
         }
 
         Text {
