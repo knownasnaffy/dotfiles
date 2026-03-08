@@ -356,6 +356,7 @@ link_dotfiles() {
     create_symlink "$DOTFILES_DIR/media/music/windows-disconnected.mp3" "$HOME/Music/windows-disconnected.mp3" # desktop
     create_symlink "$DOTFILES_DIR/media/music/battery-warning.mp3" "$HOME/Music/battery-warning.mp3" # desktop
     create_symlink "$DOTFILES_DIR/media/music/battery-critical.mp3" "$HOME/Music/battery-critical.mp3" # desktop
+    create_symlink "$DOTFILES_DIR/media/music/audio-volume-change.wav" "$HOME/Music/audio-volume-change.wav" # desktop
 
     create_sudo_symlink "$DOTFILES_DIR/etc/ly/config.ini" "/etc/ly/config.ini" # desktop
     # not creating a folder for ly beforehand as it is supposed to hold more than just a

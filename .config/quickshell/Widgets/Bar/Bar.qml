@@ -3,6 +3,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
+import qs.Widgets.Bar.SysTray
 
 ShellRoot {
     PanelWindow {
@@ -64,7 +65,7 @@ ShellRoot {
                         Layout.alignment: Qt.AlignHCenter
                         Layout.preferredWidth: parent.width
 
-                        VolumeIndicator {
+                        SysTray {
                         }
 
                         BatteryIndicator {

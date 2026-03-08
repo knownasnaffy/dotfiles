@@ -2,7 +2,6 @@ import QtQuick
 import Quickshell
 import qs.Common.Drawer
 import qs.Menu
-import qs.OSD
 import qs.PowerMenu
 // import qs.Services.Notifications
 import qs.Wallpaper
@@ -18,10 +17,6 @@ ShellRoot {
     }
 
     WallpaperChanger {
-    }
-
-    OSD {
-        bottomOffset: wallpaper.visualizerEnabled ? 66 : 47
     }
 
     Menu {
