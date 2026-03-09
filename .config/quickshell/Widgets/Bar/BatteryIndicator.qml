@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
+import Quickshell.Io
 import Quickshell.Services.UPower
 import Quickshell.Widgets
 
@@ -39,14 +40,32 @@ ClippingRectangle {
         implicitWidth: root.width
 
         Rectangle {
+            property real warningThreshold: 0.3
+            property real errorThreshold: 0.2
+            property real batteryPercentage: UPower.displayDevice.percentage
+            property real previousBatteryPercentage: 0
+
+            onBatteryPercentageChanged: {
+                if (batteryPercentage <= warningThreshold && previousBatteryPercentage > warningThreshold) {
+                    console.log("Launching Warning Popup for Battery");
+                    proc.command = ["sh", "-c", `$HOME/.local/bin/battery-notify warning ${warningThreshold * 100}`];
+                    proc.running = true;
+                } else if (batteryPercentage <= errorThreshold && previousBatteryPercentage > errorThreshold) {
+                    console.log("Launching Error Popup for Battery");
+                    proc.command = ["sh", "-c", `$HOME/.local/bin/battery-notify critical ${errorThreshold * 100}`];
+                    proc.running = true;
+                }
+                previousBatteryPercentage = batteryPercentage;
+                console.log("Battery changed", batteryPercentage);
+            }
             Layout.alignment: Qt.AlignBottom
             Layout.preferredWidth: root.width
-            Layout.preferredHeight: root.height * UPower.displayDevice.percentage
+            Layout.preferredHeight: root.height * batteryPercentage
             color: {
                 if (UPower.displayDevice.state.toString() == UPowerDeviceState.Charging)
                     return "#9ece6a";
 
-                if (UPower.displayDevice.state.toString() == UPowerDeviceState.FullyCharged)
+                if (UPower.displayDevice.state.toString() == UPowerDeviceState.FullyCharged || UPower.displayDevice.percentage >= 0.8)
                     return "#bb9af7";
 
                 if (UPower.displayDevice.percentage < 0.2)
@@ -58,6 +77,12 @@ ClippingRectangle {
                 return "#7aa2f7";
             }
             clip: true
+
+            Process {
+                id: proc
+
+                running: false
+            }
 
             Text {
                 font.family: "JetBrainsMono Nerd Font"
