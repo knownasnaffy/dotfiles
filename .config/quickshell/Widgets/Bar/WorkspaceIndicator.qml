@@ -29,12 +29,12 @@ Rectangle {
                 property HyprlandWorkspace workspace: workspaces[index]
 
                 Layout.alignment: Qt.AlignHCenter
-                Layout.bottomMargin: (index == workspaces.length - 1) ? 10 : 0
-                Layout.topMargin: index == 0 ? 10 : 0
+                Layout.bottomMargin: (index == workspaces.length - 1) ? 12 : 0
+                Layout.topMargin: index == 0 ? 12 : 0
                 radius: 8
-                Layout.preferredWidth: 12
-                Layout.preferredHeight: workspace.focused ? windowsContainer.height : 20
-                color: workspace.focused ? '#7aa2f7' : '#737aa2'
+                Layout.preferredWidth: 16
+                Layout.preferredHeight: workspace.focused ? windowsContainer.height : 32
+                color: workspace.focused ? '#7aa2f7' : '#66737aa2'
                 clip: true
 
                 MouseArea {

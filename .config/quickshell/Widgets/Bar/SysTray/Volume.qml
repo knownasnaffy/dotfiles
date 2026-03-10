@@ -8,7 +8,7 @@ ColumnLayout {
 	property bool shouldShowOsd: false
 
     Layout.alignment: Qt.AlignHCenter
-    spacing: 10
+    spacing: 12
 
 	PwObjectTracker {
 		objects: [ Pipewire.defaultAudioSink ]
@@ -52,12 +52,12 @@ ColumnLayout {
     Text {
         Layout.alignment: Qt.AlignHCenter
         font.family: "JetBrainsMono Nerd Font"
-        font.pixelSize: 14
+        font.pixelSize: 17
         text: ""
         color: "#565f89"
 
         transform: Translate {
-            x: 1
+            x: 1.5
         }
     }
 
@@ -119,14 +119,15 @@ ColumnLayout {
         property int speakerVolume: Math.round(Pipewire.defaultAudioSink?.audio.volume * 100)
 
         Layout.alignment: Qt.AlignHCenter
-        Layout.topMargin: root.shouldShowOsd ? -2 : -8
+        Layout.topMargin: root.shouldShowOsd ? -2 : -10
         Layout.bottomMargin: 10
         font.family: "JetBrainsMono Nerd Font"
-        font.pixelSize: 13
+        font.pixelSize: 15
         text: speakerVolume > 40 ? "" : speakerVolume > 0 ?  "" : ""
         color: Pipewire.defaultAudioSink?.audio.muted == true ? "#565f89" : speakerVolume == 0 ?"#565f89": speakerVolume < 20 ? "#f7768e" : speakerVolume < 40 ? "#e0af68" : speakerVolume < 70 ? "#9ece6a" : speakerVolume < 100 ? "#7aa2f7" : "#bb9af7"
 
         transform: Translate {
+            x: 1
             id: speakerVolumeIconTranslate
 
             Behavior on y {

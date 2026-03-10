@@ -9,7 +9,7 @@ ShellRoot {
     PanelWindow {
         id: panel
 
-        implicitWidth: 64
+        implicitWidth: 72
         color: "transparent"
         WlrLayershell.namespace: "Nox:bar"
 
