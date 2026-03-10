@@ -120,6 +120,7 @@ create_sudo_symlink() {
 #  TODO: Pending setups:
 #        - ydotool
 #        - sddm
+#        - Battery limiter/health extender: echo 80 | `sudo tee /sys/class/power_supply/BAT1/charge_control_end_threshold`
 
 setup_network() {
     log "Setting up an internet connection"
