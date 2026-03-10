@@ -8,7 +8,7 @@ addr=$(hyprctl clients -j | jq -r --arg t "$title" '.[] | select(.initialTitle==
 # Running → just toggle the special workspace
 
 toggle=0
-hyprctl keyword animation "workspacesOut, 1, 3.34, easeOutBack, slide top"
+hyprctl keyword animation "workspacesOut, 1, 2.54, easeOutBack, slide top"
 hyprctl keyword animation "workspacesIn,  1, 2.51, easeOutBack, slide bottom"
 if [[ $(hyprctl activeworkspace -j | jq '.id') -eq 11 ]]; then toggle=1; fi
 hyprctl dispatch workspace 11
