@@ -176,10 +176,18 @@ settings:
     - -e
     - yazi
     - --chooser-file={}
+  fonts.default_size:
+    global: 12pt
   input.insert_mode.auto_load:
     global: true
   scrolling.smooth:
     global: true
+  statusbar.padding:
+    global:
+      bottom: 6
+      left: 0
+      right: 0
+      top: 6
   statusbar.show:
     global: always
   tabs.last_close:
@@ -188,10 +196,10 @@ settings:
     global: restore
   tabs.padding:
     global:
-      bottom: 2
+      bottom: 4
       left: 5
       right: 5
-      top: 2
+      top: 4
   tabs.position:
     global: left
   tabs.select_on_remove:
@@ -220,4 +228,4 @@ settings:
   window.transparent:
     global: false
   zoom.default:
-    global: 100%
+    global: 110%
