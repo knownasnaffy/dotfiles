@@ -29,8 +29,8 @@ Rectangle {
                 property HyprlandWorkspace workspace: workspaces[index]
 
                 Layout.alignment: Qt.AlignHCenter
-                Layout.bottomMargin: (index == workspaces.length - 1) ? 12 : 0
-                Layout.topMargin: index == 0 ? 12 : 0
+                Layout.bottomMargin: (index == workspaces.length - 1) ? 13 : 0
+                Layout.topMargin: index == 0 ? 13 : 0
                 radius: 8
                 Layout.preferredWidth: 16
                 Layout.preferredHeight: workspace.focused ? windowsContainer.height : 32
