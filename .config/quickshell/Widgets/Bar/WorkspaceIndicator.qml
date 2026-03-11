@@ -62,8 +62,8 @@ Rectangle {
                             property Toplevel topLevel: workspaceRect.workspace.toplevels.values[index]
                             property list<Toplevel> windows: workspaceRect.workspace.toplevels.values
 
-                            Layout.topMargin: index == 0 ? 4 : 0
-                            Layout.bottomMargin: (index == windows.length - 1 ) ? 4 : 0
+                            Layout.topMargin: index == 0 ? 6 : 0
+                            Layout.bottomMargin: (index == windows.length - 1 ) ? 6 : 0
                             Layout.alignment: Qt.AlignHCenter
                             font.family: "JetBrainsMono Nerd Font"
                             font.pixelSize: 10
