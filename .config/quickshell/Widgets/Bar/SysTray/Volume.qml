@@ -75,7 +75,7 @@ ColumnLayout {
 
             id: speakerVolumeText
             font.family: "JetBrainsMono Nerd Font"
-            font.pixelSize: speakerVolume > 99 ? 10 : 13
+            font.pixelSize: speakerVolume > 99 ? 11 : 15
             text: speakerVolume
             color: Pipewire.defaultAudioSink?.audio.muted == true ? "#565f89" : speakerVolume == 0 ?"#565f89": speakerVolume < 20 ? "#f7768e" : speakerVolume < 40 ? "#e0af68" : speakerVolume < 70 ? "#9ece6a" : speakerVolume < 100 ? "#7aa2f7" : "#bb9af7"
 
