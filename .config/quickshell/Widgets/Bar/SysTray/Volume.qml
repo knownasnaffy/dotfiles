@@ -27,7 +27,7 @@ ColumnLayout {
         function onMutedChanged() {
 			root.shouldShowSpeakerOSD = true;
             speakerVolumeIconTranslate.y = -3
-            muteScaleTimer.restart()
+            speakerMuteScaleTimer.restart()
 			hideSpeakerLabelTimer.restart();
         }
 	}
@@ -43,7 +43,8 @@ ColumnLayout {
         function onMutedChanged() {
 			root.shouldShowMicOSD = true;
 			hideMicLabelTimer.restart();
-            // speakerVolumeIconTranslate.y = -3
+            micVolumeIconTranslate.y = -3
+            micMuteScaleTimer.restart()
         }
 	}
 
@@ -66,9 +67,15 @@ ColumnLayout {
 	}
 
 	Timer {
-		id: muteScaleTimer
+		id: speakerMuteScaleTimer
 		interval: 100
 		onTriggered: speakerVolumeIconTranslate.y = 0
+	}
+
+	Timer {
+		id: micMuteScaleTimer
+		interval: 100
+		onTriggered: micVolumeIconTranslate.y = 0
 	}
 
     Rectangle {
@@ -177,7 +184,7 @@ ColumnLayout {
             font.family: "JetBrainsMono Nerd Font"
             font.pixelSize: speakerVolume > 99 ? 11 : 15
             text: speakerVolume
-            color: Pipewire.defaultAudioSink?.audio.muted == true ? "#565f89" : speakerVolume == 0 ?"#565f89": speakerVolume < 20 ? "#f7768e" : speakerVolume < 40 ? "#e0af68" : speakerVolume < 70 ? "#9ece6a" : speakerVolume < 100 ? "#7aa2f7" : "#bb9af7"
+            color: Pipewire.defaultAudioSink?.audio.muted == true ? "#565f89" : speakerVolume == 0 ?"#565f89": speakerVolume < 20 ? "#f7768e" : speakerVolume < 40 ? "#e0af68" : speakerVolume <= 70 ? "#9ece6a" : speakerVolume < 100 ? "#7aa2f7" : "#bb9af7"
 
             transform: Translate {
                 x: 1
@@ -214,8 +221,6 @@ ColumnLayout {
     }
 
     Text {
-        id: speakerVolumeIcon
-
         property int speakerVolume: Math.round(Pipewire.defaultAudioSink?.audio.volume * 100)
 
         Layout.alignment: Qt.AlignHCenter
@@ -224,7 +229,7 @@ ColumnLayout {
         font.family: "JetBrainsMono Nerd Font"
         font.pixelSize: 15
         text: speakerVolume > 40 ? "" : speakerVolume > 0 ?  "" : ""
-        color: Pipewire.defaultAudioSink?.audio.muted == true ? "#565f89" : speakerVolume == 0 ?"#565f89": speakerVolume < 20 ? "#f7768e" : speakerVolume < 40 ? "#e0af68" : speakerVolume < 70 ? "#9ece6a" : speakerVolume < 100 ? "#7aa2f7" : "#bb9af7"
+        color: Pipewire.defaultAudioSink?.audio.muted == true ? "#565f89" : speakerVolume == 0 ?"#565f89": speakerVolume < 20 ? "#f7768e" : speakerVolume < 40 ? "#e0af68" : speakerVolume <= 70 ? "#9ece6a" : speakerVolume < 100 ? "#7aa2f7" : "#bb9af7"
 
         transform: Translate {
             x: 1
