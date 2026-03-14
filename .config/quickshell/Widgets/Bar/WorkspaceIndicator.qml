@@ -34,7 +34,7 @@ Rectangle {
                 radius: 8
                 Layout.preferredWidth: 16
                 Layout.preferredHeight: workspace.focused ? windowsContainer.height : 16
-                color: workspace.focused ? '#7aa2f7' : '#66737aa2'
+                color: workspace.focused ? '#7aa2f7' : '#565f89'
                 clip: true
 
                 MouseArea {
@@ -90,7 +90,7 @@ Rectangle {
 
                 Behavior on color {
                     ColorAnimation {
-                        duration: 250
+                        duration: 200
                     }
                 }
 
