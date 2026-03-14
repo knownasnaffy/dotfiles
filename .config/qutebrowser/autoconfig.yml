@@ -113,6 +113,7 @@ settings:
     https://github.com: true
     https://www.brookfieldresidential.com: false
     https://www.justdial.com: true
+    https://www.olx.in: false
   content.javascript.clipboard:
     global: access-paste
   content.local_content_can_access_remote_urls:
