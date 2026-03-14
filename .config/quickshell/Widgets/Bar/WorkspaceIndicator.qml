@@ -33,7 +33,7 @@ Rectangle {
                 Layout.topMargin: index == 0 ? 13 : 0
                 radius: 8
                 Layout.preferredWidth: 16
-                Layout.preferredHeight: workspace.focused ? windowsContainer.height : 32
+                Layout.preferredHeight: workspace.focused ? windowsContainer.height : 16
                 color: workspace.focused ? '#7aa2f7' : '#66737aa2'
                 clip: true
 
