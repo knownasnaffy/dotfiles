@@ -142,6 +142,7 @@ settings:
     https://app.clickup.com: true
     https://barinderpreet-singh.monday.com: true
     https://calendar.google.com: false
+    https://claude.ai: true
     https://cursor.com: false
     https://pomofocus.io: true
     https://teams.live.com: true
