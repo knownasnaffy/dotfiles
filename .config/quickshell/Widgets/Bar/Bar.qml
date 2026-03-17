@@ -22,15 +22,15 @@ ShellRoot {
         Rectangle {
             id: mainCont
 
-            bottomRightRadius: 13
-            topRightRadius: 13
+            bottomRightRadius: 17
+            topRightRadius: 17
             color: Qt.rgba(26 / 255, 27 / 255, 38 / 255, 0.9)
 
             anchors {
                 fill: parent
                 leftMargin: 0
-                topMargin: 16
-                bottomMargin: 16
+                topMargin: 17
+                bottomMargin: 17
                 rightMargin: 16
             }
 
