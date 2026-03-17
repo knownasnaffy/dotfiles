@@ -76,11 +76,8 @@ case "$chosen" in
         wf-recorder \
             -f "$dir/$file" \
             --codec h264_nvenc \
-            --preset p5 \
-            --cq 23 \
-            --audio \
-            --audio-bitrate 128k \
-            --audio-buffer 8192
+            -p cq=19 -r 60 \
+            --audio="$(pactl get-default-sink).monitor"
         ;;
 
     $option_2)
@@ -91,11 +88,8 @@ case "$chosen" in
             -g "$region" \
             -f "$dir/$file" \
             --codec h264_nvenc \
-            --preset p5 \
-            --cq 23 \
-            --audio \
-            --audio-bitrate 128k \
-            --audio-buffer 8192
+            -p cq=19 -r 60 \
+            --audio="$(pactl get-default-sink).monitor"
         ;;
 
     $option_3)
