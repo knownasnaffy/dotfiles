@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Layouts
-import Quickshell.Services.Pipewire
 
 Rectangle {
     Layout.alignment: Qt.AlignBottom
@@ -46,17 +45,7 @@ Rectangle {
 
         }
 
-        Text {
-            Layout.alignment: Qt.AlignHCenter
-            font.family: "JetBrainsMono Nerd Font"
-            font.pixelSize: 18
-            text: "󰃠"
-            color: "#e0af68"
-
-            transform: Translate {
-                x: 1
-            }
-
+        Brightness {
         }
 
         Volume {
