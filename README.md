@@ -6,6 +6,8 @@ Personal Arch Linux dotfiles featuring Hyprland, Tokyo Night theming, and extens
 
 ## Showcase
 
+> Some screenshots are outdated. Bar is under construction with quickshell. Scrolling layout has been adapted. Audio visualizer has changed. And probably others I can't remember
+
 <table>
   <tr>
     <th>Audio Visualizer</th>
