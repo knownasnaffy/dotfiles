@@ -251,6 +251,16 @@
             "id": "bg50",
             "type": "image",
             "path": "~/Pictures/Wallpapers/bg50.jpg"
+        },
+        {
+            "id": "bg51",
+            "type": "image",
+            "path": "~/Pictures/Wallpapers/bg51.jpeg"
+        },
+        {
+            "id": "bg52",
+            "type": "image",
+            "path": "~/Pictures/Wallpapers/bg52.jpeg"
         }
     ]
 }
