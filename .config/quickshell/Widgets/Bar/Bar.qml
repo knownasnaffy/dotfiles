@@ -12,6 +12,8 @@ ShellRoot {
         implicitWidth: 72
         color: "transparent"
         WlrLayershell.namespace: "Nox:bar"
+        aboveWindows: true
+        exclusionMode: ExclusionMode.Ignore
 
         anchors {
             left: true
