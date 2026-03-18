@@ -109,6 +109,7 @@ settings:
   colors.webpage.preferred_color_scheme:
     global: dark
   content.desktop_capture:
+    http://localhost:4000: true
     https://meet.google.com: true
   content.geolocation:
     https://github.com: true
@@ -126,6 +127,7 @@ settings:
     https://www.snapchat.com: true
   content.media.audio_video_capture:
     aistudio.google.com: true
+    http://localhost:4000: true
     https://meet.google.com: true
     https://teams.live.com: true
     https://www.snapchat.com: true
