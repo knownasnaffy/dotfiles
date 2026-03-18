@@ -6,7 +6,6 @@ import QtQuick.Layouts
 import QtQuick.Shapes
 import Quickshell
 import Quickshell.Hyprland
-import Quickshell.Widgets
 
 PanelWindow {
     id: root
@@ -47,7 +46,6 @@ PanelWindow {
             icon: ""
             priority: 'critical'
         }
-
     }
 
     Region {
@@ -56,8 +54,7 @@ PanelWindow {
         item: customColumn
     }
 
-    WallpaperImage {
-    }
+    WallpaperImage {}
 
     Item {
         id: mask
@@ -102,7 +99,6 @@ PanelWindow {
                         x: root.cornerWidth
                         y: 0
                     }
-
                 }
 
                 transform: Rotation {
@@ -110,7 +106,6 @@ PanelWindow {
                     origin.y: root.cornerHeight / 2
                     angle: 3 * -90
                 }
-
             }
 
             RowLayout {
@@ -146,7 +141,6 @@ PanelWindow {
                             x: root.cornerWidth
                             y: 0
                         }
-
                     }
 
                     transform: Rotation {
@@ -154,7 +148,6 @@ PanelWindow {
                         origin.y: root.cornerHeight / 2
                         angle: 3 * -90
                     }
-
                 }
 
                 Rectangle {
@@ -183,15 +176,10 @@ PanelWindow {
                             duration: 220
                             easing.type: Easing.OutCubic
                         }
-
                     }
-
                 }
-
             }
-
         }
-
     }
 
     ColumnLayout {
@@ -298,10 +286,9 @@ PanelWindow {
                                     text: currentNotif.icon
                                     font.pixelSize: 32
                                     font.family: "JetBrainsMono Nerd Font"
-                                    color: currentNotif.priority === "critical"?"#f7768e": "#a9b1d6"
+                                    color: currentNotif.priority === "critical" ? "#f7768e" : "#a9b1d6"
                                     anchors.centerIn: parent
                                 }
-
                             }
 
                             ColumnLayout {
@@ -329,13 +316,12 @@ PanelWindow {
 
                                         Text {
                                             text: "now"
-                                            color: currentNotif.priority === "critical"?"#f7768e":"#565f89"
+                                            color: currentNotif.priority === "critical" ? "#f7768e" : "#565f89"
                                             font.pixelSize: 10
                                             font.weight: Font.Medium
                                             font.family: "Inter"
                                         }
                                     }
-
                                 }
 
                                 Text {
@@ -371,17 +357,11 @@ PanelWindow {
                                             radius: 8
                                             color: "#24283b"
                                         }
-
                                     }
-
                                 }
-
                             }
-
                         }
-
                     }
-
                 }
 
                 Behavior on animatedHeight {
@@ -389,13 +369,9 @@ PanelWindow {
                         duration: 220
                         easing.type: Easing.OutCubic
                     }
-
                 }
-
             }
-
         }
-
     }
 
     Timer {
@@ -416,8 +392,7 @@ PanelWindow {
         interval: 220
         repeat: false
         running: false
-        onTriggered: {
-        }
+        onTriggered: {}
     }
 
     Behavior on animatedWidth {
@@ -425,7 +400,6 @@ PanelWindow {
             duration: 220
             easing.type: Easing.OutCubic
         }
-
     }
 
     contentItem.layer.effect: MultiEffect {
@@ -434,5 +408,4 @@ PanelWindow {
         maskSpreadAtMin: 1
         maskThresholdMin: 0.5
     }
-
 }
