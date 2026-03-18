@@ -16,20 +16,15 @@ ShellRoot {
         id: wallpaper
     }
 
-    WallpaperChanger {
-    }
+    WallpaperChanger {}
 
-    Menu {
-    }
+    Clipboard {}
 
     CenterCaller {
         bottomOffset: wallpaper.visualizerEnabled ? 66 : 47
     }
 
-    PowerMenu {
-    }
+    PowerMenu {}
 
-    Bar {
-    }
-
+    Bar {}
 }
