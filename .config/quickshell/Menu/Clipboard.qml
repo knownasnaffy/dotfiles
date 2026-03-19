@@ -273,6 +273,7 @@ ShellRoot {
             height: root.mainHeight - 12
             color: "#ee1a1b26"
             radius: 16
+            clip: true
 
             Keys.onPressed: event => {
                 if (event.key === Qt.Key_Escape || event.key === Qt.Key_Q) {
@@ -318,7 +319,19 @@ ShellRoot {
                         Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
                         Layout.bottomMargin: 12
                         color: "#443b4261"
-                        radius: 12
+                        radius: 16
+
+                        Text {
+                            anchors {
+                                verticalCenter: parent.verticalCenter
+                                left: parent.left
+                                leftMargin: 16
+                            }
+                            font.family: "JetBrainsMono Nerd Font"
+                            font.pixelSize: 14
+                            text: "Press / to search"
+                            color: "#88c0caf5"
+                        }
                     }
 
                     Repeater {
@@ -335,7 +348,7 @@ ShellRoot {
                             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
                             Layout.bottomMargin: index == root.clipboardActiveIndex ? 6 : 0
                             Layout.topMargin: index == root.clipboardActiveIndex ? 6 : 0
-                            radius: 12
+                            radius: 16
                             color: index == root.clipboardActiveIndex ? "#7aa2f7" : "transparent"
 
                             Text {
