@@ -120,6 +120,16 @@ ShellRoot {
             }
         }
 
+        function incrementActiveIndex(): void {
+            if (root.clipboardActiveIndex < root.clipboard.length - 1)
+                root.clipboardActiveIndex++;
+        }
+
+        function decrementActiveIndex(): void {
+            if (root.clipboardActiveIndex > 0)
+                root.clipboardActiveIndex--;
+        }
+
         target: "clipboard"
     }
 
@@ -130,6 +140,7 @@ ShellRoot {
         repeat: false
         onTriggered: {
             mainPanel.visible = false;
+            root.clipboardActiveIndex = 0;
         }
     }
 
@@ -276,16 +287,42 @@ ShellRoot {
             clip: true
 
             Keys.onPressed: event => {
+                // close
                 if (event.key === Qt.Key_Escape || event.key === Qt.Key_Q) {
                     handler.toggle();
                 }
-                if (event.key === Qt.Key_K) {
-                    if (root.clipboardActiveIndex != root.clipboard.length)
-                        root.clipboardActiveIndex = root.clipboardActiveIndex + 1;
+
+                // ENTER
+                if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
+                    handler.toggle();
+                    // do your action here
                 }
-                if (event.key === Qt.Key_L) {
-                    if (root.clipboardActiveIndex != 0)
-                        root.clipboardActiveIndex = root.clipboardActiveIndex - 1;
+
+                // SHIFT modifier check
+                const isShift = event.modifiers & Qt.ShiftModifier;
+
+                // K (down)
+                if (event.key === Qt.Key_K && !isShift) {
+                    handler.incrementActiveIndex();
+                }
+
+                // Shift + K (faster down or different action)
+                if (event.key === Qt.Key_K && isShift) {
+                    handler.incrementActiveIndex();
+                    handler.incrementActiveIndex();
+                    handler.incrementActiveIndex();
+                }
+
+                // L (up)
+                if (event.key === Qt.Key_L && !isShift) {
+                    handler.decrementActiveIndex();
+                }
+
+                // Shift + L (faster up or different action)
+                if (event.key === Qt.Key_L && isShift) {
+                    handler.decrementActiveIndex();
+                    handler.decrementActiveIndex();
+                    handler.decrementActiveIndex();
                 }
             }
 
