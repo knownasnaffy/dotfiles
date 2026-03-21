@@ -4,7 +4,7 @@ PartOf=graphical-session.target
 After=graphical-session.target
 
 [Service]
-ExecStart=/usr/bin/wl-paste --watch /usr/bin/cliphist store
+ExecStart=/usr/bin/wl-paste --type image --watch /usr/bin/cliphist store
 Restart=on-failure
 
 [Install]
