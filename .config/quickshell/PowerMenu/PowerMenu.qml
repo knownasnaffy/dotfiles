@@ -24,7 +24,7 @@ ShellRoot {
     PanelWindow {
         visible: root.panelVisible
         aboveWindows: true
-        WlrLayershell.namespace: "powermenu"
+        WlrLayershell.namespace: "qs-blurred-panel"
         exclusionMode: ExclusionMode.Ignore
         color: "transparent"
         focusable: true
@@ -39,33 +39,33 @@ ShellRoot {
         Rectangle {
             property real helpTextOpacity: 0
 
-            Keys.onPressed: (event) => {
+            Keys.onPressed: event => {
                 if (event.key === Qt.Key_Escape || event.key === Qt.Key_Q) {
-                    root.panelVisible = false
+                    root.panelVisible = false;
                 }
 
                 if (event.key === Qt.Key_H) {
-                    shutdown.onHelpToggle()
-                    restart.onHelpToggle()
-                    lock.onHelpToggle()
-                    logout.onHelpToggle()
-                    backdropKeyHelper.helpTextOpacity = backdropKeyHelper.helpTextOpacity === 0 ? 0.8 : 0
+                    shutdown.onHelpToggle();
+                    restart.onHelpToggle();
+                    lock.onHelpToggle();
+                    logout.onHelpToggle();
+                    backdropKeyHelper.helpTextOpacity = backdropKeyHelper.helpTextOpacity === 0 ? 0.8 : 0;
                 }
 
                 if (event.key === Qt.Key_S) {
-                    shutdown.animateClick()
+                    shutdown.animateClick();
                 }
 
                 if (event.key === Qt.Key_R) {
-                    restart.animateClick()
+                    restart.animateClick();
                 }
 
                 if (event.key === Qt.Key_L) {
-                    lock.animateClick()
+                    lock.animateClick();
                 }
 
                 if (event.key === Qt.Key_O) {
-                    logout.animateClick()
+                    logout.animateClick();
                 }
             }
 
@@ -81,7 +81,6 @@ ShellRoot {
                         duration: 120
                         easing.type: Easing.OutCubic
                     }
-
                 }
                 anchors.centerIn: parent
                 anchors.verticalCenterOffset: 200
@@ -105,9 +104,9 @@ ShellRoot {
                     bgColor: "#f7768e"
                     fgColor: "#1b1e2d"
                     onClicked: {
-                        proc.command = ["hyprctl", "dispatch", "exec", "hyprhalt --text \"Shutting down\" --post-cmd \"systemctl poweroff\""]
-                        proc.running = true
-                        root.panelVisible = false
+                        proc.command = ["hyprctl", "dispatch", "exec", "hyprhalt --text \"Shutting down\" --post-cmd \"systemctl poweroff\""];
+                        proc.running = true;
+                        root.panelVisible = false;
                     }
                 }
                 PowerButton {
@@ -117,10 +116,9 @@ ShellRoot {
                     bgColor: "#e0af68"
                     fgColor: "#1b1e2d"
                     onClicked: {
-                        proc.command = ["hyprctl", "dispatch", "exec", "hyprhalt --text 'Rebooting' --post-cmd 'systemctl reboot'"]
-                        proc.running = true
-                        root.panelVisible = false
-
+                        proc.command = ["hyprctl", "dispatch", "exec", "hyprhalt --text 'Rebooting' --post-cmd 'systemctl reboot'"];
+                        proc.running = true;
+                        root.panelVisible = false;
                     }
                 }
                 PowerButton {
@@ -130,9 +128,9 @@ ShellRoot {
                     bgColor: "#7aa2f7"
                     fgColor: "#1b1e2d"
                     onClicked: {
-                        proc.command = ["sh", "-c", "sleep 0.2 && hyprlock"]
-                        proc.running = true
-                        root.panelVisible = false
+                        proc.command = ["sh", "-c", "sleep 0.2 && hyprlock"];
+                        proc.running = true;
+                        root.panelVisible = false;
                     }
                 }
                 PowerButton {
@@ -142,9 +140,9 @@ ShellRoot {
                     bgColor: "#bb9af7"
                     fgColor: "#1b1e2d"
                     onClicked: {
-                        proc.command = ["hyprhalt", "--vt", "2"]
-                        proc.running = true
-                        root.panelVisible = false
+                        proc.command = ["hyprhalt", "--vt", "2"];
+                        proc.running = true;
+                        root.panelVisible = false;
                     }
                 }
             }

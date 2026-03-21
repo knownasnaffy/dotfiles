@@ -25,8 +25,8 @@ Item {
         font.pixelSize: 32
         font.weight: Font.ExtraBold
         // POSITION (percent-based)
-        x: 450
-        y: 480
+        x: 544
+        y: 582
 
         Timer {
             interval: 1000
@@ -34,7 +34,5 @@ Item {
             repeat: true
             onTriggered: clock.text = Qt.formatTime(new Date(), "HH:mm")
         }
-
     }
-
 }

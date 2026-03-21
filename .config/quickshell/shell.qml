@@ -6,6 +6,7 @@ import qs.PowerMenu
 // import qs.Services.Notifications
 import qs.Wallpaper
 import qs.Widgets.Bar
+import qs.Widgets.Fullscreen
 
 ShellRoot {
     // Component.onCompleted: {
@@ -27,4 +28,6 @@ ShellRoot {
     PowerMenu {}
 
     Bar {}
+
+    LowBattery {}
 }

@@ -47,14 +47,24 @@ PanelWindow {
             id: loader1
             anchors.fill: parent
             opacity: 1
-            Behavior on opacity { NumberAnimation { duration: 300; easing.type: Easing.InOutQuad } }
+            Behavior on opacity {
+                NumberAnimation {
+                    duration: 300
+                    easing.type: Easing.InOutQuad
+                }
+            }
         }
 
         Loader {
             id: loader2
             anchors.fill: parent
             opacity: 0
-            Behavior on opacity { NumberAnimation { duration: 300; easing.type: Easing.InOutQuad } }
+            Behavior on opacity {
+                NumberAnimation {
+                    duration: 300
+                    easing.type: Easing.InOutQuad
+                }
+            }
         }
 
         property bool useLoader1: true
@@ -62,12 +72,17 @@ PanelWindow {
 
         function loadWallpaper(loader, wallpaperId) {
             var wallpaper = Config.getWallpaperById(wallpaperId);
-            if (!wallpaper) return;
+            if (!wallpaper)
+                return;
 
             if (wallpaper.type === "image") {
-                loader.setSource("Backgrounds/ImageWallpaper.qml", { "imagePath": wallpaper.path });
+                loader.setSource("Backgrounds/ImageWallpaper.qml", {
+                    "imagePath": wallpaper.path
+                });
             } else if (wallpaper.type === "video") {
-                loader.setSource("Backgrounds/VideoWallpaper.qml", { "videoPath": wallpaper.path });
+                loader.setSource("Backgrounds/VideoWallpaper.qml", {
+                    "videoPath": wallpaper.path
+                });
             } else if (wallpaper.type === "dynamic") {
                 loader.source = wallpaper.path;
             }

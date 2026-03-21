@@ -11,7 +11,7 @@ ShellRoot {
 
         implicitWidth: 72
         color: "transparent"
-        WlrLayershell.namespace: "Nox:bar"
+        WlrLayershell.namespace: "qs-blurred-panel"
         aboveWindows: true
         exclusionMode: ExclusionMode.Ignore
 
@@ -50,12 +50,9 @@ ShellRoot {
                     Layout.preferredWidth: parent.width
                     spacing: 10
 
-                    DateTime {
-                    }
+                    DateTime {}
 
-                    WorkspaceIndicator {
-                    }
-
+                    WorkspaceIndicator {}
                 }
 
                 ColumnLayout {
@@ -67,19 +64,12 @@ ShellRoot {
                         Layout.alignment: Qt.AlignHCenter
                         Layout.preferredWidth: parent.width
 
-                        SysTray {
-                        }
+                        SysTray {}
 
-                        BatteryIndicator {
-                        }
+                        BatteryIndicator {}
                     }
-
                 }
-
             }
-
         }
-
     }
-
 }
