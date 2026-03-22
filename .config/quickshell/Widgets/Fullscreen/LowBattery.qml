@@ -113,10 +113,10 @@ ShellRoot {
             focus: true
 
             Keys.onPressed: event => {
-                // close
-                if (event.key === Qt.Key_Escape || event.key === Qt.Key_Q) {
-                    root.closePanel();
-                }
+                // close - disabled because I don't want this to disappear until I plug in the charger
+                // if (event.key === Qt.Key_Escape || event.key === Qt.Key_Q) {
+                //     root.closePanel();
+                // }
                 if (event.key === Qt.Key_M) {
                     sirenProc.running = !sirenProc.running;
                 }

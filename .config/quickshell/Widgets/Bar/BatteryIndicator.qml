@@ -31,7 +31,6 @@ ClippingRectangle {
         transform: Translate {
             x: 1
         }
-
     }
 
     ColumnLayout {
@@ -42,8 +41,11 @@ ClippingRectangle {
         Rectangle {
             property real warningThreshold: 0.3
             property real errorThreshold: 0.2
+            property real lockdownThreshold: 0.12
             property real batteryPercentage: UPower.displayDevice.percentage
             property real previousBatteryPercentage: 0
+            property int batteryChargeLimit: 80
+            property UPowerDeviceState state: UPower.displayDevice.state
 
             onBatteryPercentageChanged: {
                 if (batteryPercentage <= warningThreshold && previousBatteryPercentage > warningThreshold) {
@@ -54,18 +56,31 @@ ClippingRectangle {
                     console.log("Launching Error Popup for Battery");
                     proc.command = ["sh", "-c", `$HOME/.local/bin/battery-notify critical ${errorThreshold * 100}`];
                     proc.running = true;
+                } else if (batteryPercentage <= lockdownThreshold && previousBatteryPercentage > lockdownThreshold) {
+                    console.log("Launching Lockdown Popup for Battery");
+                    proc.command = ["sh", "-c", "qs ipc call battery open"];
+                    proc.running = true;
                 }
                 previousBatteryPercentage = batteryPercentage;
                 console.log("Battery changed", batteryPercentage);
             }
+
+            onStateChanged: {
+                if (previousBatteryPercentage <= lockdownThreshold && UPower.displayDevice.state == UPowerDeviceState.Charging) {
+                    console.log("Launching Lockdown Popup for Battery");
+                    proc.command = ["sh", "-c", "qs ipc call battery close"];
+                    proc.running = true;
+                }
+            }
+
             Layout.alignment: Qt.AlignBottom
             Layout.preferredWidth: root.width
-            Layout.preferredHeight: root.height * batteryPercentage
+            Layout.preferredHeight: root.height * (batteryPercentage * 100 / batteryChargeLimit)
             color: {
-                if (UPower.displayDevice.state.toString() == UPowerDeviceState.Charging)
+                if (UPower.displayDevice.state == UPowerDeviceState.Charging)
                     return "#9ece6a";
 
-                if (UPower.displayDevice.state.toString() == UPowerDeviceState.FullyCharged || UPower.displayDevice.percentage >= 0.8)
+                if (UPower.displayDevice.state == UPowerDeviceState.FullyCharged || UPower.displayDevice.percentage >= 0.8)
                     return "#bb9af7";
 
                 if (UPower.displayDevice.percentage < 0.2)
@@ -99,11 +114,7 @@ ClippingRectangle {
                 transform: Translate {
                     x: 1
                 }
-
             }
-
         }
-
     }
-
 }
