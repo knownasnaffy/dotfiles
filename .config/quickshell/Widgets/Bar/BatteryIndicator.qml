@@ -45,7 +45,6 @@ ClippingRectangle {
             property real batteryPercentage: UPower.displayDevice.percentage
             property real previousBatteryPercentage: 0
             property int batteryChargeLimit: 80
-            property UPowerDeviceState state: UPower.displayDevice.state
 
             onBatteryPercentageChanged: {
                 if (batteryPercentage <= warningThreshold && previousBatteryPercentage > warningThreshold) {
@@ -60,17 +59,13 @@ ClippingRectangle {
                     console.log("Launching Lockdown Popup for Battery");
                     proc.command = ["sh", "-c", "qs ipc call battery open"];
                     proc.running = true;
-                }
-                previousBatteryPercentage = batteryPercentage;
-                console.log("Battery changed", batteryPercentage);
-            }
-
-            onStateChanged: {
-                if (previousBatteryPercentage <= lockdownThreshold && UPower.displayDevice.state == UPowerDeviceState.Charging) {
+                } else if (previousBatteryPercentage <= lockdownThreshold && UPower.displayDevice.state == UPowerDeviceState.Charging) {
                     console.log("Launching Lockdown Popup for Battery");
                     proc.command = ["sh", "-c", "qs ipc call battery close"];
                     proc.running = true;
                 }
+                previousBatteryPercentage = batteryPercentage;
+                console.log("Battery changed", batteryPercentage);
             }
 
             Layout.alignment: Qt.AlignBottom

@@ -60,7 +60,7 @@
     "highlight_on_yank_duration": 500,
   },
   "inlay_hints": {
-    "enabled": true,
+    "enabled": false,
   },
   "lsp": {
     "tailwindcss-language-server": {
