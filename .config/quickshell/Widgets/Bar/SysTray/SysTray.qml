@@ -17,20 +17,7 @@ Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         spacing: 12
 
-        Text {
-            Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: 10
-            Layout.bottomMargin: -2
-            font.family: "JetBrainsMono Nerd Font"
-            font.pixelSize: 20
-            text: "󰂲"
-            color: "#565f89"
-
-            transform: Translate {
-                x: 1
-            }
-
-        }
+        Bluetooth {}
 
         Text {
             Layout.alignment: Qt.AlignHCenter
@@ -42,15 +29,10 @@ Rectangle {
             transform: Translate {
                 x: 1.5
             }
-
         }
 
-        Brightness {
-        }
+        Brightness {}
 
-        Volume {
-        }
-
+        Volume {}
     }
-
 }
