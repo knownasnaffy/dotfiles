@@ -128,6 +128,7 @@ settings:
   content.media.audio_video_capture:
     aistudio.google.com: true
     http://localhost:4000: true
+    https://app.zoom.us: true
     https://meet.google.com: true
     https://teams.live.com: true
     https://www.snapchat.com: true
@@ -141,7 +142,9 @@ settings:
   content.mouse_lock:
     https://www.figma.com: true
   content.notifications.enabled:
+    https://aistudio.google.com: false
     https://app.clickup.com: true
+    https://app.zoom.us: false
     https://barinderpreet-singh.monday.com: true
     https://calendar.google.com: false
     https://claude.ai: true
