@@ -149,6 +149,7 @@ settings:
     https://calendar.google.com: false
     https://claude.ai: true
     https://cursor.com: false
+    https://jules.google.com: true
     https://pomofocus.io: true
     https://teams.live.com: true
     https://www.facebook.com: false
