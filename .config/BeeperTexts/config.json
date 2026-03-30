@@ -155,5 +155,7 @@
       ]
     }
   },
-  "tray_icon_hidden": true
+  "tray_icon_hidden": true,
+  "auto_update_disabled": false,
+  "quit_on_close": true
 }
