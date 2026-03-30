@@ -121,7 +121,7 @@ alias vi=nvim
 
 # Terminal and tools
 export PNPM_HOME="$HOME/.local/share/pnpm"
-export ANDROID_HOME="/opt/android-sdk"
+export ANDROID_HOME="$HOME/Android/Sdk"
 export JAVA_HOME="/usr/lib/jvm/java-17-openjdk"
 export GEM_HOME="$HOME/.local/share/gem/ruby/3.4.0/bin"
 
@@ -130,7 +130,7 @@ path_directories=(
   "$HOME/.local/bin"
   "$HOME/.bun/bin"
   "$HOME/.cargo/bin"
-  "$HOME/flutter/bin"
+  "$HOME/fvm/versions/stable/bin"
   "$ANDROID_HOME/cmdline-tools/latest/bin"
   "$ANDROID_HOME/platform-tools"
   "$JAVA_HOME/bin"
