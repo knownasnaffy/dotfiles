@@ -6,7 +6,7 @@ Button {
     id: root
 
     property real prefferedSize: 0
-    property real prefferedIconSize: 56
+    property real prefferedIconSize: 40
     property real variableOpacity: 1
     required property string iconString
     required property string helpString
@@ -39,7 +39,6 @@ Button {
             duration: 120
             easing.type: Easing.OutCubic
         }
-
     }
 
     Behavior on prefferedSize {
@@ -47,7 +46,6 @@ Button {
             duration: 120
             easing.type: Easing.OutCubic
         }
-
     }
 
     Behavior on prefferedIconSize {
@@ -55,7 +53,6 @@ Button {
             duration: 120
             easing.type: Easing.OutCubic
         }
-
     }
 
     Behavior on variableOpacity {
@@ -63,7 +60,6 @@ Button {
             duration: 120
             easing.type: Easing.OutCubic
         }
-
     }
 
     background: Rectangle {
@@ -85,13 +81,11 @@ Button {
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 12
             text: root.helpString
-            font.pixelSize: root.prefferedIconSize - 32
+            font.pixelSize: root.prefferedIconSize - 16
             font.family: "JetBrainsMono Nerd Font"
             color: root.fgColor
             opacity: root.helpTextOpacity
             scale: root.helpTextOpacity
         }
-
     }
-
 }
