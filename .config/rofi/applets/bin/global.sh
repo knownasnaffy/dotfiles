@@ -87,6 +87,12 @@ case "$focused_class" in
             "Qutebrowser: Toggle Images:::qutebrowser ':config-cycle content.images true false'"
         )
         ;;
+
+    "vivaldi-stable")
+        context_records+=(
+            "Vivaldi: Open Downloads:::$TERMINAL -e yazi ~/Downloads"
+        )
+        ;;
 esac
 
 # Add a visual divider if context actions exist
