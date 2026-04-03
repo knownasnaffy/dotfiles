@@ -352,22 +352,55 @@ ShellRoot {
 
                     Rectangle {
                         Layout.preferredHeight: 40
-                        Layout.preferredWidth: root.mainWidth - 60
+                        Layout.preferredWidth: root.mainWidth - 48
                         Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
                         Layout.bottomMargin: 12
                         color: "#443b4261"
-                        radius: 16
+                        radius: 12
 
-                        Text {
+                        RowLayout {
+                            spacing: 0
+
                             anchors {
                                 verticalCenter: parent.verticalCenter
                                 left: parent.left
                                 leftMargin: 16
                             }
-                            font.family: "JetBrainsMono Nerd Font"
-                            font.pixelSize: 14
-                            text: "Press / to search"
-                            color: "#88c0caf5"
+
+                            Text {
+                                font.family: "JetBrainsMono Nerd Font"
+                                font.pixelSize: 14
+                                text: ""
+                                color: "#7aa2f7"
+                                Layout.rightMargin: 16
+                                Layout.alignment: Qt.AlignVCenter
+                            }
+
+                            Text {
+                                font.family: "JetBrainsMono Nerd Font"
+                                font.pixelSize: 14
+                                text: "Press"
+                                color: "#88c0caf5"
+                                Layout.rightMargin: 8
+                                Layout.alignment: Qt.AlignVCenter
+                            }
+
+                            Text {
+                                font.family: "JetBrainsMono Nerd Font"
+                                font.pixelSize: 14
+                                text: "/"
+                                color: "#c0caf5"
+                                Layout.rightMargin: 8
+                                Layout.alignment: Qt.AlignVCenter
+                            }
+
+                            Text {
+                                font.family: "JetBrainsMono Nerd Font"
+                                font.pixelSize: 14
+                                text: "to search"
+                                color: "#88c0caf5"
+                                Layout.alignment: Qt.AlignVCenter
+                            }
                         }
                     }
 
@@ -380,12 +413,12 @@ ShellRoot {
                             required property int index
                             required property var modelData
 
-                            Layout.preferredWidth: root.mainWidth - 60
+                            Layout.preferredWidth: root.mainWidth - 48
                             Layout.preferredHeight: 40
                             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-                            Layout.bottomMargin: index == root.clipboardActiveIndex ? 6 : 0
-                            Layout.topMargin: index == root.clipboardActiveIndex ? 6 : 0
-                            radius: 16
+                            // Layout.bottomMargin: index == root.clipboardActiveIndex ? 6 : 0
+                            // Layout.topMargin: index == root.clipboardActiveIndex ? 6 : 0
+                            radius: 12
                             color: index == root.clipboardActiveIndex ? "#7aa2f7" : "transparent"
 
                             Text {
