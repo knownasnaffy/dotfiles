@@ -6,7 +6,7 @@ Personal Arch Linux dotfiles featuring Hyprland, Tokyo Night theming, and extens
 
 ## Showcase
 
-> Some screenshots are outdated. Bar is under construction with quickshell. Scrolling layout has been adapted. Audio visualizer has changed. And probably others I can't remember
+> Some screenshots are outdated. Scrolling layout has been adapted. Audio visualizer has changed. Check [Quickshell Section](#quickshell) for more info.
 
 <table>
   <tr>
@@ -91,11 +91,11 @@ Personal Arch Linux dotfiles featuring Hyprland, Tokyo Night theming, and extens
 - CPU: AMD Ryzen 7 7435HS
 - GPU: NVIDIA GeForce RTX 3050 Mobile
 - RAM: 16GB DDR5
-- Display: 1920x1080 @ 144Hz (scaled 1.2x)
+- Display: 1920x1080 @ 144Hz
 
 ## Features
 
-- **Automated Setup**: Single script installs packages, configures system, and symlinks dotfiles with backup protection
+- ~**Automated Setup**: Single script installs packages, configures system, and symlinks dotfiles with backup protection~ I think I broke a lot of stuff while trying quickshell and others
 - **Hyprland-First**: Wayland-native workflow optimized for laptop usage ~with NVIDIA support~ (Nvidia is a b*ch)
 - **Extensive Rofi Integration**: 20+ custom menus for everything from screenshots to password management (Will be converted to quickshell, I like it's extensibility)
 - **Vim-Centric Keybindings**: Ergonomic keyboard-first workflow - ~hjkl~ jkl; (see [keyd config](etc/keyd/default.conf), [hyprland keybinds](.config/hypr/land/keybinds.conf))
@@ -123,37 +123,22 @@ The script will:
 ## Package Highlights
 
 **Hyprland Ecosystem:**
-- hyprland, hyprlock, hyprpicker, hyprpolkitagent, hyprshade, hyprshutdown-git, hyprquickframe-git, quicksnip-git
-- waybar, swaync, swayosd, uwsm
-- grim, slurp, satty, wf-recorder, cliphist
+- `hyprland`, `hyprlock`, `hyprpicker`, `hyprshade`, `hyprshutdown-git` (custom utillity), `hyprquickframe`, `quicksnip`, hyprpolkitagent
+- `swaync`, `swayosd`, uwsm
+- `wf-recorder`, `cliphist`, satty
 
 **CLI Tools:**
-- Shell: zsh, omz, fzf, ripgrep, bat, eza, zoxide, btop, eva, jq
-- File Management: yazi, 7zip
-- Dev: github-cli, aichat, task, pass (+ pass-otp)
-- Media: playerctl, imagemagick
+- Shell: zsh, `omz`, `fzf`, `bat`, `zoxide`, `btop`
+- File Management: `yazi`
+- Dev: `aichat`, `pass` (+ pass-otp)
 
 **Desktop Apps:**
-- Terminal: Foot
-- Editor: Neovim ([custom config](https://github.com/knownasnaffy/nvim))
-- Browser: qutebrowser
-- PDF: zathura (+ poppler)
-- Image: swayimg
-- Communication: beeper-v4-bin
-
-**Audio:** pipewire
-
-**System:**
-- OS: Arch Linux
-- Display Manager: ly (currently using sddm, but not yet configured into dotfiles)
-- Keyboard Remapping: keyd
-
-**Others**
-- Bar: Waybar
-- Notifications: SwayNC
-- Launcher/Menus: Rofi
-- Theme: Tokyo Night
-- And many more - check the config files ;)
+- Terminal: `foot`
+- Editor: `neovim` ([custom config](https://github.com/knownasnaffy/nvim))
+- Browser: `vivaldi`
+- PDF: `zathura`
+- Image: `swayimg`
+- Communication: `beeper`
 
 ## Selective Installation
 
@@ -175,11 +160,11 @@ Combine flags as needed: `./setup.sh -ln -pi`
 
 Located in `.local/bin/`:
 
-- `qutebrowser` - Qutebrowser wrapper with fixes
-- `slurp` - Slurp wrapper for screenshots
-- `crypt` - Encryption utility
-- `git-status` - Enhanced git status
-- `start-hotspot` / `stop-hotspot` - Mobile hotspot management
+- `qutebrowser` - Qutebrowser wrapper with fixes (Needed because of GPU thingy on wayland doesn't work)
+- `slurp` - Slurp wrapper with custom theme (Why does this not support a config file?)
+- `crypt` - Encryption utility (Kinda like an alias, maybe alias would've been better)
+- `git-status` - git status accross an entire directory tree
+- `start-hotspot` / `stop-hotspot` - Mobile hotspot management when ethernet is connected, breaks wifi (Ik, but I use iwd only)
 - `pass-push` - Password store sync
 
 Other useful menu utilities are located in `.config/rofi/applets/bin/`
@@ -195,9 +180,20 @@ The following require manual configuration (documentation pending):
 
 - **NVIDIA quirks**: Requires specific env vars (configured in hyprland.conf). Resume doesn't work (hibernate & sleep)
 
-## Neovim Setup
+## Quickshell
 
-If `~/.config/nvim` exists and points to `knownasnaffy/nvim`, it's preserved. Otherwise, the directory is removed and the config is cloned fresh. (NOT BACKING UP OLD CONF)
+- `bar` is under construction with quickshell.
+  - `time` and `date`
+  - `workspace` indicator
+  - `battery` indicator
+  - `speaker` volume, `mic` volume, `brightness`, `bluetooth` indicators with native Quickshell modules + OSD-like popup text when a value changes for volumes and brightness.
+  - `wifi indicator` with my custom utility wrapper around iwdrs - [ryth](https://github.com/knownasnaffy/ryth). I plan to use it for a full wifi menu as iwd support doesn't seem like a priority thing for quickshell.
+- `custom menu` is under work.
+- `custom low battery indicator` (fullscreen) that forces you to plug in the charger (not very cruel, you do have a way out if you want to save your work)
+- `wallpaper switcher` that supports images, videos and custom qml components (The depth effect wallpaper in the showcase is an example)
+- `notification system` is under work - I'm too lazy to understand how ListView and animations work, will work on this once I do that.
+- `powermenu` with only keyboard support (Maybe mouse works too, I think I used button click functionality initially)
+- Some stale components are currently tracked in the repo, they were copied from other sources like [tpaau's config](https://github.com/tpaau/shell), but I didn't yet get the time to adapt them to my needs
 
 ## Credits
 
