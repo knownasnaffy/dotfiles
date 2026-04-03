@@ -10,7 +10,6 @@ ColumnLayout {
     Text {
         Layout.alignment: Qt.AlignHCenter
         Layout.topMargin: 10
-        Layout.bottomMargin: -2
         font.family: "JetBrainsMono Nerd Font"
         font.pixelSize: 20
         text: Bluetooth.defaultAdapter.enabled ? Bluetooth.defaultAdapter.devices.values.filter(device => device.connected).length > 0 ? "󰂱" : "󰂯" : "󰂲"

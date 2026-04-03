@@ -19,17 +19,7 @@ Rectangle {
 
         Bluetooth {}
 
-        Text {
-            Layout.alignment: Qt.AlignHCenter
-            font.family: "JetBrainsMono Nerd Font"
-            font.pixelSize: 14
-            text: ""
-            color: "#7aa2f7"
-
-            transform: Translate {
-                x: 1.5
-            }
-        }
+        Wifi {}
 
         Brightness {}
 
