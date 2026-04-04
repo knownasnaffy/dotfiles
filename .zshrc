@@ -128,7 +128,7 @@ export GEM_HOME="$HOME/.local/share/gem/ruby/3.4.0/bin"
 # Add important paths
 path_directories=(
   "$HOME/.local/bin"
-  "$HOME/.bun/bin"
+  "$HOME/.cache/.bun/bin"
   "$HOME/.cargo/bin"
   "$HOME/fvm/versions/stable/bin"
   "$ANDROID_HOME/cmdline-tools/latest/bin"
